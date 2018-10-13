@@ -13,4 +13,10 @@ public class TestController {
         ModelAndView model = new ModelAndView("index");
         return model;
     }
+
+    @GetMapping(value = "/test")
+    public ModelAndView test(){
+        ModelAndView modelAndView = new ModelAndView("index");
+        return modelAndView;
+    }
 }
