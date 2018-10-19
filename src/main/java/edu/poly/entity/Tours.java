@@ -1,7 +1,11 @@
 package edu.poly.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "tours")
@@ -46,10 +50,20 @@ public class Tours {
     @JoinColumn(name = "id")
     private Users users;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id")
+    @JsonIgnore
+    private Set<Rates> rates = new HashSet<Rates>(0);
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id")
+    @JsonIgnore
+    private Set<Services> services = new HashSet<Services>(0);
+
     public Tours() {
     }
 
-    public Tours(String name, String address, String content, String images, String policy, String lat, String lng, boolean isDeleted, Date createdAt, Date updatedAt) {
+    public Tours(String name, String address, String content, String images, String policy, String lat, String lng, boolean isDeleted, Date createdAt, Date updatedAt, Users users, Set<Rates> rates, Set<Services> services) {
         this.name = name;
         this.address = address;
         this.content = content;
@@ -60,6 +74,9 @@ public class Tours {
         this.isDeleted = isDeleted;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.users = users;
+        this.rates = rates;
+        this.services = services;
     }
 
     public int getId() {
@@ -148,6 +165,30 @@ public class Tours {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
+    }
+
+    public Set<Rates> getRates() {
+        return rates;
+    }
+
+    public void setRates(Set<Rates> rates) {
+        this.rates = rates;
+    }
+
+    public Set<Services> getServices() {
+        return services;
+    }
+
+    public void setServices(Set<Services> services) {
+        this.services = services;
     }
 
 }

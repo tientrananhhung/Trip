@@ -56,7 +56,37 @@ public class Users {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "id")
     @JsonIgnore
+    private Set<Partners> partners = new HashSet<Partners>(0);
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id")
+    @JsonIgnore
+    private Set<Rates> rates = new HashSet<Rates>(0);
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id")
+    @JsonIgnore
     private Set<Tours> tours = new HashSet<Tours>(0);
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id")
+    @JsonIgnore
+    private Set<Orders> orders = new HashSet<Orders>(0);
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id")
+    @JsonIgnore
+    private Set<Offers> offers = new HashSet<Offers>(0);
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id")
+    @JsonIgnore
+    private Set<Posts> posts = new HashSet<Posts>(0);
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id")
+    @JsonIgnore
+    private Set<Foods> foods = new HashSet<Foods>(0);
 
     public Users() {
     }
@@ -74,6 +104,28 @@ public class Users {
         this.isDeleted = isDeleted;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+    }
+
+    public Users(String name, String userName, String passWord, String phone, String email, String address, Date birthday, String avatar, int role, boolean isDeleted, Date createdAt, Date updatedAt, Set<Partners> partners, Set<Rates> rates, Set<Tours> tours, Set<Orders> orders, Set<Offers> offers, Set<Posts> posts, Set<Foods> foods) {
+        this.name = name;
+        this.userName = userName;
+        this.passWord = passWord;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.birthday = birthday;
+        this.avatar = avatar;
+        this.role = role;
+        this.isDeleted = isDeleted;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.partners = partners;
+        this.rates = rates;
+        this.tours = tours;
+        this.orders = orders;
+        this.offers = offers;
+        this.posts = posts;
+        this.foods = foods;
     }
 
     public int getId() {
@@ -178,6 +230,62 @@ public class Users {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Set<Partners> getPartners() {
+        return partners;
+    }
+
+    public void setPartners(Set<Partners> partners) {
+        this.partners = partners;
+    }
+
+    public Set<Rates> getRates() {
+        return rates;
+    }
+
+    public void setRates(Set<Rates> rates) {
+        this.rates = rates;
+    }
+
+    public Set<Tours> getTours() {
+        return tours;
+    }
+
+    public void setTours(Set<Tours> tours) {
+        this.tours = tours;
+    }
+
+    public Set<Orders> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Orders> orders) {
+        this.orders = orders;
+    }
+
+    public Set<Offers> getOffers() {
+        return offers;
+    }
+
+    public void setOffers(Set<Offers> offers) {
+        this.offers = offers;
+    }
+
+    public Set<Posts> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(Set<Posts> posts) {
+        this.posts = posts;
+    }
+
+    public Set<Foods> getFoods() {
+        return foods;
+    }
+
+    public void setFoods(Set<Foods> foods) {
+        this.foods = foods;
     }
 
 }
