@@ -24,6 +24,9 @@ public class Constants {
 
         //Thông tin cá nhân của người dùng
         public static final String PROFILE_URL = "/profile";
+
+        //Trang đăng ký
+        public static final String REGISTER = "/dang-ky";
     }
 
     public class Status {
