@@ -13,6 +13,9 @@ public class Orders {
     @Column(name = "Data")
     private String data;
 
+    @Column(name = "Payment")
+    private int payment;
+
     @Column(name = "Is_deleted")
     private boolean isDeleted;
 
