@@ -16,6 +16,9 @@ public class Posts {
     @Column(name = "Content")
     private String content;
 
+    @Column(name = "View")
+    private int view;
+
     @Column(name = "Is_deleted")
     private boolean isDeleted;
 
@@ -38,9 +41,10 @@ public class Posts {
     public Posts() {
     }
 
-    public Posts(String title, String content, boolean isDeleted, Date createdAt, Date updatedAt, Posts posts, Users users) {
+    public Posts(String title, String content, int view, boolean isDeleted, Date createdAt, Date updatedAt, Posts posts, Users users) {
         this.title = title;
         this.content = content;
+        this.view = view;
         this.isDeleted = isDeleted;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -70,6 +74,14 @@ public class Posts {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public int getView() {
+        return view;
+    }
+
+    public void setView(int view) {
+        this.view = view;
     }
 
     public boolean isDeleted() {
@@ -111,5 +123,4 @@ public class Posts {
     public void setUsers(Users users) {
         this.users = users;
     }
-
 }
