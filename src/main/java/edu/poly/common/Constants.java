@@ -3,30 +3,40 @@ package edu.poly.common;
 public class Constants {
 
     public class Url {
+        //Đăng nhập
+        public static final String LOGIN = "/dang-nhap";
 
-        //Login
-        public static final String LOGIN = "/login";
+        //Đăng xuất
+        public static final String LOGOUT = "/dang-xuat";
 
-        //Logout
-        public static final String LOGOUT = "/logout";
+        // Quên mật khẩu
+        public static final String FORGOT_PASS = "/quen-mat-khau";
 
-        // Forgot password
-        public static final String FORGOT_PASS = "/forgot-pass";
+        // Đổi mật khẩu
+        public static final String CHANGE_PASS = "/doi-mat-khau";
 
-        //Change password
-        public static final String CHANGE_PASS = "/change-pass";
+        //Trang admin
+        public static final String ADMIN_PAGE_URL = "/admin";
 
         //Management Offer
-        public static final String OFFER_URL = "/offer";
+        public static final String OFFER_URL = "/uu-dai";
 
         //Offer detail by id
         public static final String OFFER_DETAIL_URL = "/{offerId}";
 
         //Thông tin cá nhân của người dùng
-        public static final String PROFILE_URL = "/profile";
+        public static final String PROFILE_URL = "/thong-tin-ca-nhan";
 
         //Trang đăng ký
         public static final String REGISTER = "/dang-ky";
+    }
+
+    public class Characters {
+        // blank character
+        public static final String BLANK = "";
+
+        // Wave
+        public static final String WAVE = "~";
     }
 
     public class Status {
@@ -83,48 +93,8 @@ public class Constants {
     }
 
     public class SessionKey {
-
-        // Key to set/get data userId to session first login
-        public static final String USER_FIRST_LOGIN = "user-first-login";
-
         // Key to set/get data userId to session
-        public static final String USER_ID = "user-id";
-
-        // Key to set/get data email to session
-        public static final String USER_EMAIL = "user-email";
-
-        // Key to set/get data districtId selected to session
-        public static final String DISTRICT_ID_SELECTED = "district-id-selected";
-
-        // Key to set/get data genreId selected to session
-        public static final String GENRE_ID_SELECTED = "genre-id-selected";
-
-        // Key to set/get data serviceId selected to session
-        public static final String SERVICE_ID_SELECTED = "service-id-selected";
-
-        // Key to set/get data upload-type to session
-        public static final String UPLOAD_TYPE = "upload-type";
-
-        // Key to set/get token to session
-        public static final String ORDER_TOKEN = "order-token";
-
-        // Key to set/get update user token to session
-        public static final String USER_UPDATE_TOKEN = "update-user-token";
-
-        // Key to set/get token to session
-        public static final String REGIST_OFFER_TOKEN = "regist-offer-token";
-
-        // Key to set/get send offer display mode
-        public static final String SEND_OFFER_DISPLAY_MODE = "send-offer-display-mode";
-
-        // Key to set/get send offer data
-        public static final String SEND_OFFER_DATA = "send-offer-data";
-
-        // Key to set/get data role to session
-        public static final String IS_SHIPPER = "is-shipper";
-
-        // Key to set/get data plusbenlly token to session
-        public static final String PLUSBENLLY_TOKEN = "plusbennly-token";
+        public static final String USER = "user";
     }
 
 }
