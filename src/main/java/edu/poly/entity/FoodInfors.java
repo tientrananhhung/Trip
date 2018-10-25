@@ -33,7 +33,7 @@ public class FoodInfors {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id")
     private PlaceInfors placeInfors;
 
