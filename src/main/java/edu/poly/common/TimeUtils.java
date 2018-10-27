@@ -12,4 +12,5 @@ public class TimeUtils {
     public static Date getCurrentTime() {
         return new Date();
     }
+
 }
