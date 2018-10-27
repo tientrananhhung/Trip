@@ -48,6 +48,7 @@ public class LoginController {
     public ModelAndView loginProgess(@ModelAttribute("login") Users users, HttpServletRequest rq){
         ModelAndView mav = new ModelAndView();
         Users login = new Users();
+
         Users userLogin = user.login(users.getUserName(), users.getPassWord());
         if(userLogin != null){
             if (userLogin.getRole() == Constants.Role.ADMIN || userLogin.getRole() == Constants.Role.MANAGER) {
