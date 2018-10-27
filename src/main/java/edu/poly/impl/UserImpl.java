@@ -61,4 +61,18 @@ public class UserImpl implements UserService {
         repository.deleteById(id);
     }
 
+    @Override
+    public Users login(String userName, String passWord) {
+        Users users;
+        try{
+            users = repository.login(userName, passWord);
+        }catch (Exception ex){
+            users = new Users();
+        }
+        return users;
+    }
+
+    public static void main(String []args) {
+        UserImpl user = new UserImpl();
+    }
 }

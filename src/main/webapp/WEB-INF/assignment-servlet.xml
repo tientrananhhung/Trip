@@ -14,8 +14,6 @@
 
     <mvc:annotation-driven enable-matrix-variables="true"/>
     <mvc:resources location="/resources/" mapping="/resources/**"/>
-    <mvc:default-servlet-handler />
-    <mvc:annotation-driven/>
 
     <import resource="classpath:IoC.xml"/>
 
@@ -23,5 +21,8 @@
         <property name="prefix" value="/WEB-INF/views/"></property>
         <property name="suffix" value=".jsp"></property>
     </bean>
+
+    <mvc:default-servlet-handler />
+    <mvc:annotation-driven/>
 
 </beans>

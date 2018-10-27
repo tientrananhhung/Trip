@@ -7,11 +7,8 @@
 		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/trip?characterEncoding=UTF-8&amp;useSSL=false"/>
-        <property name="username" value="root"/>
-        <property name="password" value=""/>
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -24,33 +21,17 @@
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
-                <!--<prop key="hibernate.hbm2ddl.auto">update</prop>-->
             </props>
         </property>
     </bean>
 
-    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/trip?characterEncoding=UTF-8&amp;useSSL=false"/>
+        <property name="username" value="root"/>
+        <property name="password" value=""/>
     </bean>
 
-    <!--<bean id="sessionFactory"-->
-          <!--class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">-->
-        <!--<property name="dataSource" ref="dataSource"/>-->
-        <!--<property name="packagesToScan" value="edu.poly.entity"/>-->
-        <!--<property name="hibernateProperties">-->
-            <!--<props>-->
-                <!--<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>-->
-                <!--<prop key="hibernate.show_sql">true</prop>-->
-            <!--</props>-->
-        <!--</property>-->
-    <!--</bean>-->
-
-    <!--<bean id="transactionManager"-->
-          <!--class="org.springframework.orm.hibernate5.HibernateTransactionManager">-->
-        <!--<property name="sessionFactory" ref="sessionFactory"/>-->
-    <!--</bean>-->
-
-    <tx:annotation-driven
-            transaction-manager="transactionManager"/>
+    <!--<tx:annotation-driven transaction-manager="transactionManager"/>-->
 
 </beans>

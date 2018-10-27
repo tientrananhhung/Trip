@@ -24,4 +24,6 @@ public interface UserService {
 
     public void deleteById(Integer id);
 
+    public Users login(String userName, String passWord);
+
 }
