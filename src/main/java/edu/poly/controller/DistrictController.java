@@ -19,7 +19,7 @@ public class DistrictController {
     @Autowired
     DistrictImpl district;
 
-    public static final String DISTRICT_SCREEN = "/admin/district";
+    public static final String DISTRICT_SCREEN = "/admin/quanlyquan/listDistrict";
 
     @GetMapping(Constants.Url.LIST_DISTRICT)
     public ModelAndView showDistrict(HttpSession session) {
@@ -28,10 +28,10 @@ public class DistrictController {
 
         Users user = (Users) session.getAttribute(Constants.SessionKey.USER);
 
-        if (CheckSession.admin(session) || !user.isActive() || user.isDeleted()) {
-            mav.setViewName("redirect:" + Constants.Characters.BLANK);
-            return mav;
-        }
+//        if (CheckSession.admin(session) || !user.isActive() || user.isDeleted()) {
+//            mav.setViewName("redirect:" + Constants.Characters.BLANK);
+//            return mav;
+//        }
 
         mav.setViewName(DISTRICT_SCREEN);
         mav.addObject("listDistrict", district.findAll());
