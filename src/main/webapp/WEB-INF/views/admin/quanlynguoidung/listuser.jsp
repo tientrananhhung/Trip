@@ -60,19 +60,20 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>2012/08/03</td>
-                                        <td>Edinburgh</td>
-                                        <td>New York</td>
-                                        <td><label class="badge badge-success">Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-
+                                    <c:forEach var="user" items="${listUser}">
+                                        <tr>
+                                            <td>${user.id}</td>
+                                            <td>1</td>
+                                            <td>2012/08/03</td>
+                                            <td>Edinburgh</td>
+                                            <td>New York</td>
+                                            <td><label class="badge badge-success">Active</label></td>
+                                            <td>
+                                                <button class="btn btn-outline-primary">Edit</button>
+                                                <button class="btn btn-outline-danger">Delete</button>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
