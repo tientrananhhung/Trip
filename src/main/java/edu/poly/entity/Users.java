@@ -36,11 +36,17 @@ public class Users {
     @Temporal(TemporalType.DATE)
     private Date birthday;
 
+    @Column(name = "Gender")
+    private boolean gender;
+
     @Column(name = "Avatar")
     private String avatar;
 
     @Column(name = "Role")
     private int role;
+
+    @Column(name = "Is_active")
+    private boolean isActive;
 
     @Column(name = "Is_deleted")
     private boolean isDeleted;
@@ -91,7 +97,7 @@ public class Users {
     public Users() {
     }
 
-    public Users(String name, String userName, String passWord, String phone, String email, String address, Date birthday, String avatar, int role, boolean isDeleted, Date createdAt, Date updatedAt) {
+    public Users(String name, String userName, String passWord, String phone, String email, String address, Date birthday, boolean gender, String avatar, int role, boolean isActive, boolean isDeleted, Date createdAt, Date updatedAt) {
         this.name = name;
         this.userName = userName;
         this.passWord = passWord;
@@ -99,33 +105,13 @@ public class Users {
         this.email = email;
         this.address = address;
         this.birthday = birthday;
+        this.gender = gender;
         this.avatar = avatar;
         this.role = role;
+        this.isActive = isActive;
         this.isDeleted = isDeleted;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-    }
-
-    public Users(String name, String userName, String passWord, String phone, String email, String address, Date birthday, String avatar, int role, boolean isDeleted, Date createdAt, Date updatedAt, Set<Partners> partners, Set<Rates> rates, Set<Tours> tours, Set<Orders> orders, Set<Offers> offers, Set<Posts> posts, Set<Foods> foods) {
-        this.name = name;
-        this.userName = userName;
-        this.passWord = passWord;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.birthday = birthday;
-        this.avatar = avatar;
-        this.role = role;
-        this.isDeleted = isDeleted;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.partners = partners;
-        this.rates = rates;
-        this.tours = tours;
-        this.orders = orders;
-        this.offers = offers;
-        this.posts = posts;
-        this.foods = foods;
     }
 
     public int getId() {
@@ -192,6 +178,14 @@ public class Users {
         this.birthday = birthday;
     }
 
+    public boolean isGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
+    }
+
     public String getAvatar() {
         return avatar;
     }
@@ -206,6 +200,14 @@ public class Users {
 
     public void setRole(int role) {
         this.role = role;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 
     public boolean isDeleted() {
@@ -287,5 +289,4 @@ public class Users {
     public void setFoods(Set<Foods> foods) {
         this.foods = foods;
     }
-
 }

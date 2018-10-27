@@ -34,52 +34,79 @@ public class Constants {
         public static final String LIST_USER = "/quan-ly-nguoi-dung";
 
         //Trang thêm người dùng
-        public static final String ADD_USER = "/quan-ly-nguoi-dung/them-nguoi-dung";
+        public static final String ADD_USER = "/quan-ly-nguoi-dung/them";
 
-        //Trang Sửa người dùng
-        public static final String UPDATE_USER = "/quan-ly-nguoi-dung/sua-nguoi-dung/{id}";
+        //Trang sửa người dùng
+        public static final String UPDATE_USER = "/quan-ly-nguoi-dung/{id}";
+
+        //Trang danh sách các quận Đà Nẵng
+        public static final String LIST_DISTRICT = "/quan-ly-quan";
+
+        //Trang thêm quận
+        public static final String ADD_DISTRICT = "/quan-ly-quan/them";
+
+        //Trang sửa quận
+        public static final String UPDATE_DISTRICT = "/quan-ly-quan/{id}";
+
+        //Trang danh sách các loại quán
+        public static final String LIST_KIND_OF_FOOD = "/quan-ly-loai-quan";
+
+        //Trang thêm loại quán
+        public static final String ADD_KIND_OF_FOOD = "/quan-ly-loai-quan/them";
+
+        //Trang sửa loại quán
+        public static final String UPDATE_KIND_OF_FOOD = "/quan-ly-loai-quan/{id}";
+
     }
 
     public class Characters {
-        // blank character
+
+        //Ký tự rỗng
         public static final String BLANK = "";
 
-        // Wave
-        public static final String WAVE = "~";
     }
 
     public class Status {
+
+        //Đã xóa
         public static final int DELETE = 1;
+
+        //tồn tại
         public static final int EXIST = 0;
+
     }
 
     public class UserType {
-        // user
+
+        //người dùng thông thường
         public static final int USER = 0;
 
-        // business user
+        //người dùng đã trở thành đối tác
         public static final int BUSINESS_USER = 1;
     }
 
     public class UserStatus {
 
-        // user exists in system
+        //người dùng còn tồn tại
         public static final int EXISTS = Status.EXIST;
 
-        // user was deleted in system
+        //người dùng đã bị xóa
         public static final int DELETED = Status.DELETE;
+
     }
 
     public class UserActiveStatus {
 
-        // user not active
+        //người dùng chưa kích hoạt
         public static final int NOT_ACTIVE = 0;
 
-        // user have actived
+        //người dùng đã kích hoạt
         public static final int ACTIVATED = 1;
+
     }
 
     public class Role {
+
         // Admin
         public static final int ADMIN = 0;
 
@@ -91,18 +118,22 @@ public class Constants {
 
         // Users
         public static final int USER = 3;
+
     }
 
     public class Gender {
-        // Name
+
+        // Nam
         public static final int MALE = 1;
 
         // Nữ
         public static final int FEMALE = 0;
+
     }
 
     public class SessionKey {
-        // Key to set/get data userId to session
+
+        //key để get/set user cho session
         public static final String USER = "user";
     }
 
