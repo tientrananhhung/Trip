@@ -2,6 +2,26 @@ package edu.poly.service;
 
 import edu.poly.entity.FoodCategorys;
 
+import java.util.Optional;
+
 public interface FoodCategoryService {
-    Iterable<FoodCategorys> findAll();
+
+    public Iterable<FoodCategorys> findAll();
+
+    public Optional<FoodCategorys> findOne(Integer id);
+
+    public FoodCategorys save(FoodCategorys foodCategorys);
+
+    public Iterable<FoodCategorys> save(Iterable<FoodCategorys> foodCategorys);
+
+    public FoodCategorys update(FoodCategorys foodCategorys);
+
+    public Iterable<FoodCategorys> update(Iterable<FoodCategorys> foodCategorys);
+
+    public void delete(FoodCategorys foodCategorys);
+
+    public void delete(Iterable<FoodCategorys> foodCategorys);
+
+    public void deleteById(Integer id);
+
 }

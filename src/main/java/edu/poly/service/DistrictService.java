@@ -2,6 +2,26 @@ package edu.poly.service;
 
 import edu.poly.entity.Districts;
 
+import java.util.Optional;
+
 public interface DistrictService {
-    Iterable<Districts> findAll();
+
+    public Iterable<Districts> findAll();
+
+    public Optional<Districts> findOne(Integer id);
+
+    public Districts save(Districts districts);
+
+    public Iterable<Districts> save(Iterable<Districts> districts);
+
+    public Districts update(Districts districts);
+
+    public Iterable<Districts> update(Iterable<Districts> districts);
+
+    public void delete(Districts districts);
+
+    public void delete(Iterable<Districts> districts);
+
+    public void deleteById(Integer id);
+
 }

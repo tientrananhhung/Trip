@@ -57,6 +57,8 @@ public class Constants {
         //Trang sửa loại quán
         public static final String UPDATE_KIND_OF_FOOD = "/quan-ly-loai-quan/{id}";
 
+        //Trang Error 404
+        public static final String ERROR404 = "/error";
     }
 
     public class Characters {
