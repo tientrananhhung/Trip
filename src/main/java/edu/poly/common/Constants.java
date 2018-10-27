@@ -29,6 +29,15 @@ public class Constants {
 
         //Trang đăng ký
         public static final String REGISTER = "/dang-ky";
+
+        //Trang danh sách người dùng
+        public static final String LIST_USER = "/quan-ly-nguoi-dung";
+
+        //Trang thêm người dùng
+        public static final String ADD_USER = "/quan-ly-nguoi-dung/them-nguoi-dung";
+
+        //Trang Sửa người dùng
+        public static final String UPDATE_USER = "/quan-ly-nguoi-dung/sua-nguoi-dung/{id}";
     }
 
     public class Characters {
