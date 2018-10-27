@@ -1,6 +1,7 @@
 package edu.poly.controller;
 
 import edu.poly.common.Constants;
+import edu.poly.common.PasswordUtils;
 import edu.poly.entity.Users;
 import edu.poly.impl.UserImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,7 @@ public class LoginController {
         ModelAndView mav = new ModelAndView();
         Users login = new Users();
 
-        Users userLogin = user.login(users.getUserName(), users.getPassWord());
+        Users userLogin = user.login(users.getUserName(), PasswordUtils.md5(users.getPassWord()));
         if(userLogin != null){
             if (userLogin.getRole() == Constants.Role.ADMIN || userLogin.getRole() == Constants.Role.MANAGER) {
                 mav.setViewName(ADMIN_SCREEN);
@@ -59,6 +60,7 @@ public class LoginController {
             rq.getSession().setAttribute("user", userLogin);
         }else{
             mav.setViewName(LOGIN_SCREEN);
+            mav.addObject("notify", "Tài khoản hoặc mật khẩu không chính xác!");
             login.setUserName(users.getUserName());
             mav.addObject("login", login);
         }

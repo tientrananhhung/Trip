@@ -12,5 +12,6 @@
 </head>
 <body>
     <h1>Kick off dự án 2: Smart Trip</h1>
+    <a href="/dang-nhap/">Đăng nhập</a>
 </body>
 </html>

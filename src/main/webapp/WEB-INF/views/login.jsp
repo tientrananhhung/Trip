@@ -7,13 +7,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 <html>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Title</title>
+    <title>Đăng Nhập - Smart Trip</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/mdi/css/materialdesignicons.min.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/flag-icon-css/css/flag-icon.min.css" />">
@@ -24,7 +24,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css" />">
     <!-- endinject -->
-    <link rel="shortcut icon" href="<c:url value="/resources/images/favicon.png" />" />
+    <link rel="shortcut icon" href="<c:url value="/resources/images/favicon.png" />"/>
 </head>
 <body>
 <div class="container-scroller">
@@ -34,28 +34,36 @@
                 <div class="row w-100">
                     <div class="col-lg-4 mx-auto">
                         <div class="auth-form-dark text-left p-5">
-                            <h2>Login</h2>
-                            <h4 class="font-weight-light">Hello! let's get started</h4>
-                            <form class="pt-5">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Username</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username">
-                                        <i class="mdi mdi-account"></i>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                                        <i class="mdi mdi-eye"></i>
-                                    </div>
-                                    <div class="mt-5">
-                                        <a class="btn btn-block btn-secondary btn-lg font-weight-medium" href="../../index.html">Login</a>
-                                    </div>
-                                    <div class="mt-3 text-center">
-                                        <a href="#" class="auth-link text-white">Forgot password?</a>
-                                    </div>
-                                </form>
-                            </form>
+                            <h2>Đăng Nhập</h2>
+                            <c:choose>
+                                <c:when test="${not empty notify}">
+                                    <h4 class="font-weight-light">${notify}</h4>
+                                </c:when>
+                                <c:otherwise>
+                                    <h4 class="font-weight-light">Chào mừng bạn đến với Smart Trip</h4>
+                                </c:otherwise>
+                            </c:choose>
+
+                            <f:form cssClass="pt-5" method="POST" modelAttribute="login" action="/dang-nhap">
+                                <div class="form-group">
+                                    <label for="userName">Tên đăng nhập</label>
+                                    <f:input path="userName" cssClass="form-control" aria-describedby="emailHelp"
+                                             placeholder="Nhập tên đăng nhập"/>
+                                    <i class="mdi mdi-account"></i>
+                                </div>
+                                <div class="form-group">
+                                    <label for="passWord">Mật khẩu</label>
+                                    <f:password path="passWord" cssClass="form-control" placeholder="Nhập mật khẩu"/>
+                                    <i class="mdi mdi-eye"></i>
+                                </div>
+                                <div class="mt-5">
+                                    <button class="btn btn-block btn-secondary btn-lg font-weight-medium">Đăng nhập
+                                    </button>
+                                </div>
+                                <div class="mt-3 text-center">
+                                    <a href="/quen-mat-khau" class="auth-link text-white">Quên mật khẩu?</a>
+                                </div>
+                            </f:form>
                         </div>
                     </div>
                 </div>
@@ -69,7 +77,6 @@
 <!-- container-scroller -->
 <!-- plugins:js -->
 
-<c:url value="/resources/js/todolist.js" />
 <script src="<c:url value="/resources/node_modules/jquery/dist/jquery.min.js" />"></script>
 <script src="<c:url value="/resources/node_modules/popper.js/dist/umd/popper.min.js" />"></script>
 <script src="<c:url value="/resources/node_modules/bootstrap/dist/js/bootstrap.min.js" />"></script>
