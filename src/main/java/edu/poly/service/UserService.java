@@ -1,12 +1,18 @@
 package edu.poly.service;
 
 import edu.poly.entity.Users;
+import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
 
     public Iterable<Users> findAll();
+
+    public List<Users> getAllByDeleted(@Param("isDeleted") boolean isDeleted);
+
+    public Users getById(Integer id);
 
     public Optional<Users> findOne(Integer id);
 

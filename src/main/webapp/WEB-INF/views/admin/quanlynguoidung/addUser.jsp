@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -18,30 +19,43 @@
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" />">
     <!-- endinject -->
     <!-- plugin css for this page -->
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-tags-input/dist/jquery.tagsinput.min.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/fontawesome-stars.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-1to10.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-horizontal.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-movie.css" />">
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/jquery-tags-input/dist/jquery.tagsinput.min.css" />">
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/fontawesome-stars.css" />">
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-1to10.css" />">
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-horizontal.css" />">
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-movie.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-pill.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-reversed.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-square.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bootstrap-stars.css" />">
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-reversed.css" />">
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-square.css" />">
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bootstrap-stars.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/css-stars.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/fontawesome-stars-o.css" />">
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/fontawesome-stars-o.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/examples/css/examples.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/font-awesome/css/font-awesome.min.css" />" />
+    <link rel="stylesheet" href="<c:url value="/resources/node_modules/font-awesome/css/font-awesome.min.css" />"/>
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/dropify/dist/css/dropify.min.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-file-upload/css/uploadfile.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css" />" />
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-asColorPicker/dist/css/asColorPicker.min.css" />" />
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />" />
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css" />">
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css" />"/>
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/jquery-asColorPicker/dist/css/asColorPicker.min.css" />"/>
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />"/>
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css" />">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css" />">
     <!-- endinject -->
-    <link rel="shortcut icon" href="<c:url value="/resources/images/favicon.png" />" />
+    <link rel="shortcut icon" href="<c:url value="/resources/images/favicon.png" />"/>
 </head>
 <body>
 <div class="container-scroller">
@@ -60,67 +74,78 @@
                                     Addition user
                                 </p>
                                 <hr/>
-                                <form class="forms-sample">
+                                <f:form cssClass="forms-sample" method="POST" modelAttribute="user"
+                                        action="/admin/quan-ly-nguoi-dung/${action}">
                                     <div class="form-group">
-                                        <label for="exampleInputName1">ID</label>
-                                        <input type="text" class="form-control" id="exampleInputName1" placeholder="ID">
+                                        <f:hidden path="id"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputName1">Name</label>
-                                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+                                        <label>Name</label>
+                                        <f:input path="name" type="text" cssClass="form-control" placeholder="Name"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputName1">Username</label>
-                                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Username">
+                                        <label>Username</label>
+                                        <f:input path="userName" type="text" cssClass="form-control"
+                                                 placeholder="Username"/>
+                                    </div>
+                                    <c:if test="${not empty action}" >
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <f:input path="passWord" type="password" cssClass="form-control"
+                                                 placeholder="Password"/>
+                                    </div>
+                                    </c:if>
+
+
+                                    <div class="form-group">
+                                        <label>Phone</label>
+                                        <f:input path="phone" type="tel" cssClass="form-control" placeholder="Phone"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputName1">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputName1" placeholder="Password">
+                                        <label>Email</label>
+                                        <f:input path="email" cssClass="form-control form-control-sm"
+                                                 data-inputmask="'alias': 'email'"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputName1">Phone</label>
-                                        <input type="number" class="form-control" id="exampleInputName1" placeholder="Phone">
+                                        <label>Address</label>
+                                        <f:input path="address" type="text" cssClass="form-control"
+                                                 placeholder="Address"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputName1">Email</label>
-                                        <input class="form-control form-control-sm" data-inputmask="'alias': 'email'">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword4">Address</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword4" placeholder="Address">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputName1">Birthday</label>
+                                        <label>Birthday</label>
                                         <div class="input-group date datepicker" id="datepicker-popup">
                                             <div class="input-group-addon input-group-prepend">
                                                 <span class="mdi mdi-calendar-blank"></span>
                                             </div>
-                                            <input type="text" class="form-control">
+                                            <f:input path="birthday"  cssClass="form-control" ></f:input>
                                         </div>
                                     </div>
+                                    <%--<div class="form-group">--%>
+                                        <%--<label>Avatar</label>--%>
+                                        <%--<f:input path="avatar" type="file" cssClass="dropify" data-default-file="avatar.png" />--%>
+                                    <%--</div>--%>
+
                                     <div class="form-group">
-                                        <label>Avatar</label>
-                                        <input type="file" name="img[]" class="file-upload-default">
-                                        <div class="input-group col-xs-12">
-                                            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                                            <span class="input-group-append">
-                          <button class="file-upload-browse btn btn-info" type="button">Upload</button>
-                        </span>
+                                        <label>Gender</label>
+                                        <div class="form-radio">
+                                            <f:radiobuttons path="gender" cssClass="form-check-input"
+                                                            items="${gender}"/>
                                         </div>
                                     </div>
+
                                     <div class="form-group">
-                                        <label for="exampleFormControlSelect2">Role</label>
-                                        <select class="form-control" id="exampleFormControlSelect2">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
+                                        <label>Role</label>
+                                        <div class="form-group">
+                                            <f:select cssClass="form-control border-primary" path="role">
+                                                <f:options items="${role}"/>
+                                            </f:select>
+                                        </div>
                                     </div>
                                     <button type="submit" class="btn btn-success mr-2">Submit</button>
-                                    <a href="listNguoiDung.html"><button class="btn btn-light">Cancel</button></a>
-                                </form>
+                                    <a href="listNguoiDung.html">
+                                        <button class="btn btn-light">Cancel</button>
+                                    </a>
+                                </f:form>
                             </div>
                         </div>
                     </div>
@@ -148,7 +173,6 @@
 <script src="<c:url value="/resources/node_modules/inputmask/dist/inputmask/phone-codes/phone-ru.js" />"></script>
 <script src="<c:url value="/resources/node_modules/inputmask/dist/inputmask/bindings/inputmask.binding.js" />"></script>
 <script src="<c:url value="/resources/node_modules/dropify/dist/js/dropify.min.js" />"></script>
-<script src="<c:url value="/resources/node_modules/dropify/dist/js/dropify.min.js"/>"></script>
 <script src="<c:url value="/resources/node_modules/jquery-file-upload/js/jquery.uploadfile.min.js" />"></script>
 <script src="<c:url value="/resources/node_modules/jquery-asColor/dist/jquery-asColor.min.js" />"></script>
 <script src="<c:url value="/resources/node_modules/jquery-asGradient/dist/jquery-asGradient.min.js" />"></script>
@@ -164,9 +188,14 @@
 <script src="<c:url value="/resources/js/hoverable-collapse.js" />"></script>
 <script src="<c:url value="/resources/js/misc.js" />"></script>
 <script src="<c:url value="/resources/js/settings.js" />"></script>
-<script src="../../<c:url value="/resources/js/todolist.js" />"></script>
+<script src="<c:url value="/resources/js/todolist.js" />"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
+<script src="<c:url value="/resources/js/file-upload.js" />"></script>
+<script src="<c:url value="/resources/js/iCheck.js" />"></script>
+<script src="<c:url value="/resources/js/typeahead.js" />"></script>
+<script src="<c:url value="/resources/js/select2.js" />"></script>
+
 <script src="<c:url value="/resources/js/formpickers.js" />"></script>
 <script src="<c:url value="/resources/js/form-addons.js" />"></script>
 <script src="<c:url value="/resources/js/x-editable.js" />"></script>

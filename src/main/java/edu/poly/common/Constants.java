@@ -39,6 +39,15 @@ public class Constants {
         //Trang sửa người dùng
         public static final String UPDATE_USER = "/quan-ly-nguoi-dung/{id}";
 
+        //Trang sửa người dùng
+        public static final String UPDATED_USER = "/quan-ly-nguoi-dung/sua";
+
+        //Trang xóa người dùng
+        public static final String DELETE_USER = "/quan-ly-nguoi-dung/xoa/{id}";
+
+        //Trang active người dùng
+        public static final String ACTIVE_USER = "/quan-ly-nguoi-dung/active/{id}/{active}";
+
         //Trang danh sách các quận Đà Nẵng
         public static final String LIST_DISTRICT = "/quan-ly-quan";
 

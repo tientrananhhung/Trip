@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 
 @Transactional
@@ -19,6 +21,21 @@ public class UserImpl implements UserService {
     @Override
     public Iterable<Users> findAll() {
         return repository.findAll();
+    }
+
+//    @Override
+//    public List<Users> getAllByDeleted(Boolean isDeleted) {
+//        return repository.getAllByDeleted(isDeleted);
+//    }
+
+    @Override
+    public List<Users> getAllByDeleted(boolean isdeleted) {
+        return repository.getAllByDeleted(isdeleted);
+    }
+
+    @Override
+    public Users getById(Integer id) {
+        return repository.getById(id);
     }
 
     @Override

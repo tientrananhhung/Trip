@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/mdi/css/materialdesignicons.min.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/flag-icon-css/css/flag-icon.min.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css" />">
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css" />">
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
@@ -42,7 +43,11 @@
                             </div>
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
-                                <a href="addUser.html"><button style="margin-left: 190px;" type="button" class="btn btn-warning btn-rounded btn-fw">Add User</button></a>
+                                <a href="addUser.html">
+                                    <button style="margin-left: 190px;" type="button"
+                                            class="btn btn-warning btn-rounded btn-fw">Add User
+                                    </button>
+                                </a>
                             </div>
                         </div>
                         <div class="row">
@@ -50,11 +55,12 @@
                                 <table id="order-listing" class="table" cellspacing="0">
                                     <thead>
                                     <tr>
-                                        <th>User ID</th>
+                                        <th>Avatar</th>
                                         <th>Name</th>
+                                        <th>Username</th>
                                         <th>Phone</th>
-                                        <th>Address</th>
                                         <th>Email</th>
+                                        <th>Role</th>
                                         <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
@@ -62,15 +68,46 @@
                                     <tbody>
                                     <c:forEach var="user" items="${listUser}">
                                         <tr>
-                                            <td>${user.id}</td>
-                                            <td>1</td>
-                                            <td>2012/08/03</td>
-                                            <td>Edinburgh</td>
-                                            <td>New York</td>
-                                            <td><label class="badge badge-success">Active</label></td>
+                                            <td>${user.avatar}</td>
+                                            <td>${user.name}</td>
+                                            <td>${user.userName}</td>
+                                            <td>${user.phone}</td>
+                                            <td>${user.email}</td>
                                             <td>
-                                                <button class="btn btn-outline-primary">Edit</button>
-                                                <button class="btn btn-outline-danger">Delete</button>
+                                                <c:choose>
+                                                    <c:when test="${user.role == 0}">
+                                                        <c:out value="Admin"></c:out>
+                                                    </c:when>
+                                                    <c:when test="${user.role == 1}">
+                                                        <c:out value="Manager"></c:out>
+                                                    </c:when>
+                                                    <c:when test="${user.role == 2}">
+                                                        <c:out value="Partner"></c:out>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:out value="Customer"></c:out>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </td>
+                                            <td>
+                                                <c:choose>
+                                                    <c:when test="${user.isActive() == true}">
+                                                        <a href="/admin/quan-ly-nguoi-dung/active/${user.id}/false"><label
+                                                                class="badge badge-success">Active</label></a>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <a href="/admin/quan-ly-nguoi-dung/active/${user.id}/true">
+                                                            <label class="badge badge-danger">Unactive</label></a>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </td>
+                                            <td>
+                                                <a href="/admin/quan-ly-nguoi-dung/${user.id}">
+                                                    <button class="btn btn-outline-primary">Edit</button>
+                                                </a>
+                                                <a href="/admin/quan-ly-nguoi-dung/xoa/${user.id}">
+                                                    <button class="btn btn-outline-danger">Delete</button>
+                                                </a>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -84,11 +121,11 @@
                     </div>
                 </div>
             </div>
-            </div>
-            <!-- content-wrapper ends -->
-            <jsp:include page="../include/footer.jsp"/>
         </div>
+        <!-- content-wrapper ends -->
+        <jsp:include page="../include/footer.jsp"/>
     </div>
+</div>
 </div>
 <!-- plugins:js -->
 <script src="<c:url value="/resources/node_modules/jquery/dist/jquery.min.js"/>"></script>
@@ -101,7 +138,6 @@
 <script src="<c:url value="/resources/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js"/>"></script>
 <!-- End plugin js for this page-->
 <!-- inject:js -->
-<c:url value="/resources/js/todolist.js"/>
 <script src="<c:url value="/resources/js/off-canvas.js"/>"></script>
 <script src="<c:url value="/resources/js/hoverable-collapse.js"/>"></script>
 <script src="<c:url value="/resources/js/misc.js"/>"></script>
@@ -111,6 +147,10 @@
 <!-- Custom js for this page-->
 <script src="<c:url value="/resources/js/data-table.js"/>"></script>
 <!-- End custom js for this page-->
-
+<script>
+    $(document).ready(function () {
+        $('body').addClass('sidebar-icon-only');
+    });
+</script>
 </body>
 </html>
