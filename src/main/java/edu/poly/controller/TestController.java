@@ -16,7 +16,7 @@ public class TestController {
 
     @GetMapping(value = "/test")
     public ModelAndView test(){
-        ModelAndView modelAndView = new ModelAndView("index");
+        ModelAndView modelAndView = new ModelAndView("test");
         return modelAndView;
     }
 }

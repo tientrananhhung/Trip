@@ -46,6 +46,9 @@
                 <a href="#" class="nav-item menu-item">
                     <li class="nav-link">Trở thành đối tác</li>
                 </a>
+                <a href="/dang-nhap/" class="nav-item menu-item">
+                    <li class="nav-link">Đăng nhập</li>
+                </a>
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm..." aria-label="Search">
