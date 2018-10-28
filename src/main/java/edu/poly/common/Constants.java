@@ -57,6 +57,12 @@ public class Constants {
         //Trang sửa quận
         public static final String UPDATE_DISTRICT = "/quan-ly-quan/{id}";
 
+        //Trang active quận
+        public static final String ACTIVE_DISTRICT = "/quan-ly-quan/active/{id}/{active}";
+
+        //Trang xóa quạn
+        public static final String DELETE_DISTRICT = "/quan-ly-quan/xoa/{id}";
+
         //Trang danh sách các loại quán
         public static final String LIST_KIND_OF_FOOD = "/quan-ly-loai-quan";
 

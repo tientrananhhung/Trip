@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -44,25 +46,17 @@
                                     Addition district
                                 </p>
                                 <hr/>
-                                <form class="forms-sample">
+                                <f:form cssClass="forms-sample" modelAttribute="district" method="post" action="/admin/quan-ly-quan/${action}">
                                     <div class="form-group">
-                                        <label for="exampleInputName1">District ID</label>
-                                        <input type="text" class="form-control" id="exampleInputName1" placeholder="ID">
+                                        <f:hidden path="id"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputName1">District Name</label>
-                                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputName1" class="card-description">District Status</label>
-                                        <div class="icheck-square">
-                                            <input tabindex="5" type="checkbox" id="square-checkbox-1">
-                                            <label for="square-checkbox-1">Un-Active</label>
-                                        </div>
+                                        <f:input path="name" type="text" cssClass="form-control" id="exampleInputName1" placeholder="Name"/>
                                     </div>
                                     <button type="submit" class="btn btn-success mr-2">Submit</button>
-                                    <a href="listNguoiDung.html"><button class="btn btn-light">Cancel</button></a>
-                                </form>
+                                    <a href="/admin/quan-ly-quan"><button class="btn btn-light">Cancel</button></a>
+                                </f:form>
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,9 @@
 package edu.poly.service;
 
 import edu.poly.entity.Districts;
+import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface DistrictService {
@@ -23,5 +25,9 @@ public interface DistrictService {
     public void delete(Iterable<Districts> districts);
 
     public void deleteById(Integer id);
+
+    public Districts getById(Integer id);
+
+    public List<Districts> getAllByDeleted(@Param("isDeleted") boolean isDeleted);
 
 }

@@ -75,7 +75,7 @@ public class Districts {
         isDeleted = deleted;
     }
 
-    public Date getCreatedAt() {
+    public Date getCreatedAt(Date currentTime) {
         return createdAt;
     }
 

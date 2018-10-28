@@ -42,7 +42,7 @@
                             </div>
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
-                                <a href="addQuan.html"><button style="margin-left: 190px;" type="button" class="btn btn-warning btn-rounded btn-fw">Add District</button></a>
+                                <a href="/admin/quan-ly-quan/them"><button style="margin-left: 190px;" type="button" class="btn btn-warning btn-rounded btn-fw">Add District</button></a>
                             </div>
                         </div>
                         <div class="row">
@@ -57,60 +57,23 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2012/08/03</td>
-                                        <td></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2012/08/03</td>
-                                        <td></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-danger">Un-Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2012/08/03</td>
-                                        <td></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2012/08/03</td>
-                                        <td></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-danger">Un-Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
+                                    <c:forEach var="district" items="${listDistrict}">
+                                        <tr>
+                                            <th>${district.id}</th>
+                                            <td>${district.name}</td>
+                                            <td>
+                                                <label class="badge badge-success">Active</label>
+                                            </td>
+                                            <td>
+                                                <a href="/admin/quan-ly-quan/${district.id}">
+                                                    <button class="btn btn-outline-primary">Edit</button>
+                                                </a>
+                                                <a href="/admin/quan-ly-quan/xoa/${district.id}">
+                                                    <button class="btn btn-outline-danger">Delete</button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
