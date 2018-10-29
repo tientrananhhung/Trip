@@ -42,7 +42,7 @@
                             </div>
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
-                                <a href="addDanhmuc.html"><button style="margin-left: 190px;" type="button" class="btn btn-warning btn-rounded btn-fw">Add Post Category</button></a>
+                                <a href="/admin/quan-ly-danh-muc-bai-viet/them"><button style="margin-left: 190px;" type="button" class="btn btn-warning btn-rounded btn-fw">Add Post Category</button></a>
                             </div>
                         </div>
                         <div class="row">
@@ -56,54 +56,20 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>Edinburgh</td>
-                                        <td>New York</td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Edinburgh</td>
-                                        <td>New York</td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Edinburgh</td>
-                                        <td>New York</td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Edinburgh</td>
-                                        <td>New York</td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Edinburgh</td>
-                                        <td>New York</td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Edinburgh</td>
-                                        <td>New York</td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
+                                    <c:forEach var="postcategory" items="${listPostcategory}">
+                                        <tr>
+                                            <th>${postcategory.id}</th>
+                                            <td>${postcategory.name}</td>
+                                            <td>
+                                                <a href="/admin/quan-ly-danh-muc-bai-viet/${postcategory.id}">
+                                                    <button class="btn btn-outline-primary">Edit</button>
+                                                </a>
+                                                <a href="/admin/quan-ly-danh-muc-bai-viet/xoa/${postcategory.id}">
+                                                    <button class="btn btn-outline-danger">Delete</button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>

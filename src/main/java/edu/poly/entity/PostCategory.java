@@ -68,7 +68,7 @@ public class PostCategory {
         isDeleted = deleted;
     }
 
-    public Date getCreatedAt() {
+    public Date getCreatedAt(Date currentTime) {
         return createdAt;
     }
 

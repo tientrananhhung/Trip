@@ -72,6 +72,18 @@ public class Constants {
         //Trang sửa loại quán
         public static final String UPDATE_KIND_OF_FOOD = "/quan-ly-loai-quan/{id}";
 
+        //Trang danh mục bài viết
+        public static final String LIST_POSTCATEGORY = "/quan-ly-danh-muc-bai-viet";
+
+        //Trang thêm danh mục bài viết
+        public static final String ADD_POSTCATEGORY = "/quan-ly-danh-muc-bai-viet/them";
+
+        //Trang sửa danh mục bài viết
+        public static final String UPDATE_POSTCATEGORY = "quan-ly-danh-muc-bai-viet/{id}";
+
+        //Trang xóa danh mục bài viết
+        public static final String DELETE_POSTCATEGORY = "quan-ly-danh-muc-bai-viet/xoa/{id}";
+
         //Trang Error 404
         public static final String ERROR404 = "/error";
     }

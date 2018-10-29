@@ -24,4 +24,6 @@ public interface PostCategoryService {
 
     public void deleteById(Integer id);
 
+    public PostCategory getById(Integer id);
+
 }

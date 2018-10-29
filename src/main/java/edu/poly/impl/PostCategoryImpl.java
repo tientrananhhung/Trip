@@ -60,4 +60,9 @@ public class PostCategoryImpl implements PostCategoryService {
         repository.deleteById(id);
     }
 
+    @Override
+    public PostCategory getById(Integer id) {
+        return repository.getById(id);
+    }
+
 }

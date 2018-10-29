@@ -2,10 +2,8 @@ package edu.poly.controller;
 
 import edu.poly.common.CheckSession;
 import edu.poly.common.Constants;
-import edu.poly.common.PasswordUtils;
 import edu.poly.common.TimeUtils;
 import edu.poly.entity.Districts;
-import edu.poly.entity.Users;
 import edu.poly.impl.DistrictImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,7 +38,7 @@ public class DistrictController {
     }
 
     @GetMapping(Constants.Url.ADD_DISTRICT)
-    public ModelAndView addUser(HttpSession session) {
+    public ModelAndView addDistrict(HttpSession session) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName(ADD_DISTRICT_SCREEN);
         mav.addObject("district", new Districts());
@@ -49,7 +47,7 @@ public class DistrictController {
     }
 
     @PostMapping(Constants.Url.ADD_DISTRICT)
-    public ModelAndView addUser(HttpSession session, @ModelAttribute("district") Districts districts) {
+    public ModelAndView addDistricts(HttpSession session, @ModelAttribute("district") Districts districts) {
         ModelAndView mav = new ModelAndView();
         districts.getCreatedAt(TimeUtils.getCurrentTime());
         district.save(districts);
@@ -58,7 +56,7 @@ public class DistrictController {
     }
 
     @GetMapping(Constants.Url.UPDATE_DISTRICT)
-    public ModelAndView updateUser(HttpSession session, @PathVariable("id") Integer id) {
+    public ModelAndView updateDistrict(HttpSession session, @PathVariable("id") Integer id) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName(ADD_DISTRICT_SCREEN);
         Districts districts = district.getById(id);
@@ -68,7 +66,7 @@ public class DistrictController {
     }
 
     @PostMapping(Constants.Url.UPDATE_DISTRICT)
-    public ModelAndView editUser(HttpSession session, @ModelAttribute("district") Districts districts) {
+    public ModelAndView editDistrict(HttpSession session, @ModelAttribute("district") Districts districts) {
         ModelAndView mav = new ModelAndView();
         districts.setUpdatedAt(TimeUtils.getCurrentTime());
         district.save(districts);

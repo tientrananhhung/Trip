@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -60,18 +61,17 @@
                                     Addition post categories
                                 </p>
                                 <hr/>
-                                <form class="forms-sample">
+                                <f:form class="forms-sample" method="post" modelAttribute="postcategory" action="/admin/quan-ly-danh-muc-bai-viet/${action}">
                                     <div class="form-group">
-                                        <label for="exampleInputName1">Post category ID</label>
-                                        <input type="text" class="form-control" id="exampleInputName1" placeholder="ID">
+                                        <f:hidden path="id"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputName1">Post category name</label>
-                                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+                                        <f:input path="name" type="text" class="form-control" id="exampleInputName1" placeholder="Name"/>
                                     </div>
                                     <button type="submit" class="btn btn-success mr-2">Submit</button>
                                     <a href="listNguoiDung.html"><button class="btn btn-light">Cancel</button></a>
-                                </form>
+                                </f:form>
                             </div>
                         </div>
                     </div>

@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PostCategoryRepository extends CrudRepository<PostCategory, Integer> {
 
+    public PostCategory getById(Integer id);
+
 }
