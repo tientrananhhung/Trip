@@ -24,4 +24,6 @@ public interface FoodCategoryService {
 
     public void deleteById(Integer id);
 
+    public FoodCategorys getById(Integer id);
+
 }

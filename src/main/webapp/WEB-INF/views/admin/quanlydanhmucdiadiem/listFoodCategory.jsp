@@ -42,7 +42,7 @@
                             </div>
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
-                                <a href="addDoitac.html"><button style="margin-left: 190px;" type="button" class="btn btn-warning btn-rounded btn-fw">Add Foodcategory</button></a>
+                                <a href="/admin/quan-ly-danh-muc-dia-diem/them"><button style="margin-left: 190px;" type="button" class="btn btn-warning btn-rounded btn-fw">Add Foodcategory</button></a>
                             </div>
                         </div>
                         <div class="row">
@@ -52,65 +52,24 @@
                                     <tr>
                                         <th>Foodcategory ID</th>
                                         <th>Foodcategory name</th>
-                                        <th>Partner status</th>
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-success">Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-success">Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-danger">Un-Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-success">Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-success">Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-danger">Un-Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
+                                    <c:forEach var="foodcategory" items="${listFoodcategory}">
+                                        <tr>
+                                            <th>${foodcategory.id}</th>
+                                            <td>${foodcategory.name}</td>
+                                            <td>
+                                                <a href="/admin/quan-ly-danh-muc-dia-diem/${foodcategory.id}">
+                                                    <button class="btn btn-outline-primary">Edit</button>
+                                                </a>
+                                                <a href="/admin/quan-ly-danh-muc-dia-diem/xoa/${foodcategory.id}">
+                                                    <button class="btn btn-outline-danger">Delete</button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>

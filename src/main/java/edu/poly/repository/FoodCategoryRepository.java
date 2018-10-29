@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FoodCategoryRepository extends CrudRepository<FoodCategorys, Integer> {
 
+    public FoodCategorys getById(Integer id);
+
 }

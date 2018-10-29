@@ -26,12 +26,6 @@ public class DistrictController {
     @GetMapping(Constants.Url.LIST_DISTRICT)
     public ModelAndView showUserList(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-
-//        if(!CheckSession.admin(session)){
-//            mav.setViewName("redirect:/"+Constants.Characters.BLANK);
-//            return mav;
-//        }
-
         mav.addObject("listDistrict", district.findAll());
         mav.setViewName(DISTRICT_SCREEN);
         return mav;

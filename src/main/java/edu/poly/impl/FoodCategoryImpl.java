@@ -60,4 +60,9 @@ public class FoodCategoryImpl implements FoodCategoryService {
         repository.deleteById(id);
     }
 
+    @Override
+    public FoodCategorys getById(Integer id) {
+        return repository.getById(id);
+    }
+
 }

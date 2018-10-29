@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -60,37 +61,17 @@
                                     Addition Foodcategory
                                 </p>
                                 <hr/>
-                                <form class="forms-sample">
+                                <f:form class="forms-sample" method="post" modelAttribute="foodcategory" action="/admin/quan-ly-danh-muc-dia-diem/${action}">
                                     <div class="form-group">
-                                        <label for="exampleInputName1">Foodcategory ID</label>
-                                        <input type="text" class="form-control" id="exampleInputName1" placeholder="ID">
+                                        <f:hidden path="id"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputName1">Foodcategory Name</label>
-                                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">Foodcategory Status</label>
-                                        <div class="col-sm-4">
-                                            <div class="form-radio">
-                                                <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked="">
-                                                    Active
-                                                    <i class="input-helper"></i></label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-5">
-                                            <div class="form-radio">
-                                                <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2">
-                                                    Un-Active
-                                                    <i class="input-helper"></i></label>
-                                            </div>
-                                        </div>
+                                        <f:input path="name" type="text" class="form-control" id="exampleInputName1" placeholder="Name"/>
                                     </div>
                                     <button type="submit" class="btn btn-success mr-2">Submit</button>
-                                    <a href="listNguoiDung.html"><button class="btn btn-light">Cancel</button></a>
-                                </form>
+                                    <a href="/admin/quan-ly-danh-muc-dia-diem"><button class="btn btn-light">Cancel</button></a>
+                                </f:form>
                             </div>
                         </div>
                     </div>
