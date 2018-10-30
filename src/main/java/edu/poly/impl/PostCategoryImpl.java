@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Transactional
@@ -63,6 +64,11 @@ public class PostCategoryImpl implements PostCategoryService {
     @Override
     public PostCategory getById(Integer id) {
         return repository.getById(id);
+    }
+
+    @Override
+    public List<PostCategory> getAllByDelete(boolean isDeleted) {
+        return repository.getAllByDeleted(isDeleted);
     }
 
 }

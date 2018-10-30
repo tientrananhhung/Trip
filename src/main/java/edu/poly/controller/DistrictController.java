@@ -26,7 +26,7 @@ public class DistrictController {
     @GetMapping(Constants.Url.LIST_DISTRICT)
     public ModelAndView showUserList(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("listDistrict", district.findAll());
+        mav.addObject("listDistrict", district.getAllByDeleted(false));
         mav.setViewName(DISTRICT_SCREEN);
         return mav;
     }

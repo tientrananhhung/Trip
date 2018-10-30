@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface DistrictRepository extends CrudRepository<Districts, Integer> {
 
-    @Query("from  Users  where is_deleted = :isDeleted")
+    @Query("from  Districts where is_deleted = :isDeleted")
     public List<Districts> getAllByDeleted(@Param("isDeleted") boolean isDeleted);
 
     public Districts getById(Integer id);

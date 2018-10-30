@@ -70,7 +70,7 @@
                                         <f:input path="name" type="text" class="form-control" id="exampleInputName1" placeholder="Name"/>
                                     </div>
                                     <button type="submit" class="btn btn-success mr-2">Submit</button>
-                                    <a href="listNguoiDung.html"><button class="btn btn-light">Cancel</button></a>
+                                    <a href="/admin/quan-ly-danh-muc-bai-viet"><button class="btn btn-light">Cancel</button></a>
                                 </f:form>
                             </div>
                         </div>

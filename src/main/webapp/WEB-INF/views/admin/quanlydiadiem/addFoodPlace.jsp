@@ -110,7 +110,7 @@
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-success mr-2">Submit</button>
-                                    <a href="listNguoiDung.html"><button class="btn btn-light">Cancel</button></a>
+                                    <a href=""><button class="btn btn-light">Cancel</button></a>
                                 </form>
                             </div>
                         </div>

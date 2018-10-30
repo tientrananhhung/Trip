@@ -28,7 +28,7 @@ public class FoodCategoryController {
     @GetMapping(Constants.Url.LIST_FOODCATEGORY)
     public ModelAndView listFoodCategory(HttpSession session){
         ModelAndView mav = new ModelAndView();
-        mav.addObject("listFoodcategory", foodCategory.findAll());
+        mav.addObject("listFoodcategory", foodCategory.getAllByDelete(false));
         mav.setViewName(FOODCATEGORY_SCREEN);
         return mav;
     }

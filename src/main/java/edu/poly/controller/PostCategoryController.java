@@ -31,7 +31,7 @@ public class PostCategoryController {
 //            return mav;
 //        }
 
-        mav.addObject("listPostcategory", postCategory.findAll());
+        mav.addObject("listPostcategory", postCategory.getAllByDelete(false));
         mav.setViewName(POSTCATEGORY_SCREEN);
         return mav;
     }
