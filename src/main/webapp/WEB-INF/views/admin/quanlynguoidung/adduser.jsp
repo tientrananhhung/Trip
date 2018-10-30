@@ -89,11 +89,11 @@
                                                  placeholder="Username"/>
                                     </div>
                                     <c:if test="${not empty action}" >
-                                    <div class="form-group">
-                                        <label>Password</label>
-                                        <f:input path="passWord" type="password" cssClass="form-control"
-                                                 placeholder="Password"/>
-                                    </div>
+                                        <div class="form-group">
+                                            <label>Password</label>
+                                            <f:input path="passWord" type="password" cssClass="form-control"
+                                                     placeholder="Password"/>
+                                        </div>
                                     </c:if>
 
 
@@ -121,16 +121,19 @@
                                         </div>
                                     </div>
                                     <%--<div class="form-group">--%>
-                                        <%--<label>Avatar</label>--%>
-                                        <%--<f:input path="avatar" type="file" cssClass="dropify" data-default-file="avatar.png" />--%>
+                                    <%--<label>Avatar</label>--%>
+                                    <%--<f:input path="avatar" type="file" cssClass="dropify" data-default-file="avatar.png" />--%>
                                     <%--</div>--%>
 
                                     <div class="form-group">
                                         <label>Gender</label>
-                                        <div class="form-radio">
-                                            <f:radiobuttons path="gender" cssClass="form-check-input"
-                                                            items="${gender}"/>
-                                        </div>
+                                        <c:forEach var="radio" items="${gender}">
+                                                <div class="form-radio">
+                                                    <label class="form-check-label">
+                                                        <f:radiobutton checked="${radio.key == user.gender ? 'checked':''}"  path="gender" value="${radio.key}"  /> ${radio.value}
+                                                    </label>
+                                                </div>
+                                        </c:forEach>
                                     </div>
 
                                     <div class="form-group">
@@ -165,23 +168,10 @@
 <!-- endinject -->
 <!-- Plugin js for this page-->
 <script src="<c:url value="/resources/node_modules/jquery-tags-input/dist/jquery.tagsinput.min.js" />"></script>
-<script src="<c:url value="/resources/node_modules/progressbar.js/dist/progressbar.min.js" />"></script>
-<script src="<c:url value="/resources/node_modules/jquery-bar-rating/dist/jquery.barrating.min.js" />"></script>
 <script src="<c:url value="/resources/node_modules/inputmask/dist/jquery.inputmask.bundle.js" />"></script>
-<script src="<c:url value="/resources/node_modules/inputmask/dist/inputmask/phone-codes/phone.js" />"></script>
-<script src="<c:url value="/resources/node_modules/inputmask/dist/inputmask/phone-codes/phone-be.js" />"></script>
-<script src="<c:url value="/resources/node_modules/inputmask/dist/inputmask/phone-codes/phone-ru.js" />"></script>
 <script src="<c:url value="/resources/node_modules/inputmask/dist/inputmask/bindings/inputmask.binding.js" />"></script>
-<script src="<c:url value="/resources/node_modules/dropify/dist/js/dropify.min.js" />"></script>
-<script src="<c:url value="/resources/node_modules/jquery-file-upload/js/jquery.uploadfile.min.js" />"></script>
-<script src="<c:url value="/resources/node_modules/jquery-asColor/dist/jquery-asColor.min.js" />"></script>
-<script src="<c:url value="/resources/node_modules/jquery-asGradient/dist/jquery-asGradient.min.js" />"></script>
-<script src="<c:url value="/resources/node_modules/jquery-asColorPicker/dist/jquery-asColorPicker.min.js" />"></script>
 <script src="<c:url value="/resources/node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js" />"></script>
 <script src="<c:url value="/resources/node_modules/moment/min/moment.min.js" />"></script>
-<script src="<c:url value="/resources/node_modules/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js" />"></script>
-<script src="<c:url value="/resources/node_modules/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.js" />"></script>
-<script src="<c:url value="/resources/node_modules/jquery.repeater/jquery.repeater.min.js" />"></script>
 <!-- End plugin js for this page-->
 <!-- inject:js -->
 <script src="<c:url value="/resources/js/off-canvas.js" />"></script>
@@ -191,19 +181,19 @@
 <script src="<c:url value="/resources/js/todolist.js" />"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
-<script src="<c:url value="/resources/js/file-upload.js" />"></script>
-<script src="<c:url value="/resources/js/iCheck.js" />"></script>
-<script src="<c:url value="/resources/js/typeahead.js" />"></script>
 <script src="<c:url value="/resources/js/select2.js" />"></script>
-
 <script src="<c:url value="/resources/js/formpickers.js" />"></script>
-<script src="<c:url value="/resources/js/form-addons.js" />"></script>
 <script src="<c:url value="/resources/js/x-editable.js" />"></script>
-<script src="<c:url value="/resources/js/dropify.js" />"></script>
-<script src="<c:url value="/resources/js/dropzone.js" />"></script>
-<script src="<c:url value="/resources/js/jquery-file-upload.js" />"></script>
-<script src="<c:url value="/resources/js/formpickers.js" />"></script>
-<script src="<c:url value="/resources/js/form-repeater.js" />"></script>
 <%---------------------------------------------%>
+<script>
+    $(function () {
+       var formattedDate = new Date("${user.birthday}");
+        var d = formattedDate.getDate();
+        var m =  formattedDate.getMonth();
+        m += 1;  // JavaScript months are 0-11
+        var y = formattedDate.getFullYear();
+        $('#birthday').val(d + "/" + m + "/" + y);
+    });
+</script>
 </body>
 </html>

@@ -1,7 +1,9 @@
 package edu.poly.service;
 
 import edu.poly.entity.Partners;
+import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface PartnerService {
@@ -23,5 +25,7 @@ public interface PartnerService {
     public void delete(Iterable<Partners> partners);
 
     public void deleteById(Integer id);
+
+    public List<Partners> getAllByDeleted(@Param("isDeleted") boolean isDeleted);
 
 }

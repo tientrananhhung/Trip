@@ -96,6 +96,21 @@ public class Constants {
         //Trang xóa danh mục địa điểm
         public static final String DELETE_FOODCATEGORY = "/quan-ly-danh-muc-dia-diem/xoa/{id}";
 
+//        Trang danh sách đối tác
+        public static final String LIST_PARTNER = "/quan-ly-doi-tac";
+
+        //Trang thêm đối tác
+        public static final String ADD_PARNER = "/quan-ly-doi-tac/them";
+
+        //Trang sửa đối tác
+        public static final String EDIT_PARNER = "/quan-ly-doi-tac/{id}";
+
+        //Xóa đối tác
+        public static final String DELETE_PARNER = "/quan-ly-doi-tac/xoa";
+
+        //Active đối tác
+        public static final String ACTIVE_PARNER = "/quan-ly-doi-tac/xoa";
+
         //Trang Error 404
         public static final String ERROR404 = "/error";
     }

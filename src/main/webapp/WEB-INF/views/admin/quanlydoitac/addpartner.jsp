@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -60,60 +61,47 @@
                                     Addition partner
                                 </p>
                                 <hr/>
-                                <form class="forms-sample">
+                                <f:form cssClass="forms-sample" method="POST" modelAttribute="partner"
+                                        action="/admin/quan-ly-doi-tac/${action}">
                                     <div class="form-group">
-                                        <label for="exampleInputName1">Partner ID</label>
-                                        <input type="text" class="form-control" id="exampleInputName1" placeholder="ID">
+                                        <f:hidden path="id"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleFormControlSelect2">User ID</label>
-                                        <select class="form-control" id="exampleFormControlSelect2">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputName1">Partner Name</label>
-                                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputName1">Partner Phone</label>
-                                        <input type="number" class="form-control" id="exampleInputName1" placeholder="Phone">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputName1">Partner Email</label>
-                                        <input class="form-control form-control-sm" data-inputmask="'alias': 'email'">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword4">Partner Address</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword4" placeholder="Address">
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">Partner Status</label>
-                                        <div class="col-sm-4">
-                                            <div class="form-radio">
-                                                <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked="">
-                                                    Active
-                                                    <i class="input-helper"></i></label>
-                                            </div>
+                                        <label>User</label>
+                                        <div class="form-group">
+                                            <f:select cssClass="form-control border-primary" path="users">
+                                                <c:forEach var="us" items="${user_list}">
+                                                    <f:option value="${us.id}" label="Name: ${us.name} | Phone: ${us.phone} | Email: ${us.email}"/>
+                                                </c:forEach>
+                                            </f:select>
+                                            <%--<f:select cssClass="form-control border-primary" path="users.id">--%>
+                                                <%--<f:options itemValue="${user_list.id}" itemLabel="${user_list.name}"/>--%>
+                                            <%--</f:select>--%>
                                         </div>
-                                        <div class="col-sm-5">
-                                            <div class="form-radio">
-                                                <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2">
-                                                    Un-Active
-                                                    <i class="input-helper"></i></label>
-                                            </div>
-                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <f:input path="name" type="text" cssClass="form-control" placeholder="Name"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Phone</label>
+                                        <f:input path="phone" type="tel" cssClass="form-control" placeholder="Phone"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <f:input path="email" cssClass="form-control form-control-sm"
+                                                 data-inputmask="'alias': 'email'"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Address</label>
+                                        <f:input path="address" type="text" cssClass="form-control"
+                                                 placeholder="Address"/>
                                     </div>
                                     <button type="submit" class="btn btn-success mr-2">Submit</button>
-                                    <a href="listNguoiDung.html"><button class="btn btn-light">Cancel</button></a>
-                                </form>
+                                    <a href="listNguoiDung.html">
+                                        <button class="btn btn-light">Cancel</button>
+                                    </a>
+                                </f:form>
                             </div>
                         </div>
                     </div>

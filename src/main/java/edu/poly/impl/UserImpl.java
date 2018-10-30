@@ -81,15 +81,20 @@ public class UserImpl implements UserService {
     @Override
     public Users login(String userName, String passWord) {
         Users users;
-        try{
+        try {
             users = repository.login(userName, passWord);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             users = new Users();
         }
         return users;
     }
 
-    public static void main(String []args) {
+    @Override
+    public List<Users> findAllByRole(Integer role) {
+        return repository.findAllByRole(role);
+    }
+
+    public static void main(String[] args) {
         UserImpl user = new UserImpl();
     }
 }

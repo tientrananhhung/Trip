@@ -1,6 +1,6 @@
-(function ($) {
+(function($) {
     'use strict';
-    if ($("#timepicker-example").length) {
+    if($("#timepicker-example").length) {
         $('#timepicker-example').datetimepicker({
             format: 'LT',
             debug: true
@@ -10,17 +10,14 @@
         $('.color-picker').asColorPicker();
     }
     if ($("#datepicker-popup").length) {
-        $.fn.datepicker.defaults.format = "yyyy-mm-dd";
         $('#datepicker-popup').datepicker({
-            format: 'yyyy-mm-dd',
+            format: 'dd/mm/yyyy',
             enableOnReadonly: true,
             todayHighlight: true,
         });
     }
-
     if ($("#inline-datepicker").length) {
         $('#inline-datepicker').datepicker({
-            format: 'yyyy-mm-dd',
             enableOnReadonly: true,
             todayHighlight: true,
         });
@@ -38,7 +35,7 @@
             timePicker: true,
             timePickerIncrement: 30,
             locale: {
-                format: 'yyyy-mm-dd h:mm A'
+                format: 'MM/DD/YYYY h:mm A'
             }
         });
     }

@@ -17,4 +17,8 @@ public interface UserRepository extends CrudRepository<Users, Integer> {
     public List<Users> getAllByDeleted(@Param("isDeleted") boolean isDeleted);
 
     public Users getById(Integer id);
+
+    public List<Users> findAllByRole(Integer role);
+
+
 }
