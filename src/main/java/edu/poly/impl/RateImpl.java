@@ -1,6 +1,6 @@
 package edu.poly.impl;
 
-import edu.poly.entity.Rates;
+import edu.poly.model.Rates;
 import edu.poly.repository.RateRepository;
 import edu.poly.service.RateService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package edu.poly.repository;
 
-import edu.poly.entity.Users;
+import edu.poly.model.Users;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;

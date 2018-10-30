@@ -50,20 +50,20 @@ public class LoginController {
         ModelAndView mav = new ModelAndView();
         Users login = new Users();
 
-        Users userLogin = user.login(users.getUserName(), PasswordUtils.md5(users.getPassWord()));
-        if(userLogin != null){
-            if (userLogin.getRole() == Constants.Role.ADMIN || userLogin.getRole() == Constants.Role.MANAGER) {
-                mav.setViewName(ADMIN_SCREEN);
-            }else{
-                mav.setViewName(INDEX_SCREEN);
-            }
-            rq.getSession().setAttribute("user", userLogin);
-        }else{
-            mav.setViewName(LOGIN_SCREEN);
-            mav.addObject("notify", "Tài khoản hoặc mật khẩu không chính xác!");
-            login.setUserName(users.getUserName());
-            mav.addObject("login", login);
-        }
+//        Users userLogin = user.login(users.getUserName(), PasswordUtils.md5(users.getPassWord()));
+//        if(userLogin != null){
+//            if (userLogin.getRole() == Constants.Role.ADMIN || userLogin.getRole() == Constants.Role.MANAGER) {
+//                mav.setViewName(ADMIN_SCREEN);
+//            }else{
+//                mav.setViewName(INDEX_SCREEN);
+//            }
+//            rq.getSession().setAttribute("user", userLogin);
+//        }else{
+//            mav.setViewName(LOGIN_SCREEN);
+//            mav.addObject("notify", "Tài khoản hoặc mật khẩu không chính xác!");
+//            login.setUserName(users.getUserName());
+//            mav.addObject("login", login);
+//        }
         return mav;
     }
 

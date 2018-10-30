@@ -1,6 +1,6 @@
 package edu.poly.repository;
 
-import edu.poly.entity.Partners;
+import edu.poly.model.Partners;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;

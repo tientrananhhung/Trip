@@ -48,7 +48,7 @@ public class FoodCategoryController {
     public ModelAndView addFoodCategory(HttpSession session, @ModelAttribute("foodcategory") FoodCategorys foodCategorys){
         ModelAndView mav = new ModelAndView();
         foodCategorys.setCreatedAt(TimeUtils.getCurrentTime());
-        foodCategory.save(foodCategorys);
+//        foodCategory.save(foodCategorys);
         mav.setViewName("redirect:/admin" + Constants.Url.LIST_FOODCATEGORY);
         return mav;
     }
@@ -58,8 +58,8 @@ public class FoodCategoryController {
     public ModelAndView editFoodCategory(HttpSession session, @PathVariable("id") Integer id){
         ModelAndView mav = new ModelAndView();
         mav.setViewName(ADD_FOODCATEGORY_SCREEN);
-        FoodCategorys foodCategorys = foodCategory.getById(id);
-        mav.addObject("foodcategory", foodCategorys);
+//        FoodCategorys foodCategorys = foodCategory.getById(id);
+//        mav.addObject("foodcategory", foodCategorys);
         mav.addObject("action", "sua");
         return mav;
     }
@@ -68,7 +68,7 @@ public class FoodCategoryController {
     public ModelAndView updateFoodCategory(HttpSession session, @ModelAttribute("foodcategory") FoodCategorys foodCategorys){
         ModelAndView mav = new ModelAndView();
         foodCategorys.setUpdatedAt(TimeUtils.getCurrentTime());
-        foodCategory.save(foodCategorys);
+//        foodCategory.save(foodCategorys);
         mav.setViewName("redirect:/admin" + Constants.Url.LIST_FOODCATEGORY);
         return mav;
     }
