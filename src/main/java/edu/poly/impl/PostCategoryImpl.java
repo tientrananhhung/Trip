@@ -1,12 +1,13 @@
 package edu.poly.impl;
 
-import edu.poly.entity.PostCategorys;
+import edu.poly.entity.PostCategory;
 import edu.poly.repository.PostCategoryRepository;
 import edu.poly.service.PostCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Transactional
@@ -16,42 +17,42 @@ public class PostCategoryImpl implements PostCategoryService {
     @Autowired
     PostCategoryRepository repository;
 
-    public Iterable<PostCategorys> findAll() {
+    public Iterable<PostCategory> findAll() {
         return repository.findAll();
     }
 
     @Override
-    public Optional<PostCategorys> findOne(Integer id) {
+    public Optional<PostCategory> findOne(Integer id) {
         return repository.findById(id);
     }
 
     @Override
-    public PostCategorys save(PostCategorys postCategory) {
+    public PostCategory save(PostCategory postCategory) {
         return repository.save(postCategory);
     }
 
     @Override
-    public Iterable<PostCategorys> save(Iterable<PostCategorys> postCategories) {
+    public Iterable<PostCategory> save(Iterable<PostCategory> postCategories) {
         return repository.saveAll(postCategories);
     }
 
     @Override
-    public PostCategorys update(PostCategorys postCategory) {
+    public PostCategory update(PostCategory postCategory) {
         return repository.save(postCategory);
     }
 
     @Override
-    public Iterable<PostCategorys> update(Iterable<PostCategorys> postCategories) {
+    public Iterable<PostCategory> update(Iterable<PostCategory> postCategories) {
         return repository.saveAll(postCategories);
     }
 
     @Override
-    public void delete(PostCategorys postCategory) {
+    public void delete(PostCategory postCategory) {
         repository.delete(postCategory);
     }
 
     @Override
-    public void delete(Iterable<PostCategorys> postCategories) {
+    public void delete(Iterable<PostCategory> postCategories) {
         repository.deleteAll(postCategories);
     }
 
@@ -60,14 +61,14 @@ public class PostCategoryImpl implements PostCategoryService {
         repository.deleteById(id);
     }
 
-//    @Override
-//    public PostCategorys getById(Integer id) {
-//        return repository.getById(id);
-//    }
-//
-//    @Override
-//    public List<PostCategorys> getAllByDelete(boolean isDeleted) {
-//        return repository.getAllByDeleted(isDeleted);
-//    }
+    @Override
+    public PostCategory getById(Integer id) {
+        return repository.getById(id);
+    }
+
+    @Override
+    public List<PostCategory> getAllByDelete(boolean isDeleted) {
+        return repository.getAllByDeleted(isDeleted);
+    }
 
 }

@@ -1,6 +1,6 @@
 package edu.poly.impl;
 
-import edu.poly.entity.Services;
+import edu.poly.model.Services;
 import edu.poly.repository.ServiceRepository;
 import edu.poly.service.ServiceService;
 import org.springframework.beans.factory.annotation.Autowired;

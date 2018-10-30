@@ -1,6 +1,6 @@
 package edu.poly.service;
 
-import edu.poly.entity.Rates;
+import edu.poly.model.Rates;
 
 import java.util.Optional;
 

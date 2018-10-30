@@ -1,6 +1,6 @@
 package edu.poly.service;
 
-import edu.poly.entity.Users;
+import edu.poly.model.Users;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;

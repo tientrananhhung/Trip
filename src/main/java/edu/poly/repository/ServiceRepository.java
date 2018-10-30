@@ -1,6 +1,6 @@
 package edu.poly.repository;
 
-import edu.poly.entity.Services;
+import edu.poly.model.Services;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

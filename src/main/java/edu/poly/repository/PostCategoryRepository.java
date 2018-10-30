@@ -1,15 +1,19 @@
 package edu.poly.repository;
 
-import edu.poly.entity.PostCategorys;
+import edu.poly.entity.PostCategory;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface PostCategoryRepository extends CrudRepository<PostCategorys, Integer> {
+import java.util.List;
 
-//    public PostCategorys getById(Integer id);
-//
-//    @Query("from  PostCategory  where Is_deleted = :isDeleted")
-//    public List<PostCategorys> getAllByDeleted(@Param("isDeleted") boolean isDeleted);
+@Repository
+public interface PostCategoryRepository extends CrudRepository<PostCategory, Integer> {
+
+    public PostCategory getById(Integer id);
+
+    @Query("from  PostCategory  where Is_deleted = :isDeleted")
+    public List<PostCategory> getAllByDeleted(@Param("isDeleted") boolean isDeleted);
 
 }
