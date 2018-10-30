@@ -2,6 +2,7 @@ package edu.poly.controller;
 
 import edu.poly.common.Constants;
 import edu.poly.common.TimeUtils;
+import edu.poly.entity.Districts;
 import edu.poly.impl.DistrictImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 @Controller
 @RequestMapping(Constants.Url.ADMIN_PAGE_URL)
@@ -39,9 +42,10 @@ public class DistrictController {
     }
 
     @PostMapping(Constants.Url.ADD_DISTRICT)
-    public ModelAndView addDistricts(HttpSession session, @ModelAttribute("district") Districts districts) {
+    public ModelAndView addDistricts(HttpSession session, @ModelAttribute("districts") Districts districts) {
         ModelAndView mav = new ModelAndView();
-        districts.getCreatedAt(TimeUtils.getCurrentTime());
+        districts.setCreatedAt((Timestamp) TimeUtils.getCurrentTime());
+        districts.setUpdatedAt((Timestamp) TimeUtils.getCurrentTime());
 //        district.save(districts);
         mav.setViewName("redirect:/admin" + Constants.Url.LIST_DISTRICT);
         return mav;
@@ -60,7 +64,7 @@ public class DistrictController {
     @PostMapping(Constants.Url.UPDATE_DISTRICT)
     public ModelAndView editDistrict(HttpSession session, @ModelAttribute("district") Districts districts) {
         ModelAndView mav = new ModelAndView();
-        districts.setUpdatedAt(TimeUtils.getCurrentTime());
+        districts.setUpdatedAt((Timestamp) TimeUtils.getCurrentTime());
 //        district.save(districts);
         mav.setViewName("redirect:/admin" + Constants.Url.LIST_DISTRICT);
         return mav;

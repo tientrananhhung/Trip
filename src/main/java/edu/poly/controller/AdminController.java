@@ -88,15 +88,16 @@ public class AdminController {
     //    adduser
     @PostMapping(Constants.Url.ADD_USER)
     public ModelAndView addUser(HttpSession session, @ModelAttribute("user") Users users) {
-        ModelAndView mav = new ModelAndView();
+        ModelAndView mav = new ModelAndView("index");
+        System.out.println("================= vao đay chưa ==============");
         users.setPassword(PasswordUtils.md5("smarttrip"));
-
+        System.out.println(users.getPassword());
         try {
             if (users.getAvatar() == null) {
                 users.setAvatar("avatar.png");
             }
-            users.setCreatedAt((Timestamp) TimeUtils.getCurrentTime());
-            users.setUpdatedAt((Timestamp) TimeUtils.getCurrentTime());
+            users.setCreatedAt(TimeUtils.getCurrentTime());
+            users.setUpdatedAt(TimeUtils.getCurrentTime());
             user.save(users);
             mav.addObject("listUser", user.getAllByDeleted(false));
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_USER);

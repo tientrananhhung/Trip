@@ -11,7 +11,7 @@
     }
     if ($("#datepicker-popup").length) {
         $('#datepicker-popup').datepicker({
-            format: 'dd/mm/yyyy',
+            format: 'yyyy-mm-dd',
             enableOnReadonly: true,
             todayHighlight: true,
         });

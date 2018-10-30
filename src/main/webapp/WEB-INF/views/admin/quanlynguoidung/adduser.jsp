@@ -85,13 +85,13 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Username</label>
-                                        <f:input path="userName" type="text" cssClass="form-control"
+                                        <f:input path="username" type="text" cssClass="form-control"
                                                  placeholder="Username"/>
                                     </div>
-                                    <c:if test="${not empty action}" >
+                                    <c:if test="${not empty action}">
                                         <div class="form-group">
                                             <label>Password</label>
-                                            <f:input path="passWord" type="password" cssClass="form-control"
+                                            <f:input path="password" type="password" cssClass="form-control"
                                                      placeholder="Password"/>
                                         </div>
                                     </c:if>
@@ -117,25 +117,20 @@
                                             <div class="input-group-addon input-group-prepend">
                                                 <span class="mdi mdi-calendar-blank"></span>
                                             </div>
-                                            <f:input path="birthday"  cssClass="form-control" ></f:input>
+                                            <f:input path="birthday" cssClass="form-control"></f:input>
                                         </div>
                                     </div>
-                                    <%--<div class="form-group">--%>
-                                    <%--<label>Avatar</label>--%>
-                                    <%--<f:input path="avatar" type="file" cssClass="dropify" data-default-file="avatar.png" />--%>
-                                    <%--</div>--%>
-
                                     <div class="form-group">
                                         <label>Gender</label>
                                         <c:forEach var="radio" items="${gender}">
-                                                <div class="form-radio">
-                                                    <label class="form-check-label">
-                                                        <f:radiobutton checked="${radio.key == user.gender ? 'checked':''}"  path="gender" value="${radio.key}"  /> ${radio.value}
-                                                    </label>
-                                                </div>
+                                            <div class="form-radio">
+                                                <label class="form-check-label">
+                                                    <f:radiobutton checked="${radio.key == user.gender ? 'checked':''}"
+                                                                   path="gender" value="${radio.key}"/> ${radio.value}
+                                                </label>
+                                            </div>
                                         </c:forEach>
                                     </div>
-
                                     <div class="form-group">
                                         <label>Role</label>
                                         <div class="form-group">
@@ -185,15 +180,15 @@
 <script src="<c:url value="/resources/js/formpickers.js" />"></script>
 <script src="<c:url value="/resources/js/x-editable.js" />"></script>
 <%---------------------------------------------%>
-<script>
-    $(function () {
-       var formattedDate = new Date("${user.birthday}");
-        var d = formattedDate.getDate();
-        var m =  formattedDate.getMonth();
-        m += 1;  // JavaScript months are 0-11
-        var y = formattedDate.getFullYear();
-        $('#birthday').val(d + "/" + m + "/" + y);
-    });
-</script>
+<%--<script>--%>
+<%--$(function () {--%>
+<%--var formattedDate = new Date("${user.birthday}");--%>
+<%--var d = formattedDate.getDate();--%>
+<%--var m =  formattedDate.getMonth();--%>
+<%--m += 1;  // JavaScript months are 0-11--%>
+<%--var y = formattedDate.getFullYear();--%>
+<%--$('#birthday').val(d + "/" + m + "/" + y);--%>
+<%--});--%>
+<%--</script>--%>
 </body>
 </html>

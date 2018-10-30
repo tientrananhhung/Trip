@@ -1,6 +1,7 @@
 package edu.poly.controller;
 
 import edu.poly.common.Constants;
+import edu.poly.entity.Users;
 import edu.poly.impl.UserImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

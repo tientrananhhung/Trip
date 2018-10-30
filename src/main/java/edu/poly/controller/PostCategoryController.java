@@ -2,6 +2,7 @@ package edu.poly.controller;
 
 import edu.poly.common.Constants;
 import edu.poly.common.TimeUtils;
+import edu.poly.entity.PostCategorys;
 import edu.poly.impl.PostCategoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Timestamp;
 
 @Controller
 @RequestMapping(Constants.Url.ADMIN_PAGE_URL)
@@ -39,13 +41,13 @@ public class PostCategoryController {
     public ModelAndView addPostCategory(HttpSession session) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName(ADD_POSTCATEGORY_SCREEN);
-        mav.addObject("postcategory", new PostCategory());
+        mav.addObject("postcategory", new PostCategorys());
         mav.addObject("action", "them");
         return mav;
     }
 
     @PostMapping(Constants.Url.ADD_POSTCATEGORY)
-    public ModelAndView addPostCategorys(HttpSession session, @ModelAttribute("postcategory") PostCategory postCategory1) {
+    public ModelAndView addPostCategorys(HttpSession session, @ModelAttribute("postcategory") PostCategorys postCategory1) {
         ModelAndView mav = new ModelAndView();
         postCategory1.getCreatedAt(TimeUtils.getCurrentTime());
 //        postCategory.save(postCategory1);
@@ -64,9 +66,9 @@ public class PostCategoryController {
     }
 
     @PostMapping(Constants.Url.UPDATE_POSTCATEGORY)
-    public ModelAndView editPostCategory(HttpSession session, @ModelAttribute("postcategory") PostCategory postCategorys) {
+    public ModelAndView editPostCategory(HttpSession session, @ModelAttribute("postcategory") PostCategorys postCategorys) {
         ModelAndView mav = new ModelAndView();
-        postCategorys.setUpdatedAt(TimeUtils.getCurrentTime());
+        postCategorys.setUpdatedAt((Timestamp) TimeUtils.getCurrentTime());
 //        postCategory.save(postCategorys);
         mav.setViewName("redirect:/admin" + Constants.Url.LIST_POSTCATEGORY);
         return mav;

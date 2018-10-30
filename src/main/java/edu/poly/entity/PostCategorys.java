@@ -3,6 +3,7 @@ package edu.poly.entity;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -47,7 +48,7 @@ public class PostCategorys {
 
     @Basic
     @Column(name = "Created_at", nullable = true)
-    public Timestamp getCreatedAt() {
+    public Timestamp getCreatedAt(Date currentTime) {
         return createdAt;
     }
 

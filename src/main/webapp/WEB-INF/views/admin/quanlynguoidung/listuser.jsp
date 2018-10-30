@@ -70,7 +70,7 @@
                                         <tr>
                                             <td>${user.avatar}</td>
                                             <td>${user.name}</td>
-                                            <td>${user.userName}</td>
+                                            <td>${user.username}</td>
                                             <td>${user.phone}</td>
                                             <td>${user.email}</td>
                                             <td>
@@ -91,7 +91,7 @@
                                             </td>
                                             <td>
                                                 <c:choose>
-                                                    <c:when test="${user.isActive() == true}">
+                                                    <c:when test="${user.getActive() == true}">
                                                         <a href="/admin/quan-ly-nguoi-dung/active/${user.id}/false"><label
                                                                 class="badge badge-success">Active</label></a>
                                                     </c:when>

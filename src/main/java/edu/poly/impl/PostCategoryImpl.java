@@ -65,10 +65,10 @@ public class PostCategoryImpl implements PostCategoryService {
     public PostCategorys getById(Integer id) {
         return repository.getById(id);
     }
-
-    @Override
-    public List<PostCategorys> getAllByDelete(boolean isDeleted) {
-        return repository.getAllByDeleted(isDeleted);
-    }
+//
+//    @Override
+//    public List<PostCategorys> getAllByDelete(boolean isDeleted) {
+//        return repository.getAllByDeleted(isDeleted);
+//    }
 
 }

@@ -1,5 +1,6 @@
 package edu.poly.common;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -10,8 +11,8 @@ public class TimeUtils {
      *
      * @return current time
      */
-    public static Date getCurrentTime() {
-        return new Date();
+    public static Timestamp getCurrentTime() {
+        return new Timestamp(System.currentTimeMillis());
     }
 
     public static Date convertDate(String date) {
