@@ -1,6 +1,6 @@
 package edu.poly.impl;
 
-import edu.poly.entity.FoodCategorys;
+import edu.poly.model.FoodCategorys;
 import edu.poly.repository.FoodCategoryRepository;
 import edu.poly.service.FoodCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;

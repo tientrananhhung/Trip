@@ -1,9 +1,8 @@
 package edu.poly.service;
 
-import edu.poly.entity.Users;
+import edu.poly.model.Users;
 import org.springframework.data.repository.query.Param;
 
-import javax.swing.plaf.ListUI;
 import java.util.List;
 import java.util.Optional;
 

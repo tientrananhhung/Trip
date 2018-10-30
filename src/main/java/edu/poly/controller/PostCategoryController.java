@@ -31,7 +31,7 @@ public class PostCategoryController {
 //            return mav;
 //        }
 
-        mav.addObject("listPostcategory", postCategory.getAllByDelete(false));
+//        mav.addObject("listPostcategory", postCategory.getAllByDelete(false));
         mav.setViewName(POSTCATEGORY_SCREEN);
         return mav;
     }
@@ -49,7 +49,7 @@ public class PostCategoryController {
     public ModelAndView addPostCategorys(HttpSession session, @ModelAttribute("postcategory") PostCategory postCategory1) {
         ModelAndView mav = new ModelAndView();
         postCategory1.getCreatedAt(TimeUtils.getCurrentTime());
-        postCategory.save(postCategory1);
+//        postCategory.save(postCategory1);
         mav.setViewName("redirect:/admin" + Constants.Url.LIST_POSTCATEGORY);
         return mav;
     }
@@ -58,8 +58,8 @@ public class PostCategoryController {
     public ModelAndView updatePostCategory(HttpSession session, @PathVariable("id") Integer id) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName(ADD_POSTCATEGORY_SCREEN);
-        PostCategory postCategorys = postCategory.getById(id);
-        mav.addObject("postcategory", postCategorys);
+//        PostCategory postCategorys = postCategory.getById(id);
+//        mav.addObject("postcategory", postCategorys);
         mav.addObject("action", "sua");
         return mav;
     }
@@ -68,7 +68,7 @@ public class PostCategoryController {
     public ModelAndView editPostCategory(HttpSession session, @ModelAttribute("postcategory") PostCategory postCategorys) {
         ModelAndView mav = new ModelAndView();
         postCategorys.setUpdatedAt(TimeUtils.getCurrentTime());
-        postCategory.save(postCategorys);
+//        postCategory.save(postCategorys);
         mav.setViewName("redirect:/admin" + Constants.Url.LIST_POSTCATEGORY);
         return mav;
     }

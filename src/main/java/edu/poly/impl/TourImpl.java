@@ -1,6 +1,6 @@
 package edu.poly.impl;
 
-import edu.poly.entity.Tours;
+import edu.poly.model.Tours;
 import edu.poly.repository.TourRepository;
 import edu.poly.service.TourService;
 import org.springframework.beans.factory.annotation.Autowired;

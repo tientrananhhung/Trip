@@ -44,7 +44,7 @@ public class DistrictController {
     public ModelAndView addDistricts(HttpSession session, @ModelAttribute("district") Districts districts) {
         ModelAndView mav = new ModelAndView();
         districts.getCreatedAt(TimeUtils.getCurrentTime());
-        district.save(districts);
+//        district.save(districts);
         mav.setViewName("redirect:/admin" + Constants.Url.LIST_DISTRICT);
         return mav;
     }
@@ -53,8 +53,8 @@ public class DistrictController {
     public ModelAndView updateDistrict(HttpSession session, @PathVariable("id") Integer id) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName(ADD_DISTRICT_SCREEN);
-        Districts districts = district.getById(id);
-        mav.addObject("district", districts);
+//        Districts districts = district.getById(id);
+//        mav.addObject("district", districts);
         mav.addObject("action", "sua");
         return mav;
     }
@@ -63,7 +63,7 @@ public class DistrictController {
     public ModelAndView editDistrict(HttpSession session, @ModelAttribute("district") Districts districts) {
         ModelAndView mav = new ModelAndView();
         districts.setUpdatedAt(TimeUtils.getCurrentTime());
-        district.save(districts);
+//        district.save(districts);
         mav.setViewName("redirect:/admin" + Constants.Url.LIST_DISTRICT);
         return mav;
     }

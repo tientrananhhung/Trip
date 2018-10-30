@@ -1,6 +1,6 @@
 package edu.poly.service;
 
-import edu.poly.entity.Foods;
+import edu.poly.model.Foods;
 
 import java.util.Optional;
 
