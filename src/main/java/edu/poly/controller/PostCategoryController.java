@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.sql.Timestamp;
 
 @Controller
 @RequestMapping(Constants.Url.ADMIN_PAGE_URL)
@@ -68,7 +67,7 @@ public class PostCategoryController {
     @PostMapping(Constants.Url.UPDATE_POSTCATEGORY)
     public ModelAndView editPostCategory(HttpSession session, @ModelAttribute("postcategory") PostCategorys postCategorys) {
         ModelAndView mav = new ModelAndView();
-        postCategorys.setUpdatedAt((Timestamp) TimeUtils.getCurrentTime());
+        postCategorys.setUpdatedAt(TimeUtils.getCurrentTime());
 //        postCategory.save(postCategorys);
         mav.setViewName("redirect:/admin" + Constants.Url.LIST_POSTCATEGORY);
         return mav;

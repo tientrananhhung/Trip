@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.sql.Time;
-import java.sql.Timestamp;
 
 @Controller
 @RequestMapping(Constants.Url.ADMIN_PAGE_URL)
@@ -44,8 +42,8 @@ public class DistrictController {
     @PostMapping(Constants.Url.ADD_DISTRICT)
     public ModelAndView addDistricts(HttpSession session, @ModelAttribute("districts") Districts districts) {
         ModelAndView mav = new ModelAndView();
-        districts.setCreatedAt((Timestamp) TimeUtils.getCurrentTime());
-        districts.setUpdatedAt((Timestamp) TimeUtils.getCurrentTime());
+        districts.setCreatedAt(TimeUtils.getCurrentTime());
+        districts.setUpdatedAt(TimeUtils.getCurrentTime());
 //        district.save(districts);
         mav.setViewName("redirect:/admin" + Constants.Url.LIST_DISTRICT);
         return mav;
@@ -64,7 +62,7 @@ public class DistrictController {
     @PostMapping(Constants.Url.UPDATE_DISTRICT)
     public ModelAndView editDistrict(HttpSession session, @ModelAttribute("district") Districts districts) {
         ModelAndView mav = new ModelAndView();
-        districts.setUpdatedAt((Timestamp) TimeUtils.getCurrentTime());
+        districts.setUpdatedAt(TimeUtils.getCurrentTime());
 //        district.save(districts);
         mav.setViewName("redirect:/admin" + Constants.Url.LIST_DISTRICT);
         return mav;

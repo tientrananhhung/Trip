@@ -179,7 +179,7 @@ public class AdminController {
             users.setActive(userdb.getActive());
             users.setAvatar(userdb.getAvatar());
             users.setCreatedAt(userdb.getCreatedAt());
-            users.setUpdatedAt((Timestamp) TimeUtils.getCurrentTime());
+            users.setUpdatedAt(TimeUtils.getCurrentTime());
             user.update(users);
             mav.addObject("listUser", user.getAllByDeleted(false));
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_USER);
