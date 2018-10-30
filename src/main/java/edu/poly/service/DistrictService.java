@@ -1,6 +1,6 @@
 package edu.poly.service;
 
-import edu.poly.model.Districts;
+import edu.poly.entity.Districts;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;

@@ -1,57 +1,26 @@
 package edu.poly.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
+import java.util.Objects;
 
 @Entity
 @Table(name = "posts")
 public class Posts {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @Column(name = "Title")
+    private int postCategoryId;
+    private int userId;
     private String title;
-
-    @Column(name = "Content")
     private String content;
+    private Integer view;
+    private Boolean isDeleted;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
+    private PostCategorys postCategorysByPostCategoryId;
+    private Users usersByUserId;
 
-    @Column(name = "View")
-    private int view;
-
-    @Column(name = "Is_deleted")
-    private boolean isDeleted;
-
-    @Column(name = "Created_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-
-    @Column(name = "Updated_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
-
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id")
-    private Posts posts;
-
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id")
-    private Users users;
-
-    public Posts() {
-    }
-
-    public Posts(String title, String content, int view, boolean isDeleted, Date createdAt, Date updatedAt, Posts posts, Users users) {
-        this.title = title;
-        this.content = content;
-        this.view = view;
-        this.isDeleted = isDeleted;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.posts = posts;
-        this.users = users;
-    }
-
+    @Id
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -60,6 +29,28 @@ public class Posts {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "post_category_id", nullable = false)
+    public int getPostCategoryId() {
+        return postCategoryId;
+    }
+
+    public void setPostCategoryId(int postCategoryId) {
+        this.postCategoryId = postCategoryId;
+    }
+
+    @Basic
+    @Column(name = "user_id", nullable = false)
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    @Basic
+    @Column(name = "Title", nullable = false, length = 200)
     public String getTitle() {
         return title;
     }
@@ -68,6 +59,8 @@ public class Posts {
         this.title = title;
     }
 
+    @Basic
+    @Column(name = "Content", nullable = true, length = -1)
     public String getContent() {
         return content;
     }
@@ -76,51 +69,84 @@ public class Posts {
         this.content = content;
     }
 
-    public int getView() {
+    @Basic
+    @Column(name = "View", nullable = true)
+    public Integer getView() {
         return view;
     }
 
-    public void setView(int view) {
+    public void setView(Integer view) {
         this.view = view;
     }
 
-    public boolean isDeleted() {
+    @Basic
+    @Column(name = "Is_deleted", nullable = true)
+    public Boolean getDeleted() {
         return isDeleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
     }
 
-    public Date getCreatedAt() {
+    @Basic
+    @Column(name = "Created_at", nullable = true)
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    @Basic
+    @Column(name = "Updated_at", nullable = true)
+    public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public Posts getPosts() {
-        return posts;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Posts posts = (Posts) o;
+        return id == posts.id &&
+                postCategoryId == posts.postCategoryId &&
+                userId == posts.userId &&
+                Objects.equals(title, posts.title) &&
+                Objects.equals(content, posts.content) &&
+                Objects.equals(view, posts.view) &&
+                Objects.equals(isDeleted, posts.isDeleted) &&
+                Objects.equals(createdAt, posts.createdAt) &&
+                Objects.equals(updatedAt, posts.updatedAt);
     }
 
-    public void setPosts(Posts posts) {
-        this.posts = posts;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, postCategoryId, userId, title, content, view, isDeleted, createdAt, updatedAt);
     }
 
-    public Users getUsers() {
-        return users;
+    @ManyToOne
+    @JoinColumn(name = "post_category_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public PostCategorys getPostCategorysByPostCategoryId() {
+        return postCategorysByPostCategoryId;
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    public void setPostCategorysByPostCategoryId(PostCategorys postCategorysByPostCategoryId) {
+        this.postCategorysByPostCategoryId = postCategorysByPostCategoryId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public Users getUsersByUserId() {
+        return usersByUserId;
+    }
+
+    public void setUsersByUserId(Users usersByUserId) {
+        this.usersByUserId = usersByUserId;
     }
 }

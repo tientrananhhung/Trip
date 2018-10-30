@@ -1,6 +1,6 @@
 package edu.poly.service;
 
-import edu.poly.model.Orders;
+import edu.poly.entity.Orders;
 
 import java.util.Optional;
 

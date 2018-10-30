@@ -1,119 +1,39 @@
 package edu.poly.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users")
 public class Users {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @Column(name = "Name")
     private String name;
-
-    @Column(name = "Username")
-    private String userName;
-
-    @Column(name = "Password")
-    private String passWord;
-
-    @Column(name = "Phone")
+    private String username;
+    private String password;
     private String phone;
-
-    @Column(name = "Email")
     private String email;
-
-    @Column(name = "Address")
     private String address;
-
-    @Column(name = "Birthday")
-    @Temporal(TemporalType.DATE)
     private Date birthday;
-
-    @Column(name = "Gender")
-    private boolean gender;
-
-    @Column(name = "Avatar")
+    private Boolean gender;
     private String avatar;
-
-    @Column(name = "Role")
     private int role;
+    private Boolean isActive;
+    private Boolean isDeleted;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
+    private Collection<Foods> foodsById;
+    private Collection<Offers> offersById;
+    private Collection<Orders> ordersById;
+    private Collection<Partners> partnersById;
+    private Collection<Posts> postsById;
+    private Collection<Rates> ratesById;
+    private Collection<Tours> toursById;
 
-    @Column(name = "Is_active")
-    private boolean isActive;
-
-    @Column(name = "Is_deleted")
-    private boolean isDeleted;
-
-    @Column(name = "Created_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-
-    @Column(name = "Updated_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    @JsonIgnore
-    private Set<Partners> partners = new HashSet<Partners>(0);
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    @JsonIgnore
-    private Set<Rates> rates = new HashSet<Rates>(0);
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    @JsonIgnore
-    private Set<Tours> tours = new HashSet<Tours>(0);
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    @JsonIgnore
-    private Set<Orders> orders = new HashSet<Orders>(0);
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    @JsonIgnore
-    private Set<Offers> offers = new HashSet<Offers>(0);
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    @JsonIgnore
-    private Set<Posts> posts = new HashSet<Posts>(0);
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    @JsonIgnore
-    private Set<Foods> foods = new HashSet<Foods>(0);
-
-    public Users() {
-    }
-
-    public Users(String name, String userName, String passWord, String phone, String email, String address, Date birthday, boolean gender, String avatar, int role, boolean isActive, boolean isDeleted, Date createdAt, Date updatedAt) {
-        this.name = name;
-        this.userName = userName;
-        this.passWord = passWord;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.birthday = birthday;
-        this.gender = gender;
-        this.avatar = avatar;
-        this.role = role;
-        this.isActive = isActive;
-        this.isDeleted = isDeleted;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
-
+    @Id
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -122,6 +42,8 @@ public class Users {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "Name", nullable = false, length = 100)
     public String getName() {
         return name;
     }
@@ -130,22 +52,28 @@ public class Users {
         this.name = name;
     }
 
-    public String getUserName() {
-        return userName;
+    @Basic
+    @Column(name = "Username", nullable = false, length = 50)
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getPassWord() {
-        return passWord;
+    @Basic
+    @Column(name = "Password", nullable = false, length = 50)
+    public String getPassword() {
+        return password;
     }
 
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
+    @Basic
+    @Column(name = "Phone", nullable = true, length = 12)
     public String getPhone() {
         return phone;
     }
@@ -154,6 +82,8 @@ public class Users {
         this.phone = phone;
     }
 
+    @Basic
+    @Column(name = "Email", nullable = true, length = 50)
     public String getEmail() {
         return email;
     }
@@ -162,6 +92,8 @@ public class Users {
         this.email = email;
     }
 
+    @Basic
+    @Column(name = "Address", nullable = true, length = 200)
     public String getAddress() {
         return address;
     }
@@ -170,6 +102,8 @@ public class Users {
         this.address = address;
     }
 
+    @Basic
+    @Column(name = "Birthday", nullable = true)
     public Date getBirthday() {
         return birthday;
     }
@@ -178,14 +112,18 @@ public class Users {
         this.birthday = birthday;
     }
 
-    public boolean isGender() {
+    @Basic
+    @Column(name = "Gender", nullable = true)
+    public Boolean getGender() {
         return gender;
     }
 
-    public void setGender(boolean gender) {
+    public void setGender(Boolean gender) {
         this.gender = gender;
     }
 
+    @Basic
+    @Column(name = "Avatar", nullable = true, length = 50)
     public String getAvatar() {
         return avatar;
     }
@@ -194,6 +132,8 @@ public class Users {
         this.avatar = avatar;
     }
 
+    @Basic
+    @Column(name = "Role", nullable = false)
     public int getRole() {
         return role;
     }
@@ -202,91 +142,133 @@ public class Users {
         this.role = role;
     }
 
-    public boolean isActive() {
+    @Basic
+    @Column(name = "Is_active", nullable = true)
+    public Boolean getActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(Boolean active) {
         isActive = active;
     }
 
-    public boolean isDeleted() {
+    @Basic
+    @Column(name = "Is_deleted", nullable = true)
+    public Boolean getDeleted() {
         return isDeleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
     }
 
-    public Date getCreatedAt() {
+    @Basic
+    @Column(name = "Created_at", nullable = true)
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    @Basic
+    @Column(name = "Updated_at", nullable = true)
+    public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public Set<Partners> getPartners() {
-        return partners;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Users users = (Users) o;
+        return id == users.id &&
+                role == users.role &&
+                Objects.equals(name, users.name) &&
+                Objects.equals(username, users.username) &&
+                Objects.equals(password, users.password) &&
+                Objects.equals(phone, users.phone) &&
+                Objects.equals(email, users.email) &&
+                Objects.equals(address, users.address) &&
+                Objects.equals(birthday, users.birthday) &&
+                Objects.equals(gender, users.gender) &&
+                Objects.equals(avatar, users.avatar) &&
+                Objects.equals(isActive, users.isActive) &&
+                Objects.equals(isDeleted, users.isDeleted) &&
+                Objects.equals(createdAt, users.createdAt) &&
+                Objects.equals(updatedAt, users.updatedAt);
     }
 
-    public void setPartners(Set<Partners> partners) {
-        this.partners = partners;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, username, password, phone, email, address, birthday, gender, avatar, role, isActive, isDeleted, createdAt, updatedAt);
     }
 
-    public Set<Rates> getRates() {
-        return rates;
+    @OneToMany(mappedBy = "usersByUserId")
+    public Collection<Foods> getFoodsById() {
+        return foodsById;
     }
 
-    public void setRates(Set<Rates> rates) {
-        this.rates = rates;
+    public void setFoodsById(Collection<Foods> foodsById) {
+        this.foodsById = foodsById;
     }
 
-    public Set<Tours> getTours() {
-        return tours;
+    @OneToMany(mappedBy = "usersByUserId")
+    public Collection<Offers> getOffersById() {
+        return offersById;
     }
 
-    public void setTours(Set<Tours> tours) {
-        this.tours = tours;
+    public void setOffersById(Collection<Offers> offersById) {
+        this.offersById = offersById;
     }
 
-    public Set<Orders> getOrders() {
-        return orders;
+    @OneToMany(mappedBy = "usersByUserId")
+    public Collection<Orders> getOrdersById() {
+        return ordersById;
     }
 
-    public void setOrders(Set<Orders> orders) {
-        this.orders = orders;
+    public void setOrdersById(Collection<Orders> ordersById) {
+        this.ordersById = ordersById;
     }
 
-    public Set<Offers> getOffers() {
-        return offers;
+    @OneToMany(mappedBy = "usersByUserId")
+    public Collection<Partners> getPartnersById() {
+        return partnersById;
     }
 
-    public void setOffers(Set<Offers> offers) {
-        this.offers = offers;
+    public void setPartnersById(Collection<Partners> partnersById) {
+        this.partnersById = partnersById;
     }
 
-    public Set<Posts> getPosts() {
-        return posts;
+    @OneToMany(mappedBy = "usersByUserId")
+    public Collection<Posts> getPostsById() {
+        return postsById;
     }
 
-    public void setPosts(Set<Posts> posts) {
-        this.posts = posts;
+    public void setPostsById(Collection<Posts> postsById) {
+        this.postsById = postsById;
     }
 
-    public Set<Foods> getFoods() {
-        return foods;
+    @OneToMany(mappedBy = "usersByUserId")
+    public Collection<Rates> getRatesById() {
+        return ratesById;
     }
 
-    public void setFoods(Set<Foods> foods) {
-        this.foods = foods;
+    public void setRatesById(Collection<Rates> ratesById) {
+        this.ratesById = ratesById;
+    }
+
+    @OneToMany(mappedBy = "usersByUserId")
+    public Collection<Tours> getToursById() {
+        return toursById;
+    }
+
+    public void setToursById(Collection<Tours> toursById) {
+        this.toursById = toursById;
     }
 }

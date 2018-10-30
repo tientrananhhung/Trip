@@ -1,6 +1,6 @@
 package edu.poly.service;
 
-import edu.poly.model.PostCategorys;
+import edu.poly.entity.PostCategorys;
 
 import java.util.Optional;
 

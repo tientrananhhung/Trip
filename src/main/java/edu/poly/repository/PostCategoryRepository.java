@@ -1,12 +1,8 @@
 package edu.poly.repository;
 
-import edu.poly.model.PostCategorys;
-import org.springframework.data.jpa.repository.Query;
+import edu.poly.entity.PostCategorys;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public interface PostCategoryRepository extends CrudRepository<PostCategorys, Integer> {

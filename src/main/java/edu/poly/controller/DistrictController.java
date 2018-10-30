@@ -1,9 +1,7 @@
 package edu.poly.controller;
 
-import edu.poly.common.CheckSession;
 import edu.poly.common.Constants;
 import edu.poly.common.TimeUtils;
-import edu.poly.entity.Districts;
 import edu.poly.impl.DistrictImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

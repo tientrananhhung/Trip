@@ -1,43 +1,22 @@
 package edu.poly.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
+import java.util.Objects;
 
 @Entity
 @Table(name = "offers")
 public class Offers {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @Column(name = "Code")
+    private int userId;
     private String code;
-
-    @Column(name = "Deal")
     private int deal;
+    private Boolean isUsed;
+    private Timestamp createdAt;
+    private Users usersByUserId;
 
-    @Column(name = "Is_used")
-    private int isUsed;
-
-    @Column(name = "Created_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id")
-    private Users users;
-
-    public Offers() {
-    }
-
-    public Offers(String code, int deal, int isUsed, Date createdAt, Users users) {
-        this.code = code;
-        this.deal = deal;
-        this.isUsed = isUsed;
-        this.createdAt = createdAt;
-        this.users = users;
-    }
-
+    @Id
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -46,6 +25,18 @@ public class Offers {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "user_id", nullable = false)
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    @Basic
+    @Column(name = "Code", nullable = false, length = 50)
     public String getCode() {
         return code;
     }
@@ -54,6 +45,8 @@ public class Offers {
         this.code = code;
     }
 
+    @Basic
+    @Column(name = "Deal", nullable = false)
     public int getDeal() {
         return deal;
     }
@@ -62,28 +55,51 @@ public class Offers {
         this.deal = deal;
     }
 
-    public int getIsUsed() {
+    @Basic
+    @Column(name = "Is_used", nullable = true)
+    public Boolean getUsed() {
         return isUsed;
     }
 
-    public void setIsUsed(int isUsed) {
-        this.isUsed = isUsed;
+    public void setUsed(Boolean used) {
+        isUsed = used;
     }
 
-    public Date getCreatedAt() {
+    @Basic
+    @Column(name = "Created_at", nullable = true)
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Users getUsers() {
-        return users;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Offers offers = (Offers) o;
+        return id == offers.id &&
+                userId == offers.userId &&
+                deal == offers.deal &&
+                Objects.equals(code, offers.code) &&
+                Objects.equals(isUsed, offers.isUsed) &&
+                Objects.equals(createdAt, offers.createdAt);
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userId, code, deal, isUsed, createdAt);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public Users getUsersByUserId() {
+        return usersByUserId;
+    }
+
+    public void setUsersByUserId(Users usersByUserId) {
+        this.usersByUserId = usersByUserId;
+    }
 }

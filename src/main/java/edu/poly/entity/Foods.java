@@ -1,73 +1,27 @@
 package edu.poly.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.sql.Timestamp;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name = "foods")
 public class Foods {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @Column(name = "Name")
+    private int foodCategoryId;
+    private int userId;
     private String name;
+    private String opentime;
+    private Boolean isDeleted;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
+    private FoodCategorys foodCategorysByFoodCategoryId;
+    private Users usersByUserId;
+    private Collection<PlaceInfors> placeInforsById;
 
-    @Column(name = "Opentime")
-    private String openTime;
-
-    @Column(name = "Is_deleted")
-    private boolean isDeleted;
-
-    @Column(name = "Created_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-
-    @Column(name = "Updated_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
-
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id")
-    private FoodCategorys foodCategorys;
-
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id")
-    private Users users;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    @JsonIgnore
-    private Set<PlaceInfors> placeInfors = new HashSet<PlaceInfors>(0);
-
-    public Foods() {
-    }
-
-    public Foods(String name, String openTime, boolean isDeleted, Date createdAt, Date updatedAt, FoodCategorys foodCategorys, Users users) {
-        this.name = name;
-        this.openTime = openTime;
-        this.isDeleted = isDeleted;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.foodCategorys = foodCategorys;
-        this.users = users;
-    }
-
-    public Foods(String name, String openTime, boolean isDeleted, Date createdAt, Date updatedAt, FoodCategorys foodCategorys, Users users, Set<PlaceInfors> placeInfors) {
-        this.name = name;
-        this.openTime = openTime;
-        this.isDeleted = isDeleted;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.foodCategorys = foodCategorys;
-        this.users = users;
-        this.placeInfors = placeInfors;
-    }
-
+    @Id
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -76,6 +30,28 @@ public class Foods {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "food_category_id", nullable = false)
+    public int getFoodCategoryId() {
+        return foodCategoryId;
+    }
+
+    public void setFoodCategoryId(int foodCategoryId) {
+        this.foodCategoryId = foodCategoryId;
+    }
+
+    @Basic
+    @Column(name = "user_id", nullable = false)
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    @Basic
+    @Column(name = "Name", nullable = false, length = 100)
     public String getName() {
         return name;
     }
@@ -84,60 +60,92 @@ public class Foods {
         this.name = name;
     }
 
-    public String getOpenTime() {
-        return openTime;
+    @Basic
+    @Column(name = "Opentime", nullable = true, length = 50)
+    public String getOpentime() {
+        return opentime;
     }
 
-    public void setOpenTime(String openTime) {
-        this.openTime = openTime;
+    public void setOpentime(String opentime) {
+        this.opentime = opentime;
     }
 
-    public boolean isDeleted() {
+    @Basic
+    @Column(name = "Is_deleted", nullable = true)
+    public Boolean getDeleted() {
         return isDeleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
     }
 
-    public Date getCreatedAt() {
+    @Basic
+    @Column(name = "Created_at", nullable = true)
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    @Basic
+    @Column(name = "Updated_at", nullable = true)
+    public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public FoodCategorys getFoodCategorys() {
-        return foodCategorys;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Foods foods = (Foods) o;
+        return id == foods.id &&
+                foodCategoryId == foods.foodCategoryId &&
+                userId == foods.userId &&
+                Objects.equals(name, foods.name) &&
+                Objects.equals(opentime, foods.opentime) &&
+                Objects.equals(isDeleted, foods.isDeleted) &&
+                Objects.equals(createdAt, foods.createdAt) &&
+                Objects.equals(updatedAt, foods.updatedAt);
     }
 
-    public void setFoodCategorys(FoodCategorys foodCategorys) {
-        this.foodCategorys = foodCategorys;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, foodCategoryId, userId, name, opentime, isDeleted, createdAt, updatedAt);
     }
 
-    public Users getUsers() {
-        return users;
+    @ManyToOne
+    @JoinColumn(name = "food_category_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public FoodCategorys getFoodCategorysByFoodCategoryId() {
+        return foodCategorysByFoodCategoryId;
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    public void setFoodCategorysByFoodCategoryId(FoodCategorys foodCategorysByFoodCategoryId) {
+        this.foodCategorysByFoodCategoryId = foodCategorysByFoodCategoryId;
     }
 
-    public Set<PlaceInfors> getPlaceInfors() {
-        return placeInfors;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public Users getUsersByUserId() {
+        return usersByUserId;
     }
 
-    public void setPlaceInfors(Set<PlaceInfors> placeInfors) {
-        this.placeInfors = placeInfors;
+    public void setUsersByUserId(Users usersByUserId) {
+        this.usersByUserId = usersByUserId;
     }
 
+    @OneToMany(mappedBy = "foodsByFoodId")
+    public Collection<PlaceInfors> getPlaceInforsById() {
+        return placeInforsById;
+    }
+
+    public void setPlaceInforsById(Collection<PlaceInfors> placeInforsById) {
+        this.placeInforsById = placeInforsById;
+    }
 }

@@ -1,6 +1,6 @@
 package edu.poly.service;
 
-import edu.poly.model.PlaceInfors;
+import edu.poly.entity.PlaceInfors;
 
 import java.util.Optional;
 

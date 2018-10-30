@@ -1,13 +1,12 @@
 package edu.poly.impl;
 
-import edu.poly.model.PostCategorys;
+import edu.poly.entity.PostCategorys;
 import edu.poly.repository.PostCategoryRepository;
 import edu.poly.service.PostCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Transactional

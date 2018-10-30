@@ -6,14 +6,14 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "food_categorys", schema = "trip", catalog = "")
-public class FoodCategorys {
+@Table(name = "post_categorys", schema = "trip", catalog = "")
+public class PostCategorys {
     private int id;
     private String name;
     private Boolean isDeleted;
     private Timestamp createdAt;
     private Timestamp updatedAt;
-    private Collection<Foods> foodsById;
+    private Collection<Posts> postsById;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -69,7 +69,7 @@ public class FoodCategorys {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        FoodCategorys that = (FoodCategorys) o;
+        PostCategorys that = (PostCategorys) o;
         return id == that.id &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(isDeleted, that.isDeleted) &&
@@ -82,12 +82,12 @@ public class FoodCategorys {
         return Objects.hash(id, name, isDeleted, createdAt, updatedAt);
     }
 
-    @OneToMany(mappedBy = "foodCategorysByFoodCategoryId")
-    public Collection<Foods> getFoodsById() {
-        return foodsById;
+    @OneToMany(mappedBy = "postCategorysByPostCategoryId")
+    public Collection<Posts> getPostsById() {
+        return postsById;
     }
 
-    public void setFoodsById(Collection<Foods> foodsById) {
-        this.foodsById = foodsById;
+    public void setPostsById(Collection<Posts> postsById) {
+        this.postsById = postsById;
     }
 }

@@ -1,60 +1,26 @@
 package edu.poly.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
+import java.util.Objects;
 
 @Entity
 @Table(name = "partners")
 public class Partners {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @Column(name = "Name")
+    private int userId;
     private String name;
-
-    @Column(name = "Phone")
     private String phone;
-
-    @Column(name = "Address")
     private String address;
-
-    @Column(name = "Email")
     private String email;
+    private Boolean isActived;
+    private Boolean isDeleted;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
+    private Users usersByUserId;
 
-    @Column(name = "Is_actived")
-    private boolean isActived;
-
-    @Column(name = "Is_deleted")
-    private boolean isDeleted;
-
-    @Column(name = "Created_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-
-    @Column(name = "Updated_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
-
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id")
-    private Users users;
-
-    public Partners() {
-    }
-
-    public Partners(String name, String phone, String address, String email, boolean isActived, boolean isDeleted, Date createdAt, Date updatedAt, Users users) {
-        this.name = name;
-        this.phone = phone;
-        this.address = address;
-        this.email = email;
-        this.isActived = isActived;
-        this.isDeleted = isDeleted;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.users = users;
-    }
-
+    @Id
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -63,6 +29,18 @@ public class Partners {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "user_id", nullable = false)
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    @Basic
+    @Column(name = "Name", nullable = false, length = 100)
     public String getName() {
         return name;
     }
@@ -71,6 +49,8 @@ public class Partners {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "Phone", nullable = true, length = 12)
     public String getPhone() {
         return phone;
     }
@@ -79,6 +59,8 @@ public class Partners {
         this.phone = phone;
     }
 
+    @Basic
+    @Column(name = "Address", nullable = false, length = 200)
     public String getAddress() {
         return address;
     }
@@ -87,6 +69,8 @@ public class Partners {
         this.address = address;
     }
 
+    @Basic
+    @Column(name = "Email", nullable = true, length = 50)
     public String getEmail() {
         return email;
     }
@@ -95,44 +79,75 @@ public class Partners {
         this.email = email;
     }
 
-    public boolean isActived() {
+    @Basic
+    @Column(name = "Is_actived", nullable = true)
+    public Boolean getActived() {
         return isActived;
     }
 
-    public void setActived(boolean actived) {
+    public void setActived(Boolean actived) {
         isActived = actived;
     }
 
-    public boolean isDeleted() {
+    @Basic
+    @Column(name = "Is_deleted", nullable = true)
+    public Boolean getDeleted() {
         return isDeleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
     }
 
-    public Date getCreatedAt() {
+    @Basic
+    @Column(name = "Created_at", nullable = true)
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    @Basic
+    @Column(name = "Updated_at", nullable = true)
+    public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public Users getUsers() {
-        return users;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Partners partners = (Partners) o;
+        return id == partners.id &&
+                userId == partners.userId &&
+                Objects.equals(name, partners.name) &&
+                Objects.equals(phone, partners.phone) &&
+                Objects.equals(address, partners.address) &&
+                Objects.equals(email, partners.email) &&
+                Objects.equals(isActived, partners.isActived) &&
+                Objects.equals(isDeleted, partners.isDeleted) &&
+                Objects.equals(createdAt, partners.createdAt) &&
+                Objects.equals(updatedAt, partners.updatedAt);
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userId, name, phone, address, email, isActived, isDeleted, createdAt, updatedAt);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public Users getUsersByUserId() {
+        return usersByUserId;
+    }
+
+    public void setUsersByUserId(Users usersByUserId) {
+        this.usersByUserId = usersByUserId;
+    }
 }

@@ -1,99 +1,32 @@
 package edu.poly.entity;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.sql.Timestamp;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
-@Table(name = "place_infors")
+@Table(name = "place_infors", schema = "trip", catalog = "")
 public class PlaceInfors {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @Column(name = "Name")
+    private int foodId;
+    private int districtId;
     private String name;
-
-    @Column(name = "Lat")
     private String lat;
-
-    @Column(name = "Lng")
     private String lng;
-
-    @Column(name = "Images")
     private String images;
-
-    @Column(name = "Phone")
     private String phone;
-
-    @Column(name = "Address")
     private String address;
-
-    @Column(name = "Content")
     private String content;
+    private Boolean isDeleted;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
+    private Collection<FoodInfors> foodInforsById;
+    private Foods foodsByFoodId;
+    private Districts districtsByDistrictId;
 
-    @Column(name = "Is_deleted")
-    private boolean isDeleted;
-
-    @Column(name = "Created_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-
-    @Column(name = "Updated_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
-
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id")
-    private Districts districts;
-
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id")
-    private Foods foods;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    @JsonIgnore
-    private Set<FoodInfors> foodInfors = new HashSet<FoodInfors>(0);
-
-    public PlaceInfors() {
-    }
-
-    public PlaceInfors(String name, String lat, String lng, String images, String phone, String address, String content, boolean isDeleted, Date createdAt, Date updatedAt, Districts districts, Foods foods) {
-        this.name = name;
-        this.lat = lat;
-        this.lng = lng;
-        this.images = images;
-        this.phone = phone;
-        this.address = address;
-        this.content = content;
-        this.isDeleted = isDeleted;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.districts = districts;
-        this.foods = foods;
-    }
-
-    public PlaceInfors(String name, String lat, String lng, String images, String phone, String address, String content, boolean isDeleted, Date createdAt, Date updatedAt, Districts districts, Foods foods, Set<FoodInfors> foodInfors) {
-        this.name = name;
-        this.lat = lat;
-        this.lng = lng;
-        this.images = images;
-        this.phone = phone;
-        this.address = address;
-        this.content = content;
-        this.isDeleted = isDeleted;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.districts = districts;
-        this.foods = foods;
-        this.foodInfors = foodInfors;
-    }
-
+    @Id
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -102,6 +35,28 @@ public class PlaceInfors {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "food_id", nullable = false)
+    public int getFoodId() {
+        return foodId;
+    }
+
+    public void setFoodId(int foodId) {
+        this.foodId = foodId;
+    }
+
+    @Basic
+    @Column(name = "district_id", nullable = false)
+    public int getDistrictId() {
+        return districtId;
+    }
+
+    public void setDistrictId(int districtId) {
+        this.districtId = districtId;
+    }
+
+    @Basic
+    @Column(name = "Name", nullable = false, length = 200)
     public String getName() {
         return name;
     }
@@ -110,6 +65,8 @@ public class PlaceInfors {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "Lat", nullable = true, length = 30)
     public String getLat() {
         return lat;
     }
@@ -118,6 +75,8 @@ public class PlaceInfors {
         this.lat = lat;
     }
 
+    @Basic
+    @Column(name = "Lng", nullable = true, length = 30)
     public String getLng() {
         return lng;
     }
@@ -126,6 +85,8 @@ public class PlaceInfors {
         this.lng = lng;
     }
 
+    @Basic
+    @Column(name = "Images", nullable = true, length = 50)
     public String getImages() {
         return images;
     }
@@ -134,6 +95,8 @@ public class PlaceInfors {
         this.images = images;
     }
 
+    @Basic
+    @Column(name = "Phone", nullable = true, length = 12)
     public String getPhone() {
         return phone;
     }
@@ -142,6 +105,8 @@ public class PlaceInfors {
         this.phone = phone;
     }
 
+    @Basic
+    @Column(name = "Address", nullable = true, length = 200)
     public String getAddress() {
         return address;
     }
@@ -150,6 +115,8 @@ public class PlaceInfors {
         this.address = address;
     }
 
+    @Basic
+    @Column(name = "Content", nullable = true, length = -1)
     public String getContent() {
         return content;
     }
@@ -158,52 +125,87 @@ public class PlaceInfors {
         this.content = content;
     }
 
-    public boolean isDeleted() {
+    @Basic
+    @Column(name = "Is_deleted", nullable = true)
+    public Boolean getDeleted() {
         return isDeleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
     }
 
-    public Date getCreatedAt() {
+    @Basic
+    @Column(name = "Created_at", nullable = true)
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    @Basic
+    @Column(name = "Updated_at", nullable = true)
+    public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public Districts getDistricts() {
-        return districts;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PlaceInfors that = (PlaceInfors) o;
+        return id == that.id &&
+                foodId == that.foodId &&
+                districtId == that.districtId &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(lat, that.lat) &&
+                Objects.equals(lng, that.lng) &&
+                Objects.equals(images, that.images) &&
+                Objects.equals(phone, that.phone) &&
+                Objects.equals(address, that.address) &&
+                Objects.equals(content, that.content) &&
+                Objects.equals(isDeleted, that.isDeleted) &&
+                Objects.equals(createdAt, that.createdAt) &&
+                Objects.equals(updatedAt, that.updatedAt);
     }
 
-    public void setDistricts(Districts districts) {
-        this.districts = districts;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, foodId, districtId, name, lat, lng, images, phone, address, content, isDeleted, createdAt, updatedAt);
     }
 
-    public Foods getFoods() {
-        return foods;
+    @OneToMany(mappedBy = "placeInforsByPlaceInforId")
+    public Collection<FoodInfors> getFoodInforsById() {
+        return foodInforsById;
     }
 
-    public void setFoods(Foods foods) {
-        this.foods = foods;
+    public void setFoodInforsById(Collection<FoodInfors> foodInforsById) {
+        this.foodInforsById = foodInforsById;
     }
 
-    public Set<FoodInfors> getFoodInfors() {
-        return foodInfors;
+    @ManyToOne
+    @JoinColumn(name = "food_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public Foods getFoodsByFoodId() {
+        return foodsByFoodId;
     }
 
-    public void setFoodInfors(Set<FoodInfors> foodInfors) {
-        this.foodInfors = foodInfors;
+    public void setFoodsByFoodId(Foods foodsByFoodId) {
+        this.foodsByFoodId = foodsByFoodId;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "district_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public Districts getDistrictsByDistrictId() {
+        return districtsByDistrictId;
+    }
+
+    public void setDistrictsByDistrictId(Districts districtsByDistrictId) {
+        this.districtsByDistrictId = districtsByDistrictId;
+    }
 }

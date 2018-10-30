@@ -1,6 +1,6 @@
 package edu.poly.repository;
 
-import edu.poly.model.FoodCategorys;
+import edu.poly.entity.FoodCategorys;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;

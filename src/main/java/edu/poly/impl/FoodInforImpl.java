@@ -1,6 +1,6 @@
 package edu.poly.impl;
 
-import edu.poly.model.FoodInfors;
+import edu.poly.entity.FoodInfors;
 import edu.poly.repository.FoodInforRepository;
 import edu.poly.service.FoodInforService;
 import org.springframework.beans.factory.annotation.Autowired;

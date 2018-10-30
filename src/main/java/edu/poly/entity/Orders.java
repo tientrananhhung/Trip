@@ -1,56 +1,26 @@
 package edu.poly.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
+import java.util.Objects;
 
 @Entity
 @Table(name = "orders")
 public class Orders {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @Column(name = "Data")
+    private int serviceId;
+    private int userId;
     private String data;
+    private Integer payment;
+    private Boolean isDeleted;
+    private Boolean isPurchased;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
+    private Services servicesByServiceId;
+    private Users usersByUserId;
 
-    @Column(name = "Payment")
-    private int payment;
-
-    @Column(name = "Is_deleted")
-    private boolean isDeleted;
-
-    @Column(name = "Is_purchased")
-    private boolean isPurchased;
-
-    @Column(name = "Created_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-
-    @Column(name = "Updated_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
-
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id")
-    private Services services;
-
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id")
-    private Users users;
-
-    public Orders() {
-    }
-
-    public Orders(String data, boolean isDeleted, boolean isPurchased, Date createdAt, Date updatedAt, Services services, Users users) {
-        this.data = data;
-        this.isDeleted = isDeleted;
-        this.isPurchased = isPurchased;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.services = services;
-        this.users = users;
-    }
-
+    @Id
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -59,6 +29,28 @@ public class Orders {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "service_id", nullable = false)
+    public int getServiceId() {
+        return serviceId;
+    }
+
+    public void setServiceId(int serviceId) {
+        this.serviceId = serviceId;
+    }
+
+    @Basic
+    @Column(name = "user_id", nullable = false)
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    @Basic
+    @Column(name = "Data", nullable = true, length = -1)
     public String getData() {
         return data;
     }
@@ -67,52 +59,94 @@ public class Orders {
         this.data = data;
     }
 
-    public boolean isDeleted() {
+    @Basic
+    @Column(name = "Payment", nullable = true)
+    public Integer getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Integer payment) {
+        this.payment = payment;
+    }
+
+    @Basic
+    @Column(name = "Is_deleted", nullable = true)
+    public Boolean getDeleted() {
         return isDeleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
     }
 
-    public boolean isPurchased() {
+    @Basic
+    @Column(name = "Is_purchased", nullable = true)
+    public Boolean getPurchased() {
         return isPurchased;
     }
 
-    public void setPurchased(boolean purchased) {
+    public void setPurchased(Boolean purchased) {
         isPurchased = purchased;
     }
 
-    public Date getCreatedAt() {
+    @Basic
+    @Column(name = "Created_at", nullable = true)
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    @Basic
+    @Column(name = "Updated_at", nullable = true)
+    public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public Services getServices() {
-        return services;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Orders orders = (Orders) o;
+        return id == orders.id &&
+                serviceId == orders.serviceId &&
+                userId == orders.userId &&
+                Objects.equals(data, orders.data) &&
+                Objects.equals(payment, orders.payment) &&
+                Objects.equals(isDeleted, orders.isDeleted) &&
+                Objects.equals(isPurchased, orders.isPurchased) &&
+                Objects.equals(createdAt, orders.createdAt) &&
+                Objects.equals(updatedAt, orders.updatedAt);
     }
 
-    public void setServices(Services services) {
-        this.services = services;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, serviceId, userId, data, payment, isDeleted, isPurchased, createdAt, updatedAt);
     }
 
-    public Users getUsers() {
-        return users;
+    @ManyToOne
+    @JoinColumn(name = "service_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public Services getServicesByServiceId() {
+        return servicesByServiceId;
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    public void setServicesByServiceId(Services servicesByServiceId) {
+        this.servicesByServiceId = servicesByServiceId;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public Users getUsersByUserId() {
+        return usersByUserId;
+    }
+
+    public void setUsersByUserId(Users usersByUserId) {
+        this.usersByUserId = usersByUserId;
+    }
 }

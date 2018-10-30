@@ -2,8 +2,8 @@ package edu.poly.controller;
 
 
 import edu.poly.common.*;
-import edu.poly.model.Partners;
-import edu.poly.model.Users;
+import edu.poly.entity.Partners;
+import edu.poly.entity.Users;
 import edu.poly.impl.PartnerImpl;
 import edu.poly.impl.UserImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,14 +90,11 @@ public class AdminController {
     @PostMapping(Constants.Url.ADD_USER)
     public ModelAndView addUser(HttpSession session, @ModelAttribute("user") Users users) {
         ModelAndView mav = new ModelAndView();
-//        users.setPassWord(PasswordUtils.md5("smarttrip"));
         users.setPassword(PasswordUtils.md5("smarttrip"));
         try {
             if (users.getAvatar() == null) {
                 users.setAvatar("avatar.png");
             }
-//            users.setCreatedAt(TimeUtils.getCurrentTime());
-//            users.setUpdatedAt(TimeUtils.getCurrentTime());
             users.setCreatedAt((Timestamp) TimeUtils.getCurrentTime());
             users.setUpdatedAt((Timestamp) TimeUtils.getCurrentTime());
             user.save(users);
@@ -140,6 +137,11 @@ public class AdminController {
     }
 
     //    return update userpage
+    /**
+     * @param id update user
+     * @param session get session for check role
+     * @return update user-page
+     * */
     @GetMapping(Constants.Url.UPDATE_USER)
     public ModelAndView updateUser(HttpSession session, @PathVariable("id") Integer id) {
         //        if(!CheckSession.admin(session)){

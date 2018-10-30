@@ -1,84 +1,31 @@
 package edu.poly.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.sql.Timestamp;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name = "tours")
 public class Tours {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @Column(name = "Name")
+    private int userId;
     private String name;
-
-    @Column(name = "Address")
     private String address;
-
-    @Column(name = "Content")
     private String content;
-
-    @Column(name = "Images")
     private String images;
-
-    @Column(name = "Policy")
-    private String policy;
-
-    @Column(name = "Lat")
+    private Integer policy;
     private String lat;
-
-    @Column(name = "Lng")
     private String lng;
+    private Boolean isDeleted;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
+    private Collection<Rates> ratesById;
+    private Collection<Services> servicesById;
+    private Users usersByUserId;
 
-    @Column(name = "Is_deleted")
-    private boolean isDeleted;
-
-    @Column(name = "Created_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-
-    @Column(name = "Updated_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
-
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id")
-    private Users users;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    @JsonIgnore
-    private Set<Rates> rates = new HashSet<Rates>(0);
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    @JsonIgnore
-    private Set<Services> services = new HashSet<Services>(0);
-
-    public Tours() {
-    }
-
-    public Tours(String name, String address, String content, String images, String policy, String lat, String lng, boolean isDeleted, Date createdAt, Date updatedAt, Users users, Set<Rates> rates, Set<Services> services) {
-        this.name = name;
-        this.address = address;
-        this.content = content;
-        this.images = images;
-        this.policy = policy;
-        this.lat = lat;
-        this.lng = lng;
-        this.isDeleted = isDeleted;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.users = users;
-        this.rates = rates;
-        this.services = services;
-    }
-
+    @Id
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -87,6 +34,18 @@ public class Tours {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "user_id", nullable = false)
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    @Basic
+    @Column(name = "Name", nullable = false, length = 100)
     public String getName() {
         return name;
     }
@@ -95,6 +54,8 @@ public class Tours {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "Address", nullable = false, length = 200)
     public String getAddress() {
         return address;
     }
@@ -103,6 +64,8 @@ public class Tours {
         this.address = address;
     }
 
+    @Basic
+    @Column(name = "Content", nullable = true, length = -1)
     public String getContent() {
         return content;
     }
@@ -111,6 +74,8 @@ public class Tours {
         this.content = content;
     }
 
+    @Basic
+    @Column(name = "Images", nullable = true, length = -1)
     public String getImages() {
         return images;
     }
@@ -119,14 +84,18 @@ public class Tours {
         this.images = images;
     }
 
-    public String getPolicy() {
+    @Basic
+    @Column(name = "Policy", nullable = true)
+    public Integer getPolicy() {
         return policy;
     }
 
-    public void setPolicy(String policy) {
+    public void setPolicy(Integer policy) {
         this.policy = policy;
     }
 
+    @Basic
+    @Column(name = "Lat", nullable = true, length = 20)
     public String getLat() {
         return lat;
     }
@@ -135,6 +104,8 @@ public class Tours {
         this.lat = lat;
     }
 
+    @Basic
+    @Column(name = "Lng", nullable = true, length = 20)
     public String getLng() {
         return lng;
     }
@@ -143,52 +114,85 @@ public class Tours {
         this.lng = lng;
     }
 
-    public boolean isDeleted() {
+    @Basic
+    @Column(name = "Is_deleted", nullable = true)
+    public Boolean getDeleted() {
         return isDeleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
     }
 
-    public Date getCreatedAt() {
+    @Basic
+    @Column(name = "Created_at", nullable = true)
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    @Basic
+    @Column(name = "Updated_at", nullable = true)
+    public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public Users getUsers() {
-        return users;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tours tours = (Tours) o;
+        return id == tours.id &&
+                userId == tours.userId &&
+                Objects.equals(name, tours.name) &&
+                Objects.equals(address, tours.address) &&
+                Objects.equals(content, tours.content) &&
+                Objects.equals(images, tours.images) &&
+                Objects.equals(policy, tours.policy) &&
+                Objects.equals(lat, tours.lat) &&
+                Objects.equals(lng, tours.lng) &&
+                Objects.equals(isDeleted, tours.isDeleted) &&
+                Objects.equals(createdAt, tours.createdAt) &&
+                Objects.equals(updatedAt, tours.updatedAt);
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userId, name, address, content, images, policy, lat, lng, isDeleted, createdAt, updatedAt);
     }
 
-    public Set<Rates> getRates() {
-        return rates;
+    @OneToMany(mappedBy = "toursByTourId")
+    public Collection<Rates> getRatesById() {
+        return ratesById;
     }
 
-    public void setRates(Set<Rates> rates) {
-        this.rates = rates;
+    public void setRatesById(Collection<Rates> ratesById) {
+        this.ratesById = ratesById;
     }
 
-    public Set<Services> getServices() {
-        return services;
+    @OneToMany(mappedBy = "toursByTourId")
+    public Collection<Services> getServicesById() {
+        return servicesById;
     }
 
-    public void setServices(Set<Services> services) {
-        this.services = services;
+    public void setServicesById(Collection<Services> servicesById) {
+        this.servicesById = servicesById;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public Users getUsersByUserId() {
+        return usersByUserId;
+    }
+
+    public void setUsersByUserId(Users usersByUserId) {
+        this.usersByUserId = usersByUserId;
+    }
 }

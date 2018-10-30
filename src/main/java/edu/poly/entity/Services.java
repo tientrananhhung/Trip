@@ -1,84 +1,32 @@
 package edu.poly.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name = "services")
 public class Services {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @Column(name = "Name")
+    private int tourId;
     private String name;
-
-    @Column(name = "Price")
-    private int price;
-
-    @Column(name = "Normal_price")
-    private int normalPrice;
-
-    @Column(name = "Detail")
+    private Integer price;
+    private Integer normalPrice;
     private String detail;
-
-    @Column(name = "Start_date")
     private Date startDate;
-
-    @Column(name = "End_date")
     private Date endDate;
+    private Boolean isDefault;
+    private Boolean isDeleted;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
+    private Collection<Orders> ordersById;
+    private Tours toursByTourId;
+    private Collection<Tickets> ticketsById;
 
-    @Column(name = "Is_default")
-    private boolean isDefault;
-
-    @Column(name = "Is_deleted")
-    private boolean isDeleted;
-
-    @Column(name = "Created_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-
-    @Column(name = "Updated_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
-
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id")
-    private Tours tours;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    @JsonIgnore
-    private Set<Tickets> tickets = new HashSet<Tickets>(0);
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    @JsonIgnore
-    private Set<Orders> orders = new HashSet<Orders>(0);
-
-    public Services() {
-    }
-
-    public Services(String name, int price, int normalPrice, String detail, Date startDate, Date endDate, boolean isDefault, boolean isDeleted, Date createdAt, Date updatedAt, Tours tours, Set<Tickets> tickets, Set<Orders> orders) {
-        this.name = name;
-        this.price = price;
-        this.normalPrice = normalPrice;
-        this.detail = detail;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.isDefault = isDefault;
-        this.isDeleted = isDeleted;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.tours = tours;
-        this.tickets = tickets;
-        this.orders = orders;
-    }
-
+    @Id
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -87,6 +35,18 @@ public class Services {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "tour_id", nullable = false)
+    public int getTourId() {
+        return tourId;
+    }
+
+    public void setTourId(int tourId) {
+        this.tourId = tourId;
+    }
+
+    @Basic
+    @Column(name = "Name", nullable = false, length = 100)
     public String getName() {
         return name;
     }
@@ -95,22 +55,28 @@ public class Services {
         this.name = name;
     }
 
-    public int getPrice() {
+    @Basic
+    @Column(name = "Price", nullable = true)
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
-    public int getNormalPrice() {
+    @Basic
+    @Column(name = "Normal_price", nullable = true)
+    public Integer getNormalPrice() {
         return normalPrice;
     }
 
-    public void setNormalPrice(int normalPrice) {
+    public void setNormalPrice(Integer normalPrice) {
         this.normalPrice = normalPrice;
     }
 
+    @Basic
+    @Column(name = "Detail", nullable = true, length = -1)
     public String getDetail() {
         return detail;
     }
@@ -119,6 +85,8 @@ public class Services {
         this.detail = detail;
     }
 
+    @Basic
+    @Column(name = "Start_date", nullable = true)
     public Date getStartDate() {
         return startDate;
     }
@@ -127,6 +95,8 @@ public class Services {
         this.startDate = startDate;
     }
 
+    @Basic
+    @Column(name = "End_date", nullable = true)
     public Date getEndDate() {
         return endDate;
     }
@@ -135,60 +105,95 @@ public class Services {
         this.endDate = endDate;
     }
 
-    public boolean isDefault() {
+    @Basic
+    @Column(name = "Is_default", nullable = true)
+    public Boolean getDefault() {
         return isDefault;
     }
 
-    public void setDefault(boolean aDefault) {
+    public void setDefault(Boolean aDefault) {
         isDefault = aDefault;
     }
 
-    public boolean isDeleted() {
+    @Basic
+    @Column(name = "Is_deleted", nullable = true)
+    public Boolean getDeleted() {
         return isDeleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
     }
 
-    public Date getCreatedAt() {
+    @Basic
+    @Column(name = "Created_at", nullable = true)
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    @Basic
+    @Column(name = "Updated_at", nullable = true)
+    public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public Tours getTours() {
-        return tours;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Services services = (Services) o;
+        return id == services.id &&
+                tourId == services.tourId &&
+                Objects.equals(name, services.name) &&
+                Objects.equals(price, services.price) &&
+                Objects.equals(normalPrice, services.normalPrice) &&
+                Objects.equals(detail, services.detail) &&
+                Objects.equals(startDate, services.startDate) &&
+                Objects.equals(endDate, services.endDate) &&
+                Objects.equals(isDefault, services.isDefault) &&
+                Objects.equals(isDeleted, services.isDeleted) &&
+                Objects.equals(createdAt, services.createdAt) &&
+                Objects.equals(updatedAt, services.updatedAt);
     }
 
-    public void setTours(Tours tours) {
-        this.tours = tours;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, tourId, name, price, normalPrice, detail, startDate, endDate, isDefault, isDeleted, createdAt, updatedAt);
     }
 
-    public Set<Tickets> getTickets() {
-        return tickets;
+    @OneToMany(mappedBy = "servicesByServiceId")
+    public Collection<Orders> getOrdersById() {
+        return ordersById;
     }
 
-    public void setTickets(Set<Tickets> tickets) {
-        this.tickets = tickets;
+    public void setOrdersById(Collection<Orders> ordersById) {
+        this.ordersById = ordersById;
     }
 
-    public Set<Orders> getOrders() {
-        return orders;
+    @ManyToOne
+    @JoinColumn(name = "tour_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public Tours getToursByTourId() {
+        return toursByTourId;
     }
 
-    public void setOrders(Set<Orders> orders) {
-        this.orders = orders;
+    public void setToursByTourId(Tours toursByTourId) {
+        this.toursByTourId = toursByTourId;
     }
 
+    @OneToMany(mappedBy = "servicesByServiceId")
+    public Collection<Tickets> getTicketsById() {
+        return ticketsById;
+    }
+
+    public void setTicketsById(Collection<Tickets> ticketsById) {
+        this.ticketsById = ticketsById;
+    }
 }

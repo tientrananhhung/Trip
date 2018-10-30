@@ -1,6 +1,6 @@
 package edu.poly.impl;
 
-import edu.poly.model.Orders;
+import edu.poly.entity.Orders;
 import edu.poly.repository.OrderRepository;
 import edu.poly.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;

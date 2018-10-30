@@ -1,56 +1,22 @@
 package edu.poly.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.sql.Timestamp;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name = "districts")
 public class Districts {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @Column(name = "Name")
     private String name;
+    private Boolean isDeleted;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
+    private Collection<PlaceInfors> placeInforsById;
 
-    @Column(name = "Is_deleted")
-    private boolean isDeleted;
-
-    @Column(name = "Created_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-
-    @Column(name = "Updated_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    @JsonIgnore
-    private Set<PlaceInfors> placeInfors = new HashSet<PlaceInfors>(0);
-
-    public Districts() {
-    }
-
-    public Districts(String name, boolean isDeleted, Date createdAt, Date updatedAt) {
-        this.name = name;
-        this.isDeleted = isDeleted;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
-
-    public Districts(String name, boolean isDeleted, Date createdAt, Date updatedAt, Set<PlaceInfors> placeInfors) {
-        this.name = name;
-        this.isDeleted = isDeleted;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.placeInfors = placeInfors;
-    }
-
+    @Id
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -59,6 +25,8 @@ public class Districts {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "Name", nullable = false, length = 50)
     public String getName() {
         return name;
     }
@@ -67,36 +35,59 @@ public class Districts {
         this.name = name;
     }
 
-    public boolean isDeleted() {
+    @Basic
+    @Column(name = "Is_deleted", nullable = true)
+    public Boolean getDeleted() {
         return isDeleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
     }
 
-    public Date getCreatedAt(Date currentTime) {
+    @Basic
+    @Column(name = "Created_at", nullable = true)
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    @Basic
+    @Column(name = "Updated_at", nullable = true)
+    public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public Set<PlaceInfors> getPlaceInfors() {
-        return placeInfors;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Districts districts = (Districts) o;
+        return id == districts.id &&
+                Objects.equals(name, districts.name) &&
+                Objects.equals(isDeleted, districts.isDeleted) &&
+                Objects.equals(createdAt, districts.createdAt) &&
+                Objects.equals(updatedAt, districts.updatedAt);
     }
 
-    public void setPlaceInfors(Set<PlaceInfors> placeInfors) {
-        this.placeInfors = placeInfors;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, isDeleted, createdAt, updatedAt);
     }
 
+    @OneToMany(mappedBy = "districtsByDistrictId")
+    public Collection<PlaceInfors> getPlaceInforsById() {
+        return placeInforsById;
+    }
+
+    public void setPlaceInforsById(Collection<PlaceInfors> placeInforsById) {
+        this.placeInforsById = placeInforsById;
+    }
 }
