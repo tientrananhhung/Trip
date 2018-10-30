@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Timestamp;
 import java.util.HashMap;
 
 @Controller
@@ -40,7 +41,7 @@ public class AdminController {
     private PartnerImpl partner;
 
 
-//    return adminpage
+    //    return adminpage
     @GetMapping(Constants.Characters.BLANK)
     public ModelAndView showAdminPage(HttpSession session) {
         ModelAndView mav = new ModelAndView();
@@ -52,7 +53,7 @@ public class AdminController {
         return mav;
     }
 
-//    return listuser
+    //    return listuser
     @GetMapping(Constants.Url.LIST_USER)
     public ModelAndView showUserList(HttpSession session) {
         ModelAndView mav = new ModelAndView();
@@ -68,7 +69,7 @@ public class AdminController {
         return mav;
     }
 
-//    return adduserpage
+    //    return adduserpage
     @GetMapping(Constants.Url.ADD_USER)
     public ModelAndView addUser(HttpSession session) {
         //        if(!CheckSession.admin(session)){
@@ -84,18 +85,18 @@ public class AdminController {
         return mav;
     }
 
-//    adduser
+    //    adduser
     @PostMapping(Constants.Url.ADD_USER)
     public ModelAndView addUser(HttpSession session, @ModelAttribute("user") Users users) {
         ModelAndView mav = new ModelAndView();
-        users.setPassWord(PasswordUtils.md5("smarttrip"));
+        users.setPassword(PasswordUtils.md5("smarttrip"));
 
         try {
             if (users.getAvatar() == null) {
                 users.setAvatar("avatar.png");
             }
-            users.setCreatedAt(TimeUtils.getCurrentTime());
-            users.setUpdatedAt(TimeUtils.getCurrentTime());
+            users.setCreatedAt((Timestamp) TimeUtils.getCurrentTime());
+            users.setUpdatedAt((Timestamp) TimeUtils.getCurrentTime());
             user.save(users);
             mav.addObject("listUser", user.getAllByDeleted(false));
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_USER);
@@ -106,7 +107,7 @@ public class AdminController {
         return mav;
     }
 
-//    delete user
+    //    delete user
     @GetMapping(Constants.Url.DELETE_USER)
     public ModelAndView deleteUser(HttpSession session, @PathVariable("id") int id) {
         ModelAndView mav = new ModelAndView();
@@ -119,7 +120,7 @@ public class AdminController {
         return mav;
     }
 
-//    active user
+    //    active user
     @GetMapping(Constants.Url.ACTIVE_USER)
     public ModelAndView statusUser(HttpSession session, @PathVariable("id") int id,
                                    @PathVariable("active") boolean active) {
@@ -135,7 +136,7 @@ public class AdminController {
         return mav;
     }
 
-//    return update userpage
+    //    return update userpage
     @GetMapping(Constants.Url.UPDATE_USER)
     public ModelAndView updateUser(HttpSession session, @PathVariable("id") Integer id) {
         //        if(!CheckSession.admin(session)){
@@ -162,18 +163,22 @@ public class AdminController {
     }
 
 
-//    update userpage
+    /**
+     * @param session for check role
+     * @param users   get user's information from form
+     * @return url /quan-ly-nguoi-dung or update page
+     */
     @PostMapping(Constants.Url.UPDATED_USER)
     public ModelAndView editUser(HttpSession session, @ModelAttribute("user") Users users) {
         ModelAndView mav = new ModelAndView();
         Users userdb = user.getById(users.getId());
-        if (!users.getPassWord().equals(userdb.getPassWord()))
-            users.setPassWord(PasswordUtils.md5(users.getPassWord()));
+        if (!users.getPassword().equals(userdb.getPassword()))
+            users.setPassword(PasswordUtils.md5(users.getPassword()));
         try {
-            users.setActive(userdb.isActive());
+            users.setActive(userdb.getActive());
             users.setAvatar(userdb.getAvatar());
             users.setCreatedAt(userdb.getCreatedAt());
-            users.setUpdatedAt(TimeUtils.getCurrentTime());
+            users.setUpdatedAt((Timestamp) TimeUtils.getCurrentTime());
             user.update(users);
             mav.addObject("listUser", user.getAllByDeleted(false));
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_USER);
@@ -193,30 +198,30 @@ public class AdminController {
 //            mav.setViewName("redirect:/"+Constants.Characters.BLANK);
 //            return mav;
 //        }
-        try{
-            mav.addObject("listPartner",partner.getAllByDeleted(false));
+        try {
+            mav.addObject("listPartner", partner.getAllByDeleted(false));
 
-        } catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         mav.setViewName(LIST_PARTNER_SCREEN);
         return mav;
     }
 
-//    return add partner page
-@GetMapping(Constants.Url.ADD_PARNER)
-public ModelAndView addPartner(HttpSession session) {
-    //        if(!CheckSession.admin(session)){
+    //    return add partner page
+    @GetMapping(Constants.Url.ADD_PARNER)
+    public ModelAndView addPartner(HttpSession session) {
+        //        if(!CheckSession.admin(session)){
 //            mav.setViewName("redirect:/"+Constants.Characters.BLANK);
 //            return mav;
 //        }
-    ModelAndView mav = new ModelAndView();
-    mav.setViewName(ADD_PARTNER);
-    mav.addObject("partner", new Partners());
-    mav.addObject("user_list", user.findAllByRole(Constants.Role.USER));
-    mav.addObject("action", "them");
-    return mav;
-}
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName(ADD_PARTNER);
+        mav.addObject("partner", new Partners());
+        mav.addObject("user_list", user.findAllByRole(Constants.Role.USER));
+        mav.addObject("action", "them");
+        return mav;
+    }
 
 
     //tạo radio button gender

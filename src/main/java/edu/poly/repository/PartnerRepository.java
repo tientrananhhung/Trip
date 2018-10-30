@@ -1,6 +1,6 @@
 package edu.poly.repository;
 
-import edu.poly.model.Partners;
+import edu.poly.entity.Partners;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 public interface PartnerRepository extends CrudRepository<Partners, Integer> {
 
-    @Query("from  Partners  where Is_deleted = :isDeleted")
+    @Query("from Partners where Is_deleted = :isDeleted")
     public List<Partners> getAllByDeleted(@Param("isDeleted") boolean isDeleted);
+
 }

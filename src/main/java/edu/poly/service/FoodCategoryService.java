@@ -1,7 +1,6 @@
 package edu.poly.service;
 
-import edu.poly.model.FoodCategorys;
-import org.springframework.data.repository.query.Param;
+import edu.poly.entity.FoodCategorys;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +27,6 @@ public interface FoodCategoryService {
 
     public FoodCategorys getById(Integer id);
 
-    public List<FoodCategorys> getAllByDelete(@Param("isDeleted") boolean isDeleted);
+    public List<FoodCategorys> getAllByDelete(boolean isDeleted);
 
 }

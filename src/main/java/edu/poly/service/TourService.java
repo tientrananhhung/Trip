@@ -1,6 +1,6 @@
 package edu.poly.service;
 
-import edu.poly.model.Tours;
+import edu.poly.entity.Tours;
 
 import java.util.Optional;
 

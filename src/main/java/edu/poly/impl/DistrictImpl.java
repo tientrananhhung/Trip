@@ -1,6 +1,6 @@
 package edu.poly.impl;
 
-import edu.poly.model.Districts;
+import edu.poly.entity.Districts;
 import edu.poly.repository.DistrictRepository;
 import edu.poly.service.DistrictService;
 import org.springframework.beans.factory.annotation.Autowired;

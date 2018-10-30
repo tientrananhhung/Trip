@@ -1,6 +1,6 @@
 package edu.poly.repository;
 
-import edu.poly.model.Tours;
+import edu.poly.entity.Tours;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

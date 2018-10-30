@@ -1,6 +1,6 @@
 package edu.poly.impl;
 
-import edu.poly.model.Tickets;
+import edu.poly.entity.Tickets;
 import edu.poly.repository.TicketRepository;
 import edu.poly.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;

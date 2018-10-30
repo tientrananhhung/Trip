@@ -1,6 +1,6 @@
 package edu.poly.service;
 
-import edu.poly.model.Users;
+import edu.poly.entity.Users;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
@@ -10,7 +10,7 @@ public interface UserService {
 
     public Iterable<Users> findAll();
 
-    public List<Users> getAllByDeleted(@Param("isDeleted") boolean isDeleted);
+    public List<Users> getAllByDeleted(boolean isDeleted);
 
     public Users getById(Integer id);
 
@@ -33,4 +33,5 @@ public interface UserService {
     public Users login(String userName, String passWord);
 
     public List<Users> findAllByRole(Integer role);
+
 }

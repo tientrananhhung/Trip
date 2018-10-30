@@ -1,6 +1,6 @@
 package edu.poly.impl;
 
-import edu.poly.model.Posts;
+import edu.poly.entity.Posts;
 import edu.poly.repository.PostRepository;
 import edu.poly.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package edu.poly.impl;
 
-import edu.poly.model.PlaceInfors;
+import edu.poly.entity.PlaceInfors;
 import edu.poly.repository.PlaceInforRepository;
 import edu.poly.service.PlaceInforService;
 import org.springframework.beans.factory.annotation.Autowired;

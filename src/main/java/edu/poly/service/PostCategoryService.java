@@ -1,32 +1,32 @@
 package edu.poly.service;
 
-import edu.poly.entity.PostCategory;
-import org.springframework.data.repository.query.Param;
+import edu.poly.entity.PostCategorys;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface PostCategoryService {
 
-    public Iterable<PostCategory> findAll();
+    public Iterable<PostCategorys> findAll();
 
-    public Optional<PostCategory> findOne(Integer id);
+    public Optional<PostCategorys> findOne(Integer id);
 
-    public PostCategory save(PostCategory postCategory);
+    public PostCategorys save(PostCategorys postCategory);
 
-    public Iterable<PostCategory> save(Iterable<PostCategory> postCategories);
+    public Iterable<PostCategorys> save(Iterable<PostCategorys> postCategories);
 
-    public PostCategory update(PostCategory postCategory);
+    public PostCategorys update(PostCategorys postCategory);
 
-    public Iterable<PostCategory> update(Iterable<PostCategory> postCategories);
+    public Iterable<PostCategorys> update(Iterable<PostCategorys> postCategories);
 
-    public void delete(PostCategory postCategory);
+    public void delete(PostCategorys postCategory);
 
-    public void delete(Iterable<PostCategory> postCategories);
+    public void delete(Iterable<PostCategorys> postCategories);
 
     public void deleteById(Integer id);
 
-    public PostCategory getById(Integer id);
+    public PostCategorys getById(Integer id);
 
-    public List<PostCategory> getAllByDelete(@Param("isDeleted") boolean isDeleted);
+    public List<PostCategorys> getAllByDelete(boolean isDeleted);
+
 }

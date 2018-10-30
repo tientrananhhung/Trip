@@ -1,6 +1,6 @@
 package edu.poly.impl;
 
-import edu.poly.model.Offers;
+import edu.poly.entity.Offers;
 import edu.poly.repository.OfferRepository;
 import edu.poly.service.OfferService;
 import org.springframework.beans.factory.annotation.Autowired;

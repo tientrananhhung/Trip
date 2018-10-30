@@ -1,6 +1,6 @@
 package edu.poly.service;
 
-import edu.poly.model.Tickets;
+import edu.poly.entity.Tickets;
 
 import java.util.Optional;
 

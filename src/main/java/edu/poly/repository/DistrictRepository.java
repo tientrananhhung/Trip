@@ -1,6 +1,6 @@
 package edu.poly.repository;
 
-import edu.poly.model.Districts;
+import edu.poly.entity.Districts;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface DistrictRepository extends CrudRepository<Districts, Integer> {
 
-    @Query("from  Districts where is_deleted = :isDeleted")
+    @Query("from Districts where is_deleted = :isDeleted")
     public List<Districts> getAllByDeleted(@Param("isDeleted") boolean isDeleted);
 
     public Districts getById(Integer id);

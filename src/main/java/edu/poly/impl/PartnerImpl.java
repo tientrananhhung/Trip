@@ -1,6 +1,6 @@
 package edu.poly.impl;
 
-import edu.poly.model.Partners;
+import edu.poly.entity.Partners;
 import edu.poly.repository.PartnerRepository;
 import edu.poly.service.PartnerService;
 import org.springframework.beans.factory.annotation.Autowired;
