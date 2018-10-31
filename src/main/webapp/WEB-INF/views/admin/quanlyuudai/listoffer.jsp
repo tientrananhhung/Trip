@@ -54,7 +54,7 @@
                                         <th>Offer ID</th>
                                         <th>User ID</th>
                                         <th>Offer code</th>
-                                        <th>Offer code</th>
+                                        <th>Offer deal</th>
                                         <th>Offer status</th>
                                         <th>Actions</th>
                                     </tr>
