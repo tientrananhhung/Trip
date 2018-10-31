@@ -2,6 +2,7 @@ package edu.poly.service;
 
 import edu.poly.entity.Offers;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface OfferService {
@@ -23,5 +24,7 @@ public interface OfferService {
     public void delete(Iterable<Offers> offers);
 
     public void deleteById(Integer id);
+
+    public Offers getById(Integer id);
 
 }

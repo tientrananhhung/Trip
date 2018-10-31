@@ -48,7 +48,7 @@ public class PostCategorys {
 
     @Basic
     @Column(name = "Created_at", nullable = true)
-    public Timestamp getCreatedAt(Date currentTime) {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
@@ -91,4 +91,5 @@ public class PostCategorys {
     public void setPostsById(Collection<Posts> postsById) {
         this.postsById = postsById;
     }
+
 }

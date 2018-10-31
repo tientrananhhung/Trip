@@ -52,7 +52,6 @@
                                     <tr>
                                         <th>District ID</th>
                                         <th>District name</th>
-                                        <th>District status</th>
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
@@ -61,9 +60,6 @@
                                         <tr>
                                             <th>${district.id}</th>
                                             <td>${district.name}</td>
-                                            <td>
-                                                <label class="badge badge-success">Active</label>
-                                            </td>
                                             <td>
                                                 <a href="/admin/quan-ly-quan/${district.id}">
                                                     <button class="btn btn-outline-primary">Edit</button>

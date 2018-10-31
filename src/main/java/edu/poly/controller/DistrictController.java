@@ -22,6 +22,8 @@ public class DistrictController {
     public static final String DISTRICT_SCREEN = "/admin/quanlyquan/listDistrict";
     public static final String ADD_DISTRICT_SCREEN = "/admin/quanlyquan/addDistrict";
 
+
+//    Return ListDistrict
     @GetMapping(Constants.Url.LIST_DISTRICT)
     public ModelAndView showUserList(HttpSession session) {
         ModelAndView mav = new ModelAndView();
@@ -30,6 +32,7 @@ public class DistrictController {
         return mav;
     }
 
+//    Return AddDistrict
     @GetMapping(Constants.Url.ADD_DISTRICT)
     public ModelAndView addDistrict(HttpSession session) {
         ModelAndView mav = new ModelAndView();
@@ -42,36 +45,61 @@ public class DistrictController {
     @PostMapping(Constants.Url.ADD_DISTRICT)
     public ModelAndView addDistricts(HttpSession session, @ModelAttribute("districts") Districts districts) {
         ModelAndView mav = new ModelAndView();
-        districts.setCreatedAt(TimeUtils.getCurrentTime());
-        districts.setUpdatedAt(TimeUtils.getCurrentTime());
-//        district.save(districts);
-        mav.setViewName("redirect:/admin" + Constants.Url.LIST_DISTRICT);
+        try {
+            districts.setDeleted(false);
+            districts.setCreatedAt(TimeUtils.getCurrentTime());
+            districts.setUpdatedAt(TimeUtils.getCurrentTime());
+            district.save(districts);
+            mav.addObject("listDistrict", district.getAllByDeleted(false));
+            mav.setViewName("redirect:/admin" + Constants.Url.LIST_DISTRICT);
+        }catch (Exception ex){
+            ex.printStackTrace();
+            mav.setViewName(ADD_DISTRICT_SCREEN);
+        }
         return mav;
     }
 
+//    Update District
     @GetMapping(Constants.Url.UPDATE_DISTRICT)
     public ModelAndView updateDistrict(HttpSession session, @PathVariable("id") Integer id) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName(ADD_DISTRICT_SCREEN);
-//        Districts districts = district.getById(id);
-//        mav.addObject("district", districts);
-        mav.addObject("action", "sua");
+        Districts districts = district.getById(id);
+        mav.addObject("district", districts);
+        mav.addObject("action", id);
         return mav;
     }
 
     @PostMapping(Constants.Url.UPDATE_DISTRICT)
     public ModelAndView editDistrict(HttpSession session, @ModelAttribute("district") Districts districts) {
         ModelAndView mav = new ModelAndView();
-        districts.setUpdatedAt(TimeUtils.getCurrentTime());
-//        district.save(districts);
-        mav.setViewName("redirect:/admin" + Constants.Url.LIST_DISTRICT);
+        Districts dt = district.getById(districts.getId());
+        try {
+            districts.setDeleted(dt.getDeleted());
+            districts.setCreatedAt(dt.getCreatedAt());
+            districts.setUpdatedAt(TimeUtils.getCurrentTime());
+            district.update(districts);
+            mav.addObject("listDistrict", district.getAllByDeleted(false));
+            mav.setViewName("redirect:/admin" + Constants.Url.LIST_DISTRICT);
+        }catch (Exception ex){
+            ex.printStackTrace();
+            mav.setViewName(Constants.Url.UPDATE_DISTRICT);
+        }
         return mav;
     }
 
+//    Delete District
     @GetMapping(Constants.Url.DELETE_DISTRICT)
     public ModelAndView deleteDistrict(HttpSession session, @PathVariable("id") int id) {
         ModelAndView mav = new ModelAndView();
-        district.deleteById(id);
+        try{
+            Districts districts = district.getById(id);
+            districts.setDeleted(true);
+            districts.setUpdatedAt(TimeUtils.getCurrentTime());
+            district.update(districts);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
         mav.setViewName("redirect:/admin" + Constants.Url.LIST_DISTRICT);
         return mav;
     }

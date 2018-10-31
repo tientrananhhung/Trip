@@ -108,6 +108,21 @@ public class Constants {
         //Active đối tác
         public static final String ACTIVE_PARNER = "/quan-ly-doi-tac/active/{id}/{active}";
 
+        //Trang danh sách ưu đãi
+        public static final String LIST_OFFER = "/quan-ly-uu-dai";
+
+        //Trang thêm ưu đãi
+        public static final String ADD_OFFER = "/quan-ly-uu-dai/them";
+
+        //Trang sửa ưu đãi
+        public static final String UPDATE_OFFER = "/quan-ly-uu-dai/{id}";
+
+        //Trang xóa ưu đãi
+        public static final String DELETE_OFFER = "/quan-ly-uu-dai/xoa/{id}";
+
+        //Active ưu đãi
+        public static final String ACTIVE_OFFER = "/quan-ly-uu-dai/active/{id}/{active}";
+
         //Trang Error 404
         public static final String ERROR404 = "/error";
     }

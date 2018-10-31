@@ -45,9 +45,17 @@ public class FoodCategoryController {
     @PostMapping(Constants.Url.ADD_FOODCATEGORY)
     public ModelAndView addFoodCategory(HttpSession session, @ModelAttribute("foodcategory") FoodCategorys foodCategorys){
         ModelAndView mav = new ModelAndView();
-        foodCategorys.setCreatedAt(TimeUtils.getCurrentTime());
-//        foodCategory.save(foodCategorys);
-        mav.setViewName("redirect:/admin" + Constants.Url.LIST_FOODCATEGORY);
+        try{
+            foodCategorys.setDeleted(false);
+            foodCategorys.setCreatedAt(TimeUtils.getCurrentTime());
+            foodCategorys.setUpdatedAt(TimeUtils.getCurrentTime());
+            foodCategory.save(foodCategorys);
+            mav.addObject("listFoodcategory", foodCategory.getAllByDelete(false));
+            mav.setViewName("redirect:/admin" + Constants.Url.LIST_FOODCATEGORY);
+        }catch (Exception ex){
+            ex.printStackTrace();
+            mav.setViewName(ADD_FOODCATEGORY_SCREEN);
+        }
         return mav;
     }
 
@@ -56,18 +64,27 @@ public class FoodCategoryController {
     public ModelAndView editFoodCategory(HttpSession session, @PathVariable("id") Integer id){
         ModelAndView mav = new ModelAndView();
         mav.setViewName(ADD_FOODCATEGORY_SCREEN);
-//        FoodCategorys foodCategorys = foodCategory.getById(id);
-//        mav.addObject("foodcategory", foodCategorys);
-        mav.addObject("action", "sua");
+        FoodCategorys foodCategorys = foodCategory.getById(id);
+        mav.addObject("foodcategory", foodCategorys);
+        mav.addObject("action", id);
         return mav;
     }
 
     @PostMapping(Constants.Url.UPDATE_FOODCATEGORY)
     public ModelAndView updateFoodCategory(HttpSession session, @ModelAttribute("foodcategory") FoodCategorys foodCategorys){
         ModelAndView mav = new ModelAndView();
-        foodCategorys.setUpdatedAt(TimeUtils.getCurrentTime());
-//        foodCategory.save(foodCategorys);
-        mav.setViewName("redirect:/admin" + Constants.Url.LIST_FOODCATEGORY);
+        FoodCategorys fc = foodCategory.getById(foodCategorys.getId());
+        try{
+            foodCategorys.setDeleted(fc.getDeleted());
+            foodCategorys.setCreatedAt(fc.getCreatedAt());
+            foodCategorys.setUpdatedAt(TimeUtils.getCurrentTime());
+            foodCategory.update(foodCategorys);
+            mav.addObject("listFoodcategory", foodCategory.getAllByDelete(false));
+            mav.setViewName("redirect:/admin" + Constants.Url.LIST_FOODCATEGORY);
+        }catch (Exception ex){
+            ex.printStackTrace();
+            mav.setViewName(Constants.Url.UPDATE_FOODCATEGORY);
+        }
         return mav;
     }
 
@@ -75,7 +92,14 @@ public class FoodCategoryController {
     @GetMapping(Constants.Url.DELETE_FOODCATEGORY)
     public ModelAndView deleteFoodCategory(HttpSession session, @PathVariable("id") int id){
         ModelAndView mav = new ModelAndView();
-        foodCategory.deleteById(id);
+        try{
+            FoodCategorys foodCategorys = foodCategory.getById(id);
+            foodCategorys.setDeleted(true);
+            foodCategorys.setUpdatedAt(TimeUtils.getCurrentTime());
+            foodCategory.update(foodCategorys);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
         mav.setViewName("redirect:/admin" + Constants.Url.LIST_FOODCATEGORY);
         return mav;
     }
