@@ -28,11 +28,6 @@ public class UserImpl implements UserService {
 //    }
 
     @Override
-    public List<Users> getAllByDeleted(boolean isdeleted) {
-        return repository.getAllByDeleted(isdeleted);
-    }
-
-    @Override
     public Users getById(Integer id) {
         return repository.getById(id);
     }
@@ -96,6 +91,11 @@ public class UserImpl implements UserService {
     @Override
     public Integer updateRoleUser(Integer role, Integer id) {
         return repository.updateRoleUser(role,id);
+    }
+
+    @Override
+    public List<Users> findAllByDeleted(boolean deleted) {
+        return repository.findAllByDeleted(deleted);
     }
 
     public static void main(String[] args) {

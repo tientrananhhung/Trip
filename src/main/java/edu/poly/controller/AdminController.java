@@ -64,7 +64,8 @@ public class AdminController {
 //        }
 
 
-        mav.addObject("listUser", user.getAllByDeleted(false));
+        mav.addObject("listUser", user.findAllByDeleted(false));
+        System.out.println(user.findAllByDeleted(false).get(0).getId());
         mav.setViewName(LIST_USER_SCREEN);
         return mav;
     }
@@ -100,7 +101,7 @@ public class AdminController {
             users.setUpdatedAt(TimeUtils.getCurrentTime());
             Users us = user.getById(users.getId());
             user.save(users);
-            mav.addObject("listUser", user.getAllByDeleted(false));
+            mav.addObject("listUser", user.findAllByDeleted(false));
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_USER);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -109,7 +110,11 @@ public class AdminController {
         return mav;
     }
 
-    //    delete user
+    /**
+     * @param session for check role
+     * @param id to delete user
+     * @return url list user
+     * */
     @GetMapping(Constants.Url.DELETE_USER)
     public ModelAndView deleteUser(HttpSession session, @PathVariable("id") int id) {
         ModelAndView mav = new ModelAndView();
@@ -129,7 +134,12 @@ public class AdminController {
         return mav;
     }
 
-    //    active user
+    /**
+     * @param session for check role
+     * @param id for get user
+     * @pram active for get type active
+     * @return url list user
+     * */
     @GetMapping(Constants.Url.ACTIVE_USER)
     public ModelAndView statusUser(HttpSession session, @PathVariable("id") int id,
                                    @PathVariable("active") boolean active) {
@@ -146,7 +156,11 @@ public class AdminController {
         return mav;
     }
 
-    //    return update userpage
+    /**
+     * @param session for checkrole
+     * @param id for get user from form
+     * @return url quan-ly-doi-tac/them
+     * */
     @GetMapping(Constants.Url.UPDATE_USER)
     public ModelAndView updateUser(HttpSession session, @PathVariable("id") Integer id) {
         //        if(!CheckSession.admin(session)){
@@ -168,7 +182,7 @@ public class AdminController {
         mav.addObject("user", users);
         mav.addObject("gender", returnGender());
         mav.addObject("role", returnRole());
-        mav.addObject("action", "sua");
+        mav.addObject("action", id);
         return mav;
     }
 
@@ -178,7 +192,7 @@ public class AdminController {
      * @param users   get user's information from form
      * @return url /quan-ly-nguoi-dung or update page
      */
-    @PostMapping(Constants.Url.UPDATED_USER)
+    @PostMapping(Constants.Url.UPDATE_USER)
     public ModelAndView editUser(HttpSession session, @ModelAttribute("user") Users users) {
         ModelAndView mav = new ModelAndView();
         Users us = user.getById(users.getId());
@@ -192,7 +206,7 @@ public class AdminController {
             users.setAvatar(us.getAvatar());
             users.setUpdatedAt(TimeUtils.getCurrentTime());
             user.update(users);
-            mav.addObject("listUser", user.getAllByDeleted(false));
+            mav.addObject("listUser", user.findAllByDeleted(false));
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_USER);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -201,7 +215,10 @@ public class AdminController {
         return mav;
     }
 
-    // return parner list
+    /**
+     * @param session for checkrole
+     * @return url quan-ly-doi-tac
+     * */
     @GetMapping(Constants.Url.LIST_PARTNER)
     public ModelAndView showPartnerList(HttpSession session) {
         ModelAndView mav = new ModelAndView();
@@ -211,7 +228,7 @@ public class AdminController {
 //            return mav;
 //        }
         try {
-            mav.addObject("listPartner", partner.getAllByDeleted(false));
+            mav.addObject("listPartner", partner.findAllByDeleted(false));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -219,7 +236,10 @@ public class AdminController {
         return mav;
     }
 
-    //    return add partner page
+    /**
+     * @param session for checkrole
+     * @return url quan-ly-doi-tac/them
+     * */
     @GetMapping(Constants.Url.ADD_PARNER)
     public ModelAndView addPartner(HttpSession session) {
         //        if(!CheckSession.admin(session)){
@@ -249,7 +269,7 @@ public ModelAndView addPartner(HttpSession session, @ModelAttribute("partners") 
         partners.setDeleted(false);
         partner.save(partners);
         user.updateRoleUser(2,partners.getUserId());
-        mav.addObject("listPartner", partner.getAllByDeleted(false));
+        mav.addObject("listPartner", partner.findAllByDeleted(false));
         mav.setViewName("redirect:/admin" + Constants.Url.LIST_PARTNER);
     } catch (Exception ex) {
         ex.printStackTrace();
@@ -257,6 +277,102 @@ public ModelAndView addPartner(HttpSession session, @ModelAttribute("partners") 
     }
     return mav;
 }
+
+    /**
+     * @param session for check role
+     * @param id to delete user
+     * @return url list user
+     * */
+    @GetMapping(Constants.Url.DELETE_PARNER)
+    public ModelAndView deletePartner(HttpSession session, @PathVariable("id") int id) {
+        ModelAndView mav = new ModelAndView();
+        //        if(!CheckSession.admin(session)){
+//            mav.setViewName("redirect:/"+Constants.Characters.BLANK);
+//            return mav;
+//        }
+        try{
+            Partners pn =  partner.getById(id);
+            pn.setDeleted(true);
+            pn.setUpdatedAt(TimeUtils.getCurrentTime());
+            partner.update(pn);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+        mav.setViewName("redirect:/admin" + Constants.Url.LIST_PARTNER);
+        return mav;
+    }
+
+    /**
+     * @param session for check role
+     * @param id for get user
+     * @pram active for get type active
+     * @return url list user
+     * */
+    @GetMapping(Constants.Url.ACTIVE_PARNER)
+    public ModelAndView statusPartner(HttpSession session, @PathVariable("id") int id,
+                                   @PathVariable("active") boolean active) {
+        ModelAndView mav = new ModelAndView();
+        //        if(!CheckSession.admin(session)){
+//            mav.setViewName("redirect:/"+Constants.Characters.BLANK);
+//            return mav;
+//        }
+        Partners pn = partner.getById(id);
+        pn.setUpdatedAt(TimeUtils.getCurrentTime());
+        pn.setActived(active);
+        try{
+            partner.update(pn);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+        mav.setViewName("redirect:/admin" + Constants.Url.LIST_PARTNER);
+        return mav;
+    }
+
+    /**
+     * @param session for checkrole
+     * @param id for get partner
+     * @return url quan-ly-doi-tac/them
+     * */
+    @GetMapping(Constants.Url.UPDATE_PARNER)
+    public ModelAndView updatePartner(HttpSession session, @PathVariable("id") Integer id) {
+        //        if(!CheckSession.admin(session)){
+//            mav.setViewName("redirect:/"+Constants.Characters.BLANK);
+//            return mav;
+//        }
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName(ADD_PARTNER);
+        Partners partners = partner.getById(id);
+        mav.addObject("user_list", user.findAllByRole(Constants.Role.USER));
+        mav.addObject("action", id);
+        return mav;
+    }
+
+
+    /**
+     * @param session for check role
+     * @param partners   get user's information from form
+     * @return url /quan-ly-nguoi-dung or update page
+     */
+    @PostMapping(Constants.Url.UPDATE_PARNER)
+    public ModelAndView editPartner(HttpSession session, @ModelAttribute("partners") Partners partners) {
+        ModelAndView mav = new ModelAndView();
+        Partners pn = partner.getById(partners.getId());
+        try {
+            partners.setActived(pn.getActived());
+            partners.setDeleted(pn.getDeleted());
+            partners.setCreatedAt(pn.getCreatedAt());
+            partners.setUpdatedAt(TimeUtils.getCurrentTime());
+            partner.update(partners);
+            mav.addObject("listUser", partner.findAllByDeleted(false));
+            mav.setViewName("redirect:/admin" + Constants.Url.LIST_PARTNER);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            mav.setViewName(Constants.Url.UPDATE_PARNER);
+        }
+        return mav;
+    }
+
     //tạo radio button gender
     public HashMap returnGender() {
         HashMap<Boolean, String> hashMap = new HashMap<Boolean, String>();
@@ -269,7 +385,6 @@ public ModelAndView addPartner(HttpSession session, @ModelAttribute("partners") 
         HashMap<Integer, String> hashMap = new HashMap<Integer, String>();
         hashMap.put(0, "Admin");
         hashMap.put(1, "Manager");
-        hashMap.put(2, "Parner");
         hashMap.put(3, "Customer");
         return hashMap;
     }

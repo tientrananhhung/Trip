@@ -62,8 +62,14 @@ public class PartnerImpl implements PartnerService {
     }
 
     @Override
-    public List<Partners> getAllByDeleted(boolean isDeleted) {
-        return repository.getAllByDeleted(isDeleted);
+    public List<Partners> findAllByDeleted(boolean deleted) {
+        return repository.findAllByDeleted(deleted);
+    }
+
+
+    @Override
+    public Partners getById(Integer id) {
+        return repository.getById(id);
     }
 
 }

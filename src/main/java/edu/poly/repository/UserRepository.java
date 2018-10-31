@@ -17,8 +17,7 @@ public interface UserRepository extends CrudRepository<Users, Integer> {
     @Query("from Users where userName like :userName and passWord like :passWord")
     public Users login(@Param("userName") String userName, @Param("passWord") String passWord);
 
-    @Query("from Users where is_deleted = :isDeleted")
-    public List<Users> getAllByDeleted(@Param("isDeleted") boolean isDeleted);
+    public List<Users> findAllByDeleted(boolean deleted);
 
     public Users getById(Integer id);
 

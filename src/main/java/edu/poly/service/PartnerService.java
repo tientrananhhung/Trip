@@ -26,6 +26,7 @@ public interface PartnerService {
 
     public void deleteById(Integer id);
 
-    public List<Partners> getAllByDeleted(@Param("isDeleted") boolean isDeleted);
+    public List<Partners> findAllByDeleted(boolean deleted);
 
+    public Partners getById(Integer id);
 }

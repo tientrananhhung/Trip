@@ -39,9 +39,6 @@ public class Constants {
         //Trang sửa người dùng
         public static final String UPDATE_USER = "/quan-ly-nguoi-dung/{id}";
 
-        //Trang sửa người dùng
-        public static final String UPDATED_USER = "/quan-ly-nguoi-dung/sua";
-
         //Trang xóa người dùng
         public static final String DELETE_USER = "/quan-ly-nguoi-dung/xoa/{id}";
 
@@ -103,13 +100,13 @@ public class Constants {
         public static final String ADD_PARNER = "/quan-ly-doi-tac/them";
 
         //Trang sửa đối tác
-        public static final String EDIT_PARNER = "/quan-ly-doi-tac/{id}";
+        public static final String UPDATE_PARNER = "/quan-ly-doi-tac/{id}";
 
         //Xóa đối tác
-        public static final String DELETE_PARNER = "/quan-ly-doi-tac/xoa";
+        public static final String DELETE_PARNER = "/quan-ly-doi-tac/xoa/${id}";
 
         //Active đối tác
-        public static final String ACTIVE_PARNER = "/quan-ly-doi-tac/xoa";
+        public static final String ACTIVE_PARNER = "/quan-ly-doi-tac/active/{id}/{active}";
 
         //Trang Error 404
         public static final String ERROR404 = "/error";

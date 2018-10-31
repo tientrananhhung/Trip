@@ -11,7 +11,8 @@ import java.util.List;
 @Repository
 public interface PartnerRepository extends CrudRepository<Partners, Integer> {
 
-    @Query("from Partners where Is_deleted = :isDeleted")
-    public List<Partners> getAllByDeleted(@Param("isDeleted") boolean isDeleted);
+    public List<Partners> findAllByDeleted(boolean deleted);
+
+    public Partners getById(Integer id);
 
 }

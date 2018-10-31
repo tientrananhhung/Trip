@@ -10,8 +10,6 @@ public interface UserService {
 
     public Iterable<Users> findAll();
 
-    public List<Users> getAllByDeleted(boolean isDeleted);
-
     public Users getById(Integer id);
 
     public Optional<Users> findOne(Integer id);
@@ -35,5 +33,7 @@ public interface UserService {
     public List<Users> findAllByRole(Integer role);
 
     public Integer updateRoleUser(Integer role,Integer id);
+
+    public List<Users> findAllByDeleted(boolean deleted);
 
 }

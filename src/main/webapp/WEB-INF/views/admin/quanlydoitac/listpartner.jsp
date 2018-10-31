@@ -43,7 +43,7 @@
                             </div>
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
-                                <a href="addDoitac.html">
+                                <a href="/admin/quan-ly-doi-tac/them">
                                     <button style="margin-left: 190px;" type="button"
                                             class="btn btn-warning btn-rounded btn-fw">Add Partners
                                     </button>
@@ -77,18 +77,23 @@
                                         <td>
                                             <c:choose>
                                                 <c:when test="${partner.actived == true}">
-                                                    <a href="/admin/quan-ly-nguoi-dung/active/${partner.id}/false"><label
+                                                    <a href="/admin/quan-ly-doi-tac/active/${partner.id}/false"><label
                                                             class="badge badge-success">Active</label></a>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <a href="/admin/quan-ly-nguoi-dung/active/${partner.id}/true">
+                                                    <a href="/admin/quan-ly-doi-tac/active/${partner.id}/true">
                                                         <label class="badge badge-danger">Inactive</label></a>
                                                 </c:otherwise>
                                             </c:choose>
                                         </td>
                                         <td>
+                                            <a href="/admin/quan-ly-doi-tac/${user.id}">
                                             <button class="btn btn-outline-primary">Edit</button>
+                                            </a>
+                                            <a href="/admin/quan-ly-doi-tac/xoa
+                                            /${user.id}">
                                             <button class="btn btn-outline-danger">Delete</button>
+                                            </a>
                                         </td>
                                     </tr>
                                     </c:forEach>
@@ -97,7 +102,6 @@
                             </div>
                         </div>
                         <div>
-
                         </div>
                     </div>
                 </div>
