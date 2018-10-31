@@ -88,16 +88,17 @@ public class AdminController {
     //    adduser
     @PostMapping(Constants.Url.ADD_USER)
     public ModelAndView addUser(HttpSession session, @ModelAttribute("user") Users users) {
-        ModelAndView mav = new ModelAndView("index");
-        System.out.println("================= vao đay chưa ==============");
+        ModelAndView mav = new ModelAndView();
         users.setPassword(PasswordUtils.md5("smarttrip"));
-        System.out.println(users.getPassword());
         try {
             if (users.getAvatar() == null) {
                 users.setAvatar("avatar.png");
             }
+            users.setActive(false);
+            users.setDeleted(false);
             users.setCreatedAt(TimeUtils.getCurrentTime());
             users.setUpdatedAt(TimeUtils.getCurrentTime());
+            Users us = user.getById(users.getId());
             user.save(users);
             mav.addObject("listUser", user.getAllByDeleted(false));
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_USER);
@@ -116,7 +117,11 @@ public class AdminController {
 //            mav.setViewName("redirect:/"+Constants.Characters.BLANK);
 //            return mav;
 //        }
-        user.deleteById(id);
+        try{
+            user.deleteUser(id);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
         mav.setViewName("redirect:/admin" + Constants.Url.LIST_USER);
         return mav;
     }
@@ -172,13 +177,15 @@ public class AdminController {
     @PostMapping(Constants.Url.UPDATED_USER)
     public ModelAndView editUser(HttpSession session, @ModelAttribute("user") Users users) {
         ModelAndView mav = new ModelAndView();
-        Users userdb = user.getById(users.getId());
-        if (!users.getPassword().equals(userdb.getPassword()))
+        Users us = user.getById(users.getId());
+        if (!users.getPassword().equals(us.getPassword()))
             users.setPassword(PasswordUtils.md5(users.getPassword()));
         try {
-            users.setActive(userdb.getActive());
-            users.setAvatar(userdb.getAvatar());
-            users.setCreatedAt(userdb.getCreatedAt());
+
+            users.setActive(us.getActive());
+            users.setDeleted(us.getDeleted());
+            users.setCreatedAt(us.getCreatedAt());
+            users.setAvatar(us.getAvatar());
             users.setUpdatedAt(TimeUtils.getCurrentTime());
             user.update(users);
             mav.addObject("listUser", user.getAllByDeleted(false));
@@ -201,7 +208,6 @@ public class AdminController {
 //        }
         try {
             mav.addObject("listPartner", partner.getAllByDeleted(false));
-
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -224,7 +230,29 @@ public class AdminController {
         return mav;
     }
 
-
+/**
+ * @param session for checkrole
+ * @param partners for get user from form
+ * @return url quan-ly-doi-tac or add partner
+ * */
+@PostMapping(Constants.Url.ADD_PARNER)
+public ModelAndView addPartner(HttpSession session, @ModelAttribute("partners") Partners partners) {
+    ModelAndView mav = new ModelAndView();
+    try {
+        partners.setCreatedAt(TimeUtils.getCurrentTime());
+        partners.setUpdatedAt(TimeUtils.getCurrentTime());
+        partners.setActived(false);
+        partners.setDeleted(false);
+        partner.save(partners);
+        user.updateRoleUser(2,partners.getUserId());
+        mav.addObject("listPartner", partner.getAllByDeleted(false));
+        mav.setViewName("redirect:/admin" + Constants.Url.LIST_PARTNER);
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        mav.setViewName(ADD_PARTNER);
+    }
+    return mav;
+}
     //tạo radio button gender
     public HashMap returnGender() {
         HashMap<Boolean, String> hashMap = new HashMap<Boolean, String>();

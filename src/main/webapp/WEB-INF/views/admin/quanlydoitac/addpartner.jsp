@@ -69,7 +69,7 @@
                                     <div class="form-group">
                                         <label>User</label>
                                         <div class="form-group">
-                                            <f:select cssClass="form-control border-primary" path="users">
+                                            <f:select cssClass="form-control border-primary" path="userId">
                                                 <c:forEach var="us" items="${user_list}">
                                                     <f:option value="${us.id}" label="Name: ${us.name} | Phone: ${us.phone} | Email: ${us.email}"/>
                                                 </c:forEach>

@@ -55,7 +55,8 @@
                                 <table id="order-listing" class="table" cellspacing="0">
                                     <thead>
                                     <tr>
-                                        <th>User</th>
+                                        <th>UserID</th>
+                                        <th>UserName</th>
                                         <th>Name</th>
                                         <th>Phone</th>
                                         <th>Address</th>
@@ -67,14 +68,15 @@
                                     <tbody>
                                     <c:forEach var="partner" items="${listPartner}">
                                     <tr>
-                                        <td>${partner.users.id}</td>
+                                        <td>${partner.userId}</td>
+                                        <td>${partner.usersByUserId.name}</td>
                                         <td>${partner.name}</td>
                                         <td>${partner.phone}</td>
                                         <td>${partner.email}</td>
                                         <td>${partner.address}</td>
                                         <td>
                                             <c:choose>
-                                                <c:when test="${partner.isActived() == true}">
+                                                <c:when test="${partner.actived == true}">
                                                     <a href="/admin/quan-ly-nguoi-dung/active/${partner.id}/false"><label
                                                             class="badge badge-success">Active</label></a>
                                                 </c:when>

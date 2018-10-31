@@ -34,4 +34,7 @@ public interface UserService {
 
     public List<Users> findAllByRole(Integer role);
 
+    public Integer updateRoleUser(Integer role,Integer id);
+
+    public Integer deleteUser(Integer id);
 }
