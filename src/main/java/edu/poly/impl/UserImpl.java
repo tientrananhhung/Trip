@@ -98,11 +98,6 @@ public class UserImpl implements UserService {
         return repository.updateRoleUser(role,id);
     }
 
-    @Override
-    public Integer deleteUser(Integer id) {
-        return repository.deleteUser(id);
-    }
-
     public static void main(String[] args) {
         UserImpl user = new UserImpl();
     }

@@ -36,5 +36,4 @@ public interface UserService {
 
     public Integer updateRoleUser(Integer role,Integer id);
 
-    public Integer deleteUser(Integer id);
 }

@@ -28,8 +28,5 @@ public interface UserRepository extends CrudRepository<Users, Integer> {
     @Query("update Users set role = :role where id = :id")
     public Integer updateRoleUser(@Param("role") Integer role,@Param("id") Integer id);
 
-    @Modifying
-    @Query("update Users set deleted = true where id = :id")
-    public Integer deleteUser(@Param("id") Integer id);
 
 }

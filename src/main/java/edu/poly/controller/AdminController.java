@@ -118,7 +118,10 @@ public class AdminController {
 //            return mav;
 //        }
         try{
-            user.deleteUser(id);
+          Users us =  user.getById(id);
+            us.setDeleted(true);
+            us.setUpdatedAt(TimeUtils.getCurrentTime());
+            user.update(us);
         } catch (Exception ex){
             ex.printStackTrace();
         }
@@ -136,8 +139,9 @@ public class AdminController {
 //            return mav;
 //        }
         Users us = user.getById(id);
+        us.setUpdatedAt(TimeUtils.getCurrentTime());
         us.setActive(active);
-        user.save(us);
+        user.update(us);
         mav.setViewName("redirect:/admin" + Constants.Url.LIST_USER);
         return mav;
     }
