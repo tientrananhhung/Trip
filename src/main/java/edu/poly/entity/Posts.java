@@ -11,6 +11,7 @@ public class Posts {
     private int postCategoryId;
     private int userId;
     private String title;
+    private String description;
     private String content;
     private Integer view;
     private Boolean isDeleted;
@@ -57,6 +58,16 @@ public class Posts {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @Basic
+    @Column(name = "Description", nullable = true, length = -1)
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Basic
