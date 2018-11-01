@@ -47,13 +47,13 @@
                             <f:form cssClass="pt-5" method="POST" modelAttribute="login" action="/dang-nhap">
                                 <div class="form-group">
                                     <label for="userName">Tên đăng nhập</label>
-                                    <f:input path="userName" cssClass="form-control" aria-describedby="emailHelp"
+                                    <f:input path="username" cssClass="form-control" aria-describedby="emailHelp"
                                              placeholder="Nhập tên đăng nhập"/>
                                     <i class="mdi mdi-account"></i>
                                 </div>
                                 <div class="form-group">
                                     <label for="passWord">Mật khẩu</label>
-                                    <f:password path="passWord" cssClass="form-control" placeholder="Nhập mật khẩu"/>
+                                    <f:password path="password" cssClass="form-control" placeholder="Nhập mật khẩu"/>
                                     <i class="mdi mdi-eye"></i>
                                 </div>
                                 <div class="mt-5">

@@ -1,6 +1,7 @@
 package edu.poly.controller;
 
 import edu.poly.common.Constants;
+import edu.poly.common.PasswordUtils;
 import edu.poly.entity.Users;
 import edu.poly.impl.UserImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,24 +46,24 @@ public class LoginController {
     }
 
     @PostMapping(Constants.Characters.BLANK)
-    public ModelAndView loginProgess(@ModelAttribute("login") Users users, HttpServletRequest rq){
+    public ModelAndView loginProgess(@ModelAttribute("login") Users users, HttpServletRequest rq) {
         ModelAndView mav = new ModelAndView();
         Users login = new Users();
 
-//        Users userLogin = user.login(users.getUserName(), PasswordUtils.md5(users.getPassWord()));
-//        if(userLogin != null){
-//            if (userLogin.getRole() == Constants.Role.ADMIN || userLogin.getRole() == Constants.Role.MANAGER) {
-//                mav.setViewName(ADMIN_SCREEN);
-//            }else{
-//                mav.setViewName(INDEX_SCREEN);
-//            }
-//            rq.getSession().setAttribute("user", userLogin);
-//        }else{
-//            mav.setViewName(LOGIN_SCREEN);
-//            mav.addObject("notify", "Tài khoản hoặc mật khẩu không chính xác!");
-//            login.setUserName(users.getUserName());
-//            mav.addObject("login", login);
-//        }
+        Users userLogin = user.login(users.getUsername(), PasswordUtils.md5(users.getPassword()));
+        if (userLogin != null) {
+            if (userLogin.getRole() == Constants.Role.ADMIN || userLogin.getRole() == Constants.Role.MANAGER) {
+                mav.setViewName(ADMIN_SCREEN);
+            } else {
+                mav.setViewName(INDEX_SCREEN);
+            }
+            rq.getSession().setAttribute("user", userLogin);
+        } else {
+            mav.setViewName(LOGIN_SCREEN);
+            mav.addObject("notify", "Tài khoản hoặc mật khẩu không chính xác!");
+            login.setUsername(users.getUsername());
+            mav.addObject("login", login);
+        }
         return mav;
     }
 

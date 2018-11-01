@@ -236,7 +236,7 @@ public class Users {
         this.ordersById = ordersById;
     }
 
-    @OneToMany(mappedBy = "usersByUserId")
+    @OneToMany(mappedBy = "usersByUserId", fetch = FetchType.EAGER)
     public Collection<Partners> getPartnersById() {
         return partnersById;
     }
