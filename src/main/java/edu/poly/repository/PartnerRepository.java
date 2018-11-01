@@ -14,6 +14,6 @@ public interface PartnerRepository extends CrudRepository<Partners, Integer> {
     public List<Partners> findAllByDeleted(boolean deleted);
 
     public Partners getById(Integer id);
-    public Partners getByUserId(Integer id);
+
 
 }
