@@ -13,6 +13,7 @@ public class Offers {
     private int deal;
     private Boolean isUsed;
     private Timestamp createdAt;
+    private Timestamp updatedAt;
     private Users usersByUserId;
 
     @Id
@@ -75,6 +76,16 @@ public class Offers {
         this.createdAt = createdAt;
     }
 
+    @Basic
+    @Column(name = "Updated_at", nullable = true)
+    public Timestamp getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Timestamp updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -85,12 +96,13 @@ public class Offers {
                 deal == offers.deal &&
                 Objects.equals(code, offers.code) &&
                 Objects.equals(isUsed, offers.isUsed) &&
-                Objects.equals(createdAt, offers.createdAt);
+                Objects.equals(createdAt, offers.createdAt) &&
+                Objects.equals(updatedAt, offers.updatedAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId, code, deal, isUsed, createdAt);
+        return Objects.hash(id, userId, code, deal, isUsed, createdAt, updatedAt);
     }
 
     @ManyToOne

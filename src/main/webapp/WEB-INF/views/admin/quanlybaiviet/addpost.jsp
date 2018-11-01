@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/mdi/css/materialdesignicons.min.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/flag-icon-css/css/flag-icon.min.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" />">
-    <link rel="stylesheet" href="../../node_modules/simplemde/dist/simplemde.min.css">
+    <link rel="stylesheet" href="<c:url value="/resources/node_modules/simplemde/dist/simplemde.min.css" />">
+
     <!-- endinject -->
     <!-- plugin css for this page -->
     <link rel="stylesheet"
@@ -152,5 +153,9 @@
 < <script src="<c:url value="/resources/js/editorDemo.js"/>"></script>
 < <script src="<c:url value="/resources/node_modules/simplemde/dist/simplemde.min.js"/>"></script>
 <%---------------------------------------------%>
+
+<script>
+    var simplemde = new SimpleMDE({ element: $("#content")[0] });
+</script>
 </body>
 </html>
