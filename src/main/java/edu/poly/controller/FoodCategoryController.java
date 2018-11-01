@@ -18,8 +18,8 @@ public class FoodCategoryController {
     @Autowired
     FoodCategoryImpl foodCategory;
 
-    public static final String FOODCATEGORY_SCREEN = "/admin/quanlydanhmucdiadiem/listFoodCategory";
-    public static final String ADD_FOODCATEGORY_SCREEN = "/admin/quanlydanhmucdiadiem/addFoodCategory";
+    public static final String FOODCATEGORY_SCREEN = "/admin/quanlydanhmucdiadiem/listfoodcategory";
+    public static final String ADD_FOODCATEGORY_SCREEN = "/admin/quanlydanhmucdiadiem/addfoodcategory";
 
 
 //    danh sách danh mục địa điểm

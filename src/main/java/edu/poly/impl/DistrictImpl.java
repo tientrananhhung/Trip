@@ -67,8 +67,8 @@ public class DistrictImpl implements DistrictService {
     }
 
     @Override
-    public List<Districts> getAllByDeleted(boolean isDeleted) {
-        return repository.getAllByDeleted(isDeleted);
+    public List<Districts> findAllByDeleted(Boolean isDeleted) {
+        return repository.findAllByDeleted(isDeleted);
     }
 
 }

@@ -19,8 +19,8 @@ public class PostCategoryController {
     PostCategoryImpl postCategory;
 
     public static final String ADMIN_SCREEN = "/admin/index";
-    public static final String POSTCATEGORY_SCREEN = "/admin/quanlydanhmucbaiviet/listPostCategory";
-    public static final String ADD_POSTCATEGORY_SCREEN = "/admin/quanlydanhmucbaiviet/addPostCategory";
+    public static final String POSTCATEGORY_SCREEN = "/admin/quanlydanhmucbaiviet/listpostcategory";
+    public static final String ADD_POSTCATEGORY_SCREEN = "/admin/quanlydanhmucbaiviet/addpostcategory";
 
 
 //    Return ListPostcategory

@@ -27,6 +27,6 @@ public interface DistrictService {
 
     public Districts getById(Integer id);
 
-    public List<Districts> getAllByDeleted(boolean isDeleted);
+    public List<Districts> findAllByDeleted(Boolean isDeleted);
 
 }

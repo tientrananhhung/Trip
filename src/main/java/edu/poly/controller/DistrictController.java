@@ -19,15 +19,15 @@ public class DistrictController {
     DistrictImpl district;
 
     public static final String ADMIN_SCREEN = "/admin/index";
-    public static final String DISTRICT_SCREEN = "/admin/quanlyquan/listDistrict";
-    public static final String ADD_DISTRICT_SCREEN = "/admin/quanlyquan/addDistrict";
+    public static final String DISTRICT_SCREEN = "/admin/quanlyquan/listdistrict";
+    public static final String ADD_DISTRICT_SCREEN = "/admin/quanlyquan/adddistrict";
 
 
 //    Return ListDistrict
     @GetMapping(Constants.Url.LIST_DISTRICT)
     public ModelAndView showUserList(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("listDistrict", district.getAllByDeleted(false));
+        mav.addObject("listDistrict", district.findAllByDeleted(false));
         mav.setViewName(DISTRICT_SCREEN);
         return mav;
     }
@@ -50,7 +50,7 @@ public class DistrictController {
             districts.setCreatedAt(TimeUtils.getCurrentTime());
             districts.setUpdatedAt(TimeUtils.getCurrentTime());
             district.save(districts);
-            mav.addObject("listDistrict", district.getAllByDeleted(false));
+            mav.addObject("listDistrict", district.findAllByDeleted(false));
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_DISTRICT);
         }catch (Exception ex){
             ex.printStackTrace();
@@ -79,7 +79,7 @@ public class DistrictController {
             districts.setCreatedAt(dt.getCreatedAt());
             districts.setUpdatedAt(TimeUtils.getCurrentTime());
             district.update(districts);
-            mav.addObject("listDistrict", district.getAllByDeleted(false));
+            mav.addObject("listDistrict", district.findAllByDeleted(false));
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_DISTRICT);
         }catch (Exception ex){
             ex.printStackTrace();

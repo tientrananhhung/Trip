@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -60,58 +61,34 @@
                                     Addition Foodplace
                                 </p>
                                 <hr/>
-                                <form class="forms-sample">
+                                <f:form class="forms-sample" method="post" modelAttribute="foods"
+                                        action="/admin/quan-ly-dia-diem/${action}">
                                     <div class="form-group">
-                                        <label for="exampleInputName1">Foodplace ID</label>
-                                        <input type="text" class="form-control" id="exampleInputName1" placeholder="ID">
+                                        <f:hidden path="id"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleFormControlSelect2">Foodcategory ID</label>
-                                        <select class="form-control" id="exampleFormControlSelect2">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
+                                        <label>Foodplace name</label>
+                                        <f:input path="name" type="text" class="form-control"
+                                                 placeholder="Name"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputName1">Foodplace Name</label>
-                                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+                                        <label>Category</label>
+                                        <f:select cssClass="form-control border-primary" path="foodCategoryId">
+                                            <c:forEach var="foodct" items="${listFoodCategory}">
+                                                <f:option value="${foodct.id}" label="${foodct.name}"/>
+                                            </c:forEach>
+                                        </f:select>
                                     </div>
-
                                     <div class="form-group">
-                                        <label for="exampleInputName1">Foodplace opentime</label>
-                                        <div class="input-group date" id="timepicker-example" data-target-input="nearest">
-                                            <div class="input-group" data-target="#timepicker-example" data-toggle="datetimepicker">
-                                                <input type="text" class="form-control datetimepicker-input" data-target="#timepicker-example">
-                                                <div class="input-group-addon input-group-append"><i class="mdi mdi-clock"></i></div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">Foodplace Status</label>
-                                        <div class="col-sm-4">
-                                            <div class="form-radio">
-                                                <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked="">
-                                                    Active
-                                                    <i class="input-helper"></i></label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-5">
-                                            <div class="form-radio">
-                                                <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2">
-                                                    Un-Active
-                                                    <i class="input-helper"></i></label>
-                                            </div>
-                                        </div>
+                                        <label>Opentime</label>
+                                        <f:input path="opentime" type="text" class="form-control"
+                                                 placeholder="Opentime"/>
                                     </div>
                                     <button type="submit" class="btn btn-success mr-2">Submit</button>
-                                    <a href=""><button class="btn btn-light">Cancel</button></a>
-                                </form>
+                                    <a href="/admin/quan-ly-danh-muc-bai-viet">
+                                        <button class="btn btn-light">Cancel</button>
+                                    </a>
+                                </f:form>
                             </div>
                         </div>
                     </div>
