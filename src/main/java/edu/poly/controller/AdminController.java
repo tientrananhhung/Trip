@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.List;
 
 @Controller
 @RequestMapping(Constants.Url.ADMIN_PAGE_URL)
@@ -169,19 +170,10 @@ public class AdminController {
         ModelAndView mav = new ModelAndView();
         mav.setViewName(ADD_USER);
         Users users = user.getById(id);
-//       String date = new SimpleDateFormat("dd/MM/yyyy", Locale.US).format(users.getBirthday());
-//        System.out.println(date);
-//        try {
-//            users.setBirthday( new SimpleDateFormat().parse(date));
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//        System.out.println(users.getBirthday());
-
         mav.addObject("user", users);
         mav.addObject("gender", returnGender());
         mav.addObject("role", returnRole());
-        mav.addObject("action", id);
+        mav.addObject("action", "sua");
         return mav;
     }
 
@@ -295,6 +287,7 @@ public ModelAndView addPartner(HttpSession session, @ModelAttribute("partners") 
             Partners pn =  partner.getById(id);
             pn.setDeleted(true);
             pn.setUpdatedAt(TimeUtils.getCurrentTime());
+            user.updateRoleUser(Constants.Role.USER,pn.getUserId());
             partner.update(pn);
         } catch (Exception ex){
             ex.printStackTrace();
@@ -345,6 +338,7 @@ public ModelAndView addPartner(HttpSession session, @ModelAttribute("partners") 
         mav.setViewName(ADD_PARTNER);
         Partners partners = partner.getById(id);
         mav.addObject("user_list",  user.findAllByRoleAndActiveAndDeleted(Constants.Role.PARTNER,true,false));
+        mav.addObject("partner",partners);
         mav.addObject("action", "sua");
         return mav;
     }
@@ -356,7 +350,7 @@ public ModelAndView addPartner(HttpSession session, @ModelAttribute("partners") 
      * @return url /quan-ly-nguoi-dung or update page
      */
     @PostMapping(Constants.Url.UPDATED_PARNER)
-    public ModelAndView editPartner(HttpSession session, @ModelAttribute("partners") Partners partners) {
+    public ModelAndView editPartner(HttpSession session, @ModelAttribute("partner") Partners partners) {
         ModelAndView mav = new ModelAndView();
         Partners pn = partner.getById(partners.getId());
         try {
@@ -364,7 +358,13 @@ public ModelAndView addPartner(HttpSession session, @ModelAttribute("partners") 
             partners.setDeleted(pn.getDeleted());
             partners.setCreatedAt(pn.getCreatedAt());
             partners.setUpdatedAt(TimeUtils.getCurrentTime());
-            partner.update(partners);
+            partners.setUserId(pn.getUserId());
+            try{
+                partner.update(partners);
+            } catch (Exception ex){
+                ex.printStackTrace();
+            }
+
             mav.addObject("listPartner", partner.findAllByDeleted(false));
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_PARTNER);
         } catch (Exception ex) {
@@ -386,6 +386,7 @@ public ModelAndView addPartner(HttpSession session, @ModelAttribute("partners") 
         HashMap<Integer, String> hashMap = new HashMap<Integer, String>();
         hashMap.put(0, "Admin");
         hashMap.put(1, "Manager");
+        hashMap.put(2, "Partner");
         hashMap.put(3, "Customer");
         return hashMap;
     }

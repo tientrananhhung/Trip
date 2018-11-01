@@ -88,7 +88,7 @@
                                         <f:input path="username" type="text" cssClass="form-control"
                                                  placeholder="Username"/>
                                     </div>
-                                    <c:if test="${not empty action}">
+                                    <c:if test="${action == 'sua'}">
                                         <div class="form-group">
                                             <label>Password</label>
                                             <f:input path="password" type="password" cssClass="form-control"

@@ -59,8 +59,8 @@
                                         <th>UserName</th>
                                         <th>Name</th>
                                         <th>Phone</th>
-                                        <th>Address</th>
                                         <th>Email</th>
+                                        <th>Address</th>
                                         <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
@@ -87,11 +87,10 @@
                                             </c:choose>
                                         </td>
                                         <td>
-                                            <a href="/admin/quan-ly-doi-tac/${user.id}">
+                                            <a href="/admin/quan-ly-doi-tac/${partner.id}">
                                             <button class="btn btn-outline-primary">Edit</button>
                                             </a>
-                                            <a href="/admin/quan-ly-doi-tac/xoa
-                                            /${user.id}">
+                                            <a href="/admin/quan-ly-doi-tac/xoa/${partner.id}">
                                             <button class="btn btn-outline-danger">Delete</button>
                                             </a>
                                         </td>
