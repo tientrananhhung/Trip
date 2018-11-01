@@ -248,7 +248,9 @@ public class AdminController {
         ModelAndView mav = new ModelAndView();
         mav.setViewName(ADD_PARTNER);
         mav.addObject("partner", new Partners());
-        mav.addObject("user_list", user.findAllByRole(Constants.Role.USER));
+        mav.addObject("user_list", user.findAllByRoleAndActiveAndDeleted(Constants.Role.USER,true,false));
+
+
         mav.addObject("action", "them");
         return mav;
     }
@@ -342,8 +344,8 @@ public ModelAndView addPartner(HttpSession session, @ModelAttribute("partners") 
         ModelAndView mav = new ModelAndView();
         mav.setViewName(ADD_PARTNER);
         Partners partners = partner.getById(id);
-        mav.addObject("user_list", user.findAllByRole(Constants.Role.USER));
-        mav.addObject("action", id);
+        mav.addObject("user_list",  user.findAllByRoleAndActiveAndDeleted(Constants.Role.PARTNER,true,false));
+        mav.addObject("action", "sua");
         return mav;
     }
 
@@ -353,7 +355,7 @@ public ModelAndView addPartner(HttpSession session, @ModelAttribute("partners") 
      * @param partners   get user's information from form
      * @return url /quan-ly-nguoi-dung or update page
      */
-    @PostMapping(Constants.Url.UPDATE_PARNER)
+    @PostMapping(Constants.Url.UPDATED_PARNER)
     public ModelAndView editPartner(HttpSession session, @ModelAttribute("partners") Partners partners) {
         ModelAndView mav = new ModelAndView();
         Partners pn = partner.getById(partners.getId());
@@ -363,7 +365,7 @@ public ModelAndView addPartner(HttpSession session, @ModelAttribute("partners") 
             partners.setCreatedAt(pn.getCreatedAt());
             partners.setUpdatedAt(TimeUtils.getCurrentTime());
             partner.update(partners);
-            mav.addObject("listUser", partner.findAllByDeleted(false));
+            mav.addObject("listPartner", partner.findAllByDeleted(false));
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_PARTNER);
         } catch (Exception ex) {
             ex.printStackTrace();

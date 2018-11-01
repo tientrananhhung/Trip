@@ -36,4 +36,6 @@ public interface UserService {
 
     public List<Users> findAllByDeleted(boolean deleted);
 
+    public List<Users> findAllByRoleAndActiveAndDeleted(Integer role,Boolean active,Boolean deleted);
+
 }

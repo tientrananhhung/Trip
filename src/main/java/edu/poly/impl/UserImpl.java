@@ -98,6 +98,11 @@ public class UserImpl implements UserService {
         return repository.findAllByDeleted(deleted);
     }
 
+    @Override
+    public List<Users> findAllByRoleAndActiveAndDeleted(Integer role, Boolean active, Boolean deleted) {
+        return repository.findAllByRoleAndActiveAndDeleted(role,active,deleted);
+    }
+
     public static void main(String[] args) {
         UserImpl user = new UserImpl();
     }
