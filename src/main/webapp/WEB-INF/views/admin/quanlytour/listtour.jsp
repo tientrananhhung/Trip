@@ -51,7 +51,7 @@
                                     <thead>
                                     <tr>
                                         <th>User</th>
-                                        <th>Parner Name</th>
+                                        <%--<th>Parner Name</th>--%>
                                         <th>Tour name</th>
                                         <th>Tour address</th>
                                         <th>Actions</th>
@@ -62,12 +62,10 @@
                                     <c:forEach var="tour" items="${listTour}">
                                         <tr>
                                             <td>${tour.usersByUserId.name}</td>
-                                            <c:if test="${tour.usersByUserId.role == 2}">
-                                                <c:forEach items="${tour.usersByUserId.partnersById}" var="row">
-                                                    <td>${row.name}</td>
-                                                </c:forEach>
-                                                <%--<td><c:out value="Đã đúng"/></td>--%>
-                                            </c:if>
+                                            <%--<c:forEach items="${tour.usersByUserId.partnersById}" var="row">--%>
+                                                <%--<td>${row.name}</td>--%>
+                                            <%--</c:forEach>--%>
+                                            <%--<td>${tour.usersByUserId.partnersById.size()}</td>--%>
                                             <td>${tour.name}</td>
                                             <td>${tour.address}</td>
                                             <td>
