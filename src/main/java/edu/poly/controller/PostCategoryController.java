@@ -33,7 +33,7 @@ public class PostCategoryController {
 //            return mav;
 //        }
 
-        mav.addObject("listPostcategory", postCategory.getAllByDelete(false));
+        mav.addObject("listPostcategory", postCategory.findAllByDeleted(false));
         mav.setViewName(POSTCATEGORY_SCREEN);
         return mav;
     }
@@ -56,7 +56,7 @@ public class PostCategoryController {
             postCategory1.setCreatedAt(TimeUtils.getCurrentTime());
             postCategory1.setUpdatedAt(TimeUtils.getCurrentTime());
             postCategory.save(postCategory1);
-            mav.addObject("listPostcategory", postCategory.getAllByDelete(false));
+            mav.addObject("listPostcategory", postCategory.findAllByDeleted(false));
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_POSTCATEGORY);
         }catch (Exception ex){
             ex.printStackTrace();
@@ -84,7 +84,7 @@ public class PostCategoryController {
             postCategorys.setCreatedAt(pc.getCreatedAt());
             postCategorys.setUpdatedAt(TimeUtils.getCurrentTime());
             postCategory.update(postCategorys);
-            mav.addObject("listPostcategory", postCategory.getAllByDelete(false));
+            mav.addObject("listPostcategory", postCategory.findAllByDeleted(false));
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_POSTCATEGORY);
         }catch (Exception ex){
             ex.printStackTrace();

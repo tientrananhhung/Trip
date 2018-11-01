@@ -27,6 +27,6 @@ public interface FoodCategoryService {
 
     public FoodCategorys getById(Integer id);
 
-    public List<FoodCategorys> getAllByDelete(boolean isDeleted);
+    public List<FoodCategorys> findAllByDeleted(Boolean deleted);
 
 }

@@ -2,6 +2,7 @@ package edu.poly.service;
 
 import edu.poly.entity.Tours;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface TourService {
@@ -23,5 +24,7 @@ public interface TourService {
     public void delete(Iterable<Tours> tours);
 
     public void deleteById(Integer id);
+
+    public List<Tours> findAllByDeleted(Boolean isDeleted);
 
 }

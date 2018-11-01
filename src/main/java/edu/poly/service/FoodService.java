@@ -2,6 +2,7 @@ package edu.poly.service;
 
 import edu.poly.entity.Foods;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface FoodService {
@@ -23,5 +24,9 @@ public interface FoodService {
     public void delete(Iterable<Foods> foods);
 
     public void deleteById(Integer id);
+
+    public Foods getById(Integer id);
+
+    public List<Foods> findAllByDeleted(Boolean isDeleted);
 
 }

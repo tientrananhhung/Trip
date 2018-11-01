@@ -123,6 +123,52 @@ public class Constants {
         //Active ưu đãi
         public static final String ACTIVE_OFFER = "/quan-ly-uu-dai/active/{id}/{active}";
 
+        //Trang danh sách tour
+        public static final String LIST_TOUR = "/quan-ly-tour";
+
+        //Trang thêm tour
+        public static final String ADD_TOUR = "/quan-ly-tour/them";
+
+        //Trang sửa tour
+        public static final String UPDATE_TOUR = "/quan-ly-tour/{id}";
+
+        //Trang xóa tour
+        public static final String DELETE_TOUR = "/quan-ly-tour/xoa/{id}";
+
+        //Trang sua tour
+        public static final String UPDATED_TOUR = "/quan-ly-tour/sua";
+
+        //Trang danh sách tour
+        public static final String LIST_POST = "/quan-ly-bai-viet";
+
+        //Trang thêm tour
+        public static final String ADD_POST = "/quan-ly-bai-viet/them";
+
+        //Trang sửa tour
+        public static final String UPDATE_POST = "/quan-ly-bai-viet/{id}";
+
+        //Trang xóa tour
+        public static final String DELETE_POST = "/quan-ly-bai-viet/xoa/{id}";
+
+        //Trang sua tour
+        public static final String UPDATED_POST = "/quan-ly-bai-viet/sua";
+
+        //Trang danh sách tour
+        public static final String LIST_FOOD_PLACE = "/quan-ly-dia-diem";
+
+        //Trang thêm tour
+        public static final String ADD_FOOD_PLACE = "/quan-ly-dia-diem/them";
+
+        //Trang sửa tour
+        public static final String UPDATE_FOOD_PLACE = "/quan-ly-dia-diem/{id}";
+
+        //Trang xóa tour
+        public static final String DELETE_FOOD_PLACE = "/quan-ly-dia-diem/xoa/{id}";
+
+        //Trang sua tour
+        public static final String UPDATED_FOOD_PLACE = "/quan-ly-dia-diem/sua";
+
+
         //Trang Error 404
         public static final String ERROR404 = "/error";
     }

@@ -65,7 +65,6 @@ public class AdminController {
 
 
         mav.addObject("listUser", user.findAllByDeleted(false));
-        System.out.println(user.findAllByDeleted(false).get(0).getId());
         mav.setViewName(LIST_USER_SCREEN);
         return mav;
     }

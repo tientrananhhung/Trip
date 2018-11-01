@@ -50,74 +50,28 @@
                                 <table id="order-listing" class="table" cellspacing="0">
                                     <thead>
                                     <tr>
-                                        <th>Foodplace ID</th>
-                                        <th>Foodplace name</th>
-                                        <th>Foodplace opentime</th>
-                                        <th>Foodplace status</th>
+                                        <th>Foodplace Name</th>
+                                        <th>Foodcategory</th>
+                                        <th>User add</th>
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                        <c:forEach var="foods" items="${listFoodplace}">
                                     <tr>
-                                        <td>1</td>
-                                        <td>New York</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-success">Active</label></td>
+                                        <th>${foods.name}</th>
+                                        <td>${foods.foodCategorysByFoodCategoryId.name}</td>
+                                        <td>${foods.usersByUserId.name}</td>
                                         <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
+                                            <a href="/admin/quan-ly-dia-diem/${foods.id}">
+                                                <button class="btn btn-outline-primary">Edit</button>
+                                            </a>
+                                            <a href="/admin/quan-ly-dia-diem/xoa/${foods.id}">
+                                                <button class="btn btn-outline-danger">Delete</button>
+                                            </a>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>New York</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-success">Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>New York</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-danger">Un-Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>New York</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-success">Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>New York</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-success">Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>New York</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-danger">Un-Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>

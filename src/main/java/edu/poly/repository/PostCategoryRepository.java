@@ -13,7 +13,6 @@ public interface PostCategoryRepository extends CrudRepository<PostCategorys, In
 
     public PostCategorys getById(Integer id);
 
-    @Query("from PostCategorys where Is_deleted = :isDeleted")
-    public List<PostCategorys> getAllByDeleted(@Param("isDeleted") boolean isDeleted);
+    public List<PostCategorys> findAllByDeleted(Boolean isDeleted);
 
 }

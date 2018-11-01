@@ -2,6 +2,7 @@ package edu.poly.service;
 
 import edu.poly.entity.Posts;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface PostService {
@@ -23,5 +24,9 @@ public interface PostService {
     public void delete(Iterable<Posts> posts);
 
     public void deleteById(Integer id);
+
+    public List<Posts> findAllByDeleted(boolean deleted);
+
+    public Posts getById(Integer id);
 
 }

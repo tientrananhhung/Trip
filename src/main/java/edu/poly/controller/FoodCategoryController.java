@@ -26,7 +26,7 @@ public class FoodCategoryController {
     @GetMapping(Constants.Url.LIST_FOODCATEGORY)
     public ModelAndView listFoodCategory(HttpSession session){
         ModelAndView mav = new ModelAndView();
-        mav.addObject("listFoodcategory", foodCategory.getAllByDelete(false));
+        mav.addObject("listFoodcategory", foodCategory.findAllByDeleted(false));
         mav.setViewName(FOODCATEGORY_SCREEN);
         return mav;
     }
@@ -50,7 +50,7 @@ public class FoodCategoryController {
             foodCategorys.setCreatedAt(TimeUtils.getCurrentTime());
             foodCategorys.setUpdatedAt(TimeUtils.getCurrentTime());
             foodCategory.save(foodCategorys);
-            mav.addObject("listFoodcategory", foodCategory.getAllByDelete(false));
+            mav.addObject("listFoodcategory", foodCategory.findAllByDeleted(false));
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_FOODCATEGORY);
         }catch (Exception ex){
             ex.printStackTrace();
@@ -79,7 +79,7 @@ public class FoodCategoryController {
             foodCategorys.setCreatedAt(fc.getCreatedAt());
             foodCategorys.setUpdatedAt(TimeUtils.getCurrentTime());
             foodCategory.update(foodCategorys);
-            mav.addObject("listFoodcategory", foodCategory.getAllByDelete(false));
+            mav.addObject("listFoodcategory", foodCategory.findAllByDeleted(false));
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_FOODCATEGORY);
         }catch (Exception ex){
             ex.printStackTrace();

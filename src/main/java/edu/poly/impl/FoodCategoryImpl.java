@@ -67,8 +67,10 @@ public class FoodCategoryImpl implements FoodCategoryService {
     }
 
     @Override
-    public List<FoodCategorys> getAllByDelete(boolean isDeleted) {
-        return repository.getAllByDeleted(isDeleted);
+    public List<FoodCategorys> findAllByDeleted(Boolean deleted) {
+        return repository.findAllByDeleted(deleted);
     }
+
+
 
 }

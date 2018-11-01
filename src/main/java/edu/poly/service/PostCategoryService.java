@@ -27,6 +27,6 @@ public interface PostCategoryService {
 
     public PostCategorys getById(Integer id);
 
-    public List<PostCategorys> getAllByDelete(boolean isDeleted);
+    public List<PostCategorys> findAllByDeleted(Boolean isDeleted);
 
 }
