@@ -27,4 +27,6 @@ public interface OfferService {
 
     public Offers getById(Integer id);
 
+    public List<Offers> findAllByUsed(Boolean used);
+
 }

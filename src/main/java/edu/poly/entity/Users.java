@@ -1,5 +1,8 @@
 package edu.poly.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -218,7 +221,8 @@ public class Users {
         this.foodsById = foodsById;
     }
 
-    @OneToMany(mappedBy = "usersByUserId")
+    @OneToMany(mappedBy = "usersByUserId",  fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
     public Collection<Offers> getOffersById() {
         return offersById;
     }

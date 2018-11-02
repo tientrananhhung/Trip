@@ -13,4 +13,6 @@ public interface OfferRepository extends CrudRepository<Offers, Integer> {
 
     public Offers getById(Integer id);
 
+    public List<Offers> findAllByUsed(Boolean used);
+
 }

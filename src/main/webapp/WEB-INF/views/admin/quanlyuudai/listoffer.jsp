@@ -69,7 +69,7 @@
                                             <td>${offer.deal}</td>
                                             <td>
                                                 <c:choose>
-                                                    <c:when test="${offer.isused == true}">
+                                                    <c:when test="${offer.used == false}">
                                                         <a href="/admin/quan-ly-uu-dai/active/${offer.id}/false"><label
                                                                 class="badge badge-success">Availble</label></a>
                                                     </c:when>

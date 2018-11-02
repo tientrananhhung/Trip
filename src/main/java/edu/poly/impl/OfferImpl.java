@@ -66,4 +66,10 @@ public class OfferImpl implements OfferService {
         return repository.getById(id);
     }
 
+    @Override
+    public List<Offers> findAllByUsed(Boolean used) {
+        return repository.findAllByUsed(used);
+    }
+
+
 }
