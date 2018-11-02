@@ -124,7 +124,7 @@ public class Constants {
         public static final String DELETE_OFFER = "/quan-ly-uu-dai/xoa/{id}";
 
         //Active ưu đãi
-        public static final String ACTIVE_OFFER = "/quan-ly-uu-dai/active/{id}/{active}";
+        public static final String ACTIVE_OFFER = "/quan-ly-uu-dai/active/{id}/{isused}";
 
         //Trang danh sách tour
         public static final String LIST_TOUR = "/quan-ly-tour";

@@ -42,7 +42,7 @@
                             </div>
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
-                                <a href="addUudai.html"><button style="margin-left: 190px;" type="button" class="btn btn-warning btn-rounded btn-fw">Add Offer</button></a>
+                                <a href="/admin/quan-ly-uu-dai/them"><button style="margin-left: 190px;" type="button" class="btn btn-warning btn-rounded btn-fw">Add Offer</button></a>
                             </div>
                         </div>
                         <hr/>
@@ -60,72 +60,31 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>New York</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-success">Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>New York</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-success">Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>New York</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-danger">Un-Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>New York</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-success">Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>New York</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-success">Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1</td>s
-                                        <td>New York</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-danger">Un-Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
+                                    <c:forEach var="offer" items="${listOffer}">
+                                        <tr>
+                                            <td>${offer.id}</td>
+                                            <td>${offer.usersByUserId.name}</td>
+                                            <td>${offer.code}</td>
+                                            <td>${offer.deal}</td>
+                                            <td>
+                                                <c:choose>
+                                                    <c:when test="${offer.isused == true}">
+                                                        <a href="/admin/quan-ly-uu-dai/active/${offer.id}/false"><label
+                                                                class="badge badge-success">Availble</label></a>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <a href="/admin/quan-ly-uu-dai/active/${offer.id}/true">
+                                                            <label class="badge badge-danger">Isused</label></a>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </td>
+                                            <td>
+                                                <a href="/admin/quan-ly-uu-dai/${offer.id}">
+                                                    <button class="btn btn-outline-primary">Edit</button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>

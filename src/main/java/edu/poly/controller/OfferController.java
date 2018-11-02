@@ -1,6 +1,7 @@
 package edu.poly.controller;
 
 import edu.poly.common.Constants;
+import edu.poly.common.StringUtils;
 import edu.poly.common.TimeUtils;
 import edu.poly.impl.OfferImpl;
 import edu.poly.entity.Offers;
@@ -18,10 +19,12 @@ public class OfferController {
 
     @Autowired
     OfferImpl offer;
+
+    @Autowired
     UserImpl user;
 
-    public static final String OFFER_SCREEN = "/admin/quanlyuudai/listOffer";
-    public static final String ADD_OFFER_SCREEN = "/admin/quanlyuudai/addOffer";
+    public static final String OFFER_SCREEN = "/admin/quanlyuudai/listoffer";
+    public static final String ADD_OFFER_SCREEN = "/admin/quanlyuudai/addoffer";
 
 //    Return ListOffer
     @GetMapping(Constants.Url.LIST_OFFER)
@@ -36,9 +39,11 @@ public class OfferController {
     @GetMapping(Constants.Url.ADD_OFFER)
     public ModelAndView addOffer(HttpSession session){
         ModelAndView mav = new ModelAndView();
+        Offers offers = new Offers();
+        offers.setCode(StringUtils.getRandomString());
         mav.setViewName(ADD_OFFER_SCREEN);
-        mav.addObject("offer", new Offers());
-        mav.addObject("user_list", user.findAllByRole(Constants.Role.USER));
+        mav.addObject("offer", offers);
+        mav.addObject("user_list", user.findAllByRoleAndActiveAndDeleted(Constants.Role.USER, true, false));
         mav.addObject("action", "them");
         return mav;
     }
@@ -67,7 +72,7 @@ public class OfferController {
         mav.setViewName(ADD_OFFER_SCREEN);
         Offers offers = offer.getById(id);
         mav.addObject("offer", offers);
-        mav.addObject("user_list", user.findAllByRole(Constants.Role.USER));
+        mav.addObject("user_list", user.findAllByRoleAndActiveAndDeleted(Constants.Role.USER, true, false));
         mav.addObject("action", id);
         return mav;
     }
@@ -91,10 +96,10 @@ public class OfferController {
 
 //    Active Offer
     @GetMapping(Constants.Url.ACTIVE_OFFER)
-    public ModelAndView activeOffer(HttpSession session,@PathVariable("id") int id, @PathVariable("action") boolean active){
+    public ModelAndView activeOffer(HttpSession session,@PathVariable("id") int id, @PathVariable("isused") boolean isused){
         ModelAndView mav = new ModelAndView();
         Offers offers = offer.getById(id);
-        offers.setUsed(active);
+        offers.setUsed(isused);
         try{
             offer.update(offers);
         }catch (Exception ex){
@@ -104,17 +109,4 @@ public class OfferController {
         return mav;
     }
 
-//    Delete Offer
-    @GetMapping(Constants.Url.DELETE_OFFER)
-    public ModelAndView deleteOffer(HttpSession session, @PathVariable("id") Integer id){
-        ModelAndView mav = new ModelAndView();
-        try {
-            Offers offers = offer.getById(id);
-            offer.delete(offers);
-            mav.setViewName("redirect:/admin" + Constants.Url.LIST_OFFER);
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-        return mav;
-    }
 }
