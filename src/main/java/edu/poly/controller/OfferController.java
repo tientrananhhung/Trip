@@ -54,6 +54,7 @@ public class OfferController {
         try{
             offers.setUsed(false);
             offers.setCreatedAt(TimeUtils.getCurrentTime());
+            offers.setUpdatedAt(TimeUtils.getCurrentTime());
             offer.save(offers);
             user.updateRoleUser(3, offers.getUserId());
             mav.addObject("listOffer", offer.findAll());
@@ -69,11 +70,15 @@ public class OfferController {
     @GetMapping(Constants.Url.UPDATE_OFFER)
     public ModelAndView editOffer(HttpSession session, @PathVariable("id") Integer id){
         ModelAndView mav = new ModelAndView();
-        mav.setViewName(ADD_OFFER_SCREEN);
         Offers offers = offer.getById(id);
-        mav.addObject("offer", offers);
-        mav.addObject("user_list", user.findAllByRoleAndActiveAndDeleted(Constants.Role.USER, true, false));
-        mav.addObject("action", "sua");
+        if (offers.getUsed()==false){
+            mav.setViewName(ADD_OFFER_SCREEN);
+            mav.addObject("offer", offers);
+            mav.addObject("user_list", user.findAllByRoleAndActiveAndDeleted(Constants.Role.USER, true, false));
+            mav.addObject("action", "sua");
+        }else {
+            mav.setViewName("redirect:/admin" + Constants.Url.LIST_OFFER);
+        }
         return mav;
     }
 
@@ -85,7 +90,13 @@ public class OfferController {
             offers.setUsed(of.getUsed());
             offers.setCreatedAt(of.getCreatedAt());
             offers.setUpdatedAt(TimeUtils.getCurrentTime());
-            offer.update(offers);
+            offers.setUserId(of.getUserId());
+            offers.setCode(of.getCode());
+//            try{
+                offer.update(offers);
+//            }catch (Exception ex){
+//                ex.printStackTrace();
+//            }
             mav.addObject("listOffer", offer.findAll());
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_OFFER);
         }catch (Exception ex){
@@ -101,6 +112,7 @@ public class OfferController {
         ModelAndView mav = new ModelAndView();
         Offers offers = offer.getById(id);
         offers.setUsed(isused);
+        offers.setUpdatedAt(TimeUtils.getCurrentTime());
         try{
             offer.update(offers);
         }catch (Exception ex){
