@@ -19,30 +19,43 @@
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" />">
     <!-- endinject -->
     <!-- plugin css for this page -->
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-tags-input/dist/jquery.tagsinput.min.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/fontawesome-stars.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-1to10.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-horizontal.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-movie.css" />">
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/jquery-tags-input/dist/jquery.tagsinput.min.css" />">
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/fontawesome-stars.css" />">
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-1to10.css" />">
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-horizontal.css" />">
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-movie.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-pill.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-reversed.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-square.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bootstrap-stars.css" />">
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-reversed.css" />">
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-square.css" />">
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bootstrap-stars.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/css-stars.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/fontawesome-stars-o.css" />">
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/fontawesome-stars-o.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/examples/css/examples.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/font-awesome/css/font-awesome.min.css" />" />
+    <link rel="stylesheet" href="<c:url value="/resources/node_modules/font-awesome/css/font-awesome.min.css" />"/>
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/dropify/dist/css/dropify.min.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-file-upload/css/uploadfile.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css" />" />
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-asColorPicker/dist/css/asColorPicker.min.css" />" />
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />" />
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css" />">
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css" />"/>
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/jquery-asColorPicker/dist/css/asColorPicker.min.css" />"/>
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />"/>
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css" />">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css" />">
     <!-- endinject -->
-    <link rel="shortcut icon" href="<c:url value="/resources/images/favicon.png" />" />
+    <link rel="shortcut icon" href="<c:url value="/resources/images/favicon.png" />"/>
 </head>
 <body>
 <div class="container-scroller">
@@ -66,19 +79,15 @@
                                     <div class="form-group">
                                         <f:hidden path="id"/>
                                     </div>
-                                    <div class="form-group">
-                                        <label>User</label>
                                         <div class="form-group">
-                                            <f:select cssClass="form-control border-primary" path="userId">
+                                            <label>User</label>
+                                            <f:select disabled="${action == 'sua' ? 'true':''}" cssClass="form-control border-primary" path="userId">
                                                 <c:forEach var="us" items="${user_list}">
-                                                    <f:option value="${us.id}" label="Name: ${us.name} | Phone: ${us.phone} | Email: ${us.email}"/>
+                                                    <f:option value="${us.id}"
+                                                              label="Name: ${us.name} | Phone: ${us.phone} | Email: ${us.email}"/>
                                                 </c:forEach>
                                             </f:select>
-                                            <%--<f:select cssClass="form-control border-primary" path="users.id">--%>
-                                                <%--<f:options itemValue="${user_list.id}" itemLabel="${user_list.name}"/>--%>
-                                            <%--</f:select>--%>
                                         </div>
-                                    </div>
                                     <div class="form-group">
                                         <label>Name</label>
                                         <f:input path="name" type="text" cssClass="form-control" placeholder="Name"/>

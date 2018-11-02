@@ -42,7 +42,7 @@
                             </div>
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
-                                <a href="addDiadiem.html"><button style="margin-left: 190px;" type="button" class="btn btn-warning btn-rounded btn-fw">Add Foodplace</button></a>
+                                <a href="/admin/quan-ly-dia-diem/them"><button style="margin-left: 190px;" type="button" class="btn btn-warning btn-rounded btn-fw">Add Foodplace</button></a>
                             </div>
                         </div>
                         <div class="row">

@@ -106,7 +106,7 @@ public class Constants {
         public static final String UPDATED_PARNER = "/quan-ly-doi-tac/sua";
 
         //Xóa đối tác
-        public static final String DELETE_PARNER = "/quan-ly-doi-tac/xoa/${id}";
+        public static final String DELETE_PARNER = "/quan-ly-doi-tac/xoa/{id}";
 
         //Active đối tác
         public static final String ACTIVE_PARNER = "/quan-ly-doi-tac/active/{id}/{active}";
