@@ -12,7 +12,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Xollo Admin</title>
+    <title>SmartTrip - Offer Manager</title>
+    <link rel="icon" href="<c:url value="/resources/images/favicon.ico"/>"/>
     <!-- plugins:css -->
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/mdi/css/materialdesignicons.min.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/flag-icon-css/css/flag-icon.min.css" />">
@@ -68,7 +69,7 @@
                                     <div class="form-group">
                                         <label>User</label>
                                         <div class="form-group">
-                                        <f:select cssClass="form-control border-primary" path="userId">
+                                        <f:select disabled="${action == 'sua' ? 'true':''}" cssClass="form-control border-primary" path="userId">
                                             <c:forEach var="us" items="${user_list}">
                                                 <f:option value="${us.id}"
                                                           label="Name: ${us.name} | Phone: ${us.phone} | Email: ${us.email}"/>
@@ -78,7 +79,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputName1">Offer Code</label>
-                                        <f:input path="code" type="text" cssClass="form-control" id="exampleInputName1"/>
+                                        <f:input path="code" disabled="${action == 'sua' ? 'true':''}" type="text" cssClass="form-control" id="exampleInputName1"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputName1">Offer Deal</label>

@@ -73,17 +73,18 @@ public class OfferController {
         Offers offers = offer.getById(id);
         mav.addObject("offer", offers);
         mav.addObject("user_list", user.findAllByRoleAndActiveAndDeleted(Constants.Role.USER, true, false));
-        mav.addObject("action", id);
+        mav.addObject("action", "sua");
         return mav;
     }
 
-    @PostMapping(Constants.Url.UPDATE_OFFER)
+    @PostMapping(Constants.Url.UPDATED_OFFER)
     public ModelAndView updateOffer(HttpSession session, @ModelAttribute("offer") Offers offers){
         ModelAndView mav = new ModelAndView();
         Offers of = offer.getById(offers.getId());
         try{
             offers.setUsed(of.getUsed());
             offers.setCreatedAt(of.getCreatedAt());
+            offers.setUpdatedAt(TimeUtils.getCurrentTime());
             offer.update(offers);
             mav.addObject("listOffer", offer.findAll());
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_OFFER);

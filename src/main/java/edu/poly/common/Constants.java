@@ -120,6 +120,9 @@ public class Constants {
         //Trang sửa ưu đãi
         public static final String UPDATE_OFFER = "/quan-ly-uu-dai/{id}";
 
+        //Trang sửa ưu đãi
+        public static final String UPDATED_OFFER = "/quan-ly-uu-dai/sua";
+
         //Trang xóa ưu đãi
         public static final String DELETE_OFFER = "/quan-ly-uu-dai/xoa/{id}";
 

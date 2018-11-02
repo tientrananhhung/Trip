@@ -12,7 +12,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Xollo Admin</title>
+    <title>SmartTrip - Partner Manager</title>
+    <link rel="icon" href="<c:url value="/resources/images/favicon.ico"/>"/>
     <!-- plugins:css -->
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/mdi/css/materialdesignicons.min.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/flag-icon-css/css/flag-icon.min.css" />">
@@ -107,7 +108,7 @@
                                                  placeholder="Address"/>
                                     </div>
                                     <button type="submit" class="btn btn-success mr-2">Submit</button>
-                                    <a href="listNguoiDung.html">
+                                    <a href="/admin/quan-ly-doi-tac">
                                         <button class="btn btn-light">Cancel</button>
                                     </a>
                                 </f:form>
