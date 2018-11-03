@@ -1,25 +1,25 @@
 package edu.poly.controller;
 
+import edu.poly.common.Constants;
 import edu.poly.entity.Posts;
-import edu.poly.entity.Users;
 import edu.poly.impl.PostImpl;
 import edu.poly.impl.UserImpl;
-import edu.poly.model.PostsDTO;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping(Constants.Url.API_URL)
 public class UserController {
 
     @Autowired
@@ -38,4 +38,18 @@ public class UserController {
             return new ResponseEntity<List<Posts>>(HttpStatus.BAD_REQUEST);
         }
     }
+
+    @GetMapping(path = Constants.Url.PAGING_POST_URL, produces = {MimeTypeUtils.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<Posts>> getPostAPI(@PathVariable("page") int page){
+        try {
+            Pageable pageable = new PageRequest(page, 5);
+            Page<Posts> paging = post.findAll(pageable);
+            List<Posts> list = paging.getContent();
+            ResponseEntity<List<Posts>> responseEntity = new ResponseEntity<List<Posts>>(list, HttpStatus.OK);
+            return responseEntity;
+        } catch(Exception e){
+            return new ResponseEntity<List<Posts>>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }

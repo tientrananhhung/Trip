@@ -174,14 +174,66 @@ public class Constants {
         //Trang sua tour
         public static final String UPDATED_FOOD_PLACE = "/quan-ly-dia-diem/sua";
 
+        //Trang tour detail của user
+        public static final String TOUR_DETAIL_URL = "/tour/{id}";
+
         //Trang Blog của user
         public static final String BLOG_URL = "/blog";
 
         //Trang Category blog của user
         public static final String CATEGORY_BLOG_URL = "/{id}/blog";
 
+        //Trang blog detail của user
+        public static final String BLOG_DETAIL_URL = "/blog/{id}";
+
+        //Trang Food của user
+        public static final String FOOD_URL = "food";
+
+        //Trang category food của user
+        public static final String CATEGORY_FOOD_URL = "/{id}/food";
+
+        //Trang food detail của user
+        public static final String FOOD_DETAIL_URL = "/food/{id}";
+
+        //Trang đăng ký đối tác
+        public static final String REG_PARTNET_URL = "/dang-ky-doi-tac";
+
+        //Trang quản lý của đối tác
+        public static final String PARTNER_URL = "/quan-ly/doi-tac-{id}";
+
+        //Trang quản lý bài viết của đối tác
+        public static final String BLOG_PARTNER_URL = "/quan-ly/bai-viet";
+
+        //Trang thêm blog của đối tác
+        public static final String POST_BLOG_PARTNER_URL = "/quan-ly/dang-bai";
+
+        //Trang quản lý của người dùng
+        public static final String USER_URL = "/quan-ly/nguoi-dung-{id}";
+
+        //Trang API
+        public static final String API_URL = "/api";
+
+        //Trang API phân trang post
+        public static final String PAGING_POST_URL = "/get-post/{page}";
+
+        //Trang API phân trang category post
+        public static final String PAGING_CATEGORY_POST_URL = "/{id}/get-post/{page}";
+
+        //Trang API phân trang food
+        public static final String PAGING_FOOD_URL = "/get-food/{page}";
+
+        //Trang API phân trang category food
+        public static final String PAGING_CATEGORY_FOOD_URL = "/{id}/get-food/{page}";
+
         //Trang Error 404
-        public static final String ERROR404 = "/error";
+        public static final String ERROR404 = "/error404";
+
+        //Trang Error 400
+        public static final String ERROR400 = "/error400";
+
+        //Trang Error 500
+        public static final String ERROR500 = "/error500";
+
     }
 
     public class Characters {
@@ -223,7 +275,7 @@ public class Constants {
     public class UserActiveStatus {
 
         //người dùng chưa kích hoạt
-        public static final int NOT_ACTIVE = 0;
+        public static final int INACTIVE = 0;
 
         //người dùng đã kích hoạt
         public static final int ACTIVATED = 1;
@@ -260,6 +312,7 @@ public class Constants {
 
         //key để get/set user cho session
         public static final String USER = "user";
+
     }
 
 }
