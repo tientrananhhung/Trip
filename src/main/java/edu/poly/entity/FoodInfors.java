@@ -129,7 +129,7 @@ public class FoodInfors {
         return Objects.hash(id, placeInforId, name, price, images, detail, isDeletedAt, createdAt, updatedAt);
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "place_infor_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public PlaceInfors getPlaceInforsByPlaceInforId() {
         return placeInforsByPlaceInforId;

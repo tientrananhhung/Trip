@@ -130,7 +130,7 @@ public class Orders {
         return Objects.hash(id, serviceId, userId, data, payment, isDeleted, isPurchased, createdAt, updatedAt);
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "service_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public Services getServicesByServiceId() {
         return servicesByServiceId;
@@ -140,7 +140,7 @@ public class Orders {
         this.servicesByServiceId = servicesByServiceId;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public Users getUsersByUserId() {
         return usersByUserId;

@@ -118,7 +118,7 @@ public class Rates {
         return Objects.hash(id, tourId, userId, comment, star, isDeleted, createdAt, updatedAt);
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tour_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public Tours getToursByTourId() {
         return toursByTourId;
@@ -128,7 +128,7 @@ public class Rates {
         this.toursByTourId = toursByTourId;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public Users getUsersByUserId() {
         return usersByUserId;

@@ -6,10 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Trang Chủ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ - Smart Trip</title>
     <!-- Icon -->
     <link rel="icon" href="/resources/images/favicon.ico">
     <!-- Bootstrap css -->
@@ -25,39 +27,8 @@
     <link rel="stylesheet" href="/resources/css/custom.css">
 </head>
 <body>
-<!-- Start Navbar Menu -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 0px;">
-    <div class="container">
-        <a class="navbar-brand" href="#">
-            <img src="/resources/images/logo.png" alt="" style="height: 65px;">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-                <a href="/" class="nav-item menu-item">
-                    <li class="nav-link">Trang Chủ</li>
-                </a>
-                <a href="blog.html" class="nav-item menu-item">
-                    <li class="nav-link">Blog Du Lịch</li>
-                </a>
-                <a href="#" class="nav-item menu-item">
-                    <li class="nav-link">Trở thành đối tác</li>
-                </a>
-                <a href="/dang-nhap/" class="nav-item menu-item">
-                    <li class="nav-link">Đăng nhập</li>
-                </a>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm..." aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0 btn-custom-org" type="submit">Tìm kiếm</button>
-            </form>
-        </div>
-    </div>
-</nav>
-<!-- End Navbar Menu -->
+
+<jsp:include page="includes/navbar.jsp"/>
 
 <!-- Start Carousel Slide -->
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -92,10 +63,10 @@
 <!-- End Carousel Slide -->
 
 <!-- Start Content website -->
-<div class="container">
+<div class="container-fluid">
 
     <!-- Start Điểm đến nổi bật -->
-    <section class="box-content mg-top-30">
+    <section class="box-content-fluid box-content mg-top-30">
         <div class="box-title mg-bottom-30">
             <h2>điểm đến nổi bật</h2>
             <a href="#">Xem thêm »</a>
@@ -145,7 +116,7 @@
     <!-- End Điểm đến nổi bật -->
 
     <!-- Start Điểm đến tự chọn -->
-    <section class="box-content mg-top-30">
+    <section class="box-content-fluid box-content mg-top-30">
         <div class="box-title mg-bottom-30">
             <h2>điểm đến tự chọn</h2>
             <a href="#">Xem thêm »</a>
@@ -668,7 +639,7 @@
     <!-- End Điểm đến tự chọn -->
 
     <!-- Start Bài viết mới nhất -->
-    <section class="box-content mg-top-30">
+    <section class="box-content-fluid box-content mg-top-30">
         <div class="box-title mg-bottom-30">
             <h2>bài viết mới nhất</h2>
             <a href="#">Xem thêm »</a>
@@ -734,7 +705,7 @@
     <!-- End Bài viết mới nhất -->
 
     <!-- Start Điểm ăn uống -->
-    <section class="box-content mg-top-30">
+    <section class="box-content-fluid box-content mg-top-30">
         <div class="box-title mg-bottom-30">
             <h2>điểm ăn uống tự chọn</h2>
             <a href="#">Xem thêm »</a>
@@ -1050,129 +1021,9 @@
 </div>
 <!-- End Content website -->
 
-<!-- Start Dịch vụ -->
-<div class="container-service mg-top-30">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-4 mg-bottom-40">
-                <div class="service-box mg-top-30">
-                    <div class="service-number">1</div>
-                    <div class="service-content">
-                        <div class="service-title">Combo du lịch</div>
-                        <div class="service-description">Đầy đủ dịch vụ bạn cần cho một chuyến đi</div>
-                        <div class="service-more">Vé máy bay, Khách sạn, Tour</div>
-                    </div>
-                </div>
-                <div class="service-box mg-top-30">
-                    <div class="service-number">4</div>
-                    <div class="service-content">
-                        <div class="service-title">đặt vé máy bay trực tuyến</div>
-                        <div class="service-description">Ứng dụng công nghệ đặt vé mới nhất</div>
-                        <div class="service-more">Đặt vé nhanh chóng</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 mg-bottom-40">
-                <div class="service-box mg-top-30">
-                    <div class="service-number">2</div>
-                    <div class="service-content">
-                        <div class="service-title">tour</div>
-                        <div class="service-description">Tour trong ngày, tour ngắn ngày</div>
-                        <div class="service-more">Các tour tại hơn 20 thành phố</div>
-                    </div>
-                </div>
-                <div class="service-box mg-top-30">
-                    <div class="service-number">5</div>
-                    <div class="service-content">
-                        <div class="service-title">ứng dụng du lịch</div>
-                        <div class="service-description">Ứng dụng du lịch đầu tiên tại Việt Nam</div>
-                        <div class="service-more">Tiện lợi, dễ sử dụng và đầy đủ</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 mg-bottom-40">
-                <div class="service-box mg-top-30">
-                    <div class="service-number">3</div>
-                    <div class="service-content">
-                        <div class="service-title">vé tham quan</div>
-                        <div class="service-description">Đại lý uy tín của các đối tác vé tham quan</div>
-                        <div class="service-more">Giá rẻ hơn so với mua trực tiếp</div>
-                    </div>
-                </div>
-                <div class="service-box mg-top-30">
-                    <div class="service-number">5</div>
-                    <div class="service-content">
-                        <div class="service-title">khám phá điểm đến</div>
-                        <div class="service-description">Cung cấp tất cả thông tin tại điểm đến</div>
-                        <div class="service-more">Thông tin được chọn lọc kỹ</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Dịch vụ -->
+<jsp:include page="includes/services.jsp"/>
 
-<!-- Start Footer -->
-<footer id="footer">
-
-    <div class="footer-wrap">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6 footer-contact">
-                    <h2>Liên hệ</h2>
-                    <p>
-                        11 Trần Phú, Quận Hải Châu, TP.Đà Nẵng
-                        <br>
-                        Điện thoại: 1900.633.935
-                        <br>
-                        Email: lienhe@donkeyfun.com
-                        <br>
-                        Hotline: 1900.633.935(08h-23h)
-                    </p>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 footer-about-us">
-                    <h2>Về chúng tôi</h2>
-                    <p>
-                        <a href="#">Về Smart Trip</a>
-                        <br>
-                        <a href="#">Tuyển dụng</a>
-                        <br>
-                        <a href="#">Smart Trip Blog</a>
-                        <br>
-                        <a href="#">Trở thành đối tác</a>
-                    </p>
-                </div>
-                <div class="col-lg-3 col-md-12 col-sm-12">
-                    <h2>Gmap</h2>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3833.802545904285!2d108.16776031472412!3d16.07573298887693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314218e6e0975b07%3A0xcaff29dfb73f0ac!2zVHLGsOG7nW5nIMSR4bqhaSBo4buNYyBGUFQgxJDDoCBO4bq1bmc!5e0!3m2!1svi!2s!4v1540137316884"
-                            width="100%" height="182" frameborder="0" style="border:0" allowfullscreen></iframe>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <h2>Fanpage</h2>
-                    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FH%25E1%25BB%2599i-nh%25E1%25BB%25AFng-ng%25C6%25B0%25E1%25BB%259Di-y%25C3%25AAu-th%25C3%25ADch-Winphoneviet-1101266416662142%2F&tabs&width=255&height=182&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
-                            width="255" height="182" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
-                            allowTransparency="true" allow="encrypted-media"></iframe>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Start Bottom Bar -->
-    <div class="bottom-bar">
-        <div class="max-width">
-            <div class="ant-row">
-                <div class="ant-col-xs-24 ant-col-sm-24 ant-col-md-24 t14">
-                    COPYRIGHT © 2018 Smart Trip All rights reserved
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Bottom Bar -->
-
-</footer>
-<!-- End Footer -->
+<jsp:include page="includes/footer.jsp"/>
 
 <!-- Start Import Script -->
 <script type="text/javascript" src="/resources/js/jquery/jquery-3.3.1.min.js"></script>
@@ -1235,6 +1086,6 @@
 </script>
 <!--  -->
 
-<!-- End All Script -->
+<!-- Start All Script -->
 </body>
 </html>

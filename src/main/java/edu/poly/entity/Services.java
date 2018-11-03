@@ -1,5 +1,8 @@
 package edu.poly.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -188,7 +191,8 @@ public class Services {
         this.toursByTourId = toursByTourId;
     }
 
-    @OneToMany(mappedBy = "servicesByServiceId")
+    @OneToMany(mappedBy = "servicesByServiceId", fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     public Collection<Tickets> getTicketsById() {
         return ticketsById;
     }

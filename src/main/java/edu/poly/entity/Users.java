@@ -1,5 +1,6 @@
 package edu.poly.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -212,7 +213,9 @@ public class Users {
         return Objects.hash(id, name, username, password, phone, email, address, birthday, gender, avatar, role, isActive, isDeleted, createdAt, updatedAt);
     }
 
-    @OneToMany(mappedBy = "usersByUserId")
+    @OneToMany(mappedBy = "usersByUserId",  fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
+//    @JsonIgnoreProperties({"foodsById"})
     public Collection<Foods> getFoodsById() {
         return foodsById;
     }
@@ -231,7 +234,8 @@ public class Users {
         this.offersById = offersById;
     }
 
-    @OneToMany(mappedBy = "usersByUserId")
+    @OneToMany(mappedBy = "usersByUserId",  fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
     public Collection<Orders> getOrdersById() {
         return ordersById;
     }
@@ -240,7 +244,8 @@ public class Users {
         this.ordersById = ordersById;
     }
 
-    @OneToMany(mappedBy = "usersByUserId", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "usersByUserId",  fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
     public Collection<Partners> getPartnersById() {
         return partnersById;
     }
@@ -249,7 +254,8 @@ public class Users {
         this.partnersById = partnersById;
     }
 
-    @OneToMany(mappedBy = "usersByUserId")
+    @OneToMany(mappedBy = "usersByUserId",  fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
     public Collection<Posts> getPostsById() {
         return postsById;
     }
@@ -258,7 +264,8 @@ public class Users {
         this.postsById = postsById;
     }
 
-    @OneToMany(mappedBy = "usersByUserId")
+    @OneToMany(mappedBy = "usersByUserId",  fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
     public Collection<Rates> getRatesById() {
         return ratesById;
     }
@@ -267,7 +274,8 @@ public class Users {
         this.ratesById = ratesById;
     }
 
-    @OneToMany(mappedBy = "usersByUserId")
+    @OneToMany(mappedBy = "usersByUserId",  fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
     public Collection<Tours> getToursById() {
         return toursById;
     }

@@ -1,5 +1,9 @@
 package edu.poly.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -82,7 +86,8 @@ public class FoodCategorys {
         return Objects.hash(id, name, isDeleted, createdAt, updatedAt);
     }
 
-    @OneToMany(mappedBy = "foodCategorysByFoodCategoryId")
+    @OneToMany(mappedBy = "foodCategorysByFoodCategoryId", fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     public Collection<Foods> getFoodsById() {
         return foodsById;
     }

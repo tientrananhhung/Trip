@@ -1,5 +1,7 @@
 package edu.poly.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -11,6 +13,7 @@ public class Posts {
     private int postCategoryId;
     private int userId;
     private String title;
+    private String image;
     private String description;
     private String content;
     private Integer view;
@@ -58,6 +61,16 @@ public class Posts {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @Basic
+    @Column(name = "Image", nullable = true, length = 50)
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Basic
@@ -146,13 +159,14 @@ public class Posts {
     public PostCategorys getPostCategorysByPostCategoryId() {
         return postCategorysByPostCategoryId;
     }
-
+    @JsonIgnoreProperties({"postsById"})
     public void setPostCategorysByPostCategoryId(PostCategorys postCategorysByPostCategoryId) {
         this.postCategorysByPostCategoryId = postCategorysByPostCategoryId;
     }
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    @JsonIgnoreProperties({"foodsById", "offersById", "ordersById", "partnersById", "postsById", "ratesById", "toursById"})
     public Users getUsersByUserId() {
         return usersByUserId;
     }

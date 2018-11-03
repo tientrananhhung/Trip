@@ -9,10 +9,10 @@ public class Constants {
         //Đăng xuất
         public static final String LOGOUT = "/dang-xuat";
 
-        // Quên mật khẩu
+        //Quên mật khẩu
         public static final String FORGOT_PASS = "/quen-mat-khau";
 
-        // Đổi mật khẩu
+        //Đổi mật khẩu
         public static final String CHANGE_PASS = "/doi-mat-khau";
 
         //Trang admin
@@ -93,7 +93,7 @@ public class Constants {
         //Trang xóa danh mục địa điểm
         public static final String DELETE_FOODCATEGORY = "/quan-ly-danh-muc-dia-diem/xoa/{id}";
 
-//        Trang danh sách đối tác
+        //Trang danh sách đối tác
         public static final String LIST_PARTNER = "/quan-ly-doi-tac";
 
         //Trang thêm đối tác
@@ -174,6 +174,11 @@ public class Constants {
         //Trang sua tour
         public static final String UPDATED_FOOD_PLACE = "/quan-ly-dia-diem/sua";
 
+        //Trang Blog của user
+        public static final String BLOG_URL = "/blog";
+
+        //Trang Category blog của user
+        public static final String CATEGORY_BLOG_URL = "/{id}/blog";
 
         //Trang Error 404
         public static final String ERROR404 = "/error";

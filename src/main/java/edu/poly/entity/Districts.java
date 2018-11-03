@@ -1,5 +1,8 @@
 package edu.poly.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -82,7 +85,8 @@ public class Districts {
         return Objects.hash(id, name, isDeleted, createdAt, updatedAt);
     }
 
-    @OneToMany(mappedBy = "districtsByDistrictId")
+    @OneToMany(mappedBy = "districtsByDistrictId", fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     public Collection<PlaceInfors> getPlaceInforsById() {
         return placeInforsById;
     }

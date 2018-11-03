@@ -1,5 +1,8 @@
 package edu.poly.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -168,7 +171,8 @@ public class Tours {
         return Objects.hash(id, userId, name, address, content, images, policy, lat, lng, isDeleted, createdAt, updatedAt);
     }
 
-    @OneToMany(mappedBy = "toursByTourId")
+    @OneToMany(mappedBy = "toursByTourId", fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     public Collection<Rates> getRatesById() {
         return ratesById;
     }
@@ -177,7 +181,8 @@ public class Tours {
         this.ratesById = ratesById;
     }
 
-    @OneToMany(mappedBy = "toursByTourId")
+    @OneToMany(mappedBy = "toursByTourId", fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     public Collection<Services> getServicesById() {
         return servicesById;
     }

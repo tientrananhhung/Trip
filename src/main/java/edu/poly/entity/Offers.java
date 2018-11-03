@@ -105,7 +105,7 @@ public class Offers {
         return Objects.hash(id, userId, code, deal, isUsed, createdAt, updatedAt);
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public Users getUsersByUserId() {
         return usersByUserId;
