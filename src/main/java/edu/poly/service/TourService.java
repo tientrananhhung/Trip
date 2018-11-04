@@ -7,26 +7,26 @@ import java.util.Optional;
 
 public interface TourService {
 
-    public Iterable<Tours> findAll();
+    Iterable<Tours> findAll();
 
-    public Optional<Tours> findOne(Integer id);
+    Optional<Tours> findOne(Integer id);
 
-    public Tours save(Tours tours);
+    Tours save(Tours tours);
 
-    public Iterable<Tours> save(Iterable<Tours> tours);
+    Iterable<Tours> save(Iterable<Tours> tours);
 
-    public Tours update(Tours tours);
+    Tours update(Tours tours);
 
-    public Iterable<Tours> update(Iterable<Tours> tours);
+    Iterable<Tours> update(Iterable<Tours> tours);
 
-    public void delete(Tours tours);
+    void delete(Tours tours);
 
-    public void delete(Iterable<Tours> tours);
+    void delete(Iterable<Tours> tours);
 
-    public void deleteById(Integer id);
+    void deleteById(Integer id);
 
-    public List<Tours> findAllByDeleted(Boolean isDeleted);
+    List<Tours> findAllByDeleted(Boolean isDeleted);
 
-    public Tours getById(Integer id);
+    Tours getById(Integer id);
 
 }

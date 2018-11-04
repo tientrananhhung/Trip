@@ -1,55 +1,78 @@
 package edu.poly.controller;
 
 import edu.poly.common.Constants;
-import edu.poly.entity.Posts;
-import edu.poly.impl.PostImpl;
-import edu.poly.impl.UserImpl;
+import edu.poly.dao.FoodDAO;
+import edu.poly.dao.TourDAO;
+import edu.poly.impl.TourImpl;
+import edu.poly.model.FoodDTO;
+import edu.poly.model.TourDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.util.MimeTypeUtils;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-@RestController
-@RequestMapping(Constants.Url.API_URL)
+@Controller
+@RequestMapping("/")
 public class UserController {
 
-    @Autowired
-    UserImpl user;
+    //Return blog page
+    public static final String BLOG_SCREEN = "blog";
+
+    //Return index page
+    public static final String HOME_SCREEN = "index";
+
+    //Return category blog page
+    public static final String CATEGORY_BLOG_SCREEN = "category-blog";
+
+    //Return food detail page
+    public static final String FOOD_DETAIL_SCREEN = "food-detail";
+
+    //Return tour detail page
+    public static final String TOUR_DETAIL_SCREEN = "tour-detail";
+
+    //Return login page
+    public static final String LOGIN_SCREEN = "login";
+
+    //Return error 500 page
+    public static final String ERROR500 = "error500";
 
     @Autowired
-    PostImpl post;
+    TourImpl tour;
 
-    @GetMapping(path = "/abcd", produces = {MimeTypeUtils.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<Posts>> abc() {
+    @Autowired
+    TourDAO tourDAO;
+
+    @Autowired
+    FoodDAO foodDAO;
+
+    @GetMapping(Constants.Characters.BLANK)
+    public ModelAndView index() {
+        ModelAndView mav = new ModelAndView(HOME_SCREEN);
         try {
-            List<Posts> list = (List<Posts>) post.findAll();
-            ResponseEntity<List<Posts>> responseEntity = new ResponseEntity<List<Posts>>(list, HttpStatus.OK);
-            return responseEntity;
+            List<TourDTO> lTourDTO = tourDAO.getAllTourDTO();
+            List<FoodDTO> lFoodDTO = foodDAO.getAllFoodDTO();
+            mav.addObject("listTour", lTourDTO);
+            mav.addObject("listFood", lFoodDTO);
         } catch (Exception e) {
-            return new ResponseEntity<List<Posts>>(HttpStatus.BAD_REQUEST);
+            e.printStackTrace();
         }
+        return mav;
     }
 
-    @GetMapping(path = Constants.Url.PAGING_POST_URL, produces = {MimeTypeUtils.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<Posts>> getPostAPI(@PathVariable("page") int page){
-        try {
-            Pageable pageable = new PageRequest(page, 5);
-            Page<Posts> paging = post.findAll(pageable);
-            List<Posts> list = paging.getContent();
-            ResponseEntity<List<Posts>> responseEntity = new ResponseEntity<List<Posts>>(list, HttpStatus.OK);
-            return responseEntity;
-        } catch(Exception e){
-            return new ResponseEntity<List<Posts>>(HttpStatus.BAD_REQUEST);
-        }
+    @GetMapping(Constants.Url.BLOG_URL)
+    public ModelAndView showBlog() {
+        ModelAndView mav = new ModelAndView(BLOG_SCREEN);
+        return mav;
+    }
+
+    @GetMapping(Constants.Url.CATEGORY_BLOG_URL)
+    public ModelAndView showCategoryBlog(@PathVariable("id") int id) {
+        ModelAndView mav = new ModelAndView(CATEGORY_BLOG_SCREEN);
+        return mav;
     }
 
 }

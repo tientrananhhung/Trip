@@ -125,512 +125,63 @@
             <div class="row">
                 <div class="col-lg-12 columns">
                     <div class="owl-carousel owl-theme">
-                        <div class="item" data-toggle="tooltip" data-placement="top"
-                             title="Bà Nà Hills - Đường Lên Tiên Cảnh">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/resources/images/tour1.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Bà Nà Hills - Đường Lên Tiên Cảnh</h5>
-                                        <div class="card-description">
-                                            <div class="card-place">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i> An Sơn - Hòa Ninh -
-                                                Hòa Vang - Đà Nẵng
-                                            </div>
-                                            <div class="card-infor">
-                                                <table class="table">
-                                                    <tr class="tb-infor">
-                                                        <td><i class="fas fa-ticket-alt"></i> 1000 lượt đặt</td>
-                                                        <td>
-                                                            <select class="star-rating" name="rating"
-                                                                    data-current-rating="3">
-                                                                <option value="1">1</option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
-                                                                <option value="4">4</option>
-                                                                <option value="5">5</option>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="tb-price">
-                                                        <td colspan="2" style="text-align: center;">
+
+                        <c:forEach var="lTour" items="${listTour}" varStatus="lTourCount">
+                            <div class="item" data-toggle="tooltip" data-placement="top"
+                                 title="${lTour.name}">
+                                <div class="card">
+                                    <a href="#">
+                                        <img class="card-img-top" src="/resources/images/tour4.jpg"
+                                             alt="Smart Trip - No Image">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${lTour.name}</h5>
+                                            <div class="card-description">
+                                                <div class="card-place">
+                                                    <i class="fa fa-map-marker" aria-hidden="true"></i> ${lTour.address}
+                                                </div>
+                                                <div class="card-infor">
+                                                    <table class="table">
+                                                        <tr class="tb-infor">
+                                                            <td>
+                                                                <c:choose>
+                                                                    <c:when test="${lTour.type}">
+                                                                        <i class="fas fa-ticket-alt"></i> còn ${lTour.tQuantity - lTour.count} vé
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <i class="fas fa-ticket-alt"></i> ${lTour.count} lượt đặt
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                            </td>
+                                                            <td>
+                                                                <select id="star-rating${lTourCount.count}"
+                                                                        class="star-rating" name="rating"
+                                                                        data-current-rating="${lTour.rate}">
+                                                                    <option value="1">1</option>
+                                                                    <option value="2">2</option>
+                                                                    <option value="3">3</option>
+                                                                    <option value="4">4</option>
+                                                                    <option value="5">5</option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="tb-price">
+                                                            <td colspan="2" style="text-align: center;">
 													    		<span class="mg-right-10 card-price-box">
 													    			Giá: <strong
-                                                                        class="card-price-sale">681.000đ</strong>
+                                                                        class="card-price-sale">${lTour.sPrice}</strong>
 													    		</span>
-                                                            <strong class="card-price"><strike>700.000đ</strike></strong>
-                                                        </td>
-                                                    </tr>
-                                                </table>
+                                                                <strong class="card-price"><strike>${lTour.sNormalPrice}</strike></strong>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="item" data-toggle="tooltip" data-placement="top"
-                             title="Công viên suối khoáng nóng Núi Thần Tài">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/resources/images/tour2.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Công viên suối khoáng nóng Núi Thần Tài</h5>
-                                        <div class="card-description">
-                                            <div class="card-place">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i> QL14G - Hoà Phú -
-                                                Hòa Vang - Đà Nẵng
-                                            </div>
-                                            <div class="card-infor">
-                                                <table class="table">
-                                                    <tr class="tb-infor">
-                                                        <td><i class="fas fa-ticket-alt"></i> 1000 lượt đặt</td>
-                                                        <td>
-                                                            <select class="star-rating" name="rating"
-                                                                    data-current-rating="3">
-                                                                <option value="1">1</option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
-                                                                <option value="4">4</option>
-                                                                <option value="5">5</option>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="tb-price">
-                                                        <td colspan="2" style="text-align: center;">
-													    		<span class="mg-right-10 card-price-box">
-													    			Giá: <strong
-                                                                        class="card-price-sale">285.000đ</strong>
-													    		</span>
-                                                            <strong class="card-price"><strike>300.000đ</strike></strong>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item" data-toggle="tooltip" data-placement="top"
-                             title="Du thuyền sông Hàn - MerryLand">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/resources/images/tour3.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Du thuyền sông Hàn - MerryLand</h5>
-                                        <div class="card-description">
-                                            <div class="card-place">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i> Bạch Đằng - Thạch
-                                                Thang - Hải Châu - Đà Nẵng
-                                            </div>
-                                            <div class="card-infor">
-                                                <table class="table">
-                                                    <tr class="tb-infor">
-                                                        <td><i class="fas fa-ticket-alt"></i> 1000 lượt đặt</td>
-                                                        <td>
-                                                            <select class="star-rating" name="rating"
-                                                                    data-current-rating="3">
-                                                                <option value="1">1</option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
-                                                                <option value="4">4</option>
-                                                                <option value="5">5</option>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="tb-price">
-                                                        <td colspan="2" style="text-align: center;">
-													    		<span class="mg-right-10 card-price-box">
-													    			Giá: <strong
-                                                                        class="card-price-sale">117.000đ</strong>
-													    		</span>
-                                                            <strong class="card-price"><strike>150.000đ</strike></strong>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item" data-toggle="tooltip" data-placement="top" title="Vinpearl Land Hội An">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/resources/images/tour4.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Vinpearl Land Hội An</h5>
-                                        <div class="card-description">
-                                            <div class="card-place">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i> Đường Thanh Niên,
-                                                Bình Dương, Thăng Bình, Quảng Nam
-                                            </div>
-                                            <div class="card-infor">
-                                                <table class="table">
-                                                    <tr class="tb-infor">
-                                                        <td><i class="fas fa-ticket-alt"></i> 1000 lượt đặt</td>
-                                                        <td>
-                                                            <select class="star-rating" name="rating"
-                                                                    data-current-rating="3">
-                                                                <option value="1">1</option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
-                                                                <option value="4">4</option>
-                                                                <option value="5">5</option>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="tb-price">
-                                                        <td colspan="2" style="text-align: center;">
-													    		<span class="mg-right-10 card-price-box">
-													    			Giá: <strong
-                                                                        class="card-price-sale">250.000đ</strong>
-													    		</span>
-                                                            <!-- <strong class="card-price"><strike>300.000đ</strike></strong> -->
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item" data-toggle="tooltip" data-placement="top" title="Khu du lịch Hòa Phú Thành">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/resources/images/tour5.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Khu du lịch Hòa Phú Thành</h5>
-                                        <div class="card-description">
-                                            <div class="card-place">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i> Quốc Lộ 14G - Hòa
-                                                Phú - Hòa Vang - Đà Nẵng
-                                            </div>
-                                            <div class="card-infor">
-                                                <table class="table">
-                                                    <tr class="tb-infor">
-                                                        <td><i class="fas fa-ticket-alt"></i> 1000 lượt đặt</td>
-                                                        <td>
-                                                            <select class="star-rating" name="rating"
-                                                                    data-current-rating="3">
-                                                                <option value="1">1</option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
-                                                                <option value="4">4</option>
-                                                                <option value="5">5</option>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="tb-price">
-                                                        <td colspan="2" style="text-align: center;">
-													    		<span class="mg-right-10 card-price-box">
-													    			Giá: <strong
-                                                                        class="card-price-sale">48.000đ</strong>
-													    		</span>
-                                                            <strong class="card-price"><strike>50.000đ</strike></strong>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item" data-toggle="tooltip" data-placement="top"
-                             title="Art In Paradise Đà Nẵng - 3D Art Museum">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/resources/images/tour6.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Art In Paradise Đà Nẵng - 3D Art Museum</h5>
-                                        <div class="card-description">
-                                            <div class="card-place">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i> Lô C2-10 Trần Nhân
-                                                Tông - Sơn Trà - Đà Nẵng
-                                            </div>
-                                            <div class="card-infor">
-                                                <table class="table">
-                                                    <tr class="tb-infor">
-                                                        <td><i class="fas fa-ticket-alt"></i> 1000 lượt đặt</td>
-                                                        <td>
-                                                            <select class="star-rating" name="rating"
-                                                                    data-current-rating="3">
-                                                                <option value="1">1</option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
-                                                                <option value="4">4</option>
-                                                                <option value="5">5</option>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="tb-price">
-                                                        <td colspan="2" style="text-align: center;">
-													    		<span class="mg-right-10 card-price-box">
-													    			Giá: <strong
-                                                                        class="card-price-sale">117.000đ</strong>
-													    		</span>
-                                                            <strong class="card-price"><strike>140.000đ</strike></strong>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item" data-toggle="tooltip" data-placement="top"
-                             title="Bà Nà Hills - Đường Lên Tiên Cảnh (Trong ngày)">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/resources/images/tour1.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Bà Nà Hills - Đường Lên Tiên Cảnh (Trong ngày)</h5>
-                                        <div class="card-description">
-                                            <div class="card-place">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i> Đà Nẵng
-                                            </div>
-                                            <div class="card-infor">
-                                                <table class="table">
-                                                    <tr class="tb-infor">
-                                                        <td><i class="fas fa-ticket-alt"></i> 1000 lượt đặt</td>
-                                                        <td>
-                                                            <select class="star-rating" name="rating"
-                                                                    data-current-rating="3">
-                                                                <option value="1">1</option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
-                                                                <option value="4">4</option>
-                                                                <option value="5">5</option>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="tb-price">
-                                                        <td colspan="2" style="text-align: center;">
-													    		<span class="mg-right-10 card-price-box">
-													    			Giá: <strong class="card-price-sale">850.000đ - 980.000</strong>
-													    		</span>
-                                                            <strong class="card-price"><strike>140.000đ</strike></strong>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item" data-toggle="tooltip" data-placement="top"
-                             title="Cù Lao Chàm - Lặn Ngắm San Hô (Trong ngày)">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/resources/images/tour7.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Cù Lao Chàm - Lặn Ngắm San Hô (Trong ngày)</h5>
-                                        <div class="card-description">
-                                            <div class="card-place">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i> Đà Nẵng
-                                            </div>
-                                            <div class="card-infor">
-                                                <table class="table">
-                                                    <tr class="tb-infor">
-                                                        <td><i class="fas fa-ticket-alt"></i> 1000 lượt đặt</td>
-                                                        <td>
-                                                            <select class="star-rating" name="rating"
-                                                                    data-current-rating="3">
-                                                                <option value="1">1</option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
-                                                                <option value="4">4</option>
-                                                                <option value="5">5</option>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="tb-price">
-                                                        <td colspan="2" style="text-align: center;">
-													    		<span class="mg-right-10 card-price-box">
-													    			Giá: <strong
-                                                                        class="card-price-sale">590.000đ</strong>
-													    		</span>
-                                                            <!-- <strong class="card-price"><strike>140.000đ</strike></strong> -->
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item" data-toggle="tooltip" data-placement="top" title="City tour Huế (Trong ngày)">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/resources/images/tour8.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">City tour Huế (Trong ngày)</h5>
-                                        <div class="card-description">
-                                            <div class="card-place">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i> Đà Nẵng
-                                            </div>
-                                            <div class="card-infor">
-                                                <table class="table">
-                                                    <tr class="tb-infor">
-                                                        <td><i class="fas fa-ticket-alt"></i> 1000 lượt đặt</td>
-                                                        <td>
-                                                            <select class="star-rating" name="rating"
-                                                                    data-current-rating="3">
-                                                                <option value="1">1</option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
-                                                                <option value="4">4</option>
-                                                                <option value="5">5</option>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="tb-price">
-                                                        <td colspan="2" style="text-align: center;">
-													    		<span class="mg-right-10 card-price-box">
-													    			Giá: <strong
-                                                                        class="card-price-sale">650.000đ</strong>
-													    		</span>
-                                                            <!-- <strong class="card-price"><strike>140.000đ</strike></strong> -->
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item" data-toggle="tooltip" data-placement="top"
-                             title="Đảo Lý Sơn 2N1Đ (Đón tại Đà Nẵng)">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/resources/images/tour9.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Đảo Lý Sơn 2N1Đ (Đón tại Đà Nẵng)</h5>
-                                        <div class="card-description">
-                                            <div class="card-place">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i> Đà Nẵng
-                                            </div>
-                                            <div class="card-infor">
-                                                <table class="table">
-                                                    <tr class="tb-infor">
-                                                        <td><i class="fas fa-ticket-alt"></i> 1000 lượt đặt</td>
-                                                        <td>
-                                                            <select class="star-rating" name="rating"
-                                                                    data-current-rating="3">
-                                                                <option value="1">1</option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
-                                                                <option value="4">4</option>
-                                                                <option value="5">5</option>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="tb-price">
-                                                        <td colspan="2" style="text-align: center;">
-													    		<span class="mg-right-10 card-price-box">
-													    			Giá: <strong
-                                                                        class="card-price-sale">1.290.000đ</strong>
-													    		</span>
-                                                            <!-- <strong class="card-price"><strike>140.000đ</strike></strong> -->
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item" data-toggle="tooltip" data-placement="top"
-                             title="Suối Khoáng Nóng Thần Tài (Trong ngày)">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/resources/images/tour10.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Suối Khoáng Nóng Thần Tài (Trong ngày)</h5>
-                                        <div class="card-description">
-                                            <div class="card-place">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i> Đà Nẵng
-                                            </div>
-                                            <div class="card-infor">
-                                                <table class="table">
-                                                    <tr class="tb-infor">
-                                                        <td><i class="fas fa-ticket-alt"></i> 1000 lượt đặt</td>
-                                                        <td>
-                                                            <select class="star-rating" name="rating"
-                                                                    data-current-rating="3">
-                                                                <option value="1">1</option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
-                                                                <option value="4">4</option>
-                                                                <option value="5">5</option>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="tb-price">
-                                                        <td colspan="2" style="text-align: center;">
-													    		<span class="mg-right-10 card-price-box">
-													    			Giá: <strong
-                                                                        class="card-price-sale">650.000đ</strong>
-													    		</span>
-                                                            <!-- <strong class="card-price"><strike>140.000đ</strike></strong> -->
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item" data-toggle="tooltip" data-placement="top"
-                             title="Ngũ Hành Sơn - Hội An (Trong ngày)">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/resources/images/tour11.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Ngũ Hành Sơn - Hội An (Trong ngày)</h5>
-                                        <div class="card-description">
-                                            <div class="card-place">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i> Đà Nẵng
-                                            </div>
-                                            <div class="card-infor">
-                                                <table class="table">
-                                                    <tr class="tb-infor">
-                                                        <td><i class="fas fa-ticket-alt"></i> 1000 lượt đặt</td>
-                                                        <td>
-                                                            <select class="star-rating" name="rating"
-                                                                    data-current-rating="3">
-                                                                <option value="1">1</option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
-                                                                <option value="4">4</option>
-                                                                <option value="5">5</option>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="tb-price">
-                                                        <td colspan="2" style="text-align: center;">
-													    		<span class="mg-right-10 card-price-box">
-													    			Giá: <strong
-                                                                        class="card-price-sale">350.000đ</strong>
-													    		</span>
-                                                            <!-- <strong class="card-price"><strike>140.000đ</strike></strong> -->
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+                        </c:forEach>
+
                     </div>
                 </div>
             </div>
@@ -714,303 +265,42 @@
             <div class="row">
                 <div class="col-lg-12 columns">
                     <div class="owl-carousel owl-theme">
-                        <div class="item" data-toggle="tooltip" data-placement="top"
-                             title="Trà Tiên Hưởng - Lê Đình Dương">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/resources/images/food1.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Trà Tiên Hưởng - Lê Đình Dương</h5>
-                                        <div class="card-description">
-                                            <div class="card-place">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i> 32 Lê Đình Dương,
-                                                Quận Hải Châu, Đà Nẵng
-                                            </div>
-                                            <div class="card-infor">
-                                                <table class="table">
-                                                    <tr class="tb-infor">
-                                                        <td><i class="fa fa-cutlery" aria-hidden="true"></i>
-                                                            Café/Dessert
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item" data-toggle="tooltip" data-placement="top" title="EZI Coffee">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/resources/images/food2.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">EZI Coffee</h5>
-                                        <div class="card-description">
-                                            <div class="card-place">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i> 30 Ông Ích Khiêm,
-                                                Quận Hải Châu, Đà Nẵng
-                                            </div>
-                                            <div class="card-infor">
-                                                <table class="table">
-                                                    <tr class="tb-infor">
-                                                        <td><i class="fa fa-cutlery" aria-hidden="true"></i>
-                                                            Café/Dessert
-                                                        </td>
-                                                    </tr>
-                                                </table>
+
+                        <c:forEach items="${listFood}" var="lFood" varStatus="lFoodCount">
+                            <div class="item" data-toggle="tooltip" data-placement="top"
+                                 title="${lFood.name}">
+                                <div class="card">
+                                    <a href="#">
+                                        <img class="card-img-top" src="/resources/images/${lFood.image}"
+                                             alt="Card image cap">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${lFood.name}</h5>
+                                            <div class="card-description">
+                                                <div class="card-place">
+                                                    <div style="margin-bottom: 5px;height: 42px;overflow: hidden;">
+                                                        <i class="fa fa-map-marker"
+                                                           aria-hidden="true"></i> ${lFood.address} - ${lFood.district}
+                                                        - Tp. Đà Nẵng
+                                                    </div>
+                                                    <i class="fa fa-clock-o" aria-hidden="true"></i> ${lFood.openTime}
+                                                </div>
+                                                <div class="card-infor">
+                                                    <table class="table">
+                                                        <tr class="tb-infor">
+                                                            <td><i class="fa fa-cutlery" aria-hidden="true"></i>
+                                                                    ${lFood.category}
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="item" data-toggle="tooltip" data-placement="top" title="Mote Pizza">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/resources/images/food3.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Mote Pizza</h5>
-                                        <div class="card-description">
-                                            <div class="card-place">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i> 146 Lê Lợi, P. Hải
-                                                Châu 1, Quận Hải Châu, Đà Nẵng
-                                            </div>
-                                            <div class="card-infor">
-                                                <table class="table">
-                                                    <tr class="tb-infor">
-                                                        <td><i class="fa fa-cutlery" aria-hidden="true"></i> Quán ăn
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item" data-toggle="tooltip" data-placement="top"
-                             title="King Castella - Bánh Bông Lan Đài Loan - Trần Phú">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/resources/images/food4.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">King Castella - Bánh Bông Lan Đài Loan - Trần Phú</h5>
-                                        <div class="card-description">
-                                            <div class="card-place">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i> 206 Trần Phú, Quận
-                                                Hải Châu, Đà Nẵng
-                                            </div>
-                                            <div class="card-infor">
-                                                <table class="table">
-                                                    <tr class="tb-infor">
-                                                        <td><i class="fa fa-cutlery" aria-hidden="true"></i> Quán ăn
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item" data-toggle="tooltip" data-placement="top" title="Vevy Milktea">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/resources/images/food5.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Vevy Milktea</h5>
-                                        <div class="card-description">
-                                            <div class="card-place">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i> 71 - 73 Phan Châu
-                                                Trinh, Quận Hải Châu, Đà Nẵng
-                                            </div>
-                                            <div class="card-infor">
-                                                <table class="table">
-                                                    <tr class="tb-infor">
-                                                        <td><i class="fa fa-cutlery" aria-hidden="true"></i>
-                                                            Café/Dessert
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item" data-toggle="tooltip" data-placement="top"
-                             title="Royal Tea - Nguyễn Văn Thoại">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/resources/images/food6.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Royal Tea - Nguyễn Văn Thoại</h5>
-                                        <div class="card-description">
-                                            <div class="card-place">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i> 95 Nguyễn Văn Thoại,
-                                                Quận Ngũ Hành Sơn, Đà Nẵng
-                                            </div>
-                                            <div class="card-infor">
-                                                <table class="table">
-                                                    <tr class="tb-infor">
-                                                        <td><i class="fa fa-cutlery" aria-hidden="true"></i>
-                                                            Café/Dessert
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item" data-toggle="tooltip" data-placement="top" title="Phố cổ Hà Nội">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/resources/images/food7.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Phố cổ Hà Nội</h5>
-                                        <div class="card-description">
-                                            <div class="card-place">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i> 22 Phan Thanh Tài,
-                                                Quận Hải Châu, Đà Nẵng
-                                            </div>
-                                            <div class="card-infor">
-                                                <table class="table">
-                                                    <tr class="tb-infor">
-                                                        <td><i class="fa fa-cutlery" aria-hidden="true"></i> Quán ăn
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item" data-toggle="tooltip" data-placement="top" title="Chân Gà Sả Ớt Hà An">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/resources/images/food8.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Chân Gà Sả Ớt Hà An</h5>
-                                        <div class="card-description">
-                                            <div class="card-place">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i> K129/80 Tiểu La, P.
-                                                Hòa Cường Bắc, Quận Hải Châu, Đà Nẵng
-                                            </div>
-                                            <div class="card-infor">
-                                                <table class="table">
-                                                    <tr class="tb-infor">
-                                                        <td><i class="fa fa-cutlery" aria-hidden="true"></i> Quán ăn
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item" data-toggle="tooltip" data-placement="top" title="Trà Sữa R&B">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/resources/images/food9.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Trà Sữa R&B</h5>
-                                        <div class="card-description">
-                                            <div class="card-place">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i> 89 - 91 Nguyễn Văn
-                                                Linh, Quận Hải Châu, Đà Nẵng
-                                            </div>
-                                            <div class="card-infor">
-                                                <table class="table">
-                                                    <tr class="tb-infor">
-                                                        <td><i class="fa fa-cutlery" aria-hidden="true"></i>
-                                                            Café/Dessert
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item" data-toggle="tooltip" data-placement="top" title="Bún Đậu Mắm Tôm Bà Cúc">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/resources/images/food10.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Bún Đậu Mắm Tôm Bà Cúc</h5>
-                                        <div class="card-description">
-                                            <div class="card-place">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i> 209 Tố Hữu, Quận Cẩm
-                                                Lệ, Đà Nẵng
-                                            </div>
-                                            <div class="card-infor">
-                                                <table class="table">
-                                                    <tr class="tb-infor">
-                                                        <td><i class="fa fa-cutlery" aria-hidden="true"></i> Quán ăn
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item" data-toggle="tooltip" data-placement="top" title="Tokbokki Ly">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/resources/images/food11.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Tokbokki Ly</h5>
-                                        <div class="card-description">
-                                            <div class="card-place">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i> 64 An Thượng 20,
-                                                Quận Ngũ Hành Sơn, Đà Nẵng
-                                            </div>
-                                            <div class="card-infor">
-                                                <table class="table">
-                                                    <tr class="tb-infor">
-                                                        <td><i class="fa fa-cutlery" aria-hidden="true"></i> Quán ăn
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item" data-toggle="tooltip" data-placement="top"
-                             title="Trà Sữa Thỏ 7 Màu - Phan Tứ">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/resources/images/food12.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Trà Sữa Thỏ 7 Màu - Phan Tứ</h5>
-                                        <div class="card-description">
-                                            <div class="card-place">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i> 1 Phan Tứ, Quận Ngũ
-                                                Hành Sơn, Đà Nẵng
-                                            </div>
-                                            <div class="card-infor">
-                                                <table class="table">
-                                                    <tr class="tb-infor">
-                                                        <td><i class="fa fa-cutlery" aria-hidden="true"></i> Quán ăn
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+                        </c:forEach>
+
+
                     </div>
                 </div>
             </div>
@@ -1039,8 +329,9 @@
 
 <!-- Start All Script -->
 
-<!-- Start Owl Carousel Slide for post -->
-<script>
+<script type="text/javascript">
+
+    //Owl Carousel Slide for post
     $(document).ready(function () {
         $('.owl-carousel').owlCarousel({
             loop: true,
@@ -1064,27 +355,24 @@
             }
         })
     })
-</script>
-<!-- End Owl Carousel Slide for post -->
 
-<!-- Start Show tooltip bài viết -->
-<script>
+    // Show tooltip bài viết
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
-</script>
-<!-- End Show tooltip bài viết -->
-<!--  -->
-<script type="text/javascript">
+
+    //Rate for Tour
     $(function () {
-        $('.star-rating').barrating({
-            theme: 'fontawesome-stars-o',
-            readonly: true,
-            initialRating: 3.5
-        });
+        for (var i = 1; i < 13; ++i) {
+            var currentRating = $('#star-rating' + i).data('current-rating');
+            $('#star-rating' + i).barrating({
+                theme: 'fontawesome-stars-o',
+                readonly: true,
+                initialRating: currentRating
+            });
+        }
     });
 </script>
-<!--  -->
 
 <!-- Start All Script -->
 </body>
