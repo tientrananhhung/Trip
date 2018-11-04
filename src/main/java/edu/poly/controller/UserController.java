@@ -2,9 +2,11 @@ package edu.poly.controller;
 
 import edu.poly.common.Constants;
 import edu.poly.dao.FoodDAO;
+import edu.poly.dao.PostIndexDAO;
 import edu.poly.dao.TourDAO;
 import edu.poly.impl.TourImpl;
 import edu.poly.model.FoodDTO;
+import edu.poly.model.PostIndexDTO;
 import edu.poly.model.TourDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,14 +51,19 @@ public class UserController {
     @Autowired
     FoodDAO foodDAO;
 
+    @Autowired
+    PostIndexDAO postIndexDAO;
+
     @GetMapping(Constants.Characters.BLANK)
     public ModelAndView index() {
         ModelAndView mav = new ModelAndView(HOME_SCREEN);
         try {
             List<TourDTO> lTourDTO = tourDAO.getAllTourDTO();
             List<FoodDTO> lFoodDTO = foodDAO.getAllFoodDTO();
+            List<PostIndexDTO> lPostIndexDTO = postIndexDAO.getTop5PostNew();
             mav.addObject("listTour", lTourDTO);
             mav.addObject("listFood", lFoodDTO);
+            mav.addObject("listPost", lPostIndexDTO);
         } catch (Exception e) {
             e.printStackTrace();
         }

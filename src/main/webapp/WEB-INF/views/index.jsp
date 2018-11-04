@@ -193,64 +193,41 @@
     <section class="box-content-fluid box-content mg-top-30">
         <div class="box-title mg-bottom-30">
             <h2>bài viết mới nhất</h2>
-            <a href="#">Xem thêm »</a>
+            <a href="/blog">Xem thêm »</a>
         </div>
         <div class="box-body">
-            <div class="post-big">
-                <a class="city-tickets" href="#" style="background-image: url('/resources/images/post1.jpg');">
-                    <div class="ticket-relative">
-                        <div class="ticket-info">
-                            <div class="ticket-big-short">
-                                <h3>Ngất ngây trước 5 điểm sống ảo ở Đà Lạt khiến dân tình chao đảo</h3>
-                            </div>
+
+            <c:forEach items="${listPost}" var="lPost" varStatus="lPostCount">
+                <c:choose>
+                    <c:when test="${lPostCount.count == 1}">
+                        <div class="post-big">
+                            <a class="city-tickets" href="#" style="background-image: url('/resources/images/${lPost.image}');">
+                                <div class="ticket-relative">
+                                    <div class="ticket-info">
+                                        <div class="ticket-big-short">
+                                            <h3>${lPost.title}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </div>
-                </a>
-            </div>
-            <div class="post-small" style="border-bottom: 5px solid white;">
-                <a class="city-tickets" href="#" style="background-image: url('/resources/images/post2.jpg');">
-                    <div class="ticket-relative">
-                        <div class="ticket-info">
-                            <div class="ticket-small-short">
-                                <h3>Ẩm thực Trần – Tinh hoa ẩm thực đặc sản xứ Quảng</h3>
-                            </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="post-small" style="border-bottom: 5px solid white;">
+                            <a class="city-tickets" href="#" style="background-image: url('/resources/images/${lPost.image}');">
+                                <div class="ticket-relative">
+                                    <div class="ticket-info">
+                                        <div class="ticket-small-short">
+                                            <h3>${lPost.title}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </div>
-                </a>
-            </div>
-            <div class="post-small" style="border-bottom: 5px solid white;">
-                <a class="city-tickets" href="#" style="background-image: url('/resources/images/post3.jpg');">
-                    <div class="ticket-relative">
-                        <div class="ticket-info">
-                            <div class="ticket-small-short">
-                                <h3>Bỏ túi bí kíp, không còn lo du lịch Nha Trang nên đi đâu</h3>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="post-small">
-                <a class="city-tickets" href="#" style="background-image: url('/resources/images/post4.jpg');">
-                    <div class="ticket-relative">
-                        <div class="ticket-info">
-                            <div class="ticket-small-short">
-                                <h3>Những đặc sản Hà Nội làm nức lòng khách du lịch Thủ Đô</h3>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="post-small">
-                <a class="city-tickets" href="#" style="background-image: url('/resources/images/post5.jpg');">
-                    <div class="ticket-relative">
-                        <div class="ticket-info">
-                            <div class="ticket-small-short">
-                                <h3> Bỏ túi địa chỉ 5 món ngon ở Đà Nẵng nhất định bạn phải thử một lần</h3>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+
         </div>
     </section>
     <!-- End Bài viết mới nhất -->
