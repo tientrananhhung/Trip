@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface TourRepository extends CrudRepository<Tours, Integer> {
-    public List<Tours> findAllByDeleted(Boolean isDeleted);
+    List<Tours> findAllByDeleted(Boolean isDeleted);
 
-    public Tours getById(Integer id);
+    Tours getById(Integer id);
 }
