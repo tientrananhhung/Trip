@@ -12,7 +12,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>SmartTrip - Tour Manager</title>
+    <title>Xollo Admin</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/mdi/css/materialdesignicons.min.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/flag-icon-css/css/flag-icon.min.css" />">
@@ -42,7 +42,7 @@
                             </div>
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
-                                <a href="/admin/quan-ly-tour/addtour"><button style="margin-left: 190px;" type="button" class="btn btn-warning btn-rounded btn-fw">Add Tour</button></a>
+                                <a href="addTour.html"><button style="margin-left: 190px;" type="button" class="btn btn-warning btn-rounded btn-fw">Add Tour</button></a>
                             </div>
                         </div>
                         <div class="row">
@@ -50,31 +50,81 @@
                                 <table id="order-listing" class="table" cellspacing="0">
                                     <thead>
                                     <tr>
-                                        <th>User</th>
-                                        <%--<th>Parner Name</th>--%>
+                                        <th>Tour ID</th>
+                                        <th>User ID</th>
                                         <th>Tour name</th>
                                         <th>Tour address</th>
+                                        <th>Tour status</th>
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-
-                                    <c:forEach var="tour" items="${listTour}">
-                                        <tr>
-                                            <td>${tour.usersByUserId.name}</td>
-                                            <%--<c:forEach items="${tour.usersByUserId.partnersById}" var="row">--%>
-                                                <%--<td>${row.name}</td>--%>
-                                            <%--</c:forEach>--%>
-                                            <%--<td>${tour.usersByUserId.partnersById.size()}</td>--%>
-                                            <td>${tour.name}</td>
-                                            <td>${tour.address}</td>
-                                            <td>
-                                                <button class="btn btn-outline-primary">Edit</button>
-                                                <button class="btn btn-outline-danger">Delete</button>
-                                            </td>
-                                        </tr>
-
-                                    </c:forEach>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>New York</td>
+                                        <td>2012/08/03</td>
+                                        <td><label class="badge badge-success">Active</label></td>
+                                        <td>
+                                            <button class="btn btn-outline-primary">Edit</button>
+                                            <button class="btn btn-outline-danger">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>New York</td>
+                                        <td>2012/08/03</td>
+                                        <td><label class="badge badge-success">Active</label></td>
+                                        <td>
+                                            <button class="btn btn-outline-primary">Edit</button>
+                                            <button class="btn btn-outline-danger">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>New York</td>
+                                        <td>2012/08/03</td>
+                                        <td><label class="badge badge-danger">Un-Active</label></td>
+                                        <td>
+                                            <button class="btn btn-outline-primary">Edit</button>
+                                            <button class="btn btn-outline-danger">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>New York</td>
+                                        <td>2012/08/03</td>
+                                        <td><label class="badge badge-success">Active</label></td>
+                                        <td>
+                                            <button class="btn btn-outline-primary">Edit</button>
+                                            <button class="btn btn-outline-danger">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>New York</td>
+                                        <td>2012/08/03</td>
+                                        <td><label class="badge badge-success">Active</label></td>
+                                        <td>
+                                            <button class="btn btn-outline-primary">Edit</button>
+                                            <button class="btn btn-outline-danger">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>New York</td>
+                                        <td>2012/08/03</td>
+                                        <td><label class="badge badge-danger">Un-Active</label></td>
+                                        <td>
+                                            <button class="btn btn-outline-primary">Edit</button>
+                                            <button class="btn btn-outline-danger">Delete</button>
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
