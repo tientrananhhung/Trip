@@ -1,5 +1,6 @@
 package edu.poly.controller;
 
+import edu.poly.common.CheckSession;
 import edu.poly.common.Constants;
 import edu.poly.common.StringUtils;
 import edu.poly.common.TimeUtils;
@@ -30,6 +31,10 @@ public class OfferController {
     @GetMapping(Constants.Url.LIST_OFFER)
     public ModelAndView listOffer(HttpSession session){
         ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         mav.addObject("listOffer", offer.findAll());
         mav.setViewName(OFFER_SCREEN);
         return mav;
@@ -39,6 +44,10 @@ public class OfferController {
     @GetMapping(Constants.Url.ADD_OFFER)
     public ModelAndView addOffer(HttpSession session){
         ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         Offers offers = new Offers();
         offers.setCode(StringUtils.getRandomString());
         mav.setViewName(ADD_OFFER_SCREEN);
@@ -51,6 +60,10 @@ public class OfferController {
     @PostMapping(Constants.Url.ADD_OFFER)
     public ModelAndView addOffers(HttpSession session, @ModelAttribute("offer") Offers offers){
         ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         try{
             offers.setUsed(false);
             offers.setCreatedAt(TimeUtils.getCurrentTime());
@@ -70,6 +83,10 @@ public class OfferController {
     @GetMapping(Constants.Url.UPDATE_OFFER)
     public ModelAndView editOffer(HttpSession session, @PathVariable("id") Integer id){
         ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         Offers offers = offer.getById(id);
         if (offers.getUsed()==false){
             mav.setViewName(ADD_OFFER_SCREEN);
@@ -85,6 +102,10 @@ public class OfferController {
     @PostMapping(Constants.Url.UPDATED_OFFER)
     public ModelAndView updateOffer(HttpSession session, @ModelAttribute("offer") Offers offers){
         ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         Offers of = offer.getById(offers.getId());
         try{
             offers.setUsed(of.getUsed());
@@ -110,6 +131,10 @@ public class OfferController {
     @GetMapping(Constants.Url.ACTIVE_OFFER)
     public ModelAndView activeOffer(HttpSession session,@PathVariable("id") int id, @PathVariable("isused") boolean isused){
         ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         Offers offers = offer.getById(id);
         offers.setUsed(isused);
         offers.setUpdatedAt(TimeUtils.getCurrentTime());

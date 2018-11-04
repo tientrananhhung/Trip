@@ -1,5 +1,6 @@
 package edu.poly.controller;
 
+import edu.poly.common.CheckSession;
 import edu.poly.common.Constants;
 import edu.poly.common.TimeUtils;
 import edu.poly.entity.Districts;
@@ -27,6 +28,10 @@ public class DistrictController {
     @GetMapping(Constants.Url.LIST_DISTRICT)
     public ModelAndView showUserList(HttpSession session) {
         ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         mav.addObject("listDistrict", district.findAllByDeleted(false));
         mav.setViewName(DISTRICT_SCREEN);
         return mav;
@@ -36,6 +41,14 @@ public class DistrictController {
     @GetMapping(Constants.Url.ADD_DISTRICT)
     public ModelAndView addDistrict(HttpSession session) {
         ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         mav.setViewName(ADD_DISTRICT_SCREEN);
         mav.addObject("district", new Districts());
         mav.addObject("action", "them");
@@ -45,6 +58,10 @@ public class DistrictController {
     @PostMapping(Constants.Url.ADD_DISTRICT)
     public ModelAndView addDistricts(HttpSession session, @ModelAttribute("districts") Districts districts) {
         ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         try {
             districts.setDeleted(false);
             districts.setCreatedAt(TimeUtils.getCurrentTime());
@@ -63,6 +80,10 @@ public class DistrictController {
     @GetMapping(Constants.Url.UPDATE_DISTRICT)
     public ModelAndView updateDistrict(HttpSession session, @PathVariable("id") Integer id) {
         ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         mav.setViewName(ADD_DISTRICT_SCREEN);
         Districts districts = district.getById(id);
         mav.addObject("district", districts);
@@ -73,6 +94,10 @@ public class DistrictController {
     @PostMapping(Constants.Url.UPDATE_DISTRICT)
     public ModelAndView editDistrict(HttpSession session, @ModelAttribute("district") Districts districts) {
         ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         Districts dt = district.getById(districts.getId());
         try {
             districts.setDeleted(dt.getDeleted());
@@ -92,6 +117,10 @@ public class DistrictController {
     @GetMapping(Constants.Url.DELETE_DISTRICT)
     public ModelAndView deleteDistrict(HttpSession session, @PathVariable("id") int id) {
         ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         try{
             Districts districts = district.getById(id);
             districts.setDeleted(true);
@@ -103,15 +132,4 @@ public class DistrictController {
         mav.setViewName("redirect:/admin" + Constants.Url.LIST_DISTRICT);
         return mav;
     }
-
-//    @GetMapping(Constants.Url.ACTIVE_DISTRICT)
-//    public ModelAndView statusDistrict(HttpSession session, @PathVariable("id") int id,
-//                                   @PathVariable("active") boolean active) {
-//        ModelAndView mav = new ModelAndView();
-//        Districts districts = district.getById(id);
-//        districts.setDeleted(active);
-//        district.save(districts);
-//        mav.setViewName("redirect:/admin" + Constants.Url.LIST_DISTRICT);
-//        return mav;
-//    }
 }

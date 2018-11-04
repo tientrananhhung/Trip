@@ -65,4 +65,9 @@ public class TourImpl implements TourService {
     public List<Tours> findAllByDeleted(Boolean isDeleted){
         return repository.findAllByDeleted(isDeleted);
     }
+
+    @Override
+    public Tours getById(Integer id) {
+        return repository.getById(id);
+    }
 }

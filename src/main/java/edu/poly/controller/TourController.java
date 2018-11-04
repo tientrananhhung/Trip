@@ -1,11 +1,14 @@
 package edu.poly.controller;
 
+import edu.poly.common.CheckSession;
 import edu.poly.common.Constants;
+import edu.poly.common.TimeUtils;
 import edu.poly.entity.Tours;
 import edu.poly.impl.TourImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,13 +34,11 @@ public class TourController {
     @GetMapping(Constants.Url.LIST_TOUR)
     public ModelAndView showUserList(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-
-//        if(!CheckSession.admin(session)){
-//            mav.setViewName("redirect:/"+Constants.Characters.BLANK);
-//            return mav;
-//        }
-//
-        List<Tours> list = tour.findAllByDeleted(false);
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
+        List<Tours> list = (List<Tours>) tour.findAll();
         mav.addObject("listTour",list);
         mav.setViewName(LIST_TOUR_SCREEN);
         return mav;
@@ -49,11 +50,11 @@ public class TourController {
      * */
     @GetMapping(Constants.Url.ADD_TOUR)
     public ModelAndView addUser(HttpSession session) {
-        //        if(!CheckSession.admin(session)){
-//            mav.setViewName("redirect:/"+Constants.Characters.BLANK);
-//            return mav;
-//        }
         ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         mav.setViewName(ADD_TOUR);
         mav.addObject("tour", new Tours());
 
@@ -61,4 +62,30 @@ public class TourController {
         return mav;
     }
 
+    /**
+     * @param session for check role
+     * @param id for get user
+     * @pram active for get type active
+     * @return url list user
+     * */
+    @GetMapping(Constants.Url.DELETE_TOUR)
+    public ModelAndView statusPartner(HttpSession session, @PathVariable("id") int id,
+                                      @PathVariable("xoa") Boolean xoa) {
+        ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
+        Tours tours = tour.getById(id);
+        tours.setUpdatedAt(TimeUtils.getCurrentTime());
+        tours.setDeleted(xoa);
+        try{
+           tour.save(tours);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+        mav.setViewName("redirect:/admin" + Constants.Url.LIST_TOUR);
+        return mav;
+    }
 }

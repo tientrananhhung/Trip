@@ -12,13 +12,13 @@
         <li class="nav-item nav-profile">
               <span class="nav-link" href="#">
                 <div class="profile-image online">
-                  <img src="<c:url value="/resources/images/faces/face20.jpg"/> ">
+                  <img src="<c:url value="/resources/images/${userInfo.avatar}"/> ">
                 </div>
                 <p>
-                  Donald Azin
+                  ${userInfo.name}
                 </p>
                 <p>
-                  donaldazin@xollo.com
+                    ${userInfo.email}
                 </p>
                 <div class="d-flex justify-content-center mt-4 mb-2">
                   <i class="mdi mdi-gmail mr-3"></i>

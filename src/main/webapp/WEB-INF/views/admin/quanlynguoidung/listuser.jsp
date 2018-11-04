@@ -52,7 +52,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-12 table-responsive">
                                 <table id="order-listing" class="table" cellspacing="0">
                                     <thead>
                                     <tr>
@@ -69,7 +69,7 @@
                                     <tbody>
                                     <c:forEach var="user" items="${listUser}">
                                         <tr>
-                                            <td>${user.avatar}</td>
+                                            <td><img src="../../../../resources/images/${user.avatar}"</td>
                                             <td>${user.name}</td>
                                             <td>${user.username}</td>
                                             <td>${user.phone}</td>

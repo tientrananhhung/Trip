@@ -1,5 +1,6 @@
 package edu.poly.controller;
 
+import edu.poly.common.CheckSession;
 import edu.poly.common.Constants;
 import edu.poly.common.TimeUtils;
 import edu.poly.entity.PostCategorys;
@@ -27,12 +28,10 @@ public class PostCategoryController {
     @GetMapping(Constants.Url.LIST_POSTCATEGORY)
     public ModelAndView showPostCategoryList(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-
-//        if(!CheckSession.admin(session)){
-//            mav.setViewName("redirect:/"+Constants.Characters.BLANK);
-//            return mav;
-//        }
-
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         mav.addObject("listPostcategory", postCategory.findAllByDeleted(false));
         mav.setViewName(POSTCATEGORY_SCREEN);
         return mav;
@@ -42,6 +41,10 @@ public class PostCategoryController {
     @GetMapping(Constants.Url.ADD_POSTCATEGORY)
     public ModelAndView addPostCategory(HttpSession session) {
         ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         mav.setViewName(ADD_POSTCATEGORY_SCREEN);
         mav.addObject("postcategory", new PostCategorys());
         mav.addObject("action", "them");
@@ -51,6 +54,10 @@ public class PostCategoryController {
     @PostMapping(Constants.Url.ADD_POSTCATEGORY)
     public ModelAndView addPostCategorys(HttpSession session, @ModelAttribute("postcategory") PostCategorys postCategory1) {
         ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         try{
             postCategory1.setDeleted(false);
             postCategory1.setCreatedAt(TimeUtils.getCurrentTime());
@@ -68,6 +75,10 @@ public class PostCategoryController {
     @GetMapping(Constants.Url.UPDATE_POSTCATEGORY)
     public ModelAndView updatePostCategory(HttpSession session, @PathVariable("id") Integer id) {
         ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         mav.setViewName(ADD_POSTCATEGORY_SCREEN);
         PostCategorys postCategorys = postCategory.getById(id);
         mav.addObject("postcategory", postCategorys);
@@ -78,6 +89,10 @@ public class PostCategoryController {
     @PostMapping(Constants.Url.UPDATE_POSTCATEGORY)
     public ModelAndView editPostCategory(HttpSession session, @ModelAttribute("postcategory") PostCategorys postCategorys) {
         ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         PostCategorys pc = postCategory.getById(postCategorys.getId());
         try{
             postCategorys.setDeleted(pc.getDeleted());
@@ -97,6 +112,10 @@ public class PostCategoryController {
     @GetMapping(Constants.Url.DELETE_POSTCATEGORY)
     public ModelAndView deletePostCategory(HttpSession session, @PathVariable("id") int id) {
         ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         try{
             PostCategorys postCategorys = postCategory.getById(id);
             postCategorys.setDeleted(true);

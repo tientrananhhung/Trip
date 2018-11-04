@@ -48,7 +48,7 @@
                         </div>
                         <hr/>
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-12 table-responsive">
                                 <table id="order-listing" class="table" cellspacing="0">
                                     <thead>
                                     <tr>
@@ -70,8 +70,7 @@
                                             <td>
                                                 <c:choose>
                                                     <c:when test="${offer.used == true}">
-                                                        <a href="/admin/quan-ly-uu-dai/active/${offer.id}/false"><label
-                                                                class="badge badge-danger">Isused</label></a>
+                                                       <label class="badge badge-danger">Isused</label>
                                                     </c:when>
                                                     <c:otherwise>
                                                         <a href="/admin/quan-ly-uu-dai/active/${offer.id}/true">

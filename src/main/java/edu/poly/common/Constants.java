@@ -1,5 +1,7 @@
 package edu.poly.common;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class Constants {
 
     public class Url {
@@ -38,6 +40,9 @@ public class Constants {
 
         //Trang sửa người dùng
         public static final String UPDATE_USER = "/quan-ly-nguoi-dung/{id}";
+
+        //Trang sửa người dùng
+        public static final String UPDATED_USER = "/quan-ly-nguoi-dung/{id}";
 
         //Trang xóa người dùng
         public static final String DELETE_USER = "/quan-ly-nguoi-dung/xoa/{id}";
@@ -139,7 +144,7 @@ public class Constants {
         public static final String UPDATE_TOUR = "/quan-ly-tour/{id}";
 
         //Trang xóa tour
-        public static final String DELETE_TOUR = "/quan-ly-tour/xoa/{id}";
+        public static final String DELETE_TOUR = "/quan-ly-tour/xoa/{id}/{xoa}";
 
         //Trang sua tour
         public static final String UPDATED_TOUR = "/quan-ly-tour/sua";
@@ -311,7 +316,7 @@ public class Constants {
     public class SessionKey {
 
         //key để get/set user cho session
-        public static final String USER = "user";
+        public static final String USER = "userInfo";
 
     }
 

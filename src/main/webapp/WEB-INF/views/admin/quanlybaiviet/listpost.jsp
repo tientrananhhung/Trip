@@ -51,6 +51,7 @@
                                 <table id="order-listing" class="table" cellspacing="0">
                                     <thead>
                                     <tr>
+                                        <th>Post Image</th>
                                         <th>Post Title</th>
                                         <th>Author</th>
                                         <th>Category</th>
@@ -60,6 +61,7 @@
                                     <tbody>
                                     <c:forEach var="post" items="${listPost}">
                                         <tr>
+                                            <th><img src="../../../../resources/images/${post.image}"></th>
                                             <th>${post.title}</th>
                                             <td>${post.usersByUserId.name}</td>
                                             <td>${post.postCategorysByPostCategoryId.name}</td>

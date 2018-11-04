@@ -77,8 +77,8 @@
                                     Addition post
                                 </p>
                                 <hr/>
-                                <f:form class="forms-sample" method="post" modelAttribute="posts"
-                                        action="/admin/quan-ly-bai-viet/${action}">
+                                <f:form class="forms-sample" modelAttribute="posts"
+                                        action="/admin/quan-ly-bai-viet/${action}" method="POST" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <f:hidden path="id"/>
                                     </div>
@@ -95,6 +95,12 @@
                                                 </c:forEach>
                                             </f:select>
                                     </div>
+                                    <c:if test="${action == 'sua'}">
+                                        <div class="form-group">
+                                            <label>Image</label>
+                                            <f:input path="fileData" type="file"></f:input>
+                                        </div>
+                                    </c:if>
                                     <div class="form-group">
                                         <label>Content</label>
                                         <f:textarea path="content" class="form-control"></f:textarea>
@@ -147,12 +153,12 @@
 <script src="<c:url value="/resources/js/hoverable-collapse.js" />"></script>
 <script src="<c:url value="/resources/js/misc.js" />"></script>
 <script src="<c:url value="/resources/js/settings.js" />"></script>
-<script src="../../<c:url value="/resources/js/todolist.js" />"></script>
+<script src="<c:url value="/resources/js/todolist.js" />"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
 
-< <script src="<c:url value="/resources/js/editorDemo.js"/>"></script>
-< <script src="<c:url value="/resources/node_modules/simplemde/dist/simplemde.min.js"/>"></script>
+<script src="<c:url value="/resources/js/editorDemo.js"/>"></script>
+<script src="<c:url value="/resources/node_modules/simplemde/dist/simplemde.min.js"/>"></script>
 <%---------------------------------------------%>
 
 <script>
