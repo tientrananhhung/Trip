@@ -1,5 +1,6 @@
 package edu.poly.controller;
 
+import edu.poly.common.CheckSession;
 import edu.poly.common.Constants;
 import edu.poly.common.TimeUtils;
 import edu.poly.entity.FoodCategorys;
@@ -26,6 +27,10 @@ public class FoodCategoryController {
     @GetMapping(Constants.Url.LIST_FOODCATEGORY)
     public ModelAndView listFoodCategory(HttpSession session){
         ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         mav.addObject("listFoodcategory", foodCategory.findAllByDeleted(false));
         mav.setViewName(FOODCATEGORY_SCREEN);
         return mav;
@@ -36,6 +41,10 @@ public class FoodCategoryController {
     @GetMapping(Constants.Url.ADD_FOODCATEGORY)
     public ModelAndView newFoodCategory(HttpSession session){
         ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         mav.setViewName(ADD_FOODCATEGORY_SCREEN);
         mav.addObject("foodcategory", new FoodCategorys());
         mav.addObject("action", "them");
@@ -45,6 +54,10 @@ public class FoodCategoryController {
     @PostMapping(Constants.Url.ADD_FOODCATEGORY)
     public ModelAndView addFoodCategory(HttpSession session, @ModelAttribute("foodcategory") FoodCategorys foodCategorys){
         ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         try{
             foodCategorys.setDeleted(false);
             foodCategorys.setCreatedAt(TimeUtils.getCurrentTime());
@@ -63,6 +76,10 @@ public class FoodCategoryController {
     @GetMapping(Constants.Url.UPDATE_FOODCATEGORY)
     public ModelAndView editFoodCategory(HttpSession session, @PathVariable("id") Integer id){
         ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         mav.setViewName(ADD_FOODCATEGORY_SCREEN);
         FoodCategorys foodCategorys = foodCategory.getById(id);
         mav.addObject("foodcategory", foodCategorys);
@@ -73,6 +90,10 @@ public class FoodCategoryController {
     @PostMapping(Constants.Url.UPDATE_FOODCATEGORY)
     public ModelAndView updateFoodCategory(HttpSession session, @ModelAttribute("foodcategory") FoodCategorys foodCategorys){
         ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         FoodCategorys fc = foodCategory.getById(foodCategorys.getId());
         try{
             foodCategorys.setDeleted(fc.getDeleted());
@@ -92,6 +113,10 @@ public class FoodCategoryController {
     @GetMapping(Constants.Url.DELETE_FOODCATEGORY)
     public ModelAndView deleteFoodCategory(HttpSession session, @PathVariable("id") int id){
         ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         try{
             FoodCategorys foodCategorys = foodCategory.getById(id);
             foodCategorys.setDeleted(true);

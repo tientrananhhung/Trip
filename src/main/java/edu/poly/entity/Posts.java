@@ -1,6 +1,7 @@
 package edu.poly.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -22,6 +23,9 @@ public class Posts {
     private Timestamp updatedAt;
     private PostCategorys postCategorysByPostCategoryId;
     private Users usersByUserId;
+
+
+    private CommonsMultipartFile[] fileData;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -173,5 +177,14 @@ public class Posts {
 
     public void setUsersByUserId(Users usersByUserId) {
         this.usersByUserId = usersByUserId;
+    }
+
+    @Transient
+    public CommonsMultipartFile[] getFileData() {
+        return fileData;
+    }
+
+    public void setFileData(CommonsMultipartFile[] fileData) {
+        this.fileData = fileData;
     }
 }
