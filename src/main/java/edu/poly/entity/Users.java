@@ -28,6 +28,7 @@ public class Users {
     private Boolean isDeleted;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+    private String token;
     private Collection<Foods> foodsById;
     private Collection<Offers> offersById;
     private Collection<Orders> ordersById;
@@ -184,6 +185,16 @@ public class Users {
 
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    @Basic
+    @Column(name = "Token", nullable = true)
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     @Override

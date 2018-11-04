@@ -727,12 +727,13 @@
         });
     });
 
-    //Chi tiết dịch vụ slide
-    $(function () {
+    //Hide detail
+    $(function() {
+
         //Cho nội dung thu lên
         $('.service-detail').slideUp();
 
-        $('.btn-detail').click(function (event) {
+        $('.btn-detail').click(function(event) {
             /* Act on the event */
             var a = $(this).attr('class');
             if (a != '' && a != undefined) {
@@ -746,9 +747,11 @@
                 $(this).removeClass('active');
                 $('.service-detail').slideUp();
             } else {
+                $('.btn-detail').children('.fa').removeClass('fa-angle-down').addClass('fa-angle-right');
                 $(this).children('.fa').removeClass('fa-angle-right').addClass('fa-angle-down');
                 $('.service-detail').slideUp();
                 $(this).next().slideToggle();
+                $('.btn-detail').removeClass('active');
                 $(this).addClass('active');
             }
         });

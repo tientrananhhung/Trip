@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="kendo-taglib-2018.3.1017">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/main/webapp/resources/lib/kendo-taglib-2018.3.1017.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
