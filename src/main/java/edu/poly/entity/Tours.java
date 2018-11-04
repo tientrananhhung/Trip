@@ -16,6 +16,7 @@ public class Tours {
     private String name;
     private String address;
     private String content;
+    private String image;
     private String images;
     private Integer policy;
     private String lat;
@@ -75,6 +76,16 @@ public class Tours {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    @Basic
+    @Column(name = "Image", nullable = true, length = 50)
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Basic
