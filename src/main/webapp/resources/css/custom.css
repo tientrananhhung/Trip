@@ -760,6 +760,7 @@ body {
 
 .blog-image-holder img {
     width: 100%;
+    height: 130px;
 }
 
 .blog-post-content {
@@ -1254,6 +1255,11 @@ body {
     opacity: .3;
 }
 
+.blog-post-description{
+    height: 52px;
+    overflow: hidden;
+}
+
 
 
 /**
@@ -1429,5 +1435,9 @@ body {
 
     .box-blog-right{
         margin-top: 20px;
+    }
+
+    .ticket-relative .ticket-big-short h3{
+        font-size: 20px;
     }
 }

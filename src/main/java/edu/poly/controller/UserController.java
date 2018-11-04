@@ -73,6 +73,20 @@ public class UserController {
     @GetMapping(Constants.Url.BLOG_URL)
     public ModelAndView showBlog() {
         ModelAndView mav = new ModelAndView(BLOG_SCREEN);
+        try {
+            List<PostIndexDTO> lPostIndexDTO = postIndexDAO.getTop5PostNew();
+            List<PostIndexDTO> lPostIndexDTOByView = postIndexDAO.getTop3PostByView();
+            List<PostIndexDTO> lPostIndexDTOByCategoryTravel = postIndexDAO.getTop3PostByCategory(4);
+            List<PostIndexDTO> lPostIndexDTOByCategoryExperience = postIndexDAO.getTop3PostByCategory(5);
+            List<PostIndexDTO> lPostIndexDTOByCategoryFood = postIndexDAO.getTop3PostByCategory(6);
+            mav.addObject("listPost", lPostIndexDTO);
+            mav.addObject("listPostView", lPostIndexDTOByView);
+            mav.addObject("listPostTravel", lPostIndexDTOByCategoryTravel);
+            mav.addObject("listPostExperience", lPostIndexDTOByCategoryExperience);
+            mav.addObject("listPostFood", lPostIndexDTOByCategoryFood);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return mav;
     }
 

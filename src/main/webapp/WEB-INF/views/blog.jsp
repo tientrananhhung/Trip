@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -30,61 +31,39 @@
     <!-- Start Bài viết mới nhất -->
     <section class="box-content-fluid mg-top-20">
         <div class="box-body">
-            <div class="post-big">
-                <a class="city-tickets" href="#" style="background-image: url('/resources/images/post1.jpg');">
-                    <div class="ticket-relative">
-                        <div class="ticket-info">
-                            <div class="ticket-big-short">
-                                <h3>Ngất ngây trước 5 điểm sống ảo ở Đà Lạt khiến dân tình chao đảo</h3>
-                            </div>
+
+            <c:forEach items="${listPost}" var="lPost" varStatus="lPostCount">
+                <c:choose>
+                    <c:when test="${lPostCount.count == 1}">
+                        <div class="post-big">
+                            <a class="city-tickets" href="#" style="background-image: url('/resources/images/${lPost.image}');">
+                                <div class="ticket-relative">
+                                    <div class="ticket-info">
+                                        <div class="ticket-big-short">
+                                            <h3>${lPost.title}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </div>
-                </a>
-            </div>
-            <div class="post-small" style="border-bottom: 5px solid white;">
-                <a class="city-tickets" href="#" style="background-image: url('/resources/images/post2.jpg');">
-                    <div class="ticket-relative">
-                        <div class="ticket-info">
-                            <div class="ticket-small-short">
-                                <h3>Ẩm thực Trần – Tinh hoa ẩm thực đặc sản xứ Quảng</h3>
-                            </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="post-small" style="border-bottom: 5px solid white;">
+                            <a class="city-tickets" href="#" style="background-image: url('/resources/images/${lPost.image}');">
+                                <div class="ticket-relative">
+                                    <div class="ticket-info">
+                                        <div class="ticket-small-short">
+                                            <h3>${lPost.title}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </div>
-                </a>
-            </div>
-            <div class="post-small" style="border-bottom: 5px solid white;">
-                <a class="city-tickets" href="#" style="background-image: url('/resources/images/post3.jpg');">
-                    <div class="ticket-relative">
-                        <div class="ticket-info">
-                            <div class="ticket-small-short">
-                                <h3>Bỏ túi bí kíp, không còn lo du lịch Nha Trang nên đi đâu</h3>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="post-small">
-                <a class="city-tickets" href="#" style="background-image: url('/resources/images/post4.jpg');">
-                    <div class="ticket-relative">
-                        <div class="ticket-info">
-                            <div class="ticket-small-short">
-                                <h3>Những đặc sản Hà Nội làm nức lòng khách du lịch Thủ Đô</h3>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="post-small">
-                <a class="city-tickets" href="#" style="background-image: url('/resources/images/post5.jpg');">
-                    <div class="ticket-relative">
-                        <div class="ticket-info">
-                            <div class="ticket-small-short">
-                                <h3> Bỏ túi địa chỉ 5 món ngon ở Đà Nẵng nhất định bạn phải thử một lần</h3>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+
+
         </div>
     </section>
     <!-- End Bài viết mới nhất -->
@@ -104,57 +83,50 @@
                     </div>
                     <!-- Start blog content -->
                     <div class="box-blog-content">
-                        <div class="combo-big">
-                            <a class="city-tickets" href="#"
-                               style="background-image: url('/resources/images/combo1.jpg');">
-                                <div class="ticket-relative">
-                                    <div class="ticket-info">
-                                        <div class="ticket-big-short">
-                                            <h3>Combo Du lịch Sapa xuất phát từ Hà Nội - Adam Hotel</h3>
-                                            <div class="blog-info">
-                                                <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> 04/10/2018</span>
-                                                <span class="cfs-12"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i> 59</span>
+
+                        <c:forEach items="${listPostTravel}" var="lPost" varStatus="lPostCount">
+                            <c:choose>
+                                <c:when test="${lPostCount.count == 1}">
+                                    <div class="combo-big">
+                                        <a class="city-tickets" href="#"
+                                           style="background-image: url('/resources/images/${lPost.image}');">
+                                            <div class="ticket-relative">
+                                                <div class="ticket-info">
+                                                    <div class="ticket-big-short">
+                                                        <h3>${lPost.title}</h3>
+                                                        <div class="blog-info">
+                                                            <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> ${lPost.updatedAt}</span>
+                                                            <span class="cfs-12"><i class="fa fa-eye"
+                                                                                    aria-hidden="true"></i> ${lPost.view}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </a>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="combo-small" style="margin-bottom: 6px;">
-                            <a class="city-tickets" href="#"
-                               style="background-image: url('/resources/images/combo2.jpg');">
-                                <div class="ticket-relative">
-                                    <div class="ticket-info">
-                                        <div class="ticket-small-short">
-                                            <h3>Combo Tour Đà Nẵng xuất phát từ HN/ HCM</h3>
-                                            <div class="blog-info">
-                                                <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> 04/10/2018</span>
-                                                <span class="cfs-12"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i> 59</span>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="combo-small" style="margin-bottom: 6px;">
+                                        <a class="city-tickets" href="#"
+                                           style="background-image: url('/resources/images/${lPost.image}');">
+                                            <div class="ticket-relative">
+                                                <div class="ticket-info">
+                                                    <div class="ticket-small-short">
+                                                        <h3>${lPost.title}</h3>
+                                                        <div class="blog-info">
+                                                            <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> ${lPost.updatedAt}</span>
+                                                            <span class="cfs-12"><i class="fa fa-eye"
+                                                                                    aria-hidden="true"></i> ${lPost.view}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </a>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="combo-small">
-                            <a class="city-tickets" href="#"
-                               style="background-image: url('/resources/images/combo3.jpg');">
-                                <div class="ticket-relative">
-                                    <div class="ticket-info">
-                                        <div class="ticket-small-short">
-                                            <h3>Combo Du lịch Nha Trang siêu tiết kiệm xuất phát từ HN/HCM</h3>
-                                            <div class="blog-info">
-                                                <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> 04/10/2018</span>
-                                                <span class="cfs-12"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i> 59</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+
                     </div>
                     <!-- End blog content -->
                 </div>
@@ -170,57 +142,51 @@
                     </div>
                     <!-- Start blog content -->
                     <div class="box-blog-content">
-                        <div class="combo-big">
-                            <a class="city-tickets" href="#"
-                               style="background-image: url('/resources/images/combo1.jpg');">
-                                <div class="ticket-relative">
-                                    <div class="ticket-info">
-                                        <div class="ticket-big-short">
-                                            <h3>Combo Du lịch Sapa xuất phát từ Hà Nội - Adam Hotel</h3>
-                                            <div class="blog-info">
-                                                <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> 04/10/2018</span>
-                                                <span class="cfs-12"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i> 59</span>
+
+                        <c:forEach items="${listPostExperience}" var="lPost" varStatus="lPostCount">
+                            <c:choose>
+                                <c:when test="${lPostCount.count == 1}">
+                                    <div class="combo-big">
+                                        <a class="city-tickets" href="#"
+                                           style="background-image: url('/resources/images/${lPost.image}');">
+                                            <div class="ticket-relative">
+                                                <div class="ticket-info">
+                                                    <div class="ticket-big-short">
+                                                        <h3>${lPost.title}</h3>
+                                                        <div class="blog-info">
+                                                            <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> ${lPost.updatedAt}</span>
+                                                            <span class="cfs-12"><i class="fa fa-eye"
+                                                                                    aria-hidden="true"></i> ${lPost.view}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </a>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="combo-small" style="margin-bottom: 6px;">
-                            <a class="city-tickets" href="#"
-                               style="background-image: url('/resources/images/combo2.jpg');">
-                                <div class="ticket-relative">
-                                    <div class="ticket-info">
-                                        <div class="ticket-small-short">
-                                            <h3>Combo Tour Đà Nẵng xuất phát từ HN/ HCM</h3>
-                                            <div class="blog-info">
-                                                <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> 04/10/2018</span>
-                                                <span class="cfs-12"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i> 59</span>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="combo-small" style="margin-bottom: 6px;">
+                                        <a class="city-tickets" href="#"
+                                           style="background-image: url('/resources/images/${lPost.image}');">
+                                            <div class="ticket-relative">
+                                                <div class="ticket-info">
+                                                    <div class="ticket-small-short">
+                                                        <h3>${lPost.title}</h3>
+                                                        <div class="blog-info">
+                                                            <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> ${lPost.updatedAt}</span>
+                                                            <span class="cfs-12"><i class="fa fa-eye"
+                                                                                    aria-hidden="true"></i> ${lPost.view}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </a>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="combo-small">
-                            <a class="city-tickets" href="#"
-                               style="background-image: url('/resources/images/combo3.jpg');">
-                                <div class="ticket-relative">
-                                    <div class="ticket-info">
-                                        <div class="ticket-small-short">
-                                            <h3>Combo Du lịch Nha Trang siêu tiết kiệm xuất phát từ HN/HCM</h3>
-                                            <div class="blog-info">
-                                                <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> 04/10/2018</span>
-                                                <span class="cfs-12"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i> 59</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+
+
                     </div>
                     <!-- End blog content -->
                 </div>
@@ -236,57 +202,51 @@
                     </div>
                     <!-- Start blog content -->
                     <div class="box-blog-content">
-                        <div class="combo-big">
-                            <a class="city-tickets" href="#"
-                               style="background-image: url('/resources/images/combo1.jpg');">
-                                <div class="ticket-relative">
-                                    <div class="ticket-info">
-                                        <div class="ticket-big-short">
-                                            <h3>Combo Du lịch Sapa xuất phát từ Hà Nội - Adam Hotel</h3>
-                                            <div class="blog-info">
-                                                <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> 04/10/2018</span>
-                                                <span class="cfs-12"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i> 59</span>
+
+                        <c:forEach var="lPost" items="${listPostFood}" varStatus="lPostCount">
+                            <c:choose>
+                                <c:when test="${lPostCount.count == 1}">
+                                    <div class="combo-big">
+                                        <a class="city-tickets" href="#"
+                                           style="background-image: url('/resources/images/${lPost.image}');">
+                                            <div class="ticket-relative">
+                                                <div class="ticket-info">
+                                                    <div class="ticket-big-short">
+                                                        <h3>${lPost.title}</h3>
+                                                        <div class="blog-info">
+                                                            <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> ${lPost.updatedAt}</span>
+                                                            <span class="cfs-12"><i class="fa fa-eye"
+                                                                                    aria-hidden="true"></i> ${lPost.view}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </a>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="combo-small" style="margin-bottom: 6px;">
-                            <a class="city-tickets" href="#"
-                               style="background-image: url('/resources/images/combo2.jpg');">
-                                <div class="ticket-relative">
-                                    <div class="ticket-info">
-                                        <div class="ticket-small-short">
-                                            <h3>Combo Tour Đà Nẵng xuất phát từ HN/ HCM</h3>
-                                            <div class="blog-info">
-                                                <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> 04/10/2018</span>
-                                                <span class="cfs-12"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i> 59</span>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="combo-small" style="margin-bottom: 6px;">
+                                        <a class="city-tickets" href="#"
+                                           style="background-image: url('/resources/images/${lPost.image}');">
+                                            <div class="ticket-relative">
+                                                <div class="ticket-info">
+                                                    <div class="ticket-small-short">
+                                                        <h3>${lPost.title}</h3>
+                                                        <div class="blog-info">
+                                                            <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> ${lPost.updatedAt}</span>
+                                                            <span class="cfs-12"><i class="fa fa-eye"
+                                                                                    aria-hidden="true"></i> ${lPost.view}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </a>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="combo-small">
-                            <a class="city-tickets" href="#"
-                               style="background-image: url('/resources/images/combo3.jpg');">
-                                <div class="ticket-relative">
-                                    <div class="ticket-info">
-                                        <div class="ticket-small-short">
-                                            <h3>Combo Du lịch Nha Trang siêu tiết kiệm xuất phát từ HN/HCM</h3>
-                                            <div class="blog-info">
-                                                <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> 04/10/2018</span>
-                                                <span class="cfs-12"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i> 59</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+
+
                     </div>
                     <!-- End blog content -->
                 </div>
@@ -337,60 +297,27 @@
                         <a class="blog-more" href="#">Xem thêm »</a>
                     </div>
                     <div class="box-blog-content">
-
-                        <article class="blog-post-item">
-                            <div class="blog-media-object">
-                                <a class="blog-image-holder" href="#">
-                                    <img src="/resources/images/combo1.jpg" alt="">
-                                </a>
-                                <div class="blog-post-content">
-                                    <h3 class="blog-post-title cfs-15">
-                                        <a href="#">Tổng hợp 11 địa điểm du lịch không thể bỏ qua khi đi Sapa tự túc –
-                                            P2</a>
-                                    </h3>
-                                    <div class="blog-post-meta">
-                                        <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> 23/10/2018</span>
-                                        <span class="cfs-12"><i class="fa fa-eye" aria-hidden="true"></i> 69</span>
+                        <c:forEach items="${listPost}" var="lPosst" end="2">
+                            <article class="blog-post-item">
+                                <div class="blog-media-object">
+                                    <a class="blog-image-holder" href="#">
+                                        <img src="/resources/images/${lPosst.image}" alt="">
+                                    </a>
+                                    <div class="blog-post-content">
+                                        <h3 class="blog-post-title cfs-15">
+                                            <a href="#">${lPosst.title}</a>
+                                        </h3>
+                                        <div class="blog-post-description cfs-12">
+                                            ${lPosst.content}
+                                        </div>
+                                        <div class="blog-post-meta">
+                                            <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> ${lPosst.updatedAt}</span>
+                                            <span class="cfs-12"><i class="fa fa-eye" aria-hidden="true"></i> ${lPosst.view}</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </article>
-
-                        <article class="blog-post-item">
-                            <div class="blog-media-object">
-                                <a class="blog-image-holder" href="#">
-                                    <img src="/resources/images/combo1.jpg" alt="">
-                                </a>
-                                <div class="blog-post-content">
-                                    <h3 class="blog-post-title cfs-15">
-                                        <a href="#">Tổng hợp 11 địa điểm du lịch không thể bỏ qua khi đi Sapa tự túc –
-                                            P2</a>
-                                    </h3>
-                                    <div class="blog-post-meta">
-                                        <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> 23/10/2018</span>
-                                        <span class="cfs-12"><i class="fa fa-eye" aria-hidden="true"></i> 69</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="blog-post-item">
-                            <div class="blog-media-object">
-                                <a class="blog-image-holder" href="#">
-                                    <img src="/resources/images/combo1.jpg" alt="">
-                                </a>
-                                <div class="blog-post-content">
-                                    <h3 class="blog-post-title cfs-15">
-                                        <a href="#">Tổng hợp 11 địa điểm du lịch không thể bỏ qua khi đi Sapa tự túc –
-                                            P2</a>
-                                    </h3>
-                                    <div class="blog-post-meta">
-                                        <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> 23/10/2018</span>
-                                        <span class="cfs-12"><i class="fa fa-eye" aria-hidden="true"></i> 69</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
+                            </article>
+                        </c:forEach>
 
                     </div>
                 </div>
@@ -404,59 +331,27 @@
                     </div>
                     <div class="box-blog-content">
 
-                        <article class="blog-post-item">
-                            <div class="blog-media-object">
-                                <a class="blog-image-holder" href="#">
-                                    <img src="/resources/images/combo1.jpg" alt="">
-                                </a>
-                                <div class="blog-post-content">
-                                    <h3 class="blog-post-title cfs-15">
-                                        <a href="#">Tổng hợp 11 địa điểm du lịch không thể bỏ qua khi đi Sapa tự túc –
-                                            P2</a>
-                                    </h3>
-                                    <div class="blog-post-meta">
-                                        <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> 23/10/2018</span>
-                                        <span class="cfs-12"><i class="fa fa-eye" aria-hidden="true"></i> 69</span>
+                        <c:forEach items="${listPostView}" var="lPost">
+                            <article class="blog-post-item">
+                                <div class="blog-media-object">
+                                    <a class="blog-image-holder" href="#">
+                                        <img src="/resources/images/${lPost.image}" alt="">
+                                    </a>
+                                    <div class="blog-post-content">
+                                        <h3 class="blog-post-title cfs-15">
+                                            <a href="#">${lPost.title}</a>
+                                        </h3>
+                                        <div class="blog-post-description cfs-12">
+                                            ${lPost.content}
+                                        </div>
+                                        <div class="blog-post-meta">
+                                            <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> ${lPost.updatedAt}</span>
+                                            <span class="cfs-12"><i class="fa fa-eye" aria-hidden="true"></i> ${lPost.view}</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </article>
-
-                        <article class="blog-post-item">
-                            <div class="blog-media-object">
-                                <a class="blog-image-holder" href="#">
-                                    <img src="/resources/images/combo1.jpg" alt="">
-                                </a>
-                                <div class="blog-post-content">
-                                    <h3 class="blog-post-title cfs-15">
-                                        <a href="#">Tổng hợp 11 địa điểm du lịch không thể bỏ qua khi đi Sapa tự túc –
-                                            P2</a>
-                                    </h3>
-                                    <div class="blog-post-meta">
-                                        <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> 23/10/2018</span>
-                                        <span class="cfs-12"><i class="fa fa-eye" aria-hidden="true"></i> 69</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="blog-post-item">
-                            <div class="blog-media-object">
-                                <a class="blog-image-holder" href="#">
-                                    <img src="/resources/images/combo1.jpg" alt="">
-                                </a>
-                                <div class="blog-post-content">
-                                    <h3 class="blog-post-title cfs-15">
-                                        <a href="#">Tổng hợp 11 địa điểm du lịch không thể bỏ qua khi đi Sapa tự túc –
-                                            P2</a>
-                                    </h3>
-                                    <div class="blog-post-meta">
-                                        <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> 23/10/2018</span>
-                                        <span class="cfs-12"><i class="fa fa-eye" aria-hidden="true"></i> 69</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
+                            </article>
+                        </c:forEach>
 
                     </div>
                 </div>
@@ -475,11 +370,11 @@
 <jsp:include page="includes/footer.jsp"/>
 
 <!-- Start Import Script -->
-<script type="text/javascript" src="js/jquery/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="js/popper/popper.min.js"></script>
-<script type="text/javascript" src="js/bootstrap/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/bootstrap/util.js"></script>
+<script type="text/javascript" src="/resources/js/jquery/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/resources/js/popper/popper.min.js"></script>
+<script type="text/javascript" src="/resources/js/bootstrap/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/resources/js/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="/resources/js/bootstrap/util.js"></script>
 <!-- End Import Script -->
 
 </body>
