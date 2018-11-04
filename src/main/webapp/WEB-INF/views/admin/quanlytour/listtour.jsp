@@ -12,7 +12,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Xollo Admin</title>
+    <title>SmartTrip - Tour Manager</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/mdi/css/materialdesignicons.min.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/flag-icon-css/css/flag-icon.min.css" />">
@@ -42,89 +42,45 @@
                             </div>
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
-                                <a href="addTour.html"><button style="margin-left: 190px;" type="button" class="btn btn-warning btn-rounded btn-fw">Add Tour</button></a>
+                                <a href="/admin/quan-ly-tour/addtour"><button style="margin-left: 190px;" type="button" class="btn btn-warning btn-rounded btn-fw">Add Tour</button></a>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-12 table-responsive">
                                 <table id="order-listing" class="table" cellspacing="0">
                                     <thead>
                                     <tr>
-                                        <th>Tour ID</th>
-                                        <th>User ID</th>
+                                        <th>User</th>
+                                        <th>Parner Name</th>
                                         <th>Tour name</th>
                                         <th>Tour address</th>
-                                        <th>Tour status</th>
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>New York</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-success">Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>New York</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-success">Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>New York</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-danger">Un-Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>New York</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-success">Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>New York</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-success">Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>New York</td>
-                                        <td>2012/08/03</td>
-                                        <td><label class="badge badge-danger">Un-Active</label></td>
-                                        <td>
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                        </td>
-                                    </tr>
+
+                                    <c:forEach var="tour" items="${listTour}">
+                                        <tr>
+                                            <td>${tour.usersByUserId.name}</td>
+                                            <c:forEach items="${tour.usersByUserId.partnersById}" var="row">
+                                                <td>${row.name}</td>
+                                            </c:forEach>
+                                            <td>${tour.name}</td>
+                                            <td>${tour.address}</td>
+                                            <td>
+                                                <c:choose>
+                                                    <c:when test="${tour.getDeleted()} ">
+                                                        <a href="/admin/quan-ly-tour/xoa/${tour.id}/0"> <label class="badge badge-danger">Inactive</label></a>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <a href="/admin/quan-ly-tour/xoa/${tour.id}/1">
+                                                            <label class="badge badge-success">Active</label></a>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </td>
+                                        </tr>
+
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -152,7 +108,6 @@
 <script src="<c:url value="/resources/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js"/>"></script>
 <!-- End plugin js for this page-->
 <!-- inject:js -->
-<c:url value="/resources/js/todolist.js"/>
 <script src="<c:url value="/resources/js/off-canvas.js"/>"></script>
 <script src="<c:url value="/resources/js/hoverable-collapse.js"/>"></script>
 <script src="<c:url value="/resources/js/misc.js"/>"></script>
