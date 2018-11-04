@@ -86,6 +86,7 @@ public class FoodPlaceController {
             foods.setUpdatedAt(TimeUtils.getCurrentTime());
             Users us = (Users) session.getAttribute(Constants.SessionKey.USER);
             foods.setUserId((us.getId()));
+            foods.setDeleted(true);
             food.save(foods);
             mav.addObject("listFoodplace", food.findAllByDeleted(false));
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_FOOD_PLACE);

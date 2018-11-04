@@ -69,7 +69,7 @@
                                     <tbody>
                                     <c:forEach var="user" items="${listUser}">
                                         <tr>
-                                            <td>${user.avatar}</td>
+                                            <td><img src="../../../../resources/images/${user.avatar}"</td>
                                             <td>${user.name}</td>
                                             <td>${user.username}</td>
                                             <td>${user.phone}</td>

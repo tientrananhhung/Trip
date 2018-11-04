@@ -27,4 +27,6 @@ public interface TourService {
 
     public List<Tours> findAllByDeleted(Boolean isDeleted);
 
+    public Tours getById(Integer id);
+
 }

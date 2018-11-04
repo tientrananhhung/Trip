@@ -144,7 +144,7 @@ public class Constants {
         public static final String UPDATE_TOUR = "/quan-ly-tour/{id}";
 
         //Trang xóa tour
-        public static final String DELETE_TOUR = "/quan-ly-tour/xoa/{id}";
+        public static final String DELETE_TOUR = "/quan-ly-tour/xoa/{id}/{xoa}";
 
         //Trang sua tour
         public static final String UPDATED_TOUR = "/quan-ly-tour/sua";
