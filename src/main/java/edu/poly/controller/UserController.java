@@ -10,6 +10,7 @@ import edu.poly.model.PostIndexDTO;
 import edu.poly.model.TourDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -93,6 +94,12 @@ public class UserController {
     @GetMapping(Constants.Url.CATEGORY_BLOG_URL)
     public ModelAndView showCategoryBlog(@PathVariable("id") int id) {
         ModelAndView mav = new ModelAndView(CATEGORY_BLOG_SCREEN);
+        return mav;
+    }
+
+    @GetMapping(Constants.Url.TOUR_DETAIL_URL)
+    public ModelAndView showTourDetail(@PathVariable("id") int id){
+        ModelAndView mav = new ModelAndView(TOUR_DETAIL_SCREEN);
         return mav;
     }
 
