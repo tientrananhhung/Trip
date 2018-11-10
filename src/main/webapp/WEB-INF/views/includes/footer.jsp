@@ -15,13 +15,13 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 footer-contact">
                     <h2>Liên hệ</h2>
                     <p>
-                        11 Trần Phú, Quận Hải Châu, TP.Đà Nẵng
+                        137 Nguyễn Thị Thập, Quận Liên Chiểu, TP.Đà Nẵng
                         <br>
-                        Điện thoại: 1900.633.935
+                        Điện thoại: 0929.353.217
                         <br>
-                        Email: lienhe@donkeyfun.com
+                        Email: tien.trananhhung@gmail.com
                         <br>
-                        Hotline: 1900.633.935(08h-23h)
+                        Hotline: 0929.353.217(08h-23h)
                     </p>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 footer-about-us">

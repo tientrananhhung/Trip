@@ -93,8 +93,10 @@ public class AdminController {
             users.setDeleted(false);
             users.setCreatedAt(TimeUtils.getCurrentTime());
             users.setUpdatedAt(TimeUtils.getCurrentTime());
-            Users us = user.getById(users.getId());
+            String token = TokenUtils.getRandomString();
+            users.setToken(token);
             user.save(users);
+            mailTest.mailSend(users.getEmail(),Constants.MailContent.ACTIVE_USER(users.getUsername(),users.getEmail(),users.getName(),token),"Kích hoạt thành viên SmartTrip");
             mav.addObject("listUser", user.findAllByDeleted(false));
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_USER);
         } catch (Exception ex) {
