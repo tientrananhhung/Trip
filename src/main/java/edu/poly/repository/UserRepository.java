@@ -31,4 +31,6 @@ public interface UserRepository extends CrudRepository<Users, Integer> {
     @Query("from Users where role = :role and active = :active and deleted = :isdeleled")
     public List<Users> findAllByRoleAndActiveAndDeleted(@Param("role") Integer role,@Param("active") Boolean active,@Param("isdeleled") Boolean deleted);
 
+    public Users getByToken(String token);
+
 }

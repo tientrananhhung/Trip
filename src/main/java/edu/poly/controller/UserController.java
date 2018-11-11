@@ -5,7 +5,9 @@ import edu.poly.dao.FoodDAO;
 import edu.poly.dao.PostIndexDAO;
 import edu.poly.dao.TourDAO;
 import edu.poly.entity.Tours;
+import edu.poly.entity.Users;
 import edu.poly.impl.TourImpl;
+import edu.poly.impl.UserImpl;
 import edu.poly.model.FoodDTO;
 import edu.poly.model.PostIndexDTO;
 import edu.poly.model.TourDTO;
@@ -53,6 +55,9 @@ public class UserController {
 
     @Autowired
     FoodDAO foodDAO;
+
+    @Autowired
+    UserImpl user;
 
     @Autowired
     PostIndexDAO postIndexDAO;
@@ -105,5 +110,15 @@ public class UserController {
         mav.addObject("tourId", id);
         return mav;
     }
+
+    @GetMapping(Constants.Url.ACTIVE_USER_TOKEN)
+        public ModelAndView activeUser(@PathVariable("token") String token){
+       Users us = user.getByToken(token);
+       us.setActive(true);
+       user.update(us);
+            ModelAndView mav = new ModelAndView(HOME_SCREEN);
+            return mav;
+        }
+
 
 }

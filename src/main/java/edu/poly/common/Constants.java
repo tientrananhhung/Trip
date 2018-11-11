@@ -50,6 +50,9 @@ public class Constants {
         //Trang active người dùng
         public static final String ACTIVE_USER = "/quan-ly-nguoi-dung/active/{id}/{active}";
 
+        //Trang active người dùng
+        public static final String ACTIVE_USER_TOKEN = "/activeuser/{token}";
+
         //Trang danh sách các quận Đà Nẵng
         public static final String LIST_DISTRICT = "/quan-ly-quan";
 
@@ -319,6 +322,8 @@ public class Constants {
         public static final String USER = "userInfo";
 
     }
+
+
 
     public static class MailContent {
         public static String ACTIVE_USER(String userName,String email, String name, String token){
@@ -620,7 +625,7 @@ public class Constants {
                     "\t\t<div style=\"font-size:12px;line-height:18px;color:#283C4B;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;text-align:left;\"><p style=\"margin: 0;font-size: 12px;line-height: 18px\"><span style=\"font-size: 14px; line-height: 21px;\">Để kích hoạt tài khoản, bạn vui lòng click vào nút dưới đây:</span></p></div>\t\n" +
                     "\t</div>\n" +
                     "</div>  \n" +
-                    "<a href=\"/activeuser/"+token+"\" target=\"_blank\" style=\"text-decoration:none\"><div align=\"center\" class=\"button-container center \" style=\"padding-right: 0px; padding-left: 0px; padding-top:25px; padding-bottom:0px;\">\n" +
+                    "<a href=\"http://localhost/activeuser/"+token+"\" target=\"_blank\" style=\"text-decoration:none\"><div align=\"center\" class=\"button-container center \" style=\"padding-right: 0px; padding-left: 0px; padding-top:25px; padding-bottom:0px;\">\n" +
                     "    <div style=\"color: #ffffff; background-color: #f56a00; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; max-width: 246px; width: 206px;width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; text-align: center; mso-border-alt: none;\">\n" +
                     "      <span style=\"font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:32px;\"><span style=\"font-family: 'lucida sans unicode', 'lucida grande', sans-serif; font-size: 14px; line-height: 28px;\" mce-data-marked=\"1\" data-mce-style=\"font-family: 'lucida sans unicode', 'lucida grande', sans-serif; font-size: 14px; line-height: 32px;\">Kích hoạt</span></span>\n" +
                     "    </div>\n" +

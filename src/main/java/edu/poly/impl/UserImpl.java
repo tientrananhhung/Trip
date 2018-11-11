@@ -103,6 +103,11 @@ public class UserImpl implements UserService {
         return repository.findAllByRoleAndActiveAndDeleted(role,active,deleted);
     }
 
+    @Override
+    public Users getByToken(String token) {
+        return repository.getByToken(token);
+    }
+
     public static void main(String[] args) {
         UserImpl user = new UserImpl();
     }

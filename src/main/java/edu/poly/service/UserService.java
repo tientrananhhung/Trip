@@ -38,4 +38,6 @@ public interface UserService {
 
     public List<Users> findAllByRoleAndActiveAndDeleted(Integer role,Boolean active,Boolean deleted);
 
+    public Users getByToken(String token);
+
 }
