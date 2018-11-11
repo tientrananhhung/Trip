@@ -4,6 +4,7 @@ import edu.poly.common.Constants;
 import edu.poly.dao.FoodDAO;
 import edu.poly.dao.PostIndexDAO;
 import edu.poly.dao.TourDAO;
+import edu.poly.entity.Tours;
 import edu.poly.impl.TourImpl;
 import edu.poly.model.FoodDTO;
 import edu.poly.model.PostIndexDTO;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/")
@@ -100,6 +102,7 @@ public class UserController {
     @GetMapping(Constants.Url.TOUR_DETAIL_URL)
     public ModelAndView showTourDetail(@PathVariable("id") int id){
         ModelAndView mav = new ModelAndView(TOUR_DETAIL_SCREEN);
+        mav.addObject("tourId", id);
         return mav;
     }
 

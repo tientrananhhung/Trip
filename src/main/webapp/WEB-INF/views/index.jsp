@@ -130,7 +130,7 @@
                             <div class="item" data-toggle="tooltip" data-placement="top"
                                  title="${lTour.name}">
                                 <div class="card">
-                                    <a href="#">
+                                    <a href="/tour/${lTour.id}">
                                         <img class="card-img-top" src="/resources/images/tour4.jpg"
                                              alt="Smart Trip - No Image">
                                         <div class="card-body">

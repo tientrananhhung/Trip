@@ -392,7 +392,7 @@ body {
 }
 
 .card-img-top {
-    height: 200px;
+    height: 150px;
 }
 
 .table td {
@@ -588,12 +588,6 @@ body {
     text-decoration: none;
     vertical-align: baseline;
     font-weight: bolder;
-    transition: 0.3s;
-}
-
-.box-blog-content li a:hover{
-    margin-left: 10px;
-    color: #ff6f42;
 }
 
 .category-item-count {
@@ -760,7 +754,6 @@ body {
 
 .blog-image-holder img {
     width: 100%;
-    height: 130px;
 }
 
 .blog-post-content {
@@ -875,8 +868,8 @@ body {
 }
 
 .tour-order {
-    /*z-index: 1000;*/
-    /*transform: translateZ(0px);*/
+    z-index: 1000;
+    transform: translateZ(0px);
     position: -webkit-sticky;
     position: sticky;
     top: 0px;
@@ -1255,11 +1248,6 @@ body {
     opacity: .3;
 }
 
-.blog-post-description{
-    height: 52px;
-    overflow: hidden;
-}
-
 
 
 /**
@@ -1313,10 +1301,10 @@ body {
 }
 
 @media only screen and (max-width: 767px) {
-    .tour-order {
-        position: absolute !important;
-        width: 96%;
-    }
+    /*.tour-order {*/
+        /*position: absolute !important;*/
+        /*width: 96%;*/
+    /*}*/
 
     .sticky-wrapper {
         text-align: center;
@@ -1344,9 +1332,9 @@ body {
 }
 
 @media only screen and (max-width: 600px) {
-    .tour-order {
-        position: absolute !important;
-    }
+    /*.tour-order {*/
+        /*position: absolute !important;*/
+    /*}*/
 
     .box-title a {
         position: inherit;
@@ -1435,9 +1423,5 @@ body {
 
     .box-blog-right{
         margin-top: 20px;
-    }
-
-    .ticket-relative .ticket-big-short h3{
-        font-size: 20px;
     }
 }
