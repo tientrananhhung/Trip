@@ -233,6 +233,9 @@ public class Constants {
         //Trang API phân trang category food
         public static final String PAGING_CATEGORY_FOOD_URL = "/{id}/get-food/{page}";
 
+        //Trang API phân trang rate tour detail
+        public static final String PAGING_RATE_TOUR_DETAIL_URL = "/{id}/rate/{page}";
+
         //Trang Error 404
         public static final String ERROR404 = "/error404";
 

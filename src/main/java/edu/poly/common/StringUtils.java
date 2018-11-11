@@ -1,6 +1,8 @@
 package edu.poly.common;
 
 import java.security.SecureRandom;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -89,8 +91,11 @@ public class StringUtils {
         return result;
     }
 
-    public static void main(String[] args) {
-        System.out.println(getCurrentTime());
+    public static String formatCurrency(String currency){
+        NumberFormat formatter = new DecimalFormat("###,###");
+        String resp = formatter.format(Integer.parseInt(currency));
+        resp = resp.replaceAll(",", ".");
+        return resp;
     }
 
 }

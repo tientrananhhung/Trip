@@ -4,6 +4,7 @@ import edu.poly.common.Constants;
 import edu.poly.dao.FoodDAO;
 import edu.poly.dao.PostIndexDAO;
 import edu.poly.dao.TourDAO;
+import edu.poly.dao.TourDetailDAO;
 import edu.poly.entity.Tours;
 import edu.poly.entity.Users;
 import edu.poly.impl.TourImpl;
@@ -11,6 +12,7 @@ import edu.poly.impl.UserImpl;
 import edu.poly.model.FoodDTO;
 import edu.poly.model.PostIndexDTO;
 import edu.poly.model.TourDTO;
+import edu.poly.model.TourDetailDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,6 +64,9 @@ public class UserController {
     @Autowired
     PostIndexDAO postIndexDAO;
 
+    @Autowired
+    TourDetailDAO tourDetailDAO;
+
     @GetMapping(Constants.Characters.BLANK)
     public ModelAndView index() {
         ModelAndView mav = new ModelAndView(HOME_SCREEN);
@@ -105,21 +110,25 @@ public class UserController {
     }
 
     @GetMapping(Constants.Url.TOUR_DETAIL_URL)
-    public ModelAndView showTourDetail(@PathVariable("id") int id){
+    public ModelAndView showTourDetail(@PathVariable("id") int id) {
         ModelAndView mav = new ModelAndView(TOUR_DETAIL_SCREEN);
-        mav.addObject("tourId", id);
+        try {
+            List<TourDetailDTO> listDTO = tourDetailDAO.getTourDetailDTO(id);
+            mav.addObject("listTourDetail", listDTO);
+        } catch(Exception e){
+            mav.setViewName(HOME_SCREEN);
+        }
         return mav;
     }
 
     @GetMapping(Constants.Url.ACTIVE_USER_TOKEN)
-        public ModelAndView activeUser(@PathVariable("token") String token){
-       Users us = user.getByToken(token);
-       us.setToken("");
-       us.setActive(true);
-       user.update(us);
-            ModelAndView mav = new ModelAndView(HOME_SCREEN);
-            return mav;
-        }
-
+    public ModelAndView activeUser(@PathVariable("token") String token) {
+        Users us = user.getByToken(token);
+        us.setToken("");
+        us.setActive(true);
+        user.update(us);
+        ModelAndView mav = new ModelAndView(HOME_SCREEN);
+        return mav;
+    }
 
 }

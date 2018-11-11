@@ -1,6 +1,8 @@
 package edu.poly.service;
 
 import edu.poly.entity.Rates;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.Optional;
 
@@ -23,5 +25,7 @@ public interface RateService {
     public void delete(Iterable<Rates> rates);
 
     public void deleteById(Integer id);
+
+    public Page<Rates> findByTourId(int tourId, Pageable pageable);
 
 }
