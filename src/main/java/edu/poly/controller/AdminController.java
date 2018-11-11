@@ -96,7 +96,7 @@ public class AdminController {
             String token = TokenUtils.getRandomString();
             users.setToken(token);
             user.save(users);
-            mailTest.mailSend(users.getEmail(),Constants.MailContent.ACTIVE_USER(users.getUsername(),users.getEmail(),users.getName(),token),"Kích hoạt thành viên SmartTrip");
+            mailTest.mailSend(users.getEmail(),MailContent.ACTIVE_USER(users.getUsername(),users.getEmail(),users.getName(),token),"Kích hoạt thành viên SmartTrip");
             mav.addObject("listUser", user.findAllByDeleted(false));
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_USER);
         } catch (Exception ex) {

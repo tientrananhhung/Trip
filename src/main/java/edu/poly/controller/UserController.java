@@ -114,6 +114,7 @@ public class UserController {
     @GetMapping(Constants.Url.ACTIVE_USER_TOKEN)
         public ModelAndView activeUser(@PathVariable("token") String token){
        Users us = user.getByToken(token);
+       us.setToken("");
        us.setActive(true);
        user.update(us);
             ModelAndView mav = new ModelAndView(HOME_SCREEN);

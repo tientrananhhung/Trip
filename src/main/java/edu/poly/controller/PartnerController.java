@@ -19,6 +19,8 @@ public class PartnerController {
 
     @Autowired
     private PartnerImpl partner;
+
+    @Autowired
     private UserImpl user;
 
 
@@ -57,12 +59,15 @@ public class PartnerController {
             mav.setViewName("redirect:" + Constants.Url.LOGIN);
             return mav;
         }
-        mav.setViewName(ADD_PARTNER);
-        mav.addObject("partner", new Partners());
-        mav.addObject("user_list", user.findAllByRoleAndActiveAndDeleted(Constants.Role.USER,true,false));
+        try{
+            mav.setViewName(ADD_PARTNER);
+            mav.addObject("partner", new Partners());
+            mav.addObject("user_list", user.findAllByRoleAndActiveAndDeleted(Constants.Role.USER,true,false));
+            mav.addObject("action", "them");
 
-
-        mav.addObject("action", "them");
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
         return mav;
     }
 
