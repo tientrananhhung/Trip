@@ -183,7 +183,7 @@ public class PlaceInfors {
         return Objects.hash(id, foodId, districtId, name, lat, lng, images, phone, address, content, isDeleted, createdAt, updatedAt);
     }
 
-    @OneToMany(mappedBy = "placeInforsByPlaceInforId", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "placeInforsByPlaceInforId", fetch = FetchType.LAZY)
     @Fetch(value = FetchMode.SUBSELECT)
     public Collection<FoodInfors> getFoodInforsById() {
         return foodInforsById;

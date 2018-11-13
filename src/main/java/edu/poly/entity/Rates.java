@@ -1,10 +1,14 @@
 package edu.poly.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
+
 @Table(name = "rates")
 public class Rates {
     private int id;
@@ -118,7 +122,7 @@ public class Rates {
         return Objects.hash(id, tourId, userId, comment, star, isDeleted, createdAt, updatedAt);
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tour_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public Tours getToursByTourId() {
         return toursByTourId;
@@ -128,7 +132,7 @@ public class Rates {
         this.toursByTourId = toursByTourId;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public Users getUsersByUserId() {
         return usersByUserId;

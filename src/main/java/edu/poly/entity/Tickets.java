@@ -105,7 +105,7 @@ public class Tickets {
         return Objects.hash(id, serviceId, quantity, type, count, createdAt, updatedAt);
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "service_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public Services getServicesByServiceId() {
         return servicesByServiceId;

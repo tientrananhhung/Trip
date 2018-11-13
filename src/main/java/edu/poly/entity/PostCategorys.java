@@ -87,7 +87,7 @@ public class PostCategorys {
         return Objects.hash(id, name, isDeleted, createdAt, updatedAt);
     }
 
-    @OneToMany(mappedBy = "postCategorysByPostCategoryId", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "postCategorysByPostCategoryId", fetch = FetchType.LAZY)
     @Fetch(value = FetchMode.SUBSELECT)
 //    @JsonIgnoreProperties({"postsById", "usersByUserId"})
     public Collection<Posts> getPostsById() {

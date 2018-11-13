@@ -86,7 +86,7 @@ public class FoodCategorys {
         return Objects.hash(id, name, isDeleted, createdAt, updatedAt);
     }
 
-    @OneToMany(mappedBy = "foodCategorysByFoodCategoryId", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "foodCategorysByFoodCategoryId", fetch = FetchType.LAZY)
     @Fetch(value = FetchMode.SUBSELECT)
     public Collection<Foods> getFoodsById() {
         return foodsById;

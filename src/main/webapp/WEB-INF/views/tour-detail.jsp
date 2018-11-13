@@ -30,118 +30,125 @@
 <jsp:include page="includes/navbar.jsp"/>
 <!-- Start Carousel Slide -->
 <c:forEach items="${listTourDetail}" var="lTourDetail" begin="0" end="0">
-<div class="loop owl-carousel owl-theme owl-loaded owl-drag">
-    <c:forEach items="${lTourDetail.images}" var="imgTour">
-        <a tabindex="-1">
-            <div class="image-slider container-image"
-                 style="background-image: url('/resources/images/${imgTour}');"></div>
-        </a>
-    </c:forEach>
+    <div class="loop owl-carousel owl-theme owl-loaded owl-drag">
+        <c:forEach items="${lTourDetail.images}" var="imgTour">
+            <a tabindex="-1">
+                <div class="image-slider container-image"
+                     style="background-image: url('/resources/images/${imgTour}');"></div>
+            </a>
+        </c:forEach>
 
-        <%--<a tabindex="-1">--%>
-        <%--<div class="image-slider container-image" style="background-image: url('/resources/images/detail2.jpg');"></div>--%>
-        <%--</a>--%>
-        <%--<a tabindex="-1">--%>
-        <%--<div class="image-slider container-image" style="background-image: url('/resources/images/detail3.jpeg');"></div>--%>
-        <%--</a>--%>
-        <%--<a tabindex="-1">--%>
-        <%--<div class="image-slider container-image" style="background-image: url('/resources/images/detail4.jpg');"></div>--%>
-        <%--</a>--%>
-        <%--<a tabindex="-1">--%>
-        <%--<div class="image-slider container-image" style="background-image: url('/resources/images/detail5.jpg');"></div>--%>
-        <%--</a>--%>
-        <%--<a tabindex="-1">--%>
-        <%--<div class="image-slider container-image" style="background-image: url('/resources/images/detail6.jpg');"></div>--%>
-        <%--</a>--%>
-</div>
-<!-- End Carousel Slide -->
-<!-- Start Information of Tour -->
-<div class="container-fluid">
-    <div class="box-content-fluid">
-        <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-12">
-                    <%--<h1>Bà Nà Hills - Đường Lên Tiên Cảnh</h1>--%>
-                <h1>${lTourDetail.name}</h1>
-                <div class="cfs-14 critical-info">
-                    <i class="fa fa-map-marker c_orange" aria-hidden="true"></i> Địa điểm: <span>${lTourDetail.address}</span>
-                </div>
-                <div class="cfs-14 critical-info">
-                    <i class="fa fa-check-square-o c_orange" aria-hidden="true"></i> Đối tác dịch vụ: <span>${lTourDetail.partnerName} - ${lTourDetail.partnerAddress}</span>
-                </div>
-                <div class="properties">
-                    <table class="table table-bordered">
-                        <tbody>
-                        <tr>
-                            <c:choose>
-                                <c:when test="${lTourDetail.ticketType}">
-                                    <td class="center">
-                                        <div class="cfs-16">
-                                            <i class="fa fa-eye c_orange m_right_10 c_orange" aria-hidden="true"></i> Còn
-                                        </div>
-                                        <div class="cfs-14 pd-top-10">${lTourDetail.ticketQuantity - lTourDetail.ticketCount}</div>
-                                    </td>
-                                </c:when>
-                                <c:otherwise>
-                                    <td class="center">
-                                        <div class="cfs-16">
-                                            <i class="fa fa-eye c_orange m_right_10 c_orange" aria-hidden="true"></i> Số lượt đặt
-                                        </div>
-                                        <div class="cfs-14 pd-top-10">${lTourDetail.ticketCount}</div>
-                                    </td>
-                                </c:otherwise>
-                            </c:choose>
-                            <td class="center">
-                                <div class="cfs-16">
-                                    <i class="fa fa-hourglass-half c_orange" aria-hidden="true"></i> Trạng thái
-                                </div>
+            <%--<a tabindex="-1">--%>
+            <%--<div class="image-slider container-image" style="background-image: url('/resources/images/detail2.jpg');"></div>--%>
+            <%--</a>--%>
+            <%--<a tabindex="-1">--%>
+            <%--<div class="image-slider container-image" style="background-image: url('/resources/images/detail3.jpeg');"></div>--%>
+            <%--</a>--%>
+            <%--<a tabindex="-1">--%>
+            <%--<div class="image-slider container-image" style="background-image: url('/resources/images/detail4.jpg');"></div>--%>
+            <%--</a>--%>
+            <%--<a tabindex="-1">--%>
+            <%--<div class="image-slider container-image" style="background-image: url('/resources/images/detail5.jpg');"></div>--%>
+            <%--</a>--%>
+            <%--<a tabindex="-1">--%>
+            <%--<div class="image-slider container-image" style="background-image: url('/resources/images/detail6.jpg');"></div>--%>
+            <%--</a>--%>
+    </div>
+    <!-- End Carousel Slide -->
+    <!-- Start Information of Tour -->
+    <div class="container-fluid">
+        <div class="box-content-fluid">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                        <%--<h1>Bà Nà Hills - Đường Lên Tiên Cảnh</h1>--%>
+                    <h1>${lTourDetail.name}</h1>
+                    <div class="cfs-14 critical-info">
+                        <i class="fa fa-map-marker c_orange" aria-hidden="true"></i> Địa điểm:
+                        <span>${lTourDetail.address}</span>
+                    </div>
+                    <div class="cfs-14 critical-info">
+                        <i class="fa fa-check-square-o c_orange" aria-hidden="true"></i> Đối tác dịch vụ:
+                        <span>${lTourDetail.partnerName} - ${lTourDetail.partnerAddress}</span>
+                    </div>
+                    <div class="properties">
+                        <table class="table table-bordered">
+                            <tbody>
+                            <tr>
                                 <c:choose>
                                     <c:when test="${lTourDetail.ticketType}">
-                                        <c:choose>
-                                            <c:when test="${(lTourDetail.ticketQuantity - lTourDetail.ticketCount) == 0}">
-                                                <div class="cfs-14 pd-top-10">Lượt đặt đã hết</div>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <div class="cfs-14 pd-top-10">Có sẵn hôm nay</div>
-                                            </c:otherwise>
-                                        </c:choose>
+                                        <td class="center">
+                                            <div class="cfs-16">
+                                                <i class="fa fa-eye c_orange m_right_10 c_orange"
+                                                   aria-hidden="true"></i> Còn
+                                            </div>
+                                            <div class="cfs-14 pd-top-10">${lTourDetail.ticketQuantity - lTourDetail.ticketCount}</div>
+                                        </td>
                                     </c:when>
                                     <c:otherwise>
-                                        <div class="cfs-14 pd-top-10">Có sẵn hôm nay</div>
+                                        <td class="center">
+                                            <div class="cfs-16">
+                                                <i class="fa fa-eye c_orange m_right_10 c_orange"
+                                                   aria-hidden="true"></i> Số lượt đặt
+                                            </div>
+                                            <div class="cfs-14 pd-top-10">${lTourDetail.ticketCount}</div>
+                                        </td>
                                     </c:otherwise>
                                 </c:choose>
-                            </td>
-                            <td class="center">
-                                <div class="cfs-16">
-                                    <i class="fa fa-times-circle c_orange" aria-hidden="true"></i> Chính sách huỷ
-                                </div>
-                                <div class="cfs-14 pd-top-10">Trước ${lTourDetail.policy} tiếng</div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                                <td class="center">
+                                    <div class="cfs-16">
+                                        <i class="fa fa-hourglass-half c_orange" aria-hidden="true"></i> Trạng thái
+                                    </div>
+                                    <c:choose>
+                                        <c:when test="${lTourDetail.ticketType}">
+                                            <c:choose>
+                                                <c:when test="${(lTourDetail.ticketQuantity - lTourDetail.ticketCount) == 0}">
+                                                    <div class="cfs-14 pd-top-10">Lượt đặt đã hết</div>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <div class="cfs-14 pd-top-10">Có sẵn hôm nay</div>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div class="cfs-14 pd-top-10">Có sẵn hôm nay</div>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
+                                <td class="center">
+                                    <div class="cfs-16">
+                                        <i class="fa fa-times-circle c_orange" aria-hidden="true"></i> Chính sách huỷ
+                                    </div>
+                                    <div class="cfs-14 pd-top-10">Trước ${lTourDetail.policy} tiếng</div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="tour-order">
-                    <div class="card text-white bg-dark mb-3" style="border-radius: 1px; border: 1px solid #e8e8e8;">
-                        <c:if test="${lTourDetail.serviceIsDefault}">
-                            <div class="card-header">
-                                <h2 class="fm-price">${lTourDetail.servicePrice} ₫</h2>
-                                <span class="price-sale fm-price">${lTourDetail.serviceNormalPrice} ₫</span>
-                            </div>
-                        </c:if>
-                        <div class="card-body" style="padding: 10px; background: #fff;">
-                            <p class="card-text" style="color: rgba(0,0,0,0.65);">Bạn sẽ nhận được thư xác nhận sau khi
-                                thanh toán.</p>
-                            <button type="button" class="btn btn-outline-success my-2 my-sm-0 btn-custom"
-                                    style="width: 100%;">
-                                <span>Đặt ngay</span>
-                            </button>
-                            <div class="pd-top-10">
-                                <a href="#" class="btn btn-outline-success my-2 my-sm-0 btn-outline-custom"
-                                   target="_blank" style="width: 100%;">
-                                    <i class="fa fa-commenting-o m_right_10"></i> Tư vấn dịch vụ
-                                </a>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="tour-order">
+                        <div class="card text-white bg-dark mb-3"
+                             style="border-radius: 1px; border: 1px solid #e8e8e8;">
+                            <c:if test="${lTourDetail.serviceIsDefault}">
+                                <div class="card-header">
+                                    <h2 class="fm-price">${lTourDetail.servicePrice} ₫</h2>
+                                    <span class="price-sale fm-price">${lTourDetail.serviceNormalPrice} ₫</span>
+                                </div>
+                            </c:if>
+                            <div class="card-body" style="padding: 10px; background: #fff;">
+                                <p class="card-text" style="color: rgba(0,0,0,0.65);">Bạn sẽ nhận được thư xác nhận sau
+                                    khi
+                                    thanh toán.</p>
+                                <button type="button" class="btn btn-outline-success my-2 my-sm-0 btn-custom"
+                                        style="width: 100%;">
+                                    <span>Đặt ngay</span>
+                                </button>
+                                <div class="pd-top-10">
+                                    <a href="#" class="btn btn-outline-success my-2 my-sm-0 btn-outline-custom"
+                                       target="_blank" style="width: 100%;">
+                                        <i class="fa fa-commenting-o m_right_10"></i> Tư vấn dịch vụ
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -149,8 +156,7 @@
             </div>
         </div>
     </div>
-</div>
-<!-- End Information of Tour -->
+    <!-- End Information of Tour -->
 </c:forEach>
 <!-- Start Services -->
 <div class="packages" style="background: rgb(236, 236, 236);">
@@ -174,9 +180,11 @@
                                                 <div class="g-right">
                                                     <div class="dp-ib">
                                                         <p class="cfs-16 c_black" style="margin: 0px;">
-                                                            <strong class="fm-price">${lTourDetail.servicePrice} ₫</strong>
+                                                            <strong class="fm-price">${lTourDetail.servicePrice}
+                                                                ₫</strong>
                                                         </p>
-                                                        <p class="cfs-14 price-sale c_gray fm-price" style="margin: 0px;">${lTourDetail.serviceNormalPrice} ₫</p>
+                                                        <p class="cfs-14 price-sale c_gray fm-price"
+                                                           style="margin: 0px;">${lTourDetail.serviceNormalPrice} ₫</p>
                                                     </div>
                                                     <span>
                                                             <span>
@@ -195,7 +203,7 @@
                                                 <i class="fa fa-angle-right" aria-hidden="true"></i> Thông tin chi tiết
                                             </button>
                                             <div class="service-detail">
-                                                ${lTourDetail.serviceDetail}
+                                                    ${lTourDetail.serviceDetail}
                                             </div>
                                         </div>
                                     </div>
@@ -247,7 +255,7 @@
                     </div>
                     <!-- Start Reviews -->
                     <div class="pd-left-20">
-                        <div>
+                        <div id="user-review">
                             <div class="review-item">
                                 <div class="editer">
                                     <div class="editer-logo"
@@ -598,6 +606,7 @@
 <script type="text/javascript" src="/resources/js/owlcarousel/app.js"></script>
 <script type="text/javascript" src="/resources/js/starrating/jquery.barrating.min.js"></script>
 <script type="text/javascript" src="/resources/js/sticky/jquery.sticky.js"></script>
+<script type="text/javascript" src="/resources/js/custom.js"></script>
 <!-- End Import Script -->
 <!-- Start All Script -->
 <!-- Start Owl Carousel Slide for post -->
@@ -677,6 +686,10 @@
             bottomSpacing: 450,
             zIndex: 100
         });
+        <c:forEach items="${listTourDetail}" var="lTourDetail" begin="0" end="0">
+        ratePageByTour(${lTourDetail.id}, 0);
+        </c:forEach>
+
 
     });
 

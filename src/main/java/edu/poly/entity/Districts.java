@@ -85,7 +85,7 @@ public class Districts {
         return Objects.hash(id, name, isDeleted, createdAt, updatedAt);
     }
 
-    @OneToMany(mappedBy = "districtsByDistrictId", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "districtsByDistrictId", fetch = FetchType.LAZY)
     @Fetch(value = FetchMode.SUBSELECT)
     public Collection<PlaceInfors> getPlaceInforsById() {
         return placeInforsById;

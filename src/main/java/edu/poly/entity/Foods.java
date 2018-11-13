@@ -143,7 +143,7 @@ public class Foods {
         this.usersByUserId = usersByUserId;
     }
 
-    @OneToMany(mappedBy = "foodsByFoodId", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "foodsByFoodId", fetch = FetchType.LAZY)
     @Fetch(value = FetchMode.SUBSELECT)
     public Collection<PlaceInfors> getPlaceInforsById() {
         return placeInforsById;

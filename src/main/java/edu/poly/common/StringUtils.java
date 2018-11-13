@@ -1,6 +1,7 @@
 package edu.poly.common;
 
 import java.security.SecureRandom;
+import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -91,7 +92,7 @@ public class StringUtils {
         return result;
     }
 
-    public static String formatCurrency(String currency){
+    public static String formatCurrency(String currency) {
         NumberFormat formatter = new DecimalFormat("###,###");
         String resp = formatter.format(Integer.parseInt(currency));
         resp = resp.replaceAll(",", ".");

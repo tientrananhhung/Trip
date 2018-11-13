@@ -5,7 +5,6 @@ import edu.poly.dao.FoodDAO;
 import edu.poly.dao.PostIndexDAO;
 import edu.poly.dao.TourDAO;
 import edu.poly.dao.TourDetailDAO;
-import edu.poly.entity.Tours;
 import edu.poly.entity.Users;
 import edu.poly.impl.TourImpl;
 import edu.poly.impl.UserImpl;
@@ -15,14 +14,12 @@ import edu.poly.model.TourDTO;
 import edu.poly.model.TourDetailDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/")

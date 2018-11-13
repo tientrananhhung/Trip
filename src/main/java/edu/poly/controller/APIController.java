@@ -1,6 +1,7 @@
 package edu.poly.controller;
 
 import edu.poly.common.Constants;
+import edu.poly.dao.RateTourDetailDAO;
 import edu.poly.entity.Posts;
 import edu.poly.entity.Rates;
 import edu.poly.entity.Tours;
@@ -8,6 +9,7 @@ import edu.poly.impl.PostImpl;
 import edu.poly.impl.RateImpl;
 import edu.poly.impl.TourImpl;
 import edu.poly.impl.UserImpl;
+import edu.poly.model.RateTourDetailDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -38,6 +40,9 @@ public class APIController {
     @Autowired
     RateImpl rate;
 
+    @Autowired
+    RateTourDetailDAO rateTourDetailDAO;
+
     @GetMapping(path = "/abcd", produces = {MimeTypeUtils.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<Posts>> abc() {
         try {
@@ -63,15 +68,14 @@ public class APIController {
     }
 
     @GetMapping(path = Constants.Url.PAGING_RATE_TOUR_DETAIL_URL, produces = {MimeTypeUtils.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<Rates>> getPostAPI(@PathVariable("id") int id, @PathVariable("page") int page){
+    public ResponseEntity<List<RateTourDetailDTO>> getPostAPI(@PathVariable("id") int id, @PathVariable("page") int page){
         try {
-            Pageable pageable = new PageRequest(page, 10);
-            Page<Rates> paging = rate.findByTourId(id, pageable);
-            List<Rates> list = paging.getContent();
-            ResponseEntity<List<Rates>> responseEntity = new ResponseEntity<List<Rates>>(list, HttpStatus.OK);
+            page = page * 10;
+            List<RateTourDetailDTO> listDTO = rateTourDetailDAO.getPageRateDTO(id, page);
+            ResponseEntity<List<RateTourDetailDTO>> responseEntity = new ResponseEntity<List<RateTourDetailDTO>>(listDTO, HttpStatus.OK);
             return responseEntity;
         } catch(Exception e){
-            return new ResponseEntity<List<Rates>>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<List<RateTourDetailDTO>>(HttpStatus.BAD_REQUEST);
         }
     }
 

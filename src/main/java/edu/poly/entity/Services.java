@@ -172,7 +172,7 @@ public class Services {
         return Objects.hash(id, tourId, name, price, normalPrice, detail, startDate, endDate, isDefault, isDeleted, createdAt, updatedAt);
     }
 
-    @OneToMany(mappedBy = "servicesByServiceId")
+    @OneToMany(mappedBy = "servicesByServiceId", fetch = FetchType.LAZY)
     public Collection<Orders> getOrdersById() {
         return ordersById;
     }
@@ -191,7 +191,7 @@ public class Services {
         this.toursByTourId = toursByTourId;
     }
 
-    @OneToMany(mappedBy = "servicesByServiceId", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "servicesByServiceId", fetch = FetchType.LAZY)
     @Fetch(value = FetchMode.SUBSELECT)
     public Collection<Tickets> getTicketsById() {
         return ticketsById;

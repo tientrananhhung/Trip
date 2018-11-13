@@ -183,8 +183,9 @@ public class Tours {
         return Objects.hash(id, userId, name, address, content, images, policy, lat, lng, isDeleted, createdAt, updatedAt);
     }
 
-    @OneToMany(mappedBy = "toursByTourId", fetch = FetchType.EAGER)
-    @Fetch(value = FetchMode.SUBSELECT)
+    @OneToMany(mappedBy = "toursByTourId", fetch = FetchType.LAZY)
+//    @Fetch(value = FetchMode.SUBSELECT)
+//    @JsonIgnoreProperties({"ratesById"})
     public Collection<Rates> getRatesById() {
         return ratesById;
     }
@@ -193,8 +194,8 @@ public class Tours {
         this.ratesById = ratesById;
     }
 
-    @OneToMany(mappedBy = "toursByTourId", fetch = FetchType.EAGER)
-    @Fetch(value = FetchMode.SUBSELECT)
+    @OneToMany(mappedBy = "toursByTourId", fetch = FetchType.LAZY)
+//    @Fetch(value = FetchMode.SUBSELECT)
     public Collection<Services> getServicesById() {
         return servicesById;
     }
@@ -203,7 +204,7 @@ public class Tours {
         this.servicesById = servicesById;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public Users getUsersByUserId() {
         return usersByUserId;
