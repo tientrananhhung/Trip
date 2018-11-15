@@ -88,6 +88,7 @@
                                         <label>Username</label>
                                         <f:input path="username" type="text" cssClass="form-control"
                                                  placeholder="Username"/>
+                                        <f:errors path="username.empty" cssStyle="color:red;display:block"></f:errors>
                                     </div>
                                     <c:if test="${action == 'sua'}">
                                         <div class="form-group">

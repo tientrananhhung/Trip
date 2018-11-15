@@ -63,7 +63,6 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-
                                     <c:forEach var="tour" items="${listTour}">
                                         <tr>
                                             <td>${tour.usersByUserId.name}</td>

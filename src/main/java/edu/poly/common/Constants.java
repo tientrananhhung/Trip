@@ -245,6 +245,16 @@ public class Constants {
         //Trang Error 500
         public static final String ERROR500 = "/error500";
 
+        //Quên mật khẩu khách hàng
+        public static final String FORGOT_USER = "/forgotuser";
+
+        //Lấy mật khẩu khách hàng
+        public static final String FORGOT_USER_TOKEN = "/forgotuser/{token}";
+
+        //Lấy mật khẩu khách hàng
+
+        public static final String RECOVER_USER = "/recover";
+
     }
 
     public class Characters {

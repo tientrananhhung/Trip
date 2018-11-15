@@ -40,4 +40,6 @@ public interface UserService {
 
     public Users getByToken(String token);
 
+    public Users getByEmailOrUsername(String email);
+
 }

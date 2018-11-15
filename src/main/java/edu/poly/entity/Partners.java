@@ -141,7 +141,7 @@ public class Partners {
         return Objects.hash(id, userId, name, phone, address, email, isActived, isDeleted, createdAt, updatedAt);
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public Users getUsersByUserId() {
         return usersByUserId;

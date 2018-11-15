@@ -2,19 +2,16 @@ package edu.poly.controller;
 
 
 import edu.poly.common.*;
-import edu.poly.entity.Partners;
+import javax.validation.Valid;
 import edu.poly.entity.Users;
-import edu.poly.impl.PartnerImpl;
 import edu.poly.impl.UserImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpSession;
-import java.sql.Timestamp;
 import java.util.HashMap;
-import java.util.List;
 
 @Controller
 @RequestMapping(Constants.Url.ADMIN_PAGE_URL)
@@ -78,8 +75,12 @@ public class AdminController {
 
     //    adduser
     @PostMapping(Constants.Url.ADD_USER)
-    public ModelAndView addUser(HttpSession session, @ModelAttribute("user") Users users) {
+    public ModelAndView addUser(HttpSession session, @Valid @ModelAttribute("user") Users users, BindingResult result) {
         ModelAndView mav = new ModelAndView();
+        if(result.hasErrors()) {
+            mav.setViewName(ADD_USER);
+            return mav;
+        }
         if(!CheckSession.admin(session)){
             mav.setViewName("redirect:" + Constants.Url.LOGIN);
             return mav;
@@ -101,6 +102,7 @@ public class AdminController {
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_USER);
         } catch (Exception ex) {
             ex.printStackTrace();
+
             mav.setViewName(ADD_USER);
         }
         return mav;
@@ -144,6 +146,7 @@ public class AdminController {
             mav.setViewName("redirect:" + Constants.Url.LOGIN);
             return mav;
         }
+        System.out.println("vào đâyyyyyyy");
         Users us = user.getById(id);
         us.setUpdatedAt(TimeUtils.getCurrentTime());
         us.setActive(active);

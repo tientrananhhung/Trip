@@ -79,9 +79,11 @@
                                                 </c:choose>
                                             </td>
                                             <td>
-                                                <a href="/admin/quan-ly-uu-dai/${offer.id}">
-                                                    <button class="btn btn-outline-primary">Edit</button>
-                                                </a>
+                                                <c:if test="${offer.used == false}">
+                                                    <a href="/admin/quan-ly-uu-dai/${offer.id}">
+                                                        <button class="btn btn-outline-primary">Edit</button>
+                                                    </a>
+                                                </c:if>
                                             </td>
                                         </tr>
                                     </c:forEach>

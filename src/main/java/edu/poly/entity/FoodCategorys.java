@@ -87,7 +87,8 @@ public class FoodCategorys {
     }
 
     @OneToMany(mappedBy = "foodCategorysByFoodCategoryId", fetch = FetchType.LAZY)
-    @Fetch(value = FetchMode.SUBSELECT)
+//    @Fetch(value = FetchMode.SUBSELECT)
+    @Fetch (FetchMode.SELECT)
     public Collection<Foods> getFoodsById() {
         return foodsById;
     }

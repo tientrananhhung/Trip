@@ -33,4 +33,6 @@ public interface UserRepository extends CrudRepository<Users, Integer> {
 
     public Users getByToken(String token);
 
+    @Query("from Users where email = :email or username = :email")
+    public Users getByEmailOrUsername(@Param("email") String email);
 }

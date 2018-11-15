@@ -59,7 +59,7 @@ public class Users {
     }
 
     @Basic
-    @Column(name = "Username", nullable = false, length = 50)
+    @Column(name = "Username", nullable = false, length = 50,unique = true)
     public String getUsername() {
         return username;
     }
@@ -79,7 +79,7 @@ public class Users {
     }
 
     @Basic
-    @Column(name = "Phone", nullable = true, length = 12)
+    @Column(name = "Phone", nullable = true, length = 12,unique = true)
     public String getPhone() {
         return phone;
     }
@@ -89,7 +89,7 @@ public class Users {
     }
 
     @Basic
-    @Column(name = "Email", nullable = true, length = 50)
+    @Column(name = "Email", nullable = true, length = 50,unique = true)
     public String getEmail() {
         return email;
     }
@@ -225,9 +225,10 @@ public class Users {
         return Objects.hash(id, name, username, password, phone, email, address, birthday, gender, avatar, role, isActive, isDeleted, createdAt, updatedAt);
     }
 
-    @OneToMany(mappedBy = "usersByUserId",  fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
-    @Fetch(value = FetchMode.SUBSELECT)
+    @OneToMany(mappedBy = "usersByUserId",  fetch = FetchType.LAZY)
+//    @Fetch(value = FetchMode.SUBSELECT)
 //    @JsonIgnoreProperties({"foodsById"})
+//    @Fetch (FetchMode.SELECT)
     public Collection<Foods> getFoodsById() {
         return foodsById;
     }
@@ -236,7 +237,7 @@ public class Users {
         this.foodsById = foodsById;
     }
 
-    @OneToMany(mappedBy = "usersByUserId",  fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usersByUserId",  fetch = FetchType.LAZY)
     @Fetch(value = FetchMode.SUBSELECT)
     public Collection<Offers> getOffersById() {
         return offersById;
@@ -246,7 +247,7 @@ public class Users {
         this.offersById = offersById;
     }
 
-    @OneToMany(mappedBy = "usersByUserId",  fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usersByUserId",  fetch = FetchType.LAZY)
     @Fetch(value = FetchMode.SUBSELECT)
     public Collection<Orders> getOrdersById() {
         return ordersById;
@@ -256,7 +257,7 @@ public class Users {
         this.ordersById = ordersById;
     }
 
-    @OneToMany(mappedBy = "usersByUserId",  fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usersByUserId",  fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
     public Collection<Partners> getPartnersById() {
         return partnersById;
@@ -266,7 +267,7 @@ public class Users {
         this.partnersById = partnersById;
     }
 
-    @OneToMany(mappedBy = "usersByUserId",  fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usersByUserId",  fetch = FetchType.LAZY )
     @Fetch(value = FetchMode.SUBSELECT)
     public Collection<Posts> getPostsById() {
         return postsById;
@@ -276,7 +277,7 @@ public class Users {
         this.postsById = postsById;
     }
 
-    @OneToMany(mappedBy = "usersByUserId",  fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usersByUserId",  fetch = FetchType.LAZY )
 //    @Fetch(value = FetchMode.SUBSELECT)
     public Collection<Rates> getRatesById() {
         return ratesById;
@@ -286,7 +287,7 @@ public class Users {
         this.ratesById = ratesById;
     }
 
-    @OneToMany(mappedBy = "usersByUserId",  fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usersByUserId",  fetch = FetchType.EAGER )
     @Fetch(value = FetchMode.SUBSELECT)
     public Collection<Tours> getToursById() {
         return toursById;

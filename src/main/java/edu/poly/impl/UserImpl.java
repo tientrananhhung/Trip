@@ -108,6 +108,11 @@ public class UserImpl implements UserService {
         return repository.getByToken(token);
     }
 
+    @Override
+    public Users getByEmailOrUsername(String email) {
+        return repository.getByEmailOrUsername(email);
+    }
+
     public static void main(String[] args) {
         UserImpl user = new UserImpl();
     }

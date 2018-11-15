@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="/resources/css/fontawesome/font-awesome.min.css">
     <!-- My css -->
     <link rel="stylesheet" href="/resources/css/custom.css">
+
+    <link rel="stylesheet" href="/resources/css/popupform/style.css">
 </head>
 <body>
 
@@ -350,7 +352,7 @@
         }
     });
 </script>
-
+<script type="text/javascript" src="/resources/js/popupform/main.js"></script>
 <!-- Start All Script -->
 </body>
 </html>
