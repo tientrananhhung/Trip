@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="/resources/css/starrating/fontawesome-stars-o.css">
     <!-- Fontawesome -->
     <link rel="stylesheet" href="/resources/css/fontawesome/font-awesome.min.css">
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="/resources/css/daterangepicker/daterangepicker.css">
     <!-- My css -->
     <link rel="stylesheet" href="/resources/css/custom.css">
 </head>
@@ -166,7 +168,13 @@
                 <div class="col-lg-8 col-md-8 col-sm-12">
                     <section class="info-section">
                         <h2 class="title-section">Các gói của vé.</h2>
-                        <input type="text">
+
+                        <!--Datepicker-->
+                        <div id="date-order" class="mg-bottom-10">
+                            <i class="fa fa-calendar"></i>&nbsp;
+                            <span>Chọn ngày</span>&nbsp;<i class="fa fa-caret-down"></i>
+                        </div>
+                        <!--Datepicker-->
 
                         <c:forEach items="${listTourDetail}" var="lTourDetail">
                             <div class="ticket-package-detail">
@@ -243,7 +251,8 @@
                                 <h2 class="ticket-title">Đánh giá (20 Nhận xét)</h2>
                             </div>
                             <div class="col-lg-3" style="margin: auto;">
-                                <select class="star-rating" name="rating" data-current-rating="3" style="float: right;">
+                                <select id="star-rating" class="star-rating" name="rating" data-current-rating="3"
+                                        style="float: right;">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -287,304 +296,28 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="review-item">
-                                <div class="editer">
-                                    <div class="editer-logo"
-                                         style="background-image: url('/resources/images/user2.jpg');"></div>
-                                </div>
-                                <div class="review-content">
-                                    <h5 class="cfs-16">Thành Nhân Võ</h5>
-                                    <div class="product-star">
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <select class="star-rating" name="rating" data-current-rating="3"
-                                                        style="float: right;">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <span>12/09/2018 05:32</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="cfs-14">
-                                        Mua vé ở đây tuy giá rẻ không hơn bao nhiêu nhưng lại đỡ mất công đi lại, chờ
-                                        đợi mua vé. Vé đi Bà Nà rất suôn sẻ, nhóm bạn mình đã cảm thấy tiết kiệm thời
-                                        gian hơn rất nhiều để có nhiều time vui chơi hơn.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="review-item">
-                                <div class="editer">
-                                    <div class="editer-logo"
-                                         style="background-image: url('/resources/images/user3.jpg');"></div>
-                                </div>
-                                <div class="review-content">
-                                    <h5 class="cfs-16">Ngọc Tuân Nguyễn</h5>
-                                    <div class="product-star">
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <select class="star-rating" name="rating" data-current-rating="3"
-                                                        style="float: right;">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <span>11/09/2018 09:36</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="cfs-14">
-                                        Đây là lần thứ 2 mình đi Bà Nà, lần đầu mình lên đến nơi mới mua vé nên rất mất
-                                        thời gian. Lần 2 này mình đặt vé qua donkeyfun giá tuy không rẻ hơn bao nhiêu
-                                        nhưng lại nhanh chóng tiện lợi, nhân viên lại tư vấn nhiệt tình và rất vui vẻ.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="review-item">
-                                <div class="editer">
-                                    <div class="editer-logo"
-                                         style="background-image: url('/resources/images/user4.jpg');"></div>
-                                </div>
-                                <div class="review-content">
-                                    <h5 class="cfs-16">Thị Thanh Tài Võ</h5>
-                                    <div class="product-star">
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <select class="star-rating" name="rating" data-current-rating="3"
-                                                        style="float: right;">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <span>11/09/2018 06:12</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="cfs-14">
-                                        Đặt vé tại donkeyfun nên không mất quá nhiều thời gian, 1 ngày có thể tham quan
-                                        hết Bà Nà Hills,,đồ ăn ở các nhà hàng ở Bà Nà cũng rất được.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="review-item">
-                                <div class="editer">
-                                    <div class="editer-logo"
-                                         style="background-image: url('/resources/images/user5.jpg');"></div>
-                                </div>
-                                <div class="review-content">
-                                    <h5 class="cfs-16">Văn Nhớ Trần</h5>
-                                    <div class="product-star">
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <select class="star-rating" name="rating" data-current-rating="3"
-                                                        style="float: right;">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <span>11/09/2018 04:41</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="cfs-14">
-                                        Mua vé ở Donkeyfun rất tiện lợi, nhưng đi vào dịp lễ rất đông người nên phải
-                                        đứng đợi rất rất lâu mới vào được cổng, người thì rất đông, nhưng lại không có
-                                        quạt gió, thời tiết lại nóng nên tạo cảm giác rất mỏi mệt khi chờ đợi để được
-                                        vào cổng.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="review-item">
-                                <div class="editer">
-                                    <div class="editer-logo"
-                                         style="background-image: url('/resources/images/user6.jpg');"></div>
-                                </div>
-                                <div class="review-content">
-                                    <h5 class="cfs-16">Tnkt Truong</h5>
-                                    <div class="product-star">
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <select class="star-rating" name="rating" data-current-rating="3"
-                                                        style="float: right;">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <span>10/09/2018 18:03</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="cfs-14">
-                                        Nghe danh Bà Nà Hills đã lâu, là niềm ao ước của ai khi đến Đà Nẵng,. Khí hậu
-                                        rất tuyệt để trốn cái nắng của Đà Thành, cảnh đẹp rừng núi với những tòa lâu đài
-                                        rất tuyệt vời. Mình và nhóm bạn thân của mình đã có những giây phút vui chơi ở
-                                        đây rất vui vẻ và đặc biệt có rất nhiều hình ảnh so deep sau chuyến đi. 😊
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="review-item">
-                                <div class="editer">
-                                    <div class="editer-logo"
-                                         style="background-image: url('/resources/images/user7.jpg');"></div>
-                                </div>
-                                <div class="review-content">
-                                    <h5 class="cfs-16">Văn Dũng Võ</h5>
-                                    <div class="product-star">
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <select class="star-rating" name="rating" data-current-rating="3"
-                                                        style="float: right;">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <span>10/09/2018 08:51</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="cfs-14">
-                                        Mình mua vé qua donkeyfun rất nhanh, đến ngày đi vì thời tiết không được tốt lắm
-                                        nên càng ít khách không phải chờ đợi lâu, dù trời mưa không được đẹp như ngày
-                                        nắng nhưng nhóm bạn mình cũng quẩy banh nóc đến chiều tối mới chịu quay về.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="review-item">
-                                <div class="editer">
-                                    <div class="editer-logo"
-                                         style="background-image: url('/resources/images/user8.jpg');"></div>
-                                </div>
-                                <div class="review-content">
-                                    <h5 class="cfs-16">Hồng Triệu Nguyễn</h5>
-                                    <div class="product-star">
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <select class="star-rating" name="rating" data-current-rating="3"
-                                                        style="float: right;">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <span>10/09/2018 06:06</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="cfs-14">
-                                        Có rất nhiều nơi tuyệt vời ở Đà Nẵng, đúng là không lãng phí thanh xuân khi đã
-                                        chọn Đà Nẵng là địa điểm du lịch hè. Đặt vé qua donkeyfun tiết kiệm được một
-                                        chút ít chi phí của chuyến đi. Rất tiện ích.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="review-item">
-                                <div class="editer">
-                                    <div class="editer-logo"
-                                         style="background-image: url('/resources/images/user9.jpg');"></div>
-                                </div>
-                                <div class="review-content">
-                                    <h5 class="cfs-16">Tiến Nam Vũ</h5>
-                                    <div class="product-star">
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <select class="star-rating" name="rating" data-current-rating="3"
-                                                        style="float: right;">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <span>09/09/2018 05:57</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="cfs-14">
-                                        Bà Nà Hills rất đẹp, ba mẹ và gia đình mình rất hài lòng với chuyến đi chơi này.
-                                        Giá cả cũng rẻ và nhanh chóng hơn so với việc đợi và mua tại quầy.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="review-item">
-                                <div class="editer">
-                                    <div class="editer-logo"
-                                         style="background-image: url('/resources/images/user10.jpg');"></div>
-                                </div>
-                                <div class="review-content">
-                                    <h5 class="cfs-16">Lương Trần</h5>
-                                    <div class="product-star">
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <select class="star-rating" name="rating" data-current-rating="3"
-                                                        style="float: right;">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <span>02/09/2018 05:15</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="cfs-14">
-                                        Bà Nà đẹp như người ta vẫn nói “đường lên tiên cảnh”, đáng với đồng tiền bỏ ra.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="center mg-top-10">
-                                <nav aria-label="navigation" style="overflow: hidden; display: inline-block;">
-                                    <ul class="pagination">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#">
-                                                <i class="fa fa-angle-left" aria-hidden="true"></i>
-                                            </a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">
-                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
                         </div>
                     </div>
                     <!-- End Reviews -->
+
+                    <div class="center mg-top-10">
+                        <nav aria-label="navigation" style="overflow: hidden; display: inline-block;">
+                            <ul class="pagination">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#">
+                                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">
+                                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
                 <!-- End Review and Comment -->
             </div>
@@ -606,6 +339,8 @@
 <script type="text/javascript" src="/resources/js/owlcarousel/app.js"></script>
 <script type="text/javascript" src="/resources/js/starrating/jquery.barrating.min.js"></script>
 <script type="text/javascript" src="/resources/js/sticky/jquery.sticky.js"></script>
+<script type="text/javascript" src="/resources/js/daterangepicker/moment.min.js"></script>
+<script type="text/javascript" src="/resources/js/daterangepicker/daterangepicker.js"></script>
 <script type="text/javascript" src="/resources/js/custom.js"></script>
 <!-- End Import Script -->
 <!-- Start All Script -->
@@ -642,13 +377,6 @@
 <!-- End Show tooltip bài viết -->
 <!--  -->
 <script type="text/javascript">
-    $(function () {
-        $('.star-rating').barrating({
-            theme: 'fontawesome-stars-o',
-            readonly: true,
-            initialRating: 3.5
-        });
-    });
 
     $(function () {
 
@@ -679,17 +407,87 @@
         });
     });
 
+    //Datepicker
+    $(function() {
+
+        var start = moment().subtract();
+
+        function cb(start) {
+            $('#date-order span').html(start.format('D/MM/YYYY'));
+        }
+
+        $('#date-order').daterangepicker({
+            "singleDatePicker": true,
+            "opens": "center",
+        }, cb);
+
+        cb(start);
+
+    });
+
     $(document).ready(function () {
 
-        $(".tour-order12").sticky({
+        $('.tour-order').sticky({
             topSpacing: 0,
             bottomSpacing: 450,
             zIndex: 100
         });
-        <c:forEach items="${listTourDetail}" var="lTourDetail" begin="0" end="0">
-        ratePageByTour(${lTourDetail.id}, 0);
-        </c:forEach>
 
+        <c:forEach items="${listTourDetail}" var="lTourDetail" begin="0" end="0">
+
+        ratePageByTour(${lTourDetail.id}, 0);
+
+        loadPaging(${lTourDetail.id});
+
+        $(document).on('click', '.btn-page', function (event) {
+            event.preventDefault();
+            /* Act on the event */
+            var page = $(this).attr('page');
+            var finalPage = $('.btn-next').attr('final-page');
+            ratePageByTour(${lTourDetail.id}, page);
+            $('.page-item').removeClass('active');
+            $(this).parent('.page-item').addClass('active');
+            if (parseInt(page) == parseInt(finalPage)) {
+                $('.btn-next').parent('.page-item').addClass('disabled');
+                $('.btn-back').parent('.page-item').removeClass('disabled');
+            } else if (parseInt(page) == 0) {
+                $('.btn-back').parent('.page-item').addClass('disabled');
+                $('.btn-next').parent('.page-item').removeClass('disabled');
+            } else{
+                $('.btn-back').parent('.page-item').removeClass('disabled');
+                $('.btn-next').parent('.page-item').removeClass('disabled');
+            }
+        });
+
+        $(document).on('click', '.btn-next', function (event) {
+            event.preventDefault();
+            /* Act on the event */
+            console.log('====================================NEXT====================================');
+            $('.btn-back').parent('.page-item').removeClass('disabled');
+            var currentPage = $('.btn-next').attr('current-page');
+            var finalPage = $('.btn-next').attr('final-page');
+            if (parseInt(currentPage) == parseInt(finalPage) - 1) {
+                $('.btn-next').parent('.page-item').addClass('disabled');
+            }
+            $('li.active').removeClass('active').next().addClass('active');
+            console.log(parseInt(currentPage) + 1);
+            ratePageByTour(${lTourDetail.id}, parseInt(currentPage) + 1);
+        });
+
+        $(document).on('click', '.btn-back', function (event) {
+            event.preventDefault();
+            /* Act on the event */
+            console.log('====================================BACK====================================');
+            $('.btn-next').parent('.page-item').removeClass('disabled');
+            var currentPage = $('.btn-back').attr('current-page');
+            if (parseInt(currentPage) == 1) {
+                $('.btn-back').parent('.page-item').addClass('disabled');
+            }
+            $('li.active').removeClass('active').prev().addClass('active');
+            ratePageByTour(${lTourDetail.id}, parseInt(currentPage) - 1);
+        });
+
+        </c:forEach>
 
     });
 
