@@ -1,11 +1,11 @@
 package edu.poly.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -49,6 +49,7 @@ public class Users {
     }
 
     @Basic
+    @NotEmpty
     @Column(name = "Name", nullable = false, length = 100)
     public String getName() {
         return name;
@@ -59,7 +60,8 @@ public class Users {
     }
 
     @Basic
-    @Column(name = "Username", nullable = false, length = 50,unique = true)
+    @NotEmpty
+    @Column(name = "Username", nullable = false, length = 50)
     public String getUsername() {
         return username;
     }
@@ -79,6 +81,7 @@ public class Users {
     }
 
     @Basic
+    @NotEmpty
     @Column(name = "Phone", nullable = true, length = 12,unique = true)
     public String getPhone() {
         return phone;
@@ -89,6 +92,7 @@ public class Users {
     }
 
     @Basic
+    @NotEmpty
     @Column(name = "Email", nullable = true, length = 50,unique = true)
     public String getEmail() {
         return email;
@@ -119,6 +123,7 @@ public class Users {
     }
 
     @Basic
+    @NotNull
     @Column(name = "Gender", nullable = true)
     public Boolean getGender() {
         return gender;

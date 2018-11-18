@@ -35,4 +35,9 @@ public interface UserRepository extends CrudRepository<Users, Integer> {
 
     @Query("from Users where email = :email or username = :email")
     public Users getByEmailOrUsername(@Param("email") String email);
+
+    public boolean existsByEmail(String email);
+     public boolean existsByUsername(String username);
+    public boolean existsByPhone(String phone);
+
 }

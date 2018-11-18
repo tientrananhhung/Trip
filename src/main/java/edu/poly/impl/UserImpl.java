@@ -113,6 +113,21 @@ public class UserImpl implements UserService {
         return repository.getByEmailOrUsername(email);
     }
 
+    @Override
+    public boolean existsByEmail(String email) {
+        return repository.existsByEmail(email);
+    }
+
+    @Override
+    public boolean existsByUsername(String username) {
+        return repository.existsByUsername(username);
+    }
+
+    @Override
+    public boolean existsByPhone(String phone) {
+        return repository.existsByPhone(phone);
+    }
+
     public static void main(String[] args) {
         UserImpl user = new UserImpl();
     }
