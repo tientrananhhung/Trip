@@ -1076,6 +1076,7 @@ body {
 
 .page-link {
     color: #ff6f42;
+    height: 38px;
 }
 
 .page-link:hover {
@@ -1110,6 +1111,18 @@ body {
     background-color: #fff;
 }
 
+#date-order{
+    font-size: 25px;
+    background: #fff;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 
 
@@ -1139,6 +1152,10 @@ body {
         position: inherit !important;
         margin-top: 20px;
     }
+
+    #date-order{
+        width: 100%;
+    }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 878px) {
@@ -1159,6 +1176,10 @@ body {
     .info-store{
         position: inherit !important;
         margin-top: 20px;
+    }
+
+    #date-order{
+        width: 100%;
     }
 
 }
@@ -1190,6 +1211,10 @@ body {
     .info-store{
         position: inherit !important;
         margin-top: 20px;
+    }
+
+    #date-order{
+        width: 100%;
     }
 
 }
@@ -1325,5 +1350,9 @@ body {
     }
     .loginForm .mdl-card__actions a {
         font-size: 12px;
+    }
+
+    #date-order{
+        width: 100%;
     }
 }

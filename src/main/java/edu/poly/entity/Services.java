@@ -18,8 +18,7 @@ public class Services {
     private Integer price;
     private Integer normalPrice;
     private String detail;
-    private Date startDate;
-    private Date endDate;
+    private String rule;
     private Boolean isDefault;
     private Boolean isDeleted;
     private Timestamp createdAt;
@@ -89,23 +88,13 @@ public class Services {
     }
 
     @Basic
-    @Column(name = "Start_date", nullable = true)
-    public Date getStartDate() {
-        return startDate;
+    @Column(name = "Rule", nullable = true)
+    public String getRule() {
+        return rule;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    @Basic
-    @Column(name = "End_date", nullable = true)
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setRule(String rule) {
+        this.rule = rule;
     }
 
     @Basic
@@ -159,8 +148,7 @@ public class Services {
                 Objects.equals(price, services.price) &&
                 Objects.equals(normalPrice, services.normalPrice) &&
                 Objects.equals(detail, services.detail) &&
-                Objects.equals(startDate, services.startDate) &&
-                Objects.equals(endDate, services.endDate) &&
+                Objects.equals(rule, services.rule) &&
                 Objects.equals(isDefault, services.isDefault) &&
                 Objects.equals(isDeleted, services.isDeleted) &&
                 Objects.equals(createdAt, services.createdAt) &&
@@ -169,7 +157,7 @@ public class Services {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, tourId, name, price, normalPrice, detail, startDate, endDate, isDefault, isDeleted, createdAt, updatedAt);
+        return Objects.hash(id, tourId, name, price, normalPrice, detail, rule, isDefault, isDeleted, createdAt, updatedAt);
     }
 
     @OneToMany(mappedBy = "servicesByServiceId", fetch = FetchType.LAZY)
