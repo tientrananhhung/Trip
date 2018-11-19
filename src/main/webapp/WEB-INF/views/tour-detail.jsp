@@ -206,6 +206,52 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="package-kind-ticket">
+                                            <div class="row">
+
+                                                <c:forEach items="${lTourDetail.serviceRule}" var="sRule">
+                                                    <!-- Start Ticket detail -->
+                                                    <div class="col-lg-6 mg-top-10">
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <h3 class="cfs-16"
+                                                                    style="font-weight: bolder;">${sRule.name}</h3>
+                                                                <span>${sRule.priceFormat} đ</span>
+                                                                <input type="hidden" value="${sRule.price}">
+                                                            </div>
+                                                            <div class="col-lg-6" style="text-align: center;">
+
+                                                                <div class="ticket-form-item">
+                                                                    <div class="ticket-form-item-control-wrapper">
+                                                                        <div class="ticket-form-item-control">
+                                                                            <span class="ticket-form-item-children">
+                                                                                <div style="position: relative;">
+                                                                                    <div class="number-stepper">
+                                                                                        <button type="button"
+                                                                                                class="btn-reduction"
+                                                                                                disabled="disabled">−</button>
+                                                                                        <span class="val-ticket">0</span>
+                                                                                        <button type="button"
+                                                                                                class="btn-increase">+</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End Ticket detail -->
+                                                </c:forEach>
+
+                                            </div>
+                                        </div>
+
+                                        <p class="notify-ticket mg-top-20" style="color: #ef7a70;">Nhập tối thiểu 1 người.</p>
+
                                         <div class="package-detail-more">
                                             <button class="btn btn-detail">
                                                 <i class="fa fa-angle-right" aria-hidden="true"></i> Thông tin chi tiết
@@ -408,7 +454,7 @@
     });
 
     //Datepicker
-    $(function() {
+    $(function () {
 
         var start = moment().subtract();
 
@@ -453,7 +499,7 @@
             } else if (parseInt(page) == 0) {
                 $('.btn-back').parent('.page-item').addClass('disabled');
                 $('.btn-next').parent('.page-item').removeClass('disabled');
-            } else{
+            } else {
                 $('.btn-back').parent('.page-item').removeClass('disabled');
                 $('.btn-next').parent('.page-item').removeClass('disabled');
             }
@@ -488,6 +534,45 @@
         });
 
         </c:forEach>
+
+        //Button tăng số lượng ticket
+        $(document).on('click', '.btn-increase', function(event) {
+            event.preventDefault();
+            /* Act on the event */
+            var valTicket = $(this).prev().html();
+            var newValTicket = parseInt(valTicket) + 1;
+            $('.notify-ticket').hide();
+            $(this).prev().html(newValTicket);
+            $(this).prevAll().prop('disabled', false);
+        });
+
+        //Button giảm số lượng ticket
+        $(document).on('click', '.btn-reduction', function(event) {
+            event.preventDefault();
+            /* Act on the event */
+            var valTicket = $(this).next().html();
+            var newValTicket = parseInt(valTicket) - 1;
+            var a = [];
+            if (parseInt(valTicket) == 0) {
+                $(this).prop('disabled', true);
+            } else {
+                var arValTicket = $('.val-ticket').toArray();
+                $(this).next().html(newValTicket);
+                for (i = 0; i < arValTicket.length; i++) {
+                    a.push($(arValTicket[i]).html());
+                }
+                var check = 0
+                for (var j = 0; j < a.length; j++) {
+                    if(a[j] != 0){
+                        check = 1;
+                    }
+                }
+                if(check == 0){
+                    $('.notify-ticket').show();
+                }
+
+            }
+        });
 
     });
 

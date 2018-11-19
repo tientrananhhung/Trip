@@ -22,6 +22,7 @@ public class TourDetailDTO {
     private String servicePrice;
     private String serviceNormalPrice;
     private String serviceDetail;
+    private List<ServiceRuleDTO> serviceRule;
     private Boolean serviceIsDefault;
     private Boolean serviceIsdeted;
     private Integer ticketId;
@@ -32,7 +33,7 @@ public class TourDetailDTO {
     public TourDetailDTO() {
     }
 
-    public TourDetailDTO(Integer id, String name, String address, String content, List<String> images, Integer policy, String lat, String lng, Boolean deleted, Integer partnerId, String partnerName, String partnerAddress, Integer serviceId, String serviceName, String servicePrice, String serviceNormalPrice, String serviceDetail, Boolean serviceIsDefault, Boolean serviceIsdeted, Integer ticketId, Integer ticketQuantity, Boolean ticketType, Integer ticketCount) {
+    public TourDetailDTO(Integer id, String name, String address, String content, List<String> images, Integer policy, String lat, String lng, Boolean deleted, Integer partnerId, String partnerName, String partnerAddress, Integer serviceId, String serviceName, String servicePrice, String serviceNormalPrice, String serviceDetail, List<ServiceRuleDTO> serviceRule, Boolean serviceIsDefault, Boolean serviceIsdeted, Integer ticketId, Integer ticketQuantity, Boolean ticketType, Integer ticketCount) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -50,6 +51,7 @@ public class TourDetailDTO {
         this.servicePrice = servicePrice;
         this.serviceNormalPrice = serviceNormalPrice;
         this.serviceDetail = serviceDetail;
+        this.serviceRule = serviceRule;
         this.serviceIsDefault = serviceIsDefault;
         this.serviceIsdeted = serviceIsdeted;
         this.ticketId = ticketId;
@@ -192,6 +194,14 @@ public class TourDetailDTO {
 
     public void setServiceDetail(String serviceDetail) {
         this.serviceDetail = serviceDetail;
+    }
+
+    public List<ServiceRuleDTO> getServiceRule() {
+        return serviceRule;
+    }
+
+    public void setServiceRule(List<ServiceRuleDTO> serviceRule) {
+        this.serviceRule = serviceRule;
     }
 
     public Boolean getServiceIsDefault() {

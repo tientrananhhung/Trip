@@ -112,6 +112,9 @@ public class UserController {
         try {
             List<TourDetailDTO> listDTO = tourDetailDAO.getTourDetailDTO(id);
             mav.addObject("listTourDetail", listDTO);
+            for (TourDetailDTO td:listDTO){
+                System.out.println(td.getServiceRule().get(0).getName());
+            }
         } catch(Exception e){
             mav.setViewName(HOME_SCREEN);
         }
