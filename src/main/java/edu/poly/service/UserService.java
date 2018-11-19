@@ -1,7 +1,6 @@
 package edu.poly.service;
 
 import edu.poly.entity.Users;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -41,5 +40,11 @@ public interface UserService {
     public Users getByToken(String token);
 
     public Users getByEmailOrUsername(String email);
+
+    public boolean existsByEmail(String email);
+
+    public boolean existsByUsername(String username);
+
+    public boolean existsByPhone(String phone);
 
 }

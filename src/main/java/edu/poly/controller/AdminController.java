@@ -5,12 +5,18 @@ import edu.poly.common.*;
 import javax.validation.Valid;
 import edu.poly.entity.Users;
 import edu.poly.impl.UserImpl;
+import edu.poly.valaditor.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 @Controller
@@ -27,6 +33,16 @@ public class AdminController {
 
     public static final String INDEX_SCREEN = "index";
 
+    @Autowired
+    private UserValidator userValidator;
+
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(
+                dateFormat, true));
+        binder.addValidators(userValidator);
+    }
 
     @Autowired
     private UserImpl user;
@@ -66,7 +82,7 @@ public class AdminController {
              }
 
         mav.setViewName(ADD_USER);
-        mav.addObject("user", new Users());
+        mav.addObject("users", new Users());
         mav.addObject("gender", returnGender());
         mav.addObject("role", returnRole());
         mav.addObject("action", "them");
@@ -75,9 +91,13 @@ public class AdminController {
 
     //    adduser
     @PostMapping(Constants.Url.ADD_USER)
-    public ModelAndView addUser(HttpSession session, @Valid @ModelAttribute("user") Users users, BindingResult result) {
+    public ModelAndView addUser(HttpSession session,@Validated @ModelAttribute("users")  Users users, BindingResult result) {
         ModelAndView mav = new ModelAndView();
+        System.out.println(result.getAllErrors());
         if(result.hasErrors()) {
+            mav.addObject("gender", returnGender());
+            mav.addObject("role", returnRole());
+            mav.addObject("action", "them");
             mav.setViewName(ADD_USER);
             return mav;
         }
@@ -102,8 +122,6 @@ public class AdminController {
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_USER);
         } catch (Exception ex) {
             ex.printStackTrace();
-
-            mav.setViewName(ADD_USER);
         }
         return mav;
     }

@@ -131,25 +131,28 @@ public class PostController {
             posts.setView(ps.getView());
             posts.setUserId(ps.getUserId());
             CommonsMultipartFile[] files = posts.getFileData();
-            for(int i = 0; i<files.length; i++) {
-                CommonsMultipartFile file = files[i];
-                byte[] bytes = file.getBytes();
-                // Creating the directory to store file
-                // Assume uploaded file location on web server is D:\file-upload
-                String appPath = request.getServletContext().getRealPath("");
-                appPath = appPath.replace('\\', '/');
-                File dir = new File(appPath);
-                if (!dir.exists()) {
-                    dir.mkdirs();
+            System.out.println(files.length);
+            if(files.length == 0){
+                for(int i = 0; i<files.length; i++) {
+                    CommonsMultipartFile file = files[i];
+                    byte[] bytes = file.getBytes();
+                    // Creating the directory to store file
+                    // Assume uploaded file location on web server is D:\file-upload
+                    String appPath = request.getServletContext().getRealPath("");
+                    appPath = appPath.replace('\\', '/');
+                    File dir = new File(appPath);
+                    if (!dir.exists()) {
+                        dir.mkdirs();
+                    }
+                    System.out.println(file.getOriginalFilename());
+                    // Create the file on server
+                    String fileSource = dir.getAbsolutePath() + File.separator + "resources" + File.separator + "images" + File.separator + "post_" + posts.getId() + "." + file.getOriginalFilename().split("\\.")[1];
+                    posts.setImage("post_" + posts.getId() + "." + file.getOriginalFilename().split("\\.")[1]);
+                    File serverFile = new File(fileSource);
+                    BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+                    stream.write(bytes);
+                    stream.close();
                 }
-
-                // Create the file on server
-                String fileSource = dir.getAbsolutePath() + File.separator + "resources" + File.separator + "images" + File.separator + "post_" + posts.getId() + "." + file.getOriginalFilename().split("\\.")[1];
-                posts.setImage("post_" + posts.getId() + "." + file.getOriginalFilename().split("\\.")[1]);
-                File serverFile = new File(fileSource);
-                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
-                stream.write(bytes);
-                stream.close();
             }
             post.update(posts);
             mav.addObject("listPost", post.findAllByDeleted(false));

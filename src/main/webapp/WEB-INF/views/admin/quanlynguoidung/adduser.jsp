@@ -5,7 +5,7 @@
   Time: 21:54
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"  pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 <html>
@@ -75,7 +75,7 @@
                                     Addition user
                                 </p>
                                 <hr/>
-                                <f:form cssClass="forms-sample" method="POST" modelAttribute="user"
+                                <f:form cssClass="forms-sample" method="POST" modelAttribute="users"
                                         action="/admin/quan-ly-nguoi-dung/${action}">
                                     <div class="form-group">
                                         <f:hidden path="id"/>
@@ -83,12 +83,13 @@
                                     <div class="form-group">
                                         <label>Name</label>
                                         <f:input path="name" type="text" cssClass="form-control" placeholder="Name"/>
+                                        <f:errors path="name" cssStyle="color:red;display:block"></f:errors>
                                     </div>
                                     <div class="form-group">
                                         <label>Username</label>
                                         <f:input path="username" type="text" cssClass="form-control"
                                                  placeholder="Username"/>
-                                        <f:errors path="username.empty" cssStyle="color:red;display:block"></f:errors>
+                                        <f:errors path="username" cssStyle="color:red;display:block"></f:errors>
                                     </div>
                                     <c:if test="${action == 'sua'}">
                                         <div class="form-group">
@@ -102,16 +103,19 @@
                                     <div class="form-group">
                                         <label>Phone</label>
                                         <f:input path="phone" type="tel" cssClass="form-control" placeholder="Phone"/>
+                                        <f:errors path="phone" cssStyle="color:red;display:block"></f:errors>
                                     </div>
                                     <div class="form-group">
                                         <label>Email</label>
                                         <f:input path="email" cssClass="form-control form-control-sm"
-                                                 data-inputmask="'alias': 'email'"/>
+                                            type="email" />
+                                        <f:errors path="email" cssStyle="color:red;display:block"></f:errors>
                                     </div>
                                     <div class="form-group">
                                         <label>Address</label>
                                         <f:input path="address" type="text" cssClass="form-control"
                                                  placeholder="Address"/>
+                                        <f:errors path="address" cssStyle="color:red;display:block"></f:errors>
                                     </div>
                                     <div class="form-group">
                                         <label>Birthday</label>
@@ -132,6 +136,7 @@
                                                 </label>
                                             </div>
                                         </c:forEach>
+                                        <f:errors path="gender" cssStyle="color:red;display:block"></f:errors>
                                     </div>
                                     <div class="form-group">
                                         <label>Role</label>

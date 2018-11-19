@@ -98,14 +98,14 @@
                                     <c:if test="${action == 'sua'}">
                                         <div class="form-group">
                                             <label>Image</label>
-                                            <f:input path="fileData" type="file"></f:input>
+                                            <f:input accept="image/*" path="fileData" data-default-file="/resources/images/avatar.png" type="file" class="dropify" ></f:input>
                                         </div>
                                     </c:if>
                                     <div class="form-group">
                                         <label>Content</label>
                                         <f:textarea path="content" class="form-control"></f:textarea>
                                     </div>
-                                    <button type="submit" class="btn btn-success mr-2">Submit</button>
+                                    <button type="submit" id="postsubmit" class="btn btn-success mr-2">Submit</button>
                                     <a href="/admin/quan-ly-bai-viet">
                                         <button class="btn btn-light">Cancel</button>
                                     </a>
@@ -137,7 +137,6 @@
 <script src="<c:url value="/resources/node_modules/inputmask/dist/inputmask/phone-codes/phone-ru.js" />"></script>
 <script src="<c:url value="/resources/node_modules/inputmask/dist/inputmask/bindings/inputmask.binding.js" />"></script>
 <script src="<c:url value="/resources/node_modules/dropify/dist/js/dropify.min.js" />"></script>
-<script src="<c:url value="/resources/node_modules/dropify/dist/js/dropify.min.js"/>"></script>
 <script src="<c:url value="/resources/node_modules/jquery-file-upload/js/jquery.uploadfile.min.js" />"></script>
 <script src="<c:url value="/resources/node_modules/jquery-asColor/dist/jquery-asColor.min.js" />"></script>
 <script src="<c:url value="/resources/node_modules/jquery-asGradient/dist/jquery-asGradient.min.js" />"></script>
@@ -156,7 +155,7 @@
 <script src="<c:url value="/resources/js/todolist.js" />"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
-
+<script src="<c:url value="/resources/js/dropify.js"/>"></script>
 <script src="<c:url value="/resources/js/editorDemo.js"/>"></script>
 <script src="<c:url value="/resources/node_modules/simplemde/dist/simplemde.min.js"/>"></script>
 <%---------------------------------------------%>
