@@ -77,22 +77,22 @@
                         </div>
                     </div>
                     <div class="mdl-card__supporting-text">
-                        <f:form action="/dang-nhap" method="post" id="loginForm" modelAttribute="login" >
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Tài khoản</label>
-                                <f:input required="true" path="username" cssClass="form-control" aria-describedby="emailHelp"
-                                         placeholder="Nhập tên đăng nhập"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Mật khẩu</label>
-                                <f:password required="true" path="password" cssClass="form-control" placeholder="Nhập mật khẩu"/>
-                            </div>
-                            <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Nhớ mật khẩu</label>
-                            </div>
-                            <button type="submit" class="btn btn-primary  btn-custom">Đăng nhập</button>
-                        </f:form>
+                        <%--<f:form action="/dang-nhap" method="post" id="loginForm" modelAttribute="login" >--%>
+                            <%--<div class="form-group">--%>
+                                <%--<label for="exampleInputEmail1">Tài khoản</label>--%>
+                                <%--<f:input required="true" path="username" cssClass="form-control" aria-describedby="emailHelp"--%>
+                                         <%--placeholder="Nhập tên đăng nhập"/>--%>
+                            <%--</div>--%>
+                            <%--<div class="form-group">--%>
+                                <%--<label for="exampleInputPassword1">Mật khẩu</label>--%>
+                                <%--<f:password required="true" path="password" cssClass="form-control" placeholder="Nhập mật khẩu"/>--%>
+                            <%--</div>--%>
+                            <%--<div class="form-group form-check">--%>
+                                <%--<input type="checkbox" class="form-check-input" id="exampleCheck1">--%>
+                                <%--<label class="form-check-label" for="exampleCheck1">Nhớ mật khẩu</label>--%>
+                            <%--</div>--%>
+                            <%--<button type="submit" class="btn btn-primary  btn-custom">Đăng nhập</button>--%>
+                        <%--</f:form>--%>
                     </div>
                     <div class="mdl-card__actions mdl-card--border clearfix">
                         <a href="#" class="pull-left mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" data-toggle="modal" data-target="#forgotFormModal" data-dismiss="modal">

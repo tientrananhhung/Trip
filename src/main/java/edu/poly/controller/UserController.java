@@ -70,9 +70,11 @@ public class UserController {
     TourDetailDAO tourDetailDAO;
 
     @GetMapping(Constants.Characters.BLANK)
-    public ModelAndView index(HttpSession session) {
+    public ModelAndView index(HttpSession session,HttpServletRequest rq) {
         ModelAndView mav = new ModelAndView(HOME_SCREEN);
-        try { mav.addObject("login", new Users());
+        try {
+//            rq.getSession().setAttribute("login", new Users());
+//            mav.addObject("login", new Users());
             List<TourDTO> lTourDTO = tourDAO.getAllTourDTO();
             List<FoodDTO> lFoodDTO = foodDAO.getAllFoodDTO();
             List<PostIndexDTO> lPostIndexDTO = postIndexDAO.getTop5PostNew();
@@ -137,24 +139,24 @@ public class UserController {
     }
 
 
-    @PostMapping(Constants.Url.LOGIN)
-    public ModelAndView loginProgess(@ModelAttribute("login") Users users, HttpServletRequest rq) {
-        ModelAndView mav = new ModelAndView();
-        Users login = new Users();
-        Users userLogin = user.login(users.getUsername(), PasswordUtils.md5(users.getPassword()));
-        if (userLogin != null) {
-            if (userLogin.getRole() == Constants.Role.ADMIN || userLogin.getRole() == Constants.Role.MANAGER) {
-                mav.setViewName("redirect:" + Constants.Url.ADMIN_PAGE_URL);
-            } else if(userLogin.getRole() == Constants.Role.PARTNER) {
-                mav.setViewName("redirect:" + Constants.Url.ADMIN_PAGE_URL);
-            }
-            rq.getSession().setAttribute(Constants.SessionKey.USER, userLogin);
-        } else {
-            mav.setViewName(HOME_SCREEN);
-            login.setUsername(users.getUsername());
-            mav.addObject("login", login);
-        }
-        return mav;
-    }
+//    @PostMapping(Constants.Url.LOGIN)
+//    public ModelAndView loginProgess(@ModelAttribute("login") Users users, HttpServletRequest rq) {
+//        ModelAndView mav = new ModelAndView();
+//        Users login = new Users();
+//        Users userLogin = user.login(users.getUsername(), PasswordUtils.md5(users.getPassword()));
+//        if (userLogin != null) {
+//            if (userLogin.getRole() == Constants.Role.ADMIN || userLogin.getRole() == Constants.Role.MANAGER) {
+//                mav.setViewName("redirect:" + Constants.Url.ADMIN_PAGE_URL);
+//            } else if(userLogin.getRole() == Constants.Role.PARTNER) {
+//                mav.setViewName("redirect:" + Constants.Url.ADMIN_PAGE_URL);
+//            }
+//            rq.getSession().setAttribute(Constants.SessionKey.USER, userLogin);
+//        } else {
+//            mav.setViewName(HOME_SCREEN);
+//            login.setUsername(users.getUsername());
+//            mav.addObject("login", login);
+//        }
+//        return mav;
+//    }
 
 }
