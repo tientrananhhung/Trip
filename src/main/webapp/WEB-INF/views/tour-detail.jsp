@@ -138,9 +138,55 @@
                                 </div>
                             </c:if>
                             <div class="card-body" style="padding: 10px; background: #fff;">
-                                <p class="card-text" style="color: rgba(0,0,0,0.65);">Bạn sẽ nhận được thư xác nhận sau
-                                    khi
-                                    thanh toán.</p>
+                                <div id="card-text-order" class="card-text" style="color: rgba(0,0,0,0.65);">Bạn sẽ nhận
+                                    được thư xác nhận sau khi thanh toán.
+                                </div>
+
+                                <div id="card-order" class="card-text" style="color: rgba(0,0,0,0.65);">
+
+                                    <div id="book-detail">
+                                        <div class="row">
+                                            <div class="col-lg-12" style="">
+                                                <h3 class="cfs-16 book-service"></h3>
+                                            </div>
+                                            <div class="col-lg-12 book-date">
+                                                <h4 class="cfs-14">Ngày đặt: <span></span></h4>
+                                            </div>
+                                            <div class="ant-col-24 book-time"></div>
+                                        </div>
+                                        <div class="row mg-bottom-10">
+                                            <div class="col-lg-12">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="book-package-person">
+
+                                                            <div class="mg-bottom-10">
+                                                                <div class="row">
+                                                                    <div class="col-lg-6">Người Lớn</div>
+                                                                    <div class="col-lg-2 center">x2</div>
+                                                                    <div class="col-lg-4">
+                                                                        <div class="t_right">1.000.000 ₫</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-6 col-sm-6">Tổng cộng</div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                                        <div class="t_right">
+                                                            <b id="total-price-service">0 ₫</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
                                 <button type="button" class="btn btn-outline-success my-2 my-sm-0 btn-custom"
                                         style="width: 100%;">
                                     <span>Đặt ngay</span>
@@ -177,7 +223,7 @@
                         <!--Datepicker-->
 
                         <c:forEach items="${listTourDetail}" var="lTourDetail">
-                            <div class="ticket-package-detail">
+                            <div class="ticket-package-detail mg-top-20">
                                 <div class="ticket-package-detail-body">
                                     <div class="df-ticket-package">
                                         <div class="row">
@@ -195,14 +241,14 @@
                                                            style="margin: 0px;">${lTourDetail.serviceNormalPrice} ₫</p>
                                                     </div>
                                                     <span>
-                                                            <span>
-                                                                <button type="button"
-                                                                        class="btn btn-outline-success my-2 my-sm-0 btn-custom"
-                                                                        style="vertical-align: top;">
-                                                                    <span>Chọn</span>
-                                                        </button>
+                                                        <span>
+                                                            <button type="button"
+                                                                    class="btn btn-outline-success my-2 my-sm-0 btn-custom btn-choose-ticket"
+                                                                    style="vertical-align: top;">
+                                                                <span>Chọn</span>
+                                                            </button>
                                                         </span>
-                                                        </span>
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -213,7 +259,7 @@
                                                 <c:forEach items="${lTourDetail.serviceRule}" var="sRule">
                                                     <!-- Start Ticket detail -->
                                                     <div class="col-lg-6 mg-top-10">
-                                                        <div class="row">
+                                                        <div class="row package-service-ticket">
                                                             <div class="col-lg-6">
                                                                 <h3 class="cfs-16"
                                                                     style="font-weight: bolder;">${sRule.name}</h3>
@@ -250,7 +296,8 @@
                                             </div>
                                         </div>
 
-                                        <p class="notify-ticket mg-top-20" style="color: #ef7a70;">Nhập tối thiểu 1 người.</p>
+                                        <p class="notify-ticket mg-top-20" style="color: #ef7a70;">Nhập tối thiểu 1
+                                            người.</p>
 
                                         <div class="package-detail-more">
                                             <button class="btn btn-detail">
@@ -263,6 +310,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </c:forEach>
 
                     </section>
@@ -390,8 +438,8 @@
 <script type="text/javascript" src="/resources/js/custom.js"></script>
 <!-- End Import Script -->
 <!-- Start All Script -->
-<!-- Start Owl Carousel Slide for post -->
 <script>
+    //Start Owl Carousel Slide for post
     $(document).ready(function () {
         $('.loop').owlCarousel({
             center: true,
@@ -412,17 +460,14 @@
             }
         })
     })
-</script>
-<!-- End Owl Carousel Slide for post -->
-<!-- Start Show tooltip bài viết -->
-<script>
+    //End Owl Carousel Slide for post
+
+    //Start Show tooltip bài viết
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
-</script>
-<!-- End Show tooltip bài viết -->
-<!--  -->
-<script type="text/javascript">
+    //End Show tooltip bài viết
+
 
     $(function () {
 
@@ -476,7 +521,7 @@
         $('.tour-order').sticky({
             topSpacing: 0,
             bottomSpacing: 450,
-            zIndex: 100
+            zIndex: 9999
         });
 
         <c:forEach items="${listTourDetail}" var="lTourDetail" begin="0" end="0">
@@ -508,7 +553,6 @@
         $(document).on('click', '.btn-next', function (event) {
             event.preventDefault();
             /* Act on the event */
-            console.log('====================================NEXT====================================');
             $('.btn-back').parent('.page-item').removeClass('disabled');
             var currentPage = $('.btn-next').attr('current-page');
             var finalPage = $('.btn-next').attr('final-page');
@@ -523,7 +567,6 @@
         $(document).on('click', '.btn-back', function (event) {
             event.preventDefault();
             /* Act on the event */
-            console.log('====================================BACK====================================');
             $('.btn-next').parent('.page-item').removeClass('disabled');
             var currentPage = $('.btn-back').attr('current-page');
             if (parseInt(currentPage) == 1) {
@@ -536,23 +579,25 @@
         </c:forEach>
 
         //Button tăng số lượng ticket
-        $(document).on('click', '.btn-increase', function(event) {
+        $(document).on('click', '.btn-increase', function (event) {
             event.preventDefault();
             /* Act on the event */
             var valTicket = $(this).prev().html();
             var newValTicket = parseInt(valTicket) + 1;
-            $('.notify-ticket').hide();
+            $('.notify-ticket').hide(500);
             $(this).prev().html(newValTicket);
             $(this).prevAll().prop('disabled', false);
+            setOrder($('.package-service-ticket').toArray());
         });
 
         //Button giảm số lượng ticket
-        $(document).on('click', '.btn-reduction', function(event) {
+        $(document).on('click', '.btn-reduction', function (event) {
             event.preventDefault();
             /* Act on the event */
             var valTicket = $(this).next().html();
             var newValTicket = parseInt(valTicket) - 1;
             var a = [];
+            setOrder($('.package-service-ticket').toArray());
             if (parseInt(valTicket) == 0) {
                 $(this).prop('disabled', true);
             } else {
@@ -563,18 +608,51 @@
                 }
                 var check = 0
                 for (var j = 0; j < a.length; j++) {
-                    if(a[j] != 0){
+                    if (a[j] != 0) {
                         check = 1;
+
                     }
                 }
-                if(check == 0){
-                    $('.notify-ticket').show();
+                if (check == 0) {
+                    $(this).parent('.number-stepper').parent('div').parent('.ticket-form-item-children').parent('.ticket-form-item-control').parent('.ticket-form-item-control-wrapper').parent('.ticket-form-item').parent('.col-lg-6').parent('.package-service-ticket').parent('.col-lg-6').parent('.row').parent('.package-kind-ticket').next('.notify-ticket').show(500);
                 }
 
             }
         });
 
+        $(document).on('click', '.btn-choose-ticket', function (event) {
+            event.preventDefault();
+            /* Act on the event */
+
+            resetBtnChooseTicket();
+
+            $(this).parent('span').parent('span').parent('.g-right').parent('.col-lg-4').parent('.row').parent('.df-ticket-package').children('.package-kind-ticket, .notify-ticket').show(500).fadeIn();
+            $(this).css('display', 'none');
+            $(this).parent('span').parent('span').parent('.g-right').parent('.col-lg-4').parent('.row').parent('.df-ticket-package').parent('.ticket-package-detail-body').parent('.ticket-package-detail').addClass('ticket-selected');
+
+            var service = $(this).parent('span').parent('span').parent('.g-right').parent('.col-lg-4').prev().children('h2').html();
+            var dateOrder = $('#date-order').children('span').html();
+            $('.book-service').html(service);
+            $('.book-date h4 span').html(dateOrder);
+        });
+
+        $(document).on('click', '#date-order', function (event) {
+            event.preventDefault();
+            /* Act on the event */
+            $('#card-order').hide(500);
+            $('#card-text-order').show(500);
+            $('.ticket-package-detail').removeClass('ticket-selected');
+            $('.btn-choose-ticket').css('display', 'inherit');
+            // $('.package-kind-ticket').css('display', 'none');
+            $('.package-kind-ticket').hide(500);
+            $('.notify-ticket').css('display', 'none');
+        });
+
     });
+
+</script>
+<script type="text/javascript">
+
 
 </script>
 <!--  -->

@@ -1204,6 +1204,38 @@ body {
     border-color: #f56a00;
 }
 
+.package-kind-ticket{
+    display: none;
+}
+
+.notify-ticket{
+    display: none;
+}
+
+.ticket-selected{
+    border-color: #ff5722;
+    border-width: 2px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+#book-detail .book-date{
+    border-bottom: 1px dotted #ccc;
+}
+
+#book-detail .book-package-person{
+    line-height: 28px;
+    margin-top: 10px;
+    min-height: 150px;
+}
+
+.t_right{
+    float: right;
+}
+
+#card-order{
+    display: none;
+}
+
 
 
 /**

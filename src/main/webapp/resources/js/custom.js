@@ -113,11 +113,11 @@ function loadPaging(id) {
                 for (var j = 0; j < data[0].totalPage; j++) {
                     if (j == 0) {
                         $('#tour-review .pagination').append(
-                            '<li class="page-item active"><a class="page-link btn-page" page="'+j+'" href="#">'+(j + 1)+'</a></li>'
+                            '<li class="page-item active"><a class="page-link btn-page" page="' + j + '" href="#">' + (j + 1) + '</a></li>'
                         );
                     } else {
                         $('#tour-review .pagination').append(
-                            '<li class="page-item"><a class="page-link btn-page" page="'+j+'" href="#">'+(j + 1)+'</a></li>'
+                            '<li class="page-item"><a class="page-link btn-page" page="' + j + '" href="#">' + (j + 1) + '</a></li>'
                         );
                     }
                 }
@@ -132,4 +132,58 @@ function loadPaging(id) {
         .fail(function () {
             console.log("error");
         })
+}
+
+function setOrder(data) {
+    // body...
+    $('.book-package-person').empty();
+    var total = 0;
+    $.each(data, function (index, val) {
+        /* iterate through array or object */
+        var service = val.children[0].children[0].innerHTML;
+        var price = val.children[0].children[2].defaultValue;
+        var quantity = val.children[1].children[0].children[0].children[0].children[0].children[0].children[0].children[1].innerHTML;
+        total = parseInt(total) + (parseInt(price) * parseInt(quantity));
+        if (parseInt(quantity) != 0) {
+            $('.book-package-person').append(
+                '<div class="mg-bottom-10">' +
+                '<div class="row">' +
+                '<div class="col-lg-6">' + service + '</div>' +
+                '<div class="col-lg-2 center">x' + quantity + '</div>' +
+                '<div class="col-lg-4">' +
+                '<div class="t_right">' + formatNumber(price, '.', '.') + ' ₫</div>' +
+                '</div>' +
+                '</div>' +
+                '</div>'
+            );
+            $('#total-price-service').html(formatNumber(total, '.', '.') + " đ");
+        }
+    });
+}
+
+function formatNumber(nStr, decSeperate, groupSeperate) {
+    nStr += '';
+    x = nStr.split(decSeperate);
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + groupSeperate + '$2');
+    }
+    return x1 + x2;
+}
+
+function resetBtnChooseTicket() {
+    // body...
+    $('.ticket-package-detail').removeClass('ticket-selected');
+    $('.btn-choose-ticket').css('display', 'inherit');
+    $('.package-kind-ticket').css('display', 'none');
+    $('.notify-ticket').css('display', 'none');
+    $('.val-ticket').html(0);
+    $('#total-price-service').html('0 đ');
+    $('.book-package-person').empty();
+    // $('#card-text-order').css('display', 'none');
+    // $('#card-order').css('display', 'inherit');
+    $('#card-text-order').hide(500);
+    $('#card-order').show(500);
 }
