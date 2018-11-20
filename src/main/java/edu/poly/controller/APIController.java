@@ -45,8 +45,8 @@ public class APIController {
     @Autowired
     RateTourDetailDAO rateTourDetailDAO;
 
-    @Autowired
-    private UserStatisticsDAO userStatisticsDAO;
+//    @Autowired
+//    private UserStatisticsDAO userStatisticsDAO;
 
     @GetMapping(path = "/abcd", produces = {MimeTypeUtils.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<Posts>> abc() {
@@ -84,15 +84,15 @@ public class APIController {
         }
     }
 
-    @GetMapping(path = "/userstaticstic", produces = {MimeTypeUtils.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<UserStatisticsDTO>> userstaticstic() {
-        try {
-            List<UserStatisticsDTO> list = (List<UserStatisticsDTO>) userStatisticsDAO.getAllUserStatisticsDTO();
-            ResponseEntity<List<UserStatisticsDTO>> responseEntity = new ResponseEntity<List<UserStatisticsDTO>>(list, HttpStatus.OK);
-            return responseEntity;
-        } catch (Exception e) {
-            return new ResponseEntity<List<UserStatisticsDTO>>(HttpStatus.BAD_REQUEST);
-        }
-    }
+//    @GetMapping(path = "/userstaticstic", produces = {MimeTypeUtils.APPLICATION_JSON_VALUE})
+//    public ResponseEntity<List<UserStatisticsDTO>> userstaticstic() {
+//        try {
+//            List<UserStatisticsDTO> list = (List<UserStatisticsDTO>) userStatisticsDAO.getAllUserStatisticsDTO();
+//            ResponseEntity<List<UserStatisticsDTO>> responseEntity = new ResponseEntity<List<UserStatisticsDTO>>(list, HttpStatus.OK);
+//            return responseEntity;
+//        } catch (Exception e) {
+//            return new ResponseEntity<List<UserStatisticsDTO>>(HttpStatus.BAD_REQUEST);
+//        }
+//    }
 
 }

@@ -441,6 +441,11 @@
 <script>
     //Start Owl Carousel Slide for post
     $(document).ready(function () {
+
+        $(document).ready(function(){
+            $(".tour-order").sticky({topSpacing:0});
+        });
+
         $('.loop').owlCarousel({
             center: true,
             loop: true,
@@ -518,12 +523,6 @@
 
     $(document).ready(function () {
 
-        $('.tour-order').sticky({
-            topSpacing: 0,
-            bottomSpacing: 450,
-            zIndex: 9999
-        });
-
         <c:forEach items="${listTourDetail}" var="lTourDetail" begin="0" end="0">
 
         ratePageByTour(${lTourDetail.id}, 0);
@@ -597,7 +596,6 @@
             var valTicket = $(this).next().html();
             var newValTicket = parseInt(valTicket) - 1;
             var a = [];
-            setOrder($('.package-service-ticket').toArray());
             if (parseInt(valTicket) == 0) {
                 $(this).prop('disabled', true);
             } else {
@@ -618,6 +616,7 @@
                 }
 
             }
+            setOrder($('.package-service-ticket').toArray());
         });
 
         $(document).on('click', '.btn-choose-ticket', function (event) {
@@ -647,6 +646,12 @@
             $('.package-kind-ticket').hide(500);
             $('.notify-ticket').css('display', 'none');
         });
+
+        // $('.tour-order').sticky({
+        //     topSpacing: 0,
+        //     bottomSpacing: 450,
+        //     zIndex: 9999
+        // });
 
     });
 

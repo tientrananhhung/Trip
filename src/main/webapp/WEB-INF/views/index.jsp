@@ -500,7 +500,7 @@
         }
     });
 </script>
-<script type="text/javascript" src="/resources/js/popupform/main.js"></script>
+<%--<script type="text/javascript" src="/resources/js/popupform/main.js"></script>--%>
 <!-- Start All Script -->
 </body>
 </html>
