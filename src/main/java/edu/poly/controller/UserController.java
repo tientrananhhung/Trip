@@ -1,6 +1,7 @@
 package edu.poly.controller;
 
 import edu.poly.common.Constants;
+import edu.poly.common.PasswordUtils;
 import edu.poly.dao.FoodDAO;
 import edu.poly.dao.PostIndexDAO;
 import edu.poly.dao.TourDAO;
@@ -14,11 +15,11 @@ import edu.poly.model.TourDTO;
 import edu.poly.model.TourDetailDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -36,6 +37,10 @@ public class UserController {
 
     //Return food detail page
     public static final String FOOD_DETAIL_SCREEN = "food-detail";
+
+
+    public static final String ADMIN_SCREEN = "admin";
+
 
     //Return tour detail page
     public static final String TOUR_DETAIL_SCREEN = "tour-detail";
@@ -65,9 +70,9 @@ public class UserController {
     TourDetailDAO tourDetailDAO;
 
     @GetMapping(Constants.Characters.BLANK)
-    public ModelAndView index() {
+    public ModelAndView index(HttpSession session) {
         ModelAndView mav = new ModelAndView(HOME_SCREEN);
-        try {
+        try { mav.addObject("login", new Users());
             List<TourDTO> lTourDTO = tourDAO.getAllTourDTO();
             List<FoodDTO> lFoodDTO = foodDAO.getAllFoodDTO();
             List<PostIndexDTO> lPostIndexDTO = postIndexDAO.getTop5PostNew();
@@ -128,6 +133,27 @@ public class UserController {
         us.setActive(true);
         user.update(us);
         ModelAndView mav = new ModelAndView(HOME_SCREEN);
+        return mav;
+    }
+
+
+    @PostMapping(Constants.Url.LOGIN)
+    public ModelAndView loginProgess(@ModelAttribute("login") Users users, HttpServletRequest rq) {
+        ModelAndView mav = new ModelAndView();
+        Users login = new Users();
+        Users userLogin = user.login(users.getUsername(), PasswordUtils.md5(users.getPassword()));
+        if (userLogin != null) {
+            if (userLogin.getRole() == Constants.Role.ADMIN || userLogin.getRole() == Constants.Role.MANAGER) {
+                mav.setViewName("redirect:" + Constants.Url.ADMIN_PAGE_URL);
+            } else if(userLogin.getRole() == Constants.Role.PARTNER) {
+                mav.setViewName("redirect:" + Constants.Url.ADMIN_PAGE_URL);
+            }
+            rq.getSession().setAttribute(Constants.SessionKey.USER, userLogin);
+        } else {
+            mav.setViewName(HOME_SCREEN);
+            login.setUsername(users.getUsername());
+            mav.addObject("login", login);
+        }
         return mav;
     }
 

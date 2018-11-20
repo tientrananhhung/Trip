@@ -3,6 +3,8 @@ package edu.poly.controller;
 
 import edu.poly.common.*;
 import javax.validation.Valid;
+
+import edu.poly.dao.UserStatisticsDAO;
 import edu.poly.entity.Users;
 import edu.poly.impl.UserImpl;
 import edu.poly.valaditor.UserValidator;
@@ -52,7 +54,7 @@ public class AdminController {
     public ModelAndView showAdminPage(HttpSession session) {
         ModelAndView mav = new ModelAndView();
         if (!CheckSession.admin(session)) {
-            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
             return mav;
         }
         mav.setViewName(ADMIN_SCREEN);
@@ -64,7 +66,7 @@ public class AdminController {
     public ModelAndView showUserList(HttpSession session) {
         ModelAndView mav = new ModelAndView();
         if(!CheckSession.admin(session)){
-            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
             return mav;
         }
         mav.addObject("listUser", user.findAllByDeleted(false));
@@ -77,7 +79,7 @@ public class AdminController {
     public ModelAndView addUser(HttpSession session) {
         ModelAndView mav = new ModelAndView();
                 if(!CheckSession.admin(session)){
-                    mav.setViewName("redirect:" + Constants.Url.LOGIN);
+                    mav.setViewName("redirect:/" + Constants.Characters.BLANK);
                       return mav;
              }
 
@@ -102,7 +104,7 @@ public class AdminController {
             return mav;
         }
         if(!CheckSession.admin(session)){
-            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
             return mav;
         }
         users.setPassword(PasswordUtils.md5("smarttrip"));
@@ -135,7 +137,7 @@ public class AdminController {
     public ModelAndView deleteUser(HttpSession session, @PathVariable("id") int id) {
         ModelAndView mav = new ModelAndView();
         if(!CheckSession.admin(session)){
-            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
             return mav;
         }
         try{
@@ -161,7 +163,7 @@ public class AdminController {
                                    @PathVariable("active") boolean active) {
         ModelAndView mav = new ModelAndView();
         if(!CheckSession.admin(session)){
-            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
             return mav;
         }
         System.out.println("vào đâyyyyyyy");
@@ -182,7 +184,7 @@ public class AdminController {
     public ModelAndView updateUser(HttpSession session, @PathVariable("id") Integer id) {
         ModelAndView mav = new ModelAndView();
         if(!CheckSession.admin(session)){
-            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
             return mav;
         }
         mav.setViewName(ADD_USER);
@@ -204,7 +206,7 @@ public class AdminController {
     public ModelAndView editUser(HttpSession session, @ModelAttribute("user") Users users) {
         ModelAndView mav = new ModelAndView();
         if(!CheckSession.admin(session)){
-            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
             return mav;
         }
         Users us = user.getById(users.getId());

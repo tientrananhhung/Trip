@@ -2,6 +2,7 @@ package edu.poly.controller;
 
 import edu.poly.common.Constants;
 import edu.poly.dao.RateTourDetailDAO;
+import edu.poly.dao.UserStatisticsDAO;
 import edu.poly.entity.Posts;
 import edu.poly.entity.Rates;
 import edu.poly.entity.Tours;
@@ -10,6 +11,7 @@ import edu.poly.impl.RateImpl;
 import edu.poly.impl.TourImpl;
 import edu.poly.impl.UserImpl;
 import edu.poly.model.RateTourDetailDTO;
+import edu.poly.model.UserStatisticsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -42,6 +44,9 @@ public class APIController {
 
     @Autowired
     RateTourDetailDAO rateTourDetailDAO;
+
+    @Autowired
+    private UserStatisticsDAO userStatisticsDAO;
 
     @GetMapping(path = "/abcd", produces = {MimeTypeUtils.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<Posts>> abc() {
@@ -76,6 +81,17 @@ public class APIController {
             return responseEntity;
         } catch(Exception e){
             return new ResponseEntity<List<RateTourDetailDTO>>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping(path = "/userstaticstic", produces = {MimeTypeUtils.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<UserStatisticsDTO>> userstaticstic() {
+        try {
+            List<UserStatisticsDTO> list = (List<UserStatisticsDTO>) userStatisticsDAO.getAllUserStatisticsDTO();
+            ResponseEntity<List<UserStatisticsDTO>> responseEntity = new ResponseEntity<List<UserStatisticsDTO>>(list, HttpStatus.OK);
+            return responseEntity;
+        } catch (Exception e) {
+            return new ResponseEntity<List<UserStatisticsDTO>>(HttpStatus.BAD_REQUEST);
         }
     }
 

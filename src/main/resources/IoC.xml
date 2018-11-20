@@ -27,9 +27,9 @@
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://smarttrip1.c73zvqnbfywf.us-east-1.rds.amazonaws.com:3306/smarttrip1?characterEncoding=UTF-8&amp;useSSL=false"/>
-        <property name="username" value="smarttrip1"/>
-        <property name="password" value="smarttrip1"/>
+        <property name="url" value="jdbc:mysql://server134.bangthongviet.vn:3306/dangducm_trip?characterEncoding=UTF-8&amp;useSSL=false&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
+        <property name="username" value="dangducm_trip"/>
+        <property name="password" value="12344321"/>
     </bean>
 
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">

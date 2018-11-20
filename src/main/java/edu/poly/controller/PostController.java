@@ -144,7 +144,6 @@ public class PostController {
                     if (!dir.exists()) {
                         dir.mkdirs();
                     }
-                    System.out.println(file.getOriginalFilename());
                     // Create the file on server
                     String fileSource = dir.getAbsolutePath() + File.separator + "resources" + File.separator + "images" + File.separator + "post_" + posts.getId() + "." + file.getOriginalFilename().split("\\.")[1];
                     posts.setImage("post_" + posts.getId() + "." + file.getOriginalFilename().split("\\.")[1]);

@@ -90,20 +90,14 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="pages/widgets.html">
-                <i class="mdi mdi-atom menu-icon"></i>
-                <span class="menu-title">Thống kê</span>
-            </a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link collapsed" data-toggle="collapse" href="#page-layouts" aria-expanded="false" aria-controls="page-layouts">
                 <i class="mdi mdi-arrow-expand-all menu-icon"></i>
-                <span class="menu-title">Page Layouts</span>
+                <span class="menu-title">Thống kê</span>
                 <i class="mdi mdi-chevron-right menu-arrow"></i>
             </a>
             <div class="collapse" id="page-layouts" style="">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/layout/boxed-layout.html">Boxed</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/layout/boxed-layout.html">Thống kê tổng</a></li>
                     <li class="nav-item"> <a class="nav-link" href="pages/layout/rtl-layout.html">RTL</a></li>
                     <li class="nav-item"> <a class="nav-link" href="pages/layout/horizontal-menu.html">Horizontal Menu</a></li>
                 </ul>

@@ -1,9 +1,11 @@
 package edu.poly.controller;
 
+import edu.poly.common.TimeUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedOutputStream;
@@ -29,11 +31,10 @@ public class FileUploadController {
     }
 
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
-    public String uploadFileHandler(HttpServletRequest request, @ModelAttribute("product") Product product) {
-        System.out.println(product.getName());
-        System.out.println(product.getPrice());
+    public ModelAndView uploadFileHandler(ModelAndView mav,HttpServletRequest request, @ModelAttribute("product") Product product) {
         try {
             CommonsMultipartFile[] files = product.getFileData();
+            ArrayList<String> listImg = new ArrayList<>();
             for(int i = 0; i<files.length; i++) {
                 CommonsMultipartFile file = files[i];
                 byte[] bytes = file.getBytes();
@@ -47,19 +48,21 @@ public class FileUploadController {
                 }
 
                 // Create the file on server
-                String fileSource = dir.getAbsolutePath() + File.separator + "resources" +  File.separator + "minh" + i + "." + file.getOriginalFilename().split("\\.")[1];
-                System.out.println(fileSource);
+                String name = TimeUtils.getCurrentTime().getTime() +"_"+ file.getOriginalFilename();
+                String fileSource = dir.getAbsolutePath() + File.separator + "resources" + File.separator + "images" + File.separator + name;
+                listImg.add(name);
                 File serverFile = new File(fileSource);
                 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
                 stream.write(bytes);
                 stream.close();
             }
 
-            //return "You uploaded successfully a file, at : " + fileSource;
-            return "redirect:/upload/photos";
+mav.setViewName("upload");
+           mav.addObject("listImg",listImg);
+           return mav;
         } catch (Exception e) {
            e.printStackTrace();
-            return "Error when uploading file"+ e;
+            return  mav;
         }
     }
 
