@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" />">
     <!-- plugin css for this page -->
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/morris.js/morris.css" />">
+    <link rel="stylesheet"
+          href="<c:url value="/resources/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />"/>
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
@@ -37,7 +39,7 @@
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Thống kê người dùng</h4>
+                                <h4 class="card-title">Thống kê người dùng <input type="text" id="test1" name="" class="form-control col-lg-1 float-right"></h4>
                                 <div id="morris-line-example"></div>
                             </div>
                         </div>
@@ -47,61 +49,26 @@
                     <div class="col-lg-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Thống kê người dùng tháng 12</h4>
-                                <div id="morris-bar-example"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Thống kê đối tác</h4>
+                                <h4 class="card-title">Thống kê đối tác <input type="text" id="test2" name="" class="form-control col-lg-2 float-right" /></h4>
                                 <div id="morris-bar-example1"></div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-lg-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Thống kê bài viết</h4>
+                                <h4 class="card-title">Thống kê ưu đãi<input type="text" id="test3" name="" class="form-control" /></h4>
                                 <div id="morris-bar-example2"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Thống kê Ưu Đãi</h4>
-                                <div id="morris-bar-example3"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Thống kê địa điểm</h4>
-                                <div id="morris-bar-example4"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Thống kê đánh giá</h4>
-                                    <div id="morris-bar-example5"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-            <jsp:include page="include/footer.jsp"/>
-        </div>
     </div>
+    <jsp:include page="include/footer.jsp"/>
+</div>
+</div>
 </div>
 <!-- plugins:js -->
 <script src="<c:url value="/resources/node_modules/jquery/dist/jquery.min.js"/>"></script>
@@ -111,204 +78,50 @@
 <!-- Plugin js for this page-->
 <script src="<c:url value="/resources/node_modules/raphael/raphael.min.js"/>"></script>
 <script src="<c:url value="/resources/node_modules/morris.js/morris.min.js"/>"></script>
+<script src="<c:url value="/resources/node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js" />"></script>
 <script src="<c:url value="/resources/js/morris.js"/>"></script>
+
+<script src="<c:url value="/resources/js/off-canvas.js" />"></script>
+<script src="<c:url value="/resources/js/hoverable-collapse.js" />"></script>
+<script src="<c:url value="/resources/js/misc.js" />"></script>
+<script src="<c:url value="/resources/js/settings.js" />"></script>
+<script src="<c:url value="/resources/js/todolist.js" />"></script>
 <!-- End plugin js for this page-->
-<script>
+    <script type="text/javascript">
+        jQuery(function($) {
+        $('#test1').datepicker({
+            format: "yyyy",
+            todayBtn: true,
+            language: "vi",
+            autoclose: true,
+            minViewMode: 2,
+            defaultDate: "2018-01-01",
+            todayHighlight: true
+        }).on('changeDate', function(ev){
+            $("#morris-line-example").empty();
+            var year = $(this).datepicker('getDate').getFullYear();
+            loadUser(year);
+        }).datepicker("setDate", new Date());
+            // loadUser(2018);
 
 
-    $(function() {
-        'use strict';
-
-        if($('#morris-line-example').length) {
-            $.ajax({
-                url: 'http://localhost:8080/api/userstaticstic/',
-                type: 'GET'
-            })
-                .done(function (data) {
-                    Morris.Line({
-                        element: 'morris-line-example',
-                        lineColors: ['#63CF72', '#76C1FA','#F36368' , '#FABA66'],
-                        data: data,
-                        hideHover: 'auto',
-                        xkey: 'thang',
-                        parseTime: false,
-                        ykeys: ['tong_User', 'actived','deleted'],
-                        labels: ['Người dùng', 'Kích hoạt', 'Ngừng hoạt động']
-                    });
-                });
-        };
-        var $arrColors = ['#ffc107', '#f44336',  '#000000','#3498DB'];
-        if($("#morris-bar-example").length){
-            Morris.Bar({
-                element: 'morris-bar-example',
-                barColors: function (row, series, type) {
-                    return $arrColors[row.x];
-                },
-                hideHover: 'auto',
-                data: [{
-                    y: 'Người dùng',
-                    a: 500,
-                    b: 90
-                },
-                    {
-                        y: 'Chưa active',
-                        a: 75,
-                        b: 65
-                    },
-                    {
-                        y: 'Ngừng hoạt động',
-                        a: 50,
-                        b: 40
-                    },
-                ],
-                xkey: 'y',
-                ykeys: ['a', 'b'],
-                labels: ['Tháng 12', 'Tháng 11']
-            });
-        }
-        if($("#morris-bar-example1").length){
-            Morris.Bar({
-                element: 'morris-bar-example1',
-                barColors: function (row, series, type) {
-                    return $arrColors[row.x];
-                },
-                hideHover: 'auto',
-                data: [{
-                    y: 'Người dùng',
-                    a: 500,
-                    b: 90
-                },
-                    {
-                        y: 'Chưa active',
-                        a: 75,
-                        b: 65
-                    },
-                    {
-                        y: 'Ngừng hoạt động',
-                        a: 50,
-                        b: 40
-                    },
-                ],
-                xkey: 'y',
-                ykeys: ['a', 'b'],
-                labels: ['Tháng 12', 'Tháng 11']
-            });
-        }
-        if($("#morris-bar-example2").length){
-            Morris.Bar({
-                element: 'morris-bar-example2',
-                barColors: function (row, series, type) {
-                    return $arrColors[row.x];
-                },
-                hideHover: 'auto',
-                data: [{
-                    y: 'Người dùng',
-                    a: 500,
-                    b: 90
-                },
-                    {
-                        y: 'Chưa active',
-                        a: 75,
-                        b: 65
-                    },
-                    {
-                        y: 'Ngừng hoạt động',
-                        a: 50,
-                        b: 40
-                    },
-                ],
-                xkey: 'y',
-                ykeys: ['a', 'b'],
-                labels: ['Tháng 12', 'Tháng 11']
-            });
-        }
-        if($("#morris-bar-example3").length){
-            Morris.Bar({
-                element: 'morris-bar-example3',
-                barColors: function (row, series, type) {
-                    return $arrColors[row.x];
-                },
-                hideHover: 'auto',
-                data: [{
-                    y: 'Người dùng',
-                    a: 500,
-                    b: 90
-                },
-                    {
-                        y: 'Chưa active',
-                        a: 75,
-                        b: 65
-                    },
-                    {
-                        y: 'Ngừng hoạt động',
-                        a: 50,
-                        b: 40
-                    },
-                ],
-                xkey: 'y',
-                ykeys: ['a', 'b'],
-                labels: ['Tháng 12', 'Tháng 11']
-            });
-        }
-        if($("#morris-bar-example4").length){
-            Morris.Bar({
-                element: 'morris-bar-example4',
-                barColors: function (row, series, type) {
-                    return $arrColors[row.x];
-                },
-                hideHover: 'auto',
-                data: [{
-                    y: 'Người dùng',
-                    a: 500,
-                    b: 90
-                },
-                    {
-                        y: 'Chưa active',
-                        a: 75,
-                        b: 65
-                    },
-                    {
-                        y: 'Ngừng hoạt động',
-                        a: 50,
-                        b: 40
-                    },
-                ],
-                xkey: 'y',
-                ykeys: ['a', 'b'],
-                labels: ['Tháng 12', 'Tháng 11']
-            });
-        }
-        if($("#morris-bar-example5").length){
-            Morris.Bar({
-                element: 'morris-bar-example5',
-                barColors: function (row, series, type) {
-                    return $arrColors[row.x];
-                },
-                hideHover: 'auto',
-                data: [{
-                    y: 'Người dùng',
-                    a: 500,
-                    b: 90
-                },
-                    {
-                        y: 'Chưa active',
-                        a: 75,
-                        b: 65
-                    },
-                    {
-                        y: 'Ngừng hoạt động',
-                        a: 50,
-                        b: 40
-                    },
-                ],
-                xkey: 'y',
-                ykeys: ['a', 'b'],
-                labels: ['Tháng 12', 'Tháng 11']
-            });
-        }
-
-    });
-
+            $('#test2').datepicker({
+                format: "mm/yyyy",
+                todayBtn: true,
+                language: "vi",
+                autoclose: true,
+                minViewMode: 1,
+                todayHighlight: true
+            }).on('changeDate', function(ev){
+                $("#morris-bar-example1").empty();
+                var year = $(this).datepicker('getDate').getFullYear();
+                var month = $(this).datepicker('getDate').getMonth();
+                console.log(month+1);
+                loadPartner(month+1,year);
+            }).datepicker("setDate", new Date());
+            // loadUser(2018);
+    loadOffer();
+        });
 </script>
 </body>
 </html>

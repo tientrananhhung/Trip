@@ -189,7 +189,7 @@ public class AdminController {
         }
         mav.setViewName(ADD_USER);
         Users users = user.getById(id);
-        mav.addObject("user", users);
+        mav.addObject("users", users);
         mav.addObject("gender", returnGender());
         mav.addObject("role", returnRole());
         mav.addObject("action", "sua");

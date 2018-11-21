@@ -11,9 +11,13 @@
     }
     if ($("#datepicker-popup").length) {
         $('#datepicker-popup').datepicker({
-            format: 'yyyy-mm-dd',
+            format: 'dd/mm/yyyy',
             enableOnReadonly: true,
             todayHighlight: true,
+            todayBtn: true,
+            forceParse: false,
+            autoclose: true,
+            language: "vi"
         });
     }
     if ($("#inline-datepicker").length) {
