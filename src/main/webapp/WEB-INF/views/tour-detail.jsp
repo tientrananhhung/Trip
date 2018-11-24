@@ -58,7 +58,7 @@
     </div>
     <!-- End Carousel Slide -->
     <!-- Start Information of Tour -->
-    <div class="container-fluid">
+    <div class="container-fluid mg-bottom-10">
         <div class="box-content-fluid">
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-sm-12">
@@ -128,7 +128,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12">
-                    <div class="tour-order">
+                    <div id="tour-order" class="tour-order">
                         <div class="card text-white bg-dark mb-3"
                              style="border-radius: 1px; border: 1px solid #e8e8e8;">
                             <c:if test="${lTourDetail.serviceIsDefault}">
@@ -187,8 +187,8 @@
 
                                 </div>
 
-                                <button type="button" class="btn btn-outline-success my-2 my-sm-0 btn-custom"
-                                        style="width: 100%;">
+                                <button type="button" class="btn btn-outline-success my-2 my-sm-0 btn-order btn-custom"
+                                        style="width: 100%;" disabled="disabled">
                                     <span>Đặt ngay</span>
                                 </button>
                                 <div class="pd-top-10">
@@ -207,7 +207,7 @@
     <!-- End Information of Tour -->
 </c:forEach>
 <!-- Start Services -->
-<div class="packages" style="background: rgb(236, 236, 236);">
+<div class="packages mg-top-10" style="background: rgb(236, 236, 236);">
     <div class="container-fluid">
         <div class="box-content-fluid">
             <div class="row">
@@ -435,6 +435,7 @@
 <script type="text/javascript" src="/resources/js/sticky/jquery.sticky.js"></script>
 <script type="text/javascript" src="/resources/js/daterangepicker/moment.min.js"></script>
 <script type="text/javascript" src="/resources/js/daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="/resources/js/sticky/sticky.compile.js"></script>
 <script type="text/javascript" src="/resources/js/custom.js"></script>
 <!-- End Import Script -->
 <!-- Start All Script -->
@@ -443,7 +444,8 @@
     $(document).ready(function () {
 
         $(document).ready(function(){
-            $(".tour-order").sticky({topSpacing:0});
+            // $("#tour-order").sticky({topSpacing:0});
+            var sticky = new Sticky('#tour-order');
         });
 
         $('.loop').owlCarousel({
@@ -586,6 +588,7 @@
             $('.notify-ticket').hide(500);
             $(this).prev().html(newValTicket);
             $(this).prevAll().prop('disabled', false);
+            $('.btn-order').prop('disabled', false);
             setOrder($('.package-service-ticket').toArray());
         });
 
@@ -608,11 +611,11 @@
                 for (var j = 0; j < a.length; j++) {
                     if (a[j] != 0) {
                         check = 1;
-
                     }
                 }
                 if (check == 0) {
                     $(this).parent('.number-stepper').parent('div').parent('.ticket-form-item-children').parent('.ticket-form-item-control').parent('.ticket-form-item-control-wrapper').parent('.ticket-form-item').parent('.col-lg-6').parent('.package-service-ticket').parent('.col-lg-6').parent('.row').parent('.package-kind-ticket').next('.notify-ticket').show(500);
+                    $('.btn-order').prop('disabled', true);
                 }
 
             }
