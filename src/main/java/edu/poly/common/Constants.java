@@ -218,6 +218,21 @@ public class Constants {
         //Trang quản lý của người dùng
         public static final String USER_URL = "/quan-ly/nguoi-dung-{id}";
 
+        //Quên mật khẩu khách hàng
+        public static final String FORGOT_USER = "/forgotuser";
+
+        //Lấy mật khẩu khách hàng
+        public static final String FORGOT_USER_TOKEN = "/forgotuser/{token}";
+
+        //Lấy mật khẩu khách hàng
+        public static final String RECOVER_USER = "/recover";
+
+        //Trang hiển thị thông tin order
+        public static final String GET_PROCESSING_ORDER_URL = "/ticket-booking/processing";
+
+        //Trang hiển thị đã order thành công
+        public static final String GET_ORDERED_SUCCESS_URL = "/ticket-booking/success";
+
         //Trang API
         public static final String API_URL = "/api";
 
@@ -236,6 +251,12 @@ public class Constants {
         //Trang API phân trang rate tour detail
         public static final String PAGING_RATE_TOUR_DETAIL_URL = "/{id}/rate/{page}";
 
+        //Trang API post information order for redirect to processing order
+        public static final String POST_PROCESSING_ORDER_URL = "/process/order/{sId}";
+
+        //Trang API post information order for redirect to process ordered
+        public static final String POST_PROCESS_ORDER_URL = "/process/order/{sId}/{uId}";
+
         //Trang Error 404
         public static final String ERROR404 = "/error404";
 
@@ -244,16 +265,6 @@ public class Constants {
 
         //Trang Error 500
         public static final String ERROR500 = "/error500";
-
-        //Quên mật khẩu khách hàng
-        public static final String FORGOT_USER = "/forgotuser";
-
-        //Lấy mật khẩu khách hàng
-        public static final String FORGOT_USER_TOKEN = "/forgotuser/{token}";
-
-        //Lấy mật khẩu khách hàng
-
-        public static final String RECOVER_USER = "/recover";
 
     }
 
