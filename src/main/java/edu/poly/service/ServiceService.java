@@ -24,4 +24,6 @@ public interface ServiceService {
 
     public void deleteById(Integer id);
 
+    public Services findServiceById(Integer id);
+
 }

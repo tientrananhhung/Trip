@@ -58,7 +58,7 @@
     </div>
     <!-- End Carousel Slide -->
     <!-- Start Information of Tour -->
-    <div class="container-fluid">
+    <div class="container-fluid mg-bottom-10">
         <div class="box-content-fluid">
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-sm-12">
@@ -128,7 +128,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12">
-                    <div class="tour-order">
+                    <div id="tour-order" class="tour-order">
                         <div class="card text-white bg-dark mb-3"
                              style="border-radius: 1px; border: 1px solid #e8e8e8;">
                             <c:if test="${lTourDetail.serviceIsDefault}">
@@ -148,9 +148,11 @@
                                         <div class="row">
                                             <div class="col-lg-12" style="">
                                                 <h3 class="cfs-16 book-service"></h3>
+                                                <input class="order-val" type="hidden" name="nameService"/>
                                             </div>
                                             <div class="col-lg-12 book-date">
                                                 <h4 class="cfs-14">Ngày đặt: <span></span></h4>
+                                                <input class="order-val" type="hidden" name="dateTicket"/>
                                             </div>
                                             <div class="ant-col-24 book-time"></div>
                                         </div>
@@ -187,8 +189,9 @@
 
                                 </div>
 
-                                <button type="button" class="btn btn-outline-success my-2 my-sm-0 btn-custom"
-                                        style="width: 100%;">
+                                <button type="button" id="btn-order"
+                                        class="btn btn-outline-success my-2 my-sm-0 btn-order btn-custom"
+                                        style="width: 100%;" disabled="disabled">
                                     <span>Đặt ngay</span>
                                 </button>
                                 <div class="pd-top-10">
@@ -207,7 +210,7 @@
     <!-- End Information of Tour -->
 </c:forEach>
 <!-- Start Services -->
-<div class="packages" style="background: rgb(236, 236, 236);">
+<div class="packages mg-top-10" style="background: rgb(236, 236, 236);">
     <div class="container-fluid">
         <div class="box-content-fluid">
             <div class="row">
@@ -435,12 +438,19 @@
 <script type="text/javascript" src="/resources/js/sticky/jquery.sticky.js"></script>
 <script type="text/javascript" src="/resources/js/daterangepicker/moment.min.js"></script>
 <script type="text/javascript" src="/resources/js/daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="/resources/js/sticky/sticky.compile.js"></script>
 <script type="text/javascript" src="/resources/js/custom.js"></script>
 <!-- End Import Script -->
 <!-- Start All Script -->
 <script>
     //Start Owl Carousel Slide for post
     $(document).ready(function () {
+
+        $(document).ready(function () {
+            // $("#tour-order").sticky({topSpacing:0});
+            var sticky = new Sticky('#tour-order');
+        });
+
         $('.loop').owlCarousel({
             center: true,
             loop: true,
@@ -518,12 +528,6 @@
 
     $(document).ready(function () {
 
-        $('.tour-order').sticky({
-            topSpacing: 0,
-            bottomSpacing: 450,
-            zIndex: 9999
-        });
-
         <c:forEach items="${listTourDetail}" var="lTourDetail" begin="0" end="0">
 
         ratePageByTour(${lTourDetail.id}, 0);
@@ -587,6 +591,7 @@
             $('.notify-ticket').hide(500);
             $(this).prev().html(newValTicket);
             $(this).prevAll().prop('disabled', false);
+            $('.btn-order').prop('disabled', false);
             setOrder($('.package-service-ticket').toArray());
         });
 
@@ -597,7 +602,6 @@
             var valTicket = $(this).next().html();
             var newValTicket = parseInt(valTicket) - 1;
             var a = [];
-            setOrder($('.package-service-ticket').toArray());
             if (parseInt(valTicket) == 0) {
                 $(this).prop('disabled', true);
             } else {
@@ -610,14 +614,15 @@
                 for (var j = 0; j < a.length; j++) {
                     if (a[j] != 0) {
                         check = 1;
-
                     }
                 }
                 if (check == 0) {
                     $(this).parent('.number-stepper').parent('div').parent('.ticket-form-item-children').parent('.ticket-form-item-control').parent('.ticket-form-item-control-wrapper').parent('.ticket-form-item').parent('.col-lg-6').parent('.package-service-ticket').parent('.col-lg-6').parent('.row').parent('.package-kind-ticket').next('.notify-ticket').show(500);
+                    $('.btn-order').prop('disabled', true);
                 }
 
             }
+            setOrder($('.package-service-ticket').toArray());
         });
 
         $(document).on('click', '.btn-choose-ticket', function (event) {
@@ -632,8 +637,11 @@
 
             var service = $(this).parent('span').parent('span').parent('.g-right').parent('.col-lg-4').prev().children('h2').html();
             var dateOrder = $('#date-order').children('span').html();
+            var nameservice = $('h1').html();
             $('.book-service').html(service);
+            $('.book-service').next().val(service);
             $('.book-date h4 span').html(dateOrder);
+            $('.book-date input').val(dateOrder);
         });
 
         $(document).on('click', '#date-order', function (event) {
@@ -646,6 +654,53 @@
             // $('.package-kind-ticket').css('display', 'none');
             $('.package-kind-ticket').hide(500);
             $('.notify-ticket').css('display', 'none');
+        });
+
+        $(document).on('click', '#btn-order', function (event) {
+            event.preventDefault();
+            /* Act on the event */
+
+            <c:forEach items="${listTourDetail}" var="lTourDetail" begin="0" end="0">
+
+            var fields = $('.order-val').serializeArray();
+            json = {}
+            $.each(fields, function (index, val) {
+                /* iterate through array or object */
+                json[val.name] = val.value;
+            });
+            var arOrder = [];
+            var arOrderDetail = $('.book-package-person input').toArray();
+            $.each(arOrderDetail, function (index, val) {
+                /* iterate through array or object */
+                var TicketDetail = {
+                    priceTicket: val.attributes[2].value,
+                    nameTicket: val.attributes[3].value,
+                    quantityTicket: val.attributes[4].value
+                };
+                arOrder.push(TicketDetail);
+            });
+            json['picture'] = '${lTourDetail.images.get(0).toString()}';
+            json['tourId'] = '${lTourDetail.id}';
+            json['tour'] = '${lTourDetail.name}';
+            json['ticketDetail'] = arOrder;
+
+            console.log(json);
+
+            $.ajax({
+                url: '/api/process/order/${lTourDetail.serviceId}',
+                type: 'POST',
+                data: {
+                    dataJson : JSON.stringify(json)
+                }
+            })
+                .done(function () {
+                    console.log("success");
+                })
+                .fail(function () {
+                    console.log("error");
+                })
+            </c:forEach>
+
         });
 
     });
