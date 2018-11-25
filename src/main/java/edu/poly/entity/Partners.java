@@ -1,6 +1,7 @@
 package edu.poly.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -40,6 +41,7 @@ public class Partners {
     }
 
     @Basic
+    @NotEmpty
     @Column(name = "Name", nullable = false, length = 100)
     public String getName() {
         return name;
@@ -50,6 +52,7 @@ public class Partners {
     }
 
     @Basic
+    @NotEmpty
     @Column(name = "Phone", nullable = true, length = 12)
     public String getPhone() {
         return phone;
@@ -60,6 +63,7 @@ public class Partners {
     }
 
     @Basic
+    @NotEmpty
     @Column(name = "Address", nullable = false, length = 200)
     public String getAddress() {
         return address;
@@ -70,6 +74,7 @@ public class Partners {
     }
 
     @Basic
+    @NotEmpty
     @Column(name = "Email", nullable = true, length = 50)
     public String getEmail() {
         return email;

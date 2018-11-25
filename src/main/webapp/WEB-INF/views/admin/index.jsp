@@ -40,6 +40,18 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Thống kê người dùng <input type="text" id="test1" name="" class="form-control col-lg-1 float-right"></h4>
+                                <div class="row col-lg-6">
+                                    <p class="col-lg-7 grid-margin">Tổng người dùng</p>
+                                    <p class="col-lg-4 grid-margin">${userstatistics.tong_User}</p>
+                                </div>
+                                <div class="row col-lg-6">
+                                    <p class="col-lg-7 grid-margin">Tổng người dùng đã kích hoạt</p>
+                                    <p class="col-lg-4 grid-margin">${userstatistics.actived}</p>
+                                </div>
+                                <div class="row col-lg-6">
+                                    <p class="col-lg-7 grid-margin">Tổng người dùng đã ngưng sử dụng</p>
+                                    <p class="col-lg-4 grid-margin">${userstatistics.deleted}</p>
+                                </div>
                                 <div id="morris-line-example"></div>
                             </div>
                         </div>
@@ -50,6 +62,18 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Thống kê đối tác <input type="text" id="test2" name="" class="form-control col-lg-2 float-right" /></h4>
+                                <div class="row col-lg-12">
+                                    <p class="col-lg-7 grid-margin">Tổng đối tác</p>
+                                    <p class="col-lg-4 grid-margin">${partnerstatistics.tong_Partner}</p>
+                                </div>
+                                <div class="row col-lg-12">
+                                    <p class="col-lg-7 grid-margin">Tổng đối tác đã kích hoạt</p>
+                                    <p class="col-lg-4 grid-margin">${partnerstatistics.actived}</p>
+                                </div>
+                                <div class="row col-lg-12">
+                                    <p class="col-lg-7 grid-margin">Tổng đối tác đã ngưng sử dụng</p>
+                                    <p class="col-lg-4 grid-margin">${partnerstatistics.deleted}</p>
+                                </div>
                                 <div id="morris-bar-example1"></div>
                             </div>
                         </div>
@@ -57,8 +81,35 @@
                     <div class="col-lg-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Thống kê ưu đãi<input type="text" id="test3" name="" class="form-control" /></h4>
-                                <div id="morris-bar-example2"></div>
+                                <h4 class="card-title">Thống kê ưu đãi <input type="text" id="test3" name="" class="form-control col-lg-2 float-right" /></h4>
+                                <div class="row col-lg-12">
+                                    <p class="col-lg-7 grid-margin"></p>
+                                    <p class="col-lg-4 grid-margin"></p>
+                                </div>
+                                <div class="row col-lg-12">
+                                    <p class="col-lg-7 grid-margin"></p>
+                                    <p class="col-lg-4 grid-margin"></p>
+                                </div>
+                                <div class="row col-lg-12">
+                                    <p class="col-lg-7 grid-margin">Tổng mã ưu đãi đã tạo</p>
+                                    <p class="col-lg-4 grid-margin">${offerstatistics.tong_Offer}</p>
+                                </div>
+                                <div class="row col-lg-12">
+                                    <p class="col-lg-7 grid-margin">Tổng mã ưu đãi đã sử dụng</p>
+                                    <p class="col-lg-4 grid-margin">${offerstatistics.used}</p>
+                                </div>
+                                <div id="morris-bar-example2" ></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="row">
+                        <div class="col-lg-12 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Thống kê bài viết <input type="text" id="test4" name="" class="form-control col-lg-2 float-right" /></h4>
+                                    <div id="morris-area-example"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -104,6 +155,18 @@
         }).datepicker("setDate", new Date());
             // loadUser(2018);
 
+            $('#test4').datepicker({
+                format: "yyyy",
+                todayBtn: true,
+                language: "vi",
+                autoclose: true,
+                minViewMode: 2,
+                todayHighlight: true
+            }).on('changeDate', function (ev) {
+                $("#morris-area-example").empty();
+                var year = $(this).datepicker('getDate').getFullYear();
+                loadPost(year);
+            }).datepicker("setDate", new Date());
 
             $('#test2').datepicker({
                 format: "mm/yyyy",
@@ -116,11 +179,24 @@
                 $("#morris-bar-example1").empty();
                 var year = $(this).datepicker('getDate').getFullYear();
                 var month = $(this).datepicker('getDate').getMonth();
-                console.log(month+1);
                 loadPartner(month+1,year);
             }).datepicker("setDate", new Date());
-            // loadUser(2018);
-    loadOffer();
+
+            $('#test3').datepicker({
+                format: "mm/yyyy",
+                todayBtn: true,
+                language: "vi",
+                autoclose: true,
+                minViewMode: 1,
+                todayHighlight: true
+            }).on('changeDate', function(ev){
+                $("#morris-bar-example2").empty();
+                var year = $(this).datepicker('getDate').getFullYear();
+                var month = $(this).datepicker('getDate').getMonth();
+                console.log(month);
+                loadOffer(month+1,year);
+            }).datepicker("setDate", new Date());
+
         });
 </script>
 </body>

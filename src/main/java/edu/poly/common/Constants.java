@@ -266,6 +266,14 @@ public class Constants {
         //Trang Error 500
         public static final String ERROR500 = "/error500";
 
+        public static final String USER_STATISTICS = "/userstatistics/{year}";
+
+        public static final String PARNER_STATISTICS = "/partnerstatistics/{month}/{year}";
+
+        public static final String OFFER_STATISTICS = "/offerstatistics/{month}/{year}";
+
+
+
     }
 
     public class Characters {

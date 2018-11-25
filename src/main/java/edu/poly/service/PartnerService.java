@@ -29,4 +29,8 @@ public interface PartnerService {
     public List<Partners> findAllByDeleted(boolean deleted);
 
     public Partners getById(Integer id);
+
+    public boolean existsByEmail(String email);
+
+    public boolean existsByPhone(String phone);
 }

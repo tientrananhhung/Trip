@@ -96,11 +96,13 @@
                                     <div class="form-group">
                                         <label>Phone</label>
                                         <f:input path="phone" type="tel" cssClass="form-control" placeholder="Phone"/>
+                                        <f:errors path="phone" cssStyle="color:red;display:block"></f:errors>
                                     </div>
                                     <div class="form-group">
                                         <label>Email</label>
                                         <f:input path="email" cssClass="form-control form-control-sm"
-                                                 data-inputmask="'alias': 'email'"/>
+                                               type="email"/>
+                                        <f:errors path="email" cssStyle="color:red;display:block"></f:errors>
                                     </div>
                                     <div class="form-group">
                                         <label>Address</label>

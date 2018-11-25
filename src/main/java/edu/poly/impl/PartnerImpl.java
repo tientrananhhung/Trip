@@ -72,4 +72,14 @@ public class PartnerImpl implements PartnerService {
         return repository.getById(id);
     }
 
+    @Override
+    public boolean existsByEmail(String email) {
+        return repository.existsByEmail(email);
+    }
+
+    @Override
+    public boolean existsByPhone(String phone) {
+        return repository.existsByPhone(phone);
+    }
+
 }

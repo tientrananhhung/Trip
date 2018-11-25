@@ -14691,9 +14691,9 @@ input:focus {
 .navbar .navbar-brand-wrapper .brand-logo-mini {
     display: none; }
 .navbar .navbar-brand-wrapper .brand-logo-mini img {
-    width: calc(70px - 50px);
+    width: 100%;
     max-width: 100%;
-    height: 28px;
+    height: 100%;
     margin: auto; }
 .navbar .navbar-menu-wrapper {
     transition: width 0.25s ease;

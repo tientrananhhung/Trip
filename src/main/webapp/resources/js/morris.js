@@ -18,7 +18,7 @@ function loadUser(year) {
                     labels: ['Người dùng', 'Kích hoạt', 'Ngừng hoạt động']
                 });
             });
-    }
+    };
 };
 function loadPartner(month,year){
     if ($("#morris-bar-example1").length) {
@@ -37,12 +37,12 @@ function loadPartner(month,year){
                     labels: ['Đối tác', 'Kích hoạt', 'Ngừng hoạt động']
                 });
             });
-    }
+    };
 };
-function loadOffer(){
+function loadOffer(month,year){
     if ($("#morris-bar-example2").length) {
         $.ajax({
-            url: 'http://localhost:8080/api/offerstatistics/',
+            url: 'http://localhost:8080/api/offerstatistics/'+month+'/'+year+'',
             type: 'GET'
         })
             .done(function (data) {
@@ -56,5 +56,28 @@ function loadOffer(){
                     labels: ['Đã tạo','Đã sử dụng']
                 });
             });
-    }
+    };
+
+};
+function loadPost(year) {
+    'use strict';
+
+    if ($('#morris-area-example').length) {
+        $.ajax({
+            url: 'http://localhost:8080/api/poststatistics/'+year+'',
+            type: 'GET'
+        })
+            .done(function (data) {
+                Morris.Area({
+                    element: 'morris-area-example',
+                    lineColors: ['#63CF72', '#76C1FA', '#F36368', '#FABA66'],
+                    data: data,
+                    hideHover: 'auto',
+                    xkey: 'thang',
+                    parseTime: false,
+                    ykeys: ['tong_Post', 'deleted'],
+                    labels: ['Bài viết',  'Đã xóa']
+                });
+            });
+    };
 };

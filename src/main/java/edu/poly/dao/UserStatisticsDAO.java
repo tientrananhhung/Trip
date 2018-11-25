@@ -28,5 +28,13 @@ public class UserStatisticsDAO extends JdbcDaoSupport {
         return listDTO;
     }
 
+    public UserStatisticsDTO getUserStatisticsDTO() {
+        String sql = "SELECT Count(users.id) as Tong_User, Count(IF(users.Is_active = true, 1, NULL)) AS Actived, Count(IF(users.Is_deleted = true, 1, NULL)) AS Deleted, CONCAT('Tháng ',MAX(MONTH(Created_at))) as thang FROM users";
+        Object[] params = new Object[]{};
+        UserStatisticsMapper mapper = new UserStatisticsMapper();
+        List<UserStatisticsDTO> user =  this.getJdbcTemplate().query(sql, params, mapper);
+   return user.get(0);
+    }
+
 
 }

@@ -6,8 +6,12 @@ import edu.poly.common.TimeUtils;
 import edu.poly.entity.Partners;
 import edu.poly.impl.PartnerImpl;
 import edu.poly.impl.UserImpl;
+import edu.poly.valaditor.PartnerValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,10 +27,17 @@ public class PartnerController {
     @Autowired
     private UserImpl user;
 
+    @Autowired
+    private PartnerValidator partnerValidator;
 
     public static final String LIST_PARTNER_SCREEN = "/admin/quanlydoitac/listpartner";
 
     public static final String ADD_PARTNER = "/admin/quanlydoitac/addpartner";
+
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+        binder.addValidators(partnerValidator);
+    }
 
     /**
      * @param session for checkrole
@@ -77,8 +88,15 @@ public class PartnerController {
      * @return url quan-ly-doi-tac or add partner
      * */
     @PostMapping(Constants.Url.ADD_PARNER)
-    public ModelAndView addPartner(HttpSession session, @ModelAttribute("partners") Partners partners) {
+    public ModelAndView addPartner(HttpSession session,@Validated @ModelAttribute("partner") Partners partners,BindingResult result) {
         ModelAndView mav = new ModelAndView();
+        System.out.println(result.getAllErrors());
+        if(result.hasErrors()) {
+            mav.addObject("user_list", user.findAllByRoleAndActiveAndDeleted(Constants.Role.USER,true,false));
+            mav.addObject("action", "them");
+            mav.setViewName(ADD_PARTNER);
+            return mav;
+        }
         if (!CheckSession.admin(session)) {
             mav.setViewName("redirect:" + Constants.Url.LOGIN);
             return mav;
@@ -94,7 +112,6 @@ public class PartnerController {
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_PARTNER);
         } catch (Exception ex) {
             ex.printStackTrace();
-            mav.setViewName(ADD_PARTNER);
         }
         return mav;
     }

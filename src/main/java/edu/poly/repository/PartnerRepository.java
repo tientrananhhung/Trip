@@ -15,5 +15,6 @@ public interface PartnerRepository extends CrudRepository<Partners, Integer> {
 
     public Partners getById(Integer id);
 
-
+    public boolean existsByEmail(String email);
+    public boolean existsByPhone(String phone);
 }
