@@ -52,8 +52,8 @@
                                         <f:hidden path="id"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputName1">District Name</label>
-                                        <f:input path="name" type="text" cssClass="form-control" id="exampleInputName1" placeholder="Name"/>
+                                        <label >District Name</label>
+                                        <f:input path="name" type="text" cssClass="form-control" required="true" placeholder="Name"/>
                                     </div>
                                     <button type="submit" class="btn btn-success mr-2">Submit</button>
                                     <a href="/admin/quan-ly-quan"><button class="btn btn-light">Cancel</button></a>

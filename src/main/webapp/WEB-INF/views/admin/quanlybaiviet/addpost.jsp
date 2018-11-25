@@ -85,7 +85,7 @@
                                     <div class="form-group">
                                         <label>Post name</label>
                                         <f:input path="title" type="text" class="form-control"
-                                                 placeholder="Name"/>
+                                                 placeholder="Name" required="true"/>
                                     </div>
                                     <div class="form-group">
                                         <label>Category</label>
@@ -98,7 +98,7 @@
                                     <c:if test="${action == 'sua'}">
                                         <div class="form-group">
                                             <label>Image</label>
-                                            <f:input accept="image/*" path="fileData" data-default-file="/resources/images/avatar.png" type="file" class="dropify" ></f:input>
+                                            <f:input accept="image/*" path="fileData" required="true" data-default-file="/resources/images/avatar.png" type="file" class="dropify" ></f:input>
                                         </div>
                                     </c:if>
                                     <div class="form-group">

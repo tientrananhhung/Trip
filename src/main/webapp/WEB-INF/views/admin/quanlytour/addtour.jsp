@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -61,77 +62,28 @@
                                     Addition Tour
                                 </p>
                                 <hr/>
-                                <form class="forms-sample">
+                                <f:form class="forms-sample"  method="POST" modelAttribute="tours"
+                                        action="/admin/quan-ly-tour/${action}">
+                                        <f:hidden path="id"/>
                                     <div class="form-group">
-                                        <label for="exampleInputName1">Tour ID</label>
-                                        <input type="text" class="form-control" id="exampleInputName1" placeholder="ID">
+                                        <label>Tour Name</label>
+                                        <f:input type="text" cssClass="form-control"  path="name" placeholder="Name"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleFormControlSelect2">User ID</label>
-                                        <select class="form-control" id="exampleFormControlSelect2">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
+                                        <label>Tour Address</label>
+                                        <f:input type="text" cssClass="form-control" path="address" placeholder="Address"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputName1">Tour Name</label>
-                                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+                                        <label>Tour Content</label>
+                                        <f:input type="text" cssClass="form-control" path="content" placeholder="Content"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword4">Tour Address</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword4" placeholder="Address">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword4">Tour Content</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword4" placeholder="Address">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Tour Image</label>
-                                        <input type="file" name="img[]" class="file-upload-default">
-                                        <div class="input-group col-xs-12">
-                                            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                                            <span class="input-group-append">
-                          <button class="file-upload-browse btn btn-info" type="button">Upload</button>
-                        </span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword4">Tour Policy</label>
-                                        <input type="number" class="form-control" id="exampleInputPassword4" placeholder="Address">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword4">Tour Lat</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword4" placeholder="Address">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword4">Tour Ing</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword4" placeholder="Address">
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">Tour Status</label>
-                                        <div class="col-sm-4">
-                                            <div class="form-radio">
-                                                <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked="">
-                                                    Active
-                                                    <i class="input-helper"></i></label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-5">
-                                            <div class="form-radio">
-                                                <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2">
-                                                    Un-Active
-                                                    <i class="input-helper"></i></label>
-                                            </div>
-                                        </div>
+                                        <label>Tour Policy</label>
+                                        <f:input type="number" cssClass="form-control" path="policy" placeholder="Policy" />
                                     </div>
                                     <button type="submit" class="btn btn-success mr-2">Submit</button>
                                     <a href="/admin/quan-ly-tour"><button class="btn btn-light">Cancel</button></a>
-                                </form>
+                                </f:form>
                             </div>
                         </div>
                     </div>

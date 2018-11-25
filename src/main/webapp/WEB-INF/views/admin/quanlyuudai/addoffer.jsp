@@ -79,11 +79,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputName1">Offer Code</label>
-                                        <f:input path="code" disabled="${action == 'sua' ? 'true':''}" type="text" cssClass="form-control" id="exampleInputName1"/>
+                                        <f:input path="code" disabled="true" type="text" cssClass="form-control" id="exampleInputName1"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputName1">Offer Deal</label>
-                                        <f:input path="deal" type="number" cssClass="form-control" id="exampleInputName1"/>
+                                        <label >Offer Deal</label>
+                                        <f:input path="deal" type="number" cssClass="form-control" required="true"/>
                                     </div>
                                     <button type="submit" class="btn btn-success mr-2">Submit</button>
                                     <a href="/admin/quan-ly-uu-dai"><button class="btn btn-light">Cancel</button></a>

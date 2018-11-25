@@ -67,8 +67,8 @@
                                         <f:hidden path="id"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputName1">Post category name</label>
-                                        <f:input path="name" type="text" class="form-control" id="exampleInputName1" placeholder="Name"/>
+                                        <label >Post category name</label>
+                                        <f:input path="name" type="text" class="form-control" required="true" placeholder="Name"/>
                                     </div>
                                     <button type="submit" class="btn btn-success mr-2">Submit</button>
                                     <a href="/admin/quan-ly-danh-muc-bai-viet"><button class="btn btn-light">Cancel</button></a>

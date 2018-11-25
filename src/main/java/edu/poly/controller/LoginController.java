@@ -53,6 +53,7 @@ public class LoginController {
         ModelAndView mav = new ModelAndView();
         Users login = new Users();
         Users userLogin = user.login(users.getUsername(), PasswordUtils.md5(users.getPassword()));
+        System.out.println(userLogin.getUsername());
         if (userLogin != null) {
             if (userLogin.getRole() == Constants.Role.ADMIN || userLogin.getRole() == Constants.Role.MANAGER) {
                 mav.setViewName("redirect:" + Constants.Url.ADMIN_PAGE_URL);

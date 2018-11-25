@@ -4,12 +4,14 @@ import edu.poly.common.CheckSession;
 import edu.poly.common.Constants;
 import edu.poly.common.TimeUtils;
 import edu.poly.entity.Tours;
+import edu.poly.entity.Users;
 import edu.poly.impl.TourImpl;
+import edu.poly.impl.UserImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -28,6 +30,9 @@ public class TourController {
     @Autowired
     TourImpl tour;
 
+    @Autowired
+    UserImpl user;
+
     /**
      * return url /admin/quan-ly-tour
      * */
@@ -40,6 +45,7 @@ public class TourController {
         }
         List<Tours> list = (List<Tours>) tour.findAll();
         mav.addObject("listTour",list);
+
         mav.setViewName(LIST_TOUR_SCREEN);
         return mav;
     }
@@ -56,12 +62,37 @@ public class TourController {
             return mav;
         }
         mav.setViewName(ADD_TOUR);
-        mav.addObject("tour", new Tours());
-
+        mav.addObject("tours", new Tours());
         mav.addObject("action", "them");
         return mav;
     }
 
+    @PostMapping(Constants.Url.ADD_TOUR)
+    public ModelAndView addPartner(HttpSession session, @Validated @ModelAttribute("tours") Tours tours, BindingResult result) {
+        ModelAndView mav = new ModelAndView();
+//        if(result.hasErrors()) {
+//            mav.addObject("user_list", user.findAllByRoleAndActiveAndDeleted(Constants.Role.USER,true,false));
+//            mav.addObject("action", "them");
+//            mav.setViewName(ADD_PARTNER);
+//            return mav;
+//        }
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
+        try {
+            tours.setCreatedAt(TimeUtils.getCurrentTime());
+            tours.setUpdatedAt(TimeUtils.getCurrentTime());
+            tours.setDeleted(false);
+            Users us = (Users) session.getAttribute(Constants.SessionKey.USER);
+            tours.setUserId( us.getId());
+            tour.save(tours);
+            mav.setViewName("redirect:/admin" + Constants.Url.LIST_TOUR);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return mav;
+    }
     /**
      * @param session for check role
      * @param id for get user

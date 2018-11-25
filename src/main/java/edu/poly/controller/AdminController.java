@@ -6,21 +6,11 @@ import edu.poly.common.*;
 import edu.poly.dao.OfferStatisticsDAO;
 import edu.poly.dao.PartnerStatisticsDAO;
 import edu.poly.dao.UserStatisticsDAO;
-import edu.poly.entity.Users;
-import edu.poly.impl.UserImpl;
-import edu.poly.valaditor.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.HashMap;
 
 @Controller
 @RequestMapping(Constants.Url.ADMIN_PAGE_URL)

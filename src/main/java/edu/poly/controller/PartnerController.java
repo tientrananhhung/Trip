@@ -108,7 +108,6 @@ public class PartnerController {
             partners.setDeleted(false);
             partner.save(partners);
             user.updateRoleUser(2,partners.getUserId());
-            mav.addObject("listPartner", partner.findAllByDeleted(false));
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_PARTNER);
         } catch (Exception ex) {
             ex.printStackTrace();
