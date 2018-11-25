@@ -60,4 +60,9 @@ public class ServiceImpl implements ServiceService {
         repository.deleteById(id);
     }
 
+    @Override
+    public Services findServiceById(Integer id) {
+        return repository.findServiceById(id);
+    }
+
 }

@@ -228,6 +228,14 @@
                     </div>
                     <!-- End Card order-->
 
+                    <!-- Start Button Order-->
+                    <div class="package-btn-order">
+                        <button type="button" id="btn-order" class="btn btn-outline-success my-2 my-sm-0 btn-order btn-custom" style="width: 100%;">
+                            <span>Đặt ngay</span>
+                        </button>
+                    </div>
+                    <!-- End Button Order-->
+
                 </div>
             </div>
         </section>

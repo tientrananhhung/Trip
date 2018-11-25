@@ -148,9 +148,11 @@
                                         <div class="row">
                                             <div class="col-lg-12" style="">
                                                 <h3 class="cfs-16 book-service"></h3>
+                                                <input class="order-val" type="hidden" name="nameService"/>
                                             </div>
                                             <div class="col-lg-12 book-date">
                                                 <h4 class="cfs-14">Ngày đặt: <span></span></h4>
+                                                <input class="order-val" type="hidden" name="dateTicket"/>
                                             </div>
                                             <div class="ant-col-24 book-time"></div>
                                         </div>
@@ -187,7 +189,8 @@
 
                                 </div>
 
-                                <button type="button" class="btn btn-outline-success my-2 my-sm-0 btn-order btn-custom"
+                                <button type="button" id="btn-order"
+                                        class="btn btn-outline-success my-2 my-sm-0 btn-order btn-custom"
                                         style="width: 100%;" disabled="disabled">
                                     <span>Đặt ngay</span>
                                 </button>
@@ -443,7 +446,7 @@
     //Start Owl Carousel Slide for post
     $(document).ready(function () {
 
-        $(document).ready(function(){
+        $(document).ready(function () {
             // $("#tour-order").sticky({topSpacing:0});
             var sticky = new Sticky('#tour-order');
         });
@@ -634,8 +637,11 @@
 
             var service = $(this).parent('span').parent('span').parent('.g-right').parent('.col-lg-4').prev().children('h2').html();
             var dateOrder = $('#date-order').children('span').html();
+            var nameservice = $('h1').html();
             $('.book-service').html(service);
+            $('.book-service').next().val(service);
             $('.book-date h4 span').html(dateOrder);
+            $('.book-date input').val(dateOrder);
         });
 
         $(document).on('click', '#date-order', function (event) {
@@ -650,11 +656,52 @@
             $('.notify-ticket').css('display', 'none');
         });
 
-        // $('.tour-order').sticky({
-        //     topSpacing: 0,
-        //     bottomSpacing: 450,
-        //     zIndex: 9999
-        // });
+        $(document).on('click', '#btn-order', function (event) {
+            event.preventDefault();
+            /* Act on the event */
+
+            <c:forEach items="${listTourDetail}" var="lTourDetail" begin="0" end="0">
+
+            var fields = $('.order-val').serializeArray();
+            json = {}
+            $.each(fields, function (index, val) {
+                /* iterate through array or object */
+                json[val.name] = val.value;
+            });
+            var arOrder = [];
+            var arOrderDetail = $('.book-package-person input').toArray();
+            $.each(arOrderDetail, function (index, val) {
+                /* iterate through array or object */
+                var TicketDetail = {
+                    priceTicket: val.attributes[2].value,
+                    nameTicket: val.attributes[3].value,
+                    quantityTicket: val.attributes[4].value
+                };
+                arOrder.push(TicketDetail);
+            });
+            json['picture'] = '${lTourDetail.images.get(0).toString()}';
+            json['tourId'] = '${lTourDetail.id}';
+            json['tour'] = '${lTourDetail.name}';
+            json['ticketDetail'] = arOrder;
+
+            console.log(json);
+
+            $.ajax({
+                url: '/api/process/order/${lTourDetail.serviceId}',
+                type: 'POST',
+                data: {
+                    dataJson : JSON.stringify(json)
+                }
+            })
+                .done(function () {
+                    console.log("success");
+                })
+                .fail(function () {
+                    console.log("error");
+                })
+            </c:forEach>
+
+        });
 
     });
 

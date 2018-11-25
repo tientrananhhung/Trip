@@ -151,14 +151,22 @@ function setOrder(data) {
                 '<div class="col-lg-6">' + service + '</div>' +
                 '<div class="col-lg-2 center">x' + quantity + '</div>' +
                 '<div class="col-lg-4">' +
-                '<div class="t_right">' + formatNumber(price, '.', '.') + ' ₫</div>' +
+                '<div class="t_right">' +
+                formatNumber(price, '.', '.') + ' ₫' +
+                '<input class="order-val" type="hidden" priceticket="' + price + '" nameticket="' + service + '" quantityticket="' + quantity + '" />' +
+                '</div>' +
                 '</div>' +
                 '</div>' +
                 '</div>'
             );
             $('#total-price-service').html(formatNumber(total, '.', '.') + " đ");
+            $('#total-price-service').next().val(total);
         }
     });
+    if (parseInt(total) == 0) {
+        $('#total-price-service').html("0 đ");
+        $('#total-price-service').next().val(0);
+    }
 }
 
 function formatNumber(nStr, decSeperate, groupSeperate) {
@@ -181,9 +189,8 @@ function resetBtnChooseTicket() {
     $('.notify-ticket').css('display', 'none');
     $('.val-ticket').html(0);
     $('#total-price-service').html('0 đ');
+    $('#total-price-service').next().val(0);
     $('.book-package-person').empty();
-    // $('#card-text-order').css('display', 'none');
-    // $('#card-order').css('display', 'inherit');
     $('#card-text-order').hide(500);
     $('#card-order').show(500);
 }

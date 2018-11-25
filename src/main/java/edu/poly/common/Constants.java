@@ -345,5 +345,8 @@ public class Constants {
         //key để get/set user cho session
         public static final String USER = "userInfo";
 
+        //Key lưu session order
+        public static final String ORDER_SESSION = "processOrder";
+
     }
 }
