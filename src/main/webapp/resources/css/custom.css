@@ -1820,6 +1820,10 @@ label.l-payment p {
     z-index: 2;
 }
 
+.card-body-payment{
+    height: 220px;
+}
+
 
 
 
@@ -1863,6 +1867,10 @@ label.l-payment p {
     #choose-login-order, #choose-register-order, #choose-forgot-password-order{
         width: 93%;
     }
+
+    label.l-payment{
+        height: 102%;
+    }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 878px) {
@@ -1904,6 +1912,10 @@ label.l-payment p {
 
     #choose-login-order, #choose-register-order, #choose-forgot-password-order{
         width: 93%;
+    }
+
+    .card-body-payment{
+        display: inline-table;
     }
 
 }
@@ -1953,14 +1965,6 @@ label.l-payment p {
         width: 35%;
     }
 
-    .card-payment{
-        width: 150%;
-    }
-
-    .card-voucher{
-        width: 150%;
-    }
-
     .s-order{
         padding-right: 15px;
         padding-left: 15px;
@@ -1968,6 +1972,10 @@ label.l-payment p {
 
     #choose-login-order, #choose-register-order, #choose-forgot-password-order{
         width: 93%;
+    }
+
+    .card-body-payment{
+        display: inline-table;
     }
 
 }
@@ -1984,6 +1992,10 @@ label.l-payment p {
 
     #choose-login-order, #choose-register-order, #choose-forgot-password-order{
         width: 93%;
+    }
+
+    .card-body-payment{
+        display: inline-table;
     }
 }
 
@@ -2169,10 +2181,18 @@ label.l-payment p {
     }
 
     .l-show-order{
-        height: 520px;
+        height: auto;
     }
 
     #choose-login-order, #choose-register-order, #choose-forgot-password-order{
         width: 93%;
+    }
+
+    label.l-payment{
+        height: 22%;
+    }
+
+    .card-body-payment{
+        display: inline-table;
     }
 }

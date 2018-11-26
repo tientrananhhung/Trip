@@ -10,6 +10,8 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order - Smart Trip</title>
     <!-- Icon -->
     <link rel="icon" href="/resources/images/favicon.ico">
@@ -86,13 +88,13 @@
                                             <div class="row">
                                                 <div class="col-lg-5">
                                                     <label class="cfs-14 name-user"><span class="asterisk">*</span>Họ và Tên:</label>
-                                                    <p class="name-user" id="name-user">Trần Anh Hưng Tiến</p>
+                                                    <p class="name-user" id="name-user">${sessionScope.userInfo.name}</p>
                                                     <label class="cfs-14 email-user"><span class="asterisk">*</span>Email:</label>
-                                                    <p class="email-user" id="email-user">tientah@fpt.edu.vn</p>
+                                                    <p class="email-user" id="email-user">${sessionScope.userInfo.email}</p>
                                                     <label class="cfs-14 address-user"><span class="asterisk">*</span>Địa chỉ:</label>
-                                                    <p class="address-user" id="address-user">137 Nguyễn Thị Thập</p>
+                                                    <p class="address-user" id="address-user">${sessionScope.userInfo.address}</p>
                                                     <label class="cfs-14 phone-user"><span class="asterisk">*</span>Số điện thoại: <a href="#">Thay đổi</a></label>
-                                                    <input type="text" class="phone-user form-control" id="phone-user" placeholder="0966575492" value="0966575492" disabled="">
+                                                    <input type="text" class="phone-user form-control" id="phone-user" placeholder="${sessionScope.userInfo.phone}" value="${sessionScope.userInfo.phone}" disabled="">
                                                 </div>
                                                 <div class="col-lg-7">
                                                     <label class="cfs-14">Ghi chú:</label>
@@ -137,26 +139,45 @@
                                     <!-- End payment -->
 
                                     <!-- Start offer -->
-                                    <div class="card bg-light mg-top-20 card-voucher">
-                                        <div class="card-header bg-light order-card-head">Sử dụng voucher</div>
-                                        <div class="card-body card-body-voucher" style="padding: 24px; height: 240px;">
+                                    <c:choose>
+                                        <c:when test="${empty offer}">
+                                            <div class="card bg-light mg-top-20 card-voucher">
+                                                <div class="card-header bg-light order-card-head">Sử dụng voucher</div>
+                                                <div class="card-body card-body-voucher" style="padding: 24px;">
 
-                                            <div class="dropdown">
-                                                <div class="select">
-                                                    <span>Áp dụng voucher</span>
-                                                    <i class="fa fa-chevron-left"></i>
+                                                    <div class="dropdown">
+                                                        <div class="select">
+                                                            <span>Bạn không có voucher nào</span>
+                                                            <i class="fa fa-chevron-left"></i>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
-                                                <input type="hidden" name="voucher">
-                                                <ul class="dropdown-menu">
-                                                    <li id="n3g6g3n7m2n5" price="20000">Mã: n3g6g3n7m2n5 - Giảm 20.000đ</li>
-                                                    <li id="n3g6g3n9n3g8" price="50000">Mã: n3g6g3n9n3g8 - Giảm 50.000đ</li>
-                                                    <li id="h2d8g9y4e5k8" price="100000">Mã: h2d8g9y4e5k8 - Giảm 100.000đ</li>
-                                                    <li id="k2g0n4k7n3j5" price="150000">Mã: k2g0n4k7n3j5 - Giảm 150.000đ</li>
-                                                </ul>
                                             </div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div class="card bg-light mg-top-20 card-voucher">
+                                                <div class="card-header bg-light order-card-head">Sử dụng voucher</div>
+                                                <div class="card-body card-body-voucher" style="padding: 24px; height: 240px;">
 
-                                        </div>
-                                    </div>
+                                                    <div class="dropdown">
+                                                        <div class="select">
+                                                            <span>Áp dụng voucher</span>
+                                                            <i class="fa fa-chevron-left"></i>
+                                                        </div>
+                                                        <input type="hidden" name="voucher">
+                                                        <input class="order-val" type="hidden">
+                                                        <ul class="dropdown-menu">
+                                                            <c:forEach items="${offer}" var="offer">
+                                                                <li id="${offer.code}" price="${offer.deal}">Mã: ${offer.code} - Giảm ${offer.deal} đ</li>
+                                                            </c:forEach>
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </c:otherwise>
+                                    </c:choose>
                                     <!-- End offer -->
 
                                 </div>
@@ -415,9 +436,11 @@
                                             </div>
 
                                             <div class="row l_top pd-top-10 mg-0">
-                                                <div class="col-lg-12 c_orange cfs-14 pd-0">
+                                                <div class="col-lg-12 c_orange cfs-14 pd-0 package-voucher">
                                                     <i class="fa fa-gift" aria-hidden="true"></i>
-                                                    Bạn chưa sử dụng voucher cho đơn này
+                                                    <div class="show-voucher">
+                                                        Bạn chưa sử dụng voucher cho đơn này
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -494,6 +517,11 @@
     $('.dropdown .dropdown-menu li').click(function () {
         $(this).parents('.dropdown').find('span').text($(this).text());
         $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
+        $(this).parents('.dropdown').children('.order-val').attr({
+            'code': $(this).attr('id'),
+            'price': $(this).attr('price')
+        });
+
     });
     $('.dropdown-menu li').click(function () {
         var input = '<strong>' + $(this).parents('.dropdown').find('input').val() + '</strong>';

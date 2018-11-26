@@ -15,4 +15,7 @@ public interface OfferRepository extends CrudRepository<Offers, Integer> {
 
     public List<Offers> findAllByUsed(Boolean used);
 
+    @Query("from Offers where userId = :userId")
+    public List<Offers> getAllByUserId(@Param("userId") Integer userId);
+
 }

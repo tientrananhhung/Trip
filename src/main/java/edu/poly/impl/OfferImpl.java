@@ -71,5 +71,10 @@ public class OfferImpl implements OfferService {
         return repository.findAllByUsed(used);
     }
 
+    @Override
+    public List<Offers> getAllByUserId(Integer userId) {
+        return repository.getAllByUserId(userId);
+    }
+
 
 }

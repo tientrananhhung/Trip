@@ -8,8 +8,10 @@ import edu.poly.dao.FoodDAO;
 import edu.poly.dao.PostIndexDAO;
 import edu.poly.dao.TourDAO;
 import edu.poly.dao.TourDetailDAO;
+import edu.poly.entity.Offers;
 import edu.poly.entity.Services;
 import edu.poly.entity.Users;
+import edu.poly.impl.OfferImpl;
 import edu.poly.impl.ServiceImpl;
 import edu.poly.impl.TourImpl;
 import edu.poly.impl.UserImpl;
@@ -70,6 +72,9 @@ public class UserController {
 
     @Autowired
     ServiceImpl service;
+
+    @Autowired
+    OfferImpl offer;
 
     @Autowired
     PostIndexDAO postIndexDAO;
@@ -219,10 +224,16 @@ public class UserController {
     }
 
     @GetMapping(Constants.Url.GET_PROCESSING_ORDER_URL)
-    public ModelAndView showProcessOrder() {
+    public ModelAndView showProcessOrder(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView(PROCESSING_ORDER_SCREEN);
-        Users login = new Users();
-        mav.addObject(Constants.Attribute.LOGIN_ATTRIBUTE, login);
+        Users users = (Users) request.getSession().getAttribute(Constants.SessionKey.USER);
+        if(users != null){
+            List<Offers> offers = offer.getAllByUserId(users.getId());
+            mav.addObject(Constants.Attribute.OFFER_ATTRIBUTE, offers);
+        }else{
+            Users login = new Users();
+            mav.addObject(Constants.Attribute.LOGIN_ATTRIBUTE, login);
+        }
         return mav;
     }
 

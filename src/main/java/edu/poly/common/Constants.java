@@ -369,5 +369,8 @@ public class Constants {
         //Attribute login
         public static final String LOGIN_ATTRIBUTE = "login";
 
+        //Attribute offer
+        public static final String OFFER_ATTRIBUTE = "offer";
+
     }
 }
