@@ -431,16 +431,15 @@
                                             <div class="row pd-top-10 pd-bottom-10 mg-0" style="width: 100%">
                                                 <div class="col-lg-8 pd-0">Tổng tiền thanh toán</div>
                                                 <div class="col-lg-4 pd-0">
-                                                    <b class="c_orange cfs-16 t_right">${sessionScope.processOrder.totalPrice} ₫</b>
+                                                    <b class="c_orange cfs-16 t_right totalPriceVal">${sessionScope.processOrder.totalPrice} ₫</b>
+                                                    <input type="hidden" value="${sessionScope.processOrder.totalPrice}">
                                                 </div>
                                             </div>
 
                                             <div class="row l_top pd-top-10 mg-0">
                                                 <div class="col-lg-12 c_orange cfs-14 pd-0 package-voucher">
                                                     <i class="fa fa-gift" aria-hidden="true"></i>
-                                                    <div class="show-voucher">
-                                                        Bạn chưa sử dụng voucher cho đơn này
-                                                    </div>
+                                                    Bạn chưa sử dụng voucher cho đơn này
                                                 </div>
                                             </div>
 
@@ -452,13 +451,15 @@
                     </div>
                     <!-- End Card order-->
 
-                    <!-- Start Button Order-->
-                    <div class="package-btn-order">
-                        <!-- <button type="button" id="btn-order" class="btn btn-outline-success my-2 my-sm-0 btn-order btn-custom" style="width: 100%;">
-                                <span>Đặt ngay</span>
-                        </button> -->
-                    </div>
-                    <!-- End Button Order-->
+                    <c:if test="${not empty sessionScope.userInfo}">
+                        <!-- Start Button Order-->
+                        <div class="package-btn-order">
+                            <button type="button" id="btn-order" class="btn btn-outline-success my-2 my-sm-0 btn-order btn-custom" style="width: 100%;">
+                                    <span>Đặt ngay</span>
+                            </button>
+                        </div>
+                        <!-- End Button Order-->
+                    </c:if>
 
                 </div>
             </div>
@@ -468,13 +469,44 @@
 </div>
 <!-- End Body Order -->
 
+<!-- Start Modal -->
+<div class="modal fade" id="notifyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Quá hạn thanh toán</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Đơn hàng này đã quá hạn thanh toán hoặc đã được xử lý vui lòng đặt lại.
+            </div>
+            <div class="modal-footer" style="justify-content: center;">
+                <a href="/" class="btn btn-custom">Tôi đã hiểu!</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal -->
+
 <jsp:include page="includes/footer.jsp"/>
 
 <!-- Start Import Script -->
 <script type="text/javascript" src="/resources/js/jquery/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/resources/js/popper/popper.min.js"></script>
+<script type="text/javascript" src="/resources/js/bootstrap/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/resources/js/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="/resources/js/custom.js"></script>
 <!-- End Import Script -->
 <!-- Start All Script -->
 <script>
+
+    <c:if test="${empty sessionScope.processOrder}">
+        $(function () {
+            $('#notifyModal').modal('show');
+        });
+    </c:if>
 
     /**
      * Thay đổi số điện thoại đăng ký của user
@@ -521,6 +553,16 @@
             'code': $(this).attr('id'),
             'price': $(this).attr('price')
         });
+        $('.package-voucher').html(
+            '<i class="fa fa-gift" aria-hidden="true"></i>'+
+            ' Bạn đang sử dụng voucher ' + $(this).attr('id') +
+            ' Giảm ' + formatNumber($(this).attr('price'), ".", ".") + ' ₫'
+        );
+        var number = $('.totalPriceVal').next().val().replace(/\./g, "");
+        var total = parseInt(number) - parseInt($(this).attr('price'));
+        $('.totalPriceVal').html(
+            formatNumber(total, ".", ".") + ' ₫'
+        );
 
     });
     $('.dropdown-menu li').click(function () {

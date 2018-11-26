@@ -281,7 +281,7 @@
                                  title="${lTour.name}">
                                 <div class="card">
                                     <a href="/tour/${lTour.id}">
-                                        <img class="card-img-top" src="/resources/images/tour4.jpg"
+                                        <img class="card-img-top" src="/resources/images/${lTour.image}"
                                              alt="Smart Trip - No Image">
                                         <div class="card-body">
                                             <h5 class="card-title">${lTour.name}</h5>
