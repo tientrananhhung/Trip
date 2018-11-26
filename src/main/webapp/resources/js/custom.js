@@ -194,3 +194,29 @@ function resetBtnChooseTicket() {
     $('#card-text-order').hide(500);
     $('#card-order').show(500);
 }
+
+function resetFormInOrder(){
+    $('#choose-login-order').animate({
+        opacity: 0,
+        marginLeft: -50,
+        marginRight: 50,
+        zIndex: 1
+    }, 300);
+    $('#choose-register-order').animate({
+        opacity: 0,
+        marginLeft: -50,
+        marginRight: 50,
+        zIndex: 1
+    }, 300);
+    $('#choose-forgot-password-order').animate({
+        opacity: 0,
+        marginLeft: -50,
+        marginRight: 50,
+        zIndex: 1
+    }, 300);
+    setTimeout(function () {
+        $('#choose-login-order').css('display', 'none');
+        $('#choose-register-order').css('display', 'none');
+        $('#choose-forgot-password-order').css('display', 'none');
+    }, 300);
+}

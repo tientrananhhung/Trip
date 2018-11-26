@@ -1,18 +1,19 @@
 package edu.poly.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.poly.common.Constants;
 import edu.poly.common.PasswordUtils;
 import edu.poly.dao.FoodDAO;
 import edu.poly.dao.PostIndexDAO;
 import edu.poly.dao.TourDAO;
 import edu.poly.dao.TourDetailDAO;
+import edu.poly.entity.Services;
 import edu.poly.entity.Users;
+import edu.poly.impl.ServiceImpl;
 import edu.poly.impl.TourImpl;
 import edu.poly.impl.UserImpl;
-import edu.poly.model.FoodDTO;
-import edu.poly.model.PostIndexDTO;
-import edu.poly.model.TourDTO;
-import edu.poly.model.TourDetailDTO;
+import edu.poly.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -40,6 +43,8 @@ public class UserController {
 
 
     public static final String ADMIN_SCREEN = "admin";
+
+    public static final String PROCESSING_ORDER = "processing-order";
 
 
     //Return tour detail page
@@ -64,10 +69,16 @@ public class UserController {
     UserImpl user;
 
     @Autowired
+    ServiceImpl service;
+
+    @Autowired
     PostIndexDAO postIndexDAO;
 
     @Autowired
     TourDetailDAO tourDetailDAO;
+
+    public static final String INDEX_SCREEN = "index";
+    public static final String PROCESSING_ORDER_SCREEN = "processing-order";
 
     @GetMapping(Constants.Characters.BLANK)
     public ModelAndView index(HttpSession session,HttpServletRequest rq) {
@@ -156,4 +167,79 @@ public class UserController {
 //        return mav;
 //    }
 
+    @PostMapping(Constants.Url.POST_PROCESSING_ORDER_URL)
+    public ModelAndView showOrder(@RequestParam String dataJson, @PathVariable("sId") int id, HttpServletRequest request) {
+
+        ModelAndView mav = new ModelAndView();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        Services services = service.findServiceById(id);
+
+        try {
+            JsonNode jsonNode = objectMapper.readTree(dataJson);
+            JsonNode jsonTicket = jsonNode.get("ticketDetail");
+
+            ProcessOrderDTO processOrderDTO = new ProcessOrderDTO();
+
+            List<TicketDetailDTO> listTicketDetailDTO = new ArrayList<>();
+
+            for (int i = 0; i < jsonTicket.size(); i++) {
+                TicketDetailDTO ticketDetailDTO = new TicketDetailDTO();
+                ticketDetailDTO.setNameTicket(jsonTicket.get(i).get("nameTicket").asText());
+                ticketDetailDTO.setPriceTicket(jsonTicket.get(i).get("priceTicket").asText());
+                ticketDetailDTO.setQuantityTicket(jsonTicket.get(i).get("quantityTicket").asInt());
+                listTicketDetailDTO.add(ticketDetailDTO);
+            }
+
+            processOrderDTO.setNameService(jsonNode.get("nameService").asText());
+            processOrderDTO.setDateTicket(jsonNode.get("dateTicket").asText());
+            processOrderDTO.setPicture(jsonNode.get("picture").asText());
+            processOrderDTO.setTourId(jsonNode.get("tourId").asInt());
+            processOrderDTO.setTour(jsonNode.get("tour").asText());
+            processOrderDTO.setTotalPrice(jsonNode.get("totalPrice").asText());
+            processOrderDTO.setTicketDetail(listTicketDetailDTO);
+            processOrderDTO.setServices(services);
+
+            // Tạo session
+            if(request.getSession().getAttribute(Constants.SessionKey.ORDER_SESSION) != null){
+                request.getSession().removeAttribute(Constants.SessionKey.ORDER_SESSION);
+            }
+
+            request.getSession().setAttribute(Constants.SessionKey.ORDER_SESSION, processOrderDTO);
+
+            mav.setViewName("redirect:" + Constants.Url.GET_PROCESSING_ORDER_URL);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            mav.setViewName("redirect:/");
+        }
+
+        return mav;
+    }
+
+    @GetMapping(Constants.Url.GET_PROCESSING_ORDER_URL)
+    public ModelAndView showProcessOrder() {
+        ModelAndView mav = new ModelAndView(PROCESSING_ORDER_SCREEN);
+        Users login = new Users();
+        mav.addObject(Constants.Attribute.LOGIN_ATTRIBUTE, login);
+        return mav;
+    }
+
+    @PostMapping(Constants.Url.POST_LOGIN_PROCESS_ORDER_URL)
+    public ModelAndView loginProcessOrder(@ModelAttribute("login") Users users, HttpServletRequest rq){
+        ModelAndView mav = new ModelAndView();
+        Users login = new Users();
+        Users userLogin = user.login(users.getUsername(), PasswordUtils.md5(users.getPassword()));
+        if (userLogin != null) {
+            mav.setViewName("redirect:" + Constants.Url.GET_PROCESSING_ORDER_URL);
+            rq.getSession().setAttribute(Constants.SessionKey.USER, userLogin);
+        } else {
+            mav.addObject(Constants.Attribute.NOTIFY_ATTRIBUTE, "Tài khoản hoặc mật khẩu không chính xác!");
+            login.setUsername(users.getUsername());
+            mav.addObject(Constants.Attribute.LOGIN_ATTRIBUTE, login);
+            mav.setViewName(PROCESSING_ORDER);
+        }
+        return mav;
+    }
 }

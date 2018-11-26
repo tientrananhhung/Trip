@@ -180,6 +180,7 @@
                                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                                         <div class="t_right">
                                                             <b id="total-price-service">0 ₫</b>
+                                                            <input type="hidden" class="order-val" name="totalPrice">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -656,8 +657,8 @@
             $('.notify-ticket').css('display', 'none');
         });
 
-        $(document).on('click', '#btn-order', function (event) {
-            event.preventDefault();
+        $(document).on('click', '#btn-order', function () {
+            // event.preventDefault();
             /* Act on the event */
 
             <c:forEach items="${listTourDetail}" var="lTourDetail" begin="0" end="0">
@@ -687,14 +688,14 @@
             console.log(json);
 
             $.ajax({
-                url: '/api/process/order/${lTourDetail.serviceId}',
+                url: '/process/order/${lTourDetail.serviceId}',
                 type: 'POST',
                 data: {
                     dataJson : JSON.stringify(json)
                 }
             })
-                .done(function () {
-                    console.log("success");
+                .done(function (data) {
+                    window.location.href = "http://localhost:8080/ticket-booking/processing";
                 })
                 .fail(function () {
                     console.log("error");

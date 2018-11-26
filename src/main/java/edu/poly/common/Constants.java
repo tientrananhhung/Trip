@@ -233,6 +233,9 @@ public class Constants {
         //Trang hiển thị đã order thành công
         public static final String GET_ORDERED_SUCCESS_URL = "/ticket-booking/success";
 
+        //Trang login cho processing order
+        public static final String POST_LOGIN_PROCESS_ORDER_URL = "/order/login";
+
         //Trang API
         public static final String API_URL = "/api";
 
@@ -355,6 +358,16 @@ public class Constants {
 
         //Key lưu session order
         public static final String ORDER_SESSION = "processOrder";
+
+    }
+
+    public class Attribute {
+
+        //Attribute notify
+        public static final String NOTIFY_ATTRIBUTE = "notify";
+
+        //Attribute login
+        public static final String LOGIN_ATTRIBUTE = "login";
 
     }
 }

@@ -29,9 +29,4 @@ public class TokenUtils {
         return sb.toString();
     }
 
-    public static void main(String[] args) {
-        TokenUtils tokenUtils = new TokenUtils();
-        String a = tokenUtils.getRandomString();
-        System.out.println(a);
-    }
 }

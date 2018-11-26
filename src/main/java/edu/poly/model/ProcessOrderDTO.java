@@ -1,5 +1,6 @@
 package edu.poly.model;
 
+import edu.poly.common.StringUtils;
 import edu.poly.entity.Services;
 
 import java.util.List;
@@ -10,18 +11,20 @@ public class ProcessOrderDTO {
     private String picture;
     private Integer tourId;
     private String tour;
+    private String totalPrice;
     private List<TicketDetailDTO> ticketDetail;
     private Services services;
 
     public ProcessOrderDTO() {
     }
 
-    public ProcessOrderDTO(String nameService, String dateTicket, String picture, Integer tourId, String tour, List<TicketDetailDTO> ticketDetail, Services services) {
+    public ProcessOrderDTO(String nameService, String dateTicket, String picture, Integer tourId, String tour, String totalPrice, List<TicketDetailDTO> ticketDetail, Services services) {
         this.nameService = nameService;
         this.dateTicket = dateTicket;
         this.picture = picture;
         this.tourId = tourId;
         this.tour = tour;
+        this.totalPrice = totalPrice;
         this.ticketDetail = ticketDetail;
         this.services = services;
     }
@@ -64,6 +67,14 @@ public class ProcessOrderDTO {
 
     public void setTour(String tour) {
         this.tour = tour;
+    }
+
+    public String getTotalPrice() {
+        return StringUtils.formatCurrency(totalPrice);
+    }
+
+    public void setTotalPrice(String totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public List<TicketDetailDTO> getTicketDetail() {

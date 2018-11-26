@@ -1,5 +1,7 @@
 package edu.poly.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.poly.common.Constants;
 import edu.poly.dao.OfferStatisticsDAO;
 import edu.poly.dao.PartnerStatisticsDAO;
@@ -7,15 +9,10 @@ import edu.poly.dao.RateTourDetailDAO;
 import edu.poly.dao.UserStatisticsDAO;
 import edu.poly.entity.Posts;
 import edu.poly.entity.Rates;
+import edu.poly.entity.Services;
 import edu.poly.entity.Tours;
-import edu.poly.impl.PostImpl;
-import edu.poly.impl.RateImpl;
-import edu.poly.impl.TourImpl;
-import edu.poly.impl.UserImpl;
-import edu.poly.model.OfferStatisticsDTO;
-import edu.poly.model.PartnerStatisticsDTO;
-import edu.poly.model.RateTourDetailDTO;
-import edu.poly.model.UserStatisticsDTO;
+import edu.poly.impl.*;
+import edu.poly.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,7 +21,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -44,6 +45,9 @@ public class APIController {
     RateImpl rate;
 
     @Autowired
+    ServiceImpl service;
+
+    @Autowired
     RateTourDetailDAO rateTourDetailDAO;
 
     @Autowired
@@ -54,6 +58,11 @@ public class APIController {
 
     @Autowired
     private OfferStatisticsDAO offerStatisticsDAO;
+
+
+
+//    @Autowired
+//    private UserStatisticsDAO userStatisticsDAO;
 
     @GetMapping(path = "/abcd", produces = {MimeTypeUtils.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<Posts>> abc() {
@@ -123,5 +132,7 @@ public class APIController {
             return new ResponseEntity<List<OfferStatisticsDTO>>(HttpStatus.BAD_REQUEST);
         }
     }
+
+
 
 }
