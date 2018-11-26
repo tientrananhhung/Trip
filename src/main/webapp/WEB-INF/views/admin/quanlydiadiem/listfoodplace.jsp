@@ -67,9 +67,19 @@
                                             <a href="/admin/quan-ly-dia-diem/${foods.id}">
                                                 <button class="btn btn-outline-primary">Edit</button>
                                             </a>
-                                            <a href="/admin/quan-ly-dia-diem/xoa/${foods.id}">
-                                                <button class="btn btn-outline-danger">Delete</button>
-                                            </a>
+                                            <c:choose>
+                                                <c:when test="${foods.getDeleted() == false}">
+                                                    <a href="/admin/quan-ly-dia-diem/${foods.id}/xoa">
+                                                        <button class="btn btn-outline-danger">Delete</button>
+                                                    </a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <a href="/admin/quan-ly-dia-diem/${foods.id}/active">
+                                                        <button class="btn btn-outline-warning">Active</button>
+                                                    </a>
+                                                </c:otherwise>
+                                            </c:choose>
+
                                         </td>
                                     </tr>
                                         </c:forEach>

@@ -85,7 +85,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Username</label>
-                                        <f:input path="username" type="text" cssClass="form-control"
+                                        <f:input readonly="${action == 'sua' ? 'true':''}" path="username" type="text" cssClass="form-control"
                                                  placeholder="Username"/>
                                         <f:errors path="username" cssStyle="color:red;display:block"></f:errors>
                                     </div>
@@ -132,17 +132,19 @@
                                         </c:forEach>
                                         <f:errors path="gender" cssStyle="color:red;display:block"></f:errors>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Role</label>
+                                    <c:if test="${action.equals('them')}">
                                         <div class="form-group">
-                                            <f:select cssClass="form-control border-primary" path="role">
-                                                <f:options items="${role}"/>
-                                            </f:select>
+                                            <label>Role</label>
+                                            <div class="form-group">
+                                                <f:select cssClass="form-control border-primary" path="role">
+                                                    <f:options items="${role}"/>
+                                                </f:select>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </c:if>
                                     <button type="submit" class="btn btn-success mr-2">Submit</button>
-                                    <a href="/admin/quan-ly-nguoi-dung">
-                                        <button class="btn btn-light">Cancel</button>
+                                    <a href="/admin/quan-ly-nguoi-dung" class="btn btn-light">
+                                        Cancel
                                     </a>
                                 </f:form>
                             </div>

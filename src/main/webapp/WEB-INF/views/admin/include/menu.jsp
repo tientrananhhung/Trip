@@ -90,6 +90,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="/admin/quan-ly-bai-viet">
+                <i class="mdi mdi-atom menu-icon"></i>
+                <span class="menu-title">Quản lý bài viết</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link collapsed" data-toggle="collapse" href="#page-layouts" aria-expanded="false" aria-controls="page-layouts">
                 <i class="mdi mdi-arrow-expand-all menu-icon"></i>
                 <span class="menu-title">Thống kê</span>

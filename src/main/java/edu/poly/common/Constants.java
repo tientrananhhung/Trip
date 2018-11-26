@@ -53,6 +53,9 @@ public class Constants {
         //Trang active người dùng
         public static final String ACTIVE_USER_TOKEN = "/activeuser/{token}";
 
+        //Change role user
+        public static final String CHANGE_ROLE_USER = "/quan-ly-nguoi-dung/changerole/{id}/{role}";
+
         //Trang danh sách các quận Đà Nẵng
         public static final String LIST_DISTRICT = "/quan-ly-quan";
 
@@ -177,7 +180,7 @@ public class Constants {
         public static final String UPDATE_FOOD_PLACE = "/quan-ly-dia-diem/{id}";
 
         //Trang xóa tour
-        public static final String DELETE_FOOD_PLACE = "/quan-ly-dia-diem/xoa/{id}";
+        public static final String DELETE_FOOD_PLACE = "/quan-ly-dia-diem/{id}/{action}";
 
         //Trang sua tour
         public static final String UPDATED_FOOD_PLACE = "/quan-ly-dia-diem/sua";

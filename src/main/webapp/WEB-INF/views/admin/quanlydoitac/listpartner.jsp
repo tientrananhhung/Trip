@@ -56,7 +56,6 @@
                                 <table id="order-listing" class="table" cellspacing="0">
                                     <thead>
                                     <tr>
-                                        <th>UserID</th>
                                         <th>UserName</th>
                                         <th>Name</th>
                                         <th>Phone</th>
@@ -69,7 +68,6 @@
                                     <tbody>
                                     <c:forEach var="partner" items="${listPartner}">
                                     <tr>
-                                        <td>${partner.userId}</td>
                                         <td>${partner.usersByUserId.name}</td>
                                         <td>${partner.name}</td>
                                         <td>${partner.phone}</td>

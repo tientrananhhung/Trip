@@ -91,27 +91,29 @@
                                         </div>
                                     <div class="form-group">
                                         <label>Name</label>
-                                        <f:input path="name" type="text" cssClass="form-control" placeholder="Name"/>
+                                        <f:input path="name" required="true" type="text" cssClass="form-control" placeholder="Name"/>
+                                        <f:errors path="name" cssStyle="color:red;display:block"></f:errors>
                                     </div>
                                     <div class="form-group">
                                         <label>Phone</label>
-                                        <f:input path="phone" type="tel" cssClass="form-control" placeholder="Phone"/>
+                                        <f:input path="phone" required="true" type="tel" cssClass="form-control" placeholder="Phone"/>
                                         <f:errors path="phone" cssStyle="color:red;display:block"></f:errors>
                                     </div>
                                     <div class="form-group">
                                         <label>Email</label>
-                                        <f:input path="email" cssClass="form-control form-control-sm"
+                                        <f:input path="email" required="true" cssClass="form-control form-control-sm"
                                                type="email"/>
                                         <f:errors path="email" cssStyle="color:red;display:block"></f:errors>
                                     </div>
                                     <div class="form-group">
                                         <label>Address</label>
-                                        <f:input path="address" type="text" cssClass="form-control"
+                                        <f:input path="address" required="true" type="text" cssClass="form-control"
                                                  placeholder="Address"/>
+                                        <f:errors path="address" cssStyle="color:red;display:block"></f:errors>
                                     </div>
                                     <button type="submit" class="btn btn-success mr-2">Submit</button>
-                                    <a href="/admin/quan-ly-doi-tac">
-                                        <button class="btn btn-light">Cancel</button>
+                                    <a href="/admin/quan-ly-doi-tac" class="btn btn-light">
+                                        Cancel
                                     </a>
                                 </f:form>
                             </div>

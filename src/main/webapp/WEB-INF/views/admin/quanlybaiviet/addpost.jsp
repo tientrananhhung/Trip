@@ -106,8 +106,8 @@
                                         <f:textarea path="content" class="form-control"></f:textarea>
                                     </div>
                                     <button type="submit" id="postsubmit" class="btn btn-success mr-2">Submit</button>
-                                    <a href="/admin/quan-ly-bai-viet">
-                                        <button class="btn btn-light">Cancel</button>
+                                    <a href="/admin/quan-ly-bai-viet" class="btn btn-light">
+                                        Cancel
                                     </a>
                                 </f:form>
                             </div>

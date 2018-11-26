@@ -64,13 +64,13 @@ public class OfferController {
             mav.setViewName("redirect:" + Constants.Url.LOGIN);
             return mav;
         }
+        System.out.println(offers.getCode());
         try{
+
             offers.setUsed(false);
             offers.setCreatedAt(TimeUtils.getCurrentTime());
             offers.setUpdatedAt(TimeUtils.getCurrentTime());
             offer.save(offers);
-            user.updateRoleUser(3, offers.getUserId());
-            mav.addObject("listOffer", offer.findAll());
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_OFFER);
         }catch (Exception ex){
             ex.printStackTrace();
@@ -109,7 +109,6 @@ public class OfferController {
         Offers of = offer.getById(offers.getId());
         try{
             offers.setUsed(of.getUsed());
-            offers.setCreatedAt(of.getCreatedAt());
             offers.setUpdatedAt(TimeUtils.getCurrentTime());
             offers.setUserId(of.getUserId());
             offers.setCode(of.getCode());

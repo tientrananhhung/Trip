@@ -74,7 +74,6 @@ public class UserManagerController {
     @PostMapping(Constants.Url.ADD_USER)
     public ModelAndView addUser(HttpSession session, @Validated @ModelAttribute("users")  Users users, BindingResult result) {
         ModelAndView mav = new ModelAndView();
-        System.out.println(result.getAllErrors());
         if(result.hasErrors()) {
             mav.addObject("gender", returnGender());
             mav.addObject("role", returnRole());
@@ -145,7 +144,6 @@ public class UserManagerController {
             mav.setViewName("redirect:/" + Constants.Characters.BLANK);
             return mav;
         }
-        System.out.println("vào đâyyyyyyy");
         Users us = user.getById(id);
         us.setUpdatedAt(TimeUtils.getCurrentTime());
         us.setActive(active);
@@ -166,6 +164,7 @@ public class UserManagerController {
             mav.setViewName("redirect:/" + Constants.Characters.BLANK);
             return mav;
         }
+
         mav.setViewName(ADD_USER);
         Users users = user.getById(id);
         mav.addObject("users", users);
@@ -182,16 +181,24 @@ public class UserManagerController {
      * @return url /quan-ly-nguoi-dung or update page
      */
     @PostMapping(Constants.Url.UPDATED_USER)
-    public ModelAndView editUser(HttpSession session, @ModelAttribute("user") Users users) {
+    public ModelAndView editUser(HttpSession session, @Validated @ModelAttribute("users")  Users users, BindingResult result) {
         ModelAndView mav = new ModelAndView();
         if(!CheckSession.admin(session)){
             mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+            return mav;
+        }
+        if(result.hasErrors()) {
+            mav.addObject("gender", returnGender());
+            mav.addObject("role", returnRole());
+            mav.addObject("action", "sua");
+            mav.setViewName(ADD_USER);
             return mav;
         }
         Users us = user.getById(users.getId());
         if (!users.getPassword().equals(us.getPassword()))
             users.setPassword(PasswordUtils.md5(users.getPassword()));
         try {
+            users.setRole(us.getRole());
             users.setActive(us.getActive());
             users.setDeleted(us.getDeleted());
             users.setCreatedAt(us.getCreatedAt());
@@ -207,6 +214,22 @@ public class UserManagerController {
         return mav;
     }
 
+    @GetMapping(Constants.Url.CHANGE_ROLE_USER)
+    public ModelAndView changeRoleUser(HttpSession session, @PathVariable("id") int id,
+                                       @PathVariable("role") int role){
+        ModelAndView mav = new ModelAndView();
+        if(!CheckSession.admin(session)){
+            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+            return mav;
+        }
+        Users us = user.getById(id);
+        us.setUpdatedAt(TimeUtils.getCurrentTime());
+        us.setRole(role);
+        user.update(us);
+        mav.setViewName("redirect:/admin" + Constants.Url.LIST_USER);
+        return mav;
+    }
+
     //tạo radio button gender
     public HashMap returnGender() {
         HashMap<Boolean, String> hashMap = new HashMap<Boolean, String>();
@@ -219,7 +242,6 @@ public class UserManagerController {
         HashMap<Integer, String> hashMap = new HashMap<Integer, String>();
         hashMap.put(0, "Admin");
         hashMap.put(1, "Manager");
-        hashMap.put(2, "Partner");
         hashMap.put(3, "Customer");
         return hashMap;
     }

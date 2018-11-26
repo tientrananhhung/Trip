@@ -52,8 +52,6 @@
                                 <table id="order-listing" class="table" cellspacing="0">
                                     <thead>
                                     <tr>
-                                        <th>Offer ID</th>
-                                        <th>User ID</th>
                                         <th>Offer code</th>
                                         <th>Offer deal</th>
                                         <th>Offer status</th>

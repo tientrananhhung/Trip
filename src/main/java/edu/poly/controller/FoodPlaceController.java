@@ -44,7 +44,7 @@ public class FoodPlaceController {
             mav.setViewName("redirect:" + Constants.Url.LOGIN);
             return mav;
         }
-        mav.addObject("listFoodplace", food.findAllByDeleted(false));
+        mav.addObject("listFoodplace", food.findAll());
         mav.setViewName(LIST_FOOD_PLACE_SCREEN);
         return mav;
     }
@@ -67,7 +67,7 @@ public class FoodPlaceController {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        mav.addObject("listFoodCategory", foodCategory.findAllByDeleted(false));
+        mav.addObject("listFoodCategory", foodCategory.findAll());
         mav.addObject("action", "them");
 
         return mav;
@@ -88,7 +88,7 @@ public class FoodPlaceController {
             foods.setUserId((us.getId()));
             foods.setDeleted(true);
             food.save(foods);
-            mav.addObject("listFoodplace", food.findAllByDeleted(false));
+            mav.addObject("listFoodplace", food.findAll());
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_FOOD_PLACE);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -107,7 +107,7 @@ public class FoodPlaceController {
         mav.setViewName(ADD_FOOD_PLACE_SCREEN);
         Foods fd = food.getById(id);
         mav.addObject("foods", fd);
-        mav.addObject("listFoodCategory", foodCategory.findAllByDeleted(false));
+        mav.addObject("listFoodCategory", foodCategory.findAll());
         mav.addObject("action", "sua");
         return mav;
     }
@@ -126,7 +126,7 @@ public class FoodPlaceController {
             foods.setUpdatedAt(TimeUtils.getCurrentTime());
             foods.setUserId(pd.getUserId());
             food.update(foods);
-            mav.addObject("listFoodplace", food.findAllByDeleted(false));
+            mav.addObject("listFoodplace", food.findAll());
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_FOOD_PLACE);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -137,7 +137,7 @@ public class FoodPlaceController {
 
     //    Delete PostCategory
     @GetMapping(Constants.Url.DELETE_FOOD_PLACE)
-    public ModelAndView deletePostCategory(HttpSession session, @PathVariable("id") int id) {
+    public ModelAndView deletePostCategory(HttpSession session, @PathVariable("id") int id,@PathVariable("action") String action) {
         ModelAndView mav = new ModelAndView();
         if (!CheckSession.admin(session)) {
             mav.setViewName("redirect:" + Constants.Url.LOGIN);
@@ -145,7 +145,11 @@ public class FoodPlaceController {
         }
         try {
             Foods fd = food.getById(id);
-            fd.setDeleted(true);
+            if(action.equals("xoa")){
+                fd.setDeleted(true);
+            } else {
+                fd.setDeleted(false);
+            }
             fd.setUpdatedAt(TimeUtils.getCurrentTime());
             food.update(fd);
         } catch (Exception ex) {

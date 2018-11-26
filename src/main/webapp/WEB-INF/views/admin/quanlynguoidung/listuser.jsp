@@ -63,13 +63,13 @@
                                         <th>Email</th>
                                         <th>Role</th>
                                         <th>Status</th>
-                                        <th>Actions</th>
+                                        <th style="width:50px;">Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <c:forEach var="user" items="${listUser}">
                                         <tr>
-                                            <td><img src="../../../../resources/images/${user.avatar}"</td>
+                                            <td><img src="../../../../resources/images/${user.avatar}"/></td>
                                             <td>${user.name}</td>
                                             <td>${user.username}</td>
                                             <td>${user.phone}</td>
@@ -98,7 +98,7 @@
                                                     </c:when>
                                                     <c:otherwise>
                                                         <a href="/admin/quan-ly-nguoi-dung/active/${user.id}/true">
-                                                            <label class="badge badge-danger">Unactive</label></a>
+                                                            <label class="badge badge-danger">Inactive</label></a>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </td>
@@ -109,6 +109,20 @@
                                                 <a href="/admin/quan-ly-nguoi-dung/xoa/${user.id}">
                                                     <button class="btn btn-outline-danger">Delete</button>
                                                 </a>
+                                                <c:choose>
+                                                    <c:when test="${user.role == 0}">
+                                                        <a href="/admin/quan-ly-nguoi-dung/changerole/${user.id}/1">
+                                                            <button class="btn btn-outline-secondary">Set to Manager
+                                                            </button>
+                                                        </a>
+                                                    </c:when>
+                                                    <c:when test="${user.role == 1}">
+                                                        <a href="/admin/quan-ly-nguoi-dung/changerole/${user.id}/0">
+                                                            <button class="btn btn-outline-warning">Set to Admin
+                                                            </button>
+                                                        </a>
+                                                    </c:when>
+                                                </c:choose>
                                             </td>
                                         </tr>
                                     </c:forEach>

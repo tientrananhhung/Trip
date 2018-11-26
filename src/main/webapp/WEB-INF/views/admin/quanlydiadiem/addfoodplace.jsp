@@ -69,7 +69,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Foodplace name</label>
-                                        <f:input path="name" type="text" class="form-control"
+                                        <f:input path="name" required="true" type="text" class="form-control"
                                                  placeholder="Name"/>
                                     </div>
                                     <div class="form-group">
@@ -82,12 +82,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Opentime</label>
-                                        <f:input path="opentime" type="text" class="form-control"
+                                        <f:input path="opentime" required="true" type="text" class="form-control"
                                                  placeholder="Opentime"/>
                                     </div>
                                     <button type="submit" class="btn btn-success mr-2">Submit</button>
-                                    <a href="/admin/quan-ly-dia-diem">
-                                        <button class="btn btn-light">Cancel</button>
+                                    <a href="/admin/quan-ly-dia-diem" class="btn btn-light">
+                                        Cancel
                                     </a>
                                 </f:form>
                             </div>

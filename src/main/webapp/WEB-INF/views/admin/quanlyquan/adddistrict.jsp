@@ -56,7 +56,9 @@
                                         <f:input path="name" type="text" cssClass="form-control" required="true" placeholder="Name"/>
                                     </div>
                                     <button type="submit" class="btn btn-success mr-2">Submit</button>
-                                    <a href="/admin/quan-ly-quan"><button class="btn btn-light">Cancel</button></a>
+                                    <a href="/admin/quan-ly-quan" class="btn btn-light">
+                                        Cancel
+                                    </a>
                                 </f:form>
                             </div>
                         </div>
