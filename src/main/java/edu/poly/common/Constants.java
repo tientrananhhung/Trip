@@ -239,6 +239,12 @@ public class Constants {
         //Trang login cho processing order
         public static final String POST_LOGIN_PROCESS_ORDER_URL = "/order/login";
 
+        public static final String USER_STATISTICS = "/userstatistics/{year}";
+
+        public static final String PARNER_STATISTICS = "/partnerstatistics/{month}/{year}";
+
+        public static final String OFFER_STATISTICS = "/offerstatistics/{month}/{year}";
+
         //Trang API
         public static final String API_URL = "/api";
 
@@ -271,14 +277,6 @@ public class Constants {
 
         //Trang Error 500
         public static final String ERROR500 = "/error500";
-
-        public static final String USER_STATISTICS = "/userstatistics/{year}";
-
-        public static final String PARNER_STATISTICS = "/partnerstatistics/{month}/{year}";
-
-        public static final String OFFER_STATISTICS = "/offerstatistics/{month}/{year}";
-
-
 
     }
 
@@ -371,6 +369,9 @@ public class Constants {
 
         //Attribute login
         public static final String LOGIN_ATTRIBUTE = "login";
+
+        //Attribute offer
+        public static final String OFFER_ATTRIBUTE = "offer";
 
     }
 }

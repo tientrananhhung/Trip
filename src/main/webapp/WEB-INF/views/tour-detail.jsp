@@ -11,7 +11,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tour detail - Smart Trip</title>
+    <c:forEach items="${listTourDetail}" var="lTourDetail" begin="0" end="0">
+        <title>${lTourDetail.name} - Smart Trip</title>
+    </c:forEach>
     <!-- Icon -->
     <link rel="icon" href="/resources/images/favicon.ico">
     <!-- Bootstrap css -->
@@ -664,7 +666,7 @@
             <c:forEach items="${listTourDetail}" var="lTourDetail" begin="0" end="0">
 
             var fields = $('.order-val').serializeArray();
-            json = {}
+            json = {};
             $.each(fields, function (index, val) {
                 /* iterate through array or object */
                 json[val.name] = val.value;
