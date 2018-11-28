@@ -687,8 +687,6 @@
             json['tour'] = '${lTourDetail.name}';
             json['ticketDetail'] = arOrder;
 
-            console.log(json);
-
             $.ajax({
                 url: '/process/order/${lTourDetail.serviceId}',
                 type: 'POST',
