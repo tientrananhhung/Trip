@@ -184,6 +184,7 @@
                                                             <input class="order-val" type="hidden" code="0" price="0"
                                                                    v-id="0">
                                                             <ul class="dropdown-menu">
+                                                                <li id="dontuse" price="0" v-id="0">Áp dụng voucher</li>
                                                                 <c:forEach items="${offer}" var="offer">
                                                                     <li id="${offer.code}" price="${offer.deal}"
                                                                         v-id="${offer.id}">Mã: ${offer.code} -
@@ -610,6 +611,8 @@
 </div>
 <!-- End Modal -->
 
+<div class="modalLoading"></div>
+
 <jsp:include page="includes/footer.jsp"/>
 
 <!-- Start Import Script -->
@@ -846,6 +849,11 @@
             .fail(function () {
                 console.log("error");
             })
+    });
+
+    $(document).on({
+        ajaxStart: function() { $('body').addClass("loading");},
+        ajaxStop: function() { $('body').removeClass("loading"); }
     });
 
 </script>
