@@ -166,10 +166,10 @@
                                                             <i class="fa fa-chevron-left"></i>
                                                         </div>
                                                         <input type="hidden" name="voucher">
-                                                        <input class="order-val" type="hidden">
+                                                        <input class="order-val" type="hidden" code="0" price="0" v-id="0">
                                                         <ul class="dropdown-menu">
                                                             <c:forEach items="${offer}" var="offer">
-                                                                <li id="${offer.code}" price="${offer.deal}">Mã: ${offer.code} - Giảm ${offer.deal} đ</li>
+                                                                <li id="${offer.code}" price="${offer.deal}" v-id="${offer.id}">Mã: ${offer.code} - Giảm ${offer.deal} đ</li>
                                                             </c:forEach>
                                                         </ul>
                                                     </div>
@@ -551,7 +551,8 @@
         $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
         $(this).parents('.dropdown').children('.order-val').attr({
             'code': $(this).attr('id'),
-            'price': $(this).attr('price')
+            'price': $(this).attr('price'),
+            'v-id': $(this).attr('v-id'),
         });
         $('.package-voucher').html(
             '<i class="fa fa-gift" aria-hidden="true"></i>'+
@@ -656,6 +657,58 @@
         e.preventDefault();
     });
     /* End js for form */
+
+    $('#btn-order').click(function () {
+        var arOrder = [];
+        var a = '${sessionScope.processOrder.totalPrice}';
+        var number = a.replace(/\./g, "");
+        var radioValue = $("input[name='payment']:checked").val();
+        var note = 'Không ghi chú';
+
+        <c:forEach items="${sessionScope.processOrder.ticketDetail}" var="ticketDetail">
+            var fPriceTicket = '${ticketDetail.priceTicket}';
+            var TicketDetail = {
+                nameTicket: '${ticketDetail.nameTicket}',
+                priceTicket: fPriceTicket.replace(/\./g, ""),
+                quantityTicket: '${ticketDetail.quantityTicket}'
+            };
+            arOrder.push(TicketDetail);
+        </c:forEach>
+
+        if($('#note').val() != ''){
+            note = $('#note').val();
+        }
+
+        json = {};
+        json['serviceName'] = '${sessionScope.processOrder.nameService}';
+        json['serviceDate'] = '${sessionScope.processOrder.dateTicket}';
+        json['voucherId'] = $('.card-body-voucher .dropdown .order-val').attr('v-id');
+        json['voucherCode'] = $('.card-body-voucher .dropdown .order-val').attr('code');
+        json['voucherPrice'] = $('.card-body-voucher .dropdown .order-val').attr('price');
+        json['totalPriceAfter'] = parseInt(number) - parseInt($('.card-body-voucher .dropdown .order-val').attr('price'));
+        json['totalPrice'] = number;
+        json['payment'] = radioValue;
+        json['phoneUser'] = $('#phone-user').val();
+        json['note'] = note;
+        json['ticketDetail'] = arOrder;
+
+        console.log(json);
+
+        $.ajax({
+            url: '/process/order/${sessionScope.processOrder.services.id}/${sessionScope.userInfo.id}',
+            type: 'POST',
+            data: {
+                dataJson : JSON.stringify(json)
+            }
+        })
+            .done(function (data) {
+                console.log("success");
+                // window.location.href = "http://localhost:8080/ticket-booking/processing";
+            })
+            .fail(function () {
+                console.log("error");
+            })
+    });
 
 </script>
 <!-- End All Script -->

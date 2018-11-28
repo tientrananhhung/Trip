@@ -281,7 +281,7 @@
                                  title="${lTour.name}">
                                 <div class="card">
                                     <a href="/tour/${lTour.id}">
-                                        <img class="card-img-top" src="/resources/images/${lTour.image}"
+                                        <img class="card-img-top" src="/resources/images/${lTour.image}" style="height: 210px;"
                                              alt="Smart Trip - No Image">
                                         <div class="card-body">
                                             <h5 class="card-title">${lTour.name}</h5>
@@ -398,7 +398,7 @@
                                  title="${lFood.name}">
                                 <div class="card">
                                     <a href="#">
-                                        <img class="card-img-top" src="/resources/images/${lFood.image}"
+                                        <img class="card-img-top" src="/resources/images/${lFood.image}" style="height: 210px;"
                                              alt="Card image cap">
                                         <div class="card-body">
                                             <h5 class="card-title">${lFood.name}</h5>

@@ -7,10 +7,7 @@ import edu.poly.dao.OfferStatisticsDAO;
 import edu.poly.dao.PartnerStatisticsDAO;
 import edu.poly.dao.RateTourDetailDAO;
 import edu.poly.dao.UserStatisticsDAO;
-import edu.poly.entity.Posts;
-import edu.poly.entity.Rates;
-import edu.poly.entity.Services;
-import edu.poly.entity.Tours;
+import edu.poly.entity.*;
 import edu.poly.impl.*;
 import edu.poly.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +43,9 @@ public class APIController {
 
     @Autowired
     ServiceImpl service;
+
+    @Autowired
+    OfferImpl offer;
 
     @Autowired
     RateTourDetailDAO rateTourDetailDAO;
@@ -133,6 +133,19 @@ public class APIController {
         }
     }
 
+    @PostMapping(path = Constants.Url.POST_PROCESS_ORDER_URL, produces = {MimeTypeUtils.APPLICATION_JSON_VALUE})
+    public ResponseEntity<String> postOrder(@PathVariable("sId") Integer sId, @PathVariable("uId") Integer uId, @RequestParam String dataJson){
+        try {
+            Services services = service.findServiceById(sId);
+            Users users = user.getById(uId);
 
+            Offers offers = new Offers();
+            String ck = "";
+            ResponseEntity<String> responseEntity = new ResponseEntity<>(ck, HttpStatus.OK);
+            return responseEntity;
+        } catch(Exception ex){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
 
 }

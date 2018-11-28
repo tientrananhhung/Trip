@@ -4,17 +4,16 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.poly.common.Constants;
 import edu.poly.common.PasswordUtils;
+import edu.poly.common.TimeUtils;
 import edu.poly.dao.FoodDAO;
 import edu.poly.dao.PostIndexDAO;
 import edu.poly.dao.TourDAO;
 import edu.poly.dao.TourDetailDAO;
 import edu.poly.entity.Offers;
+import edu.poly.entity.Orders;
 import edu.poly.entity.Services;
 import edu.poly.entity.Users;
-import edu.poly.impl.OfferImpl;
-import edu.poly.impl.ServiceImpl;
-import edu.poly.impl.TourImpl;
-import edu.poly.impl.UserImpl;
+import edu.poly.impl.*;
 import edu.poly.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -77,6 +76,9 @@ public class UserController {
     OfferImpl offer;
 
     @Autowired
+    OrderImpl order;
+
+    @Autowired
     PostIndexDAO postIndexDAO;
 
     @Autowired
@@ -86,7 +88,7 @@ public class UserController {
     public static final String PROCESSING_ORDER_SCREEN = "processing-order";
 
     @GetMapping(Constants.Characters.BLANK)
-    public ModelAndView index(HttpSession session,HttpServletRequest rq) {
+    public ModelAndView index(HttpSession session, HttpServletRequest rq) {
         ModelAndView mav = new ModelAndView(HOME_SCREEN);
         try {
 //            rq.getSession().setAttribute("login", new Users());
@@ -135,7 +137,7 @@ public class UserController {
         try {
             List<TourDetailDTO> listDTO = tourDetailDAO.getTourDetailDTO(id);
             mav.addObject("listTourDetail", listDTO);
-        } catch(Exception e){
+        } catch (Exception e) {
             mav.setViewName(HOME_SCREEN);
         }
         return mav;
@@ -207,7 +209,7 @@ public class UserController {
             processOrderDTO.setServices(services);
 
             // Tạo session
-            if(request.getSession().getAttribute(Constants.SessionKey.ORDER_SESSION) != null){
+            if (request.getSession().getAttribute(Constants.SessionKey.ORDER_SESSION) != null) {
                 request.getSession().removeAttribute(Constants.SessionKey.ORDER_SESSION);
             }
 
@@ -227,10 +229,10 @@ public class UserController {
     public ModelAndView showProcessOrder(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView(PROCESSING_ORDER_SCREEN);
         Users users = (Users) request.getSession().getAttribute(Constants.SessionKey.USER);
-        if(users != null){
+        if (users != null) {
             List<Offers> offers = offer.getAllByUserId(users.getId());
             mav.addObject(Constants.Attribute.OFFER_ATTRIBUTE, offers);
-        }else{
+        } else {
             Users login = new Users();
             mav.addObject(Constants.Attribute.LOGIN_ATTRIBUTE, login);
         }
@@ -238,7 +240,7 @@ public class UserController {
     }
 
     @PostMapping(Constants.Url.POST_LOGIN_PROCESS_ORDER_URL)
-    public ModelAndView loginProcessOrder(@ModelAttribute("login") Users users, HttpServletRequest rq){
+    public ModelAndView loginProcessOrder(@ModelAttribute("login") Users users, HttpServletRequest rq) {
         ModelAndView mav = new ModelAndView();
         Users login = new Users();
         Users userLogin = user.login(users.getUsername(), PasswordUtils.md5(users.getPassword()));
@@ -253,4 +255,63 @@ public class UserController {
         }
         return mav;
     }
+
+    @PostMapping(Constants.Url.POST_PROCESS_ORDER_URL)
+    public ModelAndView showOrder(@RequestParam String dataJson, @PathVariable("sId") int sId, @PathVariable("uId") int uId, HttpServletRequest request) {
+
+        ModelAndView mav = new ModelAndView();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        Services services = service.findServiceById(sId);
+        Users users = user.getById(uId);
+
+        try {
+            JsonNode jsonNode = objectMapper.readTree(dataJson);
+            JsonNode jsonTicket = jsonNode.get("ticketDetail");
+
+            String data = "";
+            data = data + "note:" + jsonNode.get("note").asText() + ",";
+            data = data + "phoneUser:" + jsonNode.get("phoneUser").asText() + ",";
+            data = data + "serviceName:" + jsonNode.get("serviceName").asText() + ",";
+            data = data + "serviceDate:" + jsonNode.get("serviceDate").asText() + ",";
+            data = data + "totalPrice:" + jsonNode.get("totalPrice").asText() + ",";
+            data = data + "totalPriceAfter:" + jsonNode.get("totalPriceAfter").asText() + ",";
+            data = data + "voucherId:" + jsonNode.get("voucherId").asText() + ",";
+            data = data + "voucherCode:" + jsonNode.get("voucherCode").asText() + ",";
+            data = data + "voucherPrice:" + jsonNode.get("voucherPrice").asText() + ",";
+            data = data + "ticketDetail:";
+            for (int i = 0; i < jsonTicket.size(); i++) {
+                data = data + "[nameTicket:" + jsonTicket.get(i).get("nameTicket").asText() + ",";
+                data = data + "priceTicket:" + jsonTicket.get(i).get("priceTicket").asText() + ",";
+                data = data + "quantityTicket:" + jsonTicket.get(i).get("quantityTicket").asText() + "]";
+                if (i != jsonTicket.size() - 1) {
+                    data = data + ";";
+                }
+            }
+
+            Orders orders = new Orders();
+            orders.setServiceId(sId);
+            orders.setServicesByServiceId(services);
+            orders.setUserId(uId);
+            orders.setUsersByUserId(users);
+            orders.setData(data);
+            orders.setPayment(jsonNode.get("payment").asInt());
+            orders.setDeleted(false);
+            orders.setPurchased(false);
+            orders.setCreatedAt(TimeUtils.getCurrentTime());
+            orders.setUpdatedAt(TimeUtils.getCurrentTime());
+
+            order.save(orders);
+
+            mav.setViewName("redirect:/");
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            mav.setViewName("redirect:/" + Constants.Url.GET_PROCESSING_ORDER_URL);
+        }
+
+        return mav;
+    }
+
 }
