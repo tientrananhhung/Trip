@@ -91,7 +91,7 @@ public class PostController {
             posts.setView(0);
             Users us = (Users) session.getAttribute(Constants.SessionKey.USER);
             posts.setUserId(us.getId());
-            System.out.println("234564: " + post.save(posts).getId());
+            post.save(posts);
             mav.addObject("listPost", post.findAllByDeleted(false));
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_POST);
         }catch (Exception ex){
@@ -131,27 +131,28 @@ public class PostController {
             posts.setView(ps.getView());
             posts.setUserId(ps.getUserId());
             CommonsMultipartFile[] files = posts.getFileData();
-            System.out.println(files.length);
-            if(files.length == 0){
                 for(int i = 0; i<files.length; i++) {
                     CommonsMultipartFile file = files[i];
-                    byte[] bytes = file.getBytes();
-                    // Creating the directory to store file
-                    // Assume uploaded file location on web server is D:\file-upload
-                    String appPath = request.getServletContext().getRealPath("");
-                    appPath = appPath.replace('\\', '/');
-                    File dir = new File(appPath);
-                    if (!dir.exists()) {
-                        dir.mkdirs();
+                    if(file.isEmpty()){
+                        posts.setImage(ps.getImage());
+                    } else {
+                        byte[] bytes = file.getBytes();
+                        // Creating the directory to store file
+                        // Assume uploaded file location on web server is D:\file-upload
+                        String appPath = request.getServletContext().getRealPath("");
+                        appPath = appPath.replace('\\', '/');
+                        File dir = new File(appPath);
+                        if (!dir.exists()) {
+                            dir.mkdirs();
+                        }
+                        // Create the file on server
+                        String fileSource = dir.getAbsolutePath() + File.separator + "resources" + File.separator + "images" + File.separator + "post_" + posts.getId() + "." + file.getOriginalFilename().split("\\.")[1];
+                        posts.setImage("post_" + posts.getId() + "." + file.getOriginalFilename().split("\\.")[1]);
+                        File serverFile = new File(fileSource);
+                        BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+                        stream.write(bytes);
+                        stream.close();
                     }
-                    // Create the file on server
-                    String fileSource = dir.getAbsolutePath() + File.separator + "resources" + File.separator + "images" + File.separator + "post_" + posts.getId() + "." + file.getOriginalFilename().split("\\.")[1];
-                    posts.setImage("post_" + posts.getId() + "." + file.getOriginalFilename().split("\\.")[1]);
-                    File serverFile = new File(fileSource);
-                    BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
-                    stream.write(bytes);
-                    stream.close();
-                }
             }
             post.update(posts);
             mav.addObject("listPost", post.findAllByDeleted(false));

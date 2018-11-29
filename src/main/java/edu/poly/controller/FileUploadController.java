@@ -1,5 +1,7 @@
 package edu.poly.controller;
 
+import edu.poly.common.CheckSession;
+import edu.poly.common.Constants;
 import edu.poly.common.TimeUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +10,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -25,18 +28,32 @@ public class FileUploadController {
     private static final String IMG_ROOT_PATH = "E:\\file-upload\\";
 
     @RequestMapping(method = RequestMethod.GET)
-    public String home(Model model) {
+    public ModelAndView home(Model model,HttpSession session) {
+        ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+            return mav;
+        }
         model.addAttribute("product", new Product());
-        return "upload";
+        mav.setViewName("upload");
+        return mav;
     }
 
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
-    public ModelAndView uploadFileHandler(ModelAndView mav,HttpServletRequest request, @ModelAttribute("product") Product product) {
+    public ModelAndView uploadFileHandler(ModelAndView mav, HttpServletRequest request, @ModelAttribute("product") Product product, HttpSession session) {
         try {
+            if (!CheckSession.admin(session)) {
+                mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+                return mav;
+            }
             CommonsMultipartFile[] files = product.getFileData();
             ArrayList<String> listImg = new ArrayList<>();
-            for(int i = 0; i<files.length; i++) {
+            for (int i = 0; i < files.length; i++) {
                 CommonsMultipartFile file = files[i];
+                if(file.isEmpty()){
+                    mav.setViewName("redirect:/upload");
+                    return mav;
+                }
                 byte[] bytes = file.getBytes();
                 // Creating the directory to store file
                 // Assume uploaded file location on web server is D:\file-upload
@@ -48,7 +65,7 @@ public class FileUploadController {
                 }
 
                 // Create the file on server
-                String name = TimeUtils.getCurrentTime().getTime() +"_"+ file.getOriginalFilename();
+                String name = TimeUtils.getCurrentTime().getTime() + "_" + file.getOriginalFilename();
                 String fileSource = dir.getAbsolutePath() + File.separator + "resources" + File.separator + "images" + File.separator + name;
                 listImg.add(name);
                 File serverFile = new File(fileSource);
@@ -56,26 +73,25 @@ public class FileUploadController {
                 stream.write(bytes);
                 stream.close();
             }
-
-mav.setViewName("upload");
-           mav.addObject("listImg",listImg);
-           return mav;
+            session.setAttribute("listImg", listImg);
+            mav.setViewName("redirect:/upload");
+            return mav;
         } catch (Exception e) {
-           e.printStackTrace();
-            return  mav;
+            e.printStackTrace();
+            return mav;
         }
     }
 
     @RequestMapping(value = "/photos", method = RequestMethod.GET)
-    String show(Model model) {
+    public ModelAndView show() {
         List<String> imgList = new ArrayList<>();
-
+        ModelAndView mav = new ModelAndView();
         File dir = new File(IMG_ROOT_PATH);
         for (File file : dir.listFiles()) {
             imgList.add("/image/" + file.getName());
         }
-        model.addAttribute("imgPathList", imgList);
-        return "photo";
+        mav.setViewName("photo");
+        return mav;
     }
 
 

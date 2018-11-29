@@ -245,6 +245,8 @@ public class Constants {
 
         public static final String OFFER_STATISTICS = "/offerstatistics/{month}/{year}";
 
+        public static final String POST_STATISTICS = "/poststatistics/{year}";
+
         //Trang API
         public static final String API_URL = "/api";
 

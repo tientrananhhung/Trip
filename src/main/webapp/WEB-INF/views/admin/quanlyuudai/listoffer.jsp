@@ -71,7 +71,8 @@
                                                        <label class="badge badge-danger">Isused</label>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <a href="/admin/quan-ly-uu-dai/active/${offer.id}/true">
+
+                                                        <a onclick="showSwal('warning-message-and-cancel')" href="/admin/quan-ly-uu-dai/active/${offer.id}/true">
                                                             <label class="badge badge-success">Availble</label></a>
                                                     </c:otherwise>
                                                 </c:choose>
@@ -112,7 +113,7 @@
 <script src="<c:url value="/resources/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js"/>"></script>
 <!-- End plugin js for this page-->
 <!-- inject:js -->
-<c:url value="/resources/js/todolist.js"/>
+<script src="<c:url value="/resources/node_modules/sweetalert/dist/sweetalert.min.js"/>"></script>
 <script src="<c:url value="/resources/js/off-canvas.js"/>"></script>
 <script src="<c:url value="/resources/js/hoverable-collapse.js"/>"></script>
 <script src="<c:url value="/resources/js/misc.js"/>"></script>
@@ -121,6 +122,7 @@
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="<c:url value="/resources/js/data-table.js"/>"></script>
+<script src="<c:url value="/resources/js/alerts.js"/>"></script>
 <!-- End custom js for this page-->
 
 </body>

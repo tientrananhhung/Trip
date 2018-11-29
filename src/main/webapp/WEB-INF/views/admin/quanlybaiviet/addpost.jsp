@@ -18,46 +18,12 @@
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/mdi/css/materialdesignicons.min.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/flag-icon-css/css/flag-icon.min.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/simplemde/dist/simplemde.min.css" />">
-
-    <!-- endinject -->
-    <!-- plugin css for this page -->
-    <link rel="stylesheet"
-          href="<c:url value="/resources/node_modules/jquery-tags-input/dist/jquery.tagsinput.min.css" />">
-    <link rel="stylesheet"
-          href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/fontawesome-stars.css" />">
-    <link rel="stylesheet"
-          href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-1to10.css" />">
-    <link rel="stylesheet"
-          href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-horizontal.css" />">
-    <link rel="stylesheet"
-          href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-movie.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-pill.css" />">
-    <link rel="stylesheet"
-          href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-reversed.css" />">
-    <link rel="stylesheet"
-          href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-square.css" />">
-    <link rel="stylesheet"
-          href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bootstrap-stars.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/css-stars.css" />">
-    <link rel="stylesheet"
-          href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/fontawesome-stars-o.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/examples/css/examples.css" />">
+    <link rel="stylesheet" href="<c:url value="/resources/node_modules/codemirror/lib/codemirror.css"/>">
+    <link rel="stylesheet" href="<c:url value="/resources/css/froala/froala_editor.pkgd.min.css"/>">
+    <link rel="stylesheet" href="<c:url value="/resources/css/froala/froala_style.min.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/font-awesome/css/font-awesome.min.css" />"/>
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/dropify/dist/css/dropify.min.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-file-upload/css/uploadfile.css" />">
-    <link rel="stylesheet"
-          href="<c:url value="/resources/node_modules/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css" />"/>
-    <link rel="stylesheet"
-          href="<c:url value="/resources/node_modules/jquery-asColorPicker/dist/css/asColorPicker.min.css" />"/>
-    <link rel="stylesheet"
-          href="<c:url value="/resources/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />"/>
-    <link rel="stylesheet"
-          href="<c:url value="/resources/node_modules/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css" />">
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css" />">
-    <!-- endinject -->
     <link rel="shortcut icon" href="<c:url value="/resources/images/favicon.png" />"/>
 </head>
 <body>
@@ -72,13 +38,14 @@
                     <div class="col-md-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Manage pos</h4>
+                                <h4 class="card-title">Manager Post</h4>
                                 <p class="card-description">
                                     Addition post
                                 </p>
                                 <hr/>
                                 <f:form class="forms-sample" modelAttribute="posts"
-                                        action="/admin/quan-ly-bai-viet/${action}" method="POST" enctype="multipart/form-data">
+                                        action="/admin/quan-ly-bai-viet/${action}" method="POST"
+                                        enctype="multipart/form-data">
                                     <div class="form-group">
                                         <f:hidden path="id"/>
                                     </div>
@@ -89,16 +56,18 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Category</label>
-                                            <f:select cssClass="form-control border-primary" path="postCategoryId">
-                                                <c:forEach var="postct" items="${listPostCategory}">
-                                                    <f:option value="${postct.id}" label="${postct.name}"/>
-                                                </c:forEach>
-                                            </f:select>
+                                        <f:select cssClass="form-control border-primary" path="postCategoryId">
+                                            <c:forEach var="postct" items="${listPostCategory}">
+                                                <f:option value="${postct.id}" label="${postct.name}"/>
+                                            </c:forEach>
+                                        </f:select>
                                     </div>
                                     <c:if test="${action == 'sua'}">
                                         <div class="form-group">
                                             <label>Image</label>
-                                            <f:input accept="image/*" path="fileData" required="true" data-default-file="/resources/images/avatar.png" type="file" class="dropify" ></f:input>
+                                            <f:input accept="image/*" path="fileData"
+                                                     data-default-file="/resources/images/${posts.image}" type="file"
+                                                     class="dropify"></f:input>
                                         </div>
                                     </c:if>
                                     <div class="form-group">
@@ -109,6 +78,10 @@
                                     <a href="/admin/quan-ly-bai-viet" class="btn btn-light">
                                         Cancel
                                     </a>
+                                    <button id="postsubmit" class="btn btn-success"
+                                            onclick="OpenPopupCenter(800, 600);"><i class="mdi mdi-cloud-download"></i>Upload
+                                        Ảnh
+                                    </button>
                                 </f:form>
                             </div>
                         </div>
@@ -128,23 +101,9 @@
 <script src="<c:url value="/resources/node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js" />"></script>
 <!-- endinject -->
 <!-- Plugin js for this page-->
-<script src="<c:url value="/resources/node_modules/jquery-tags-input/dist/jquery.tagsinput.min.js" />"></script>
-<script src="<c:url value="/resources/node_modules/progressbar.js/dist/progressbar.min.js" />"></script>
-<script src="<c:url value="/resources/node_modules/jquery-bar-rating/dist/jquery.barrating.min.js" />"></script>
-<script src="<c:url value="/resources/node_modules/inputmask/dist/jquery.inputmask.bundle.js" />"></script>
-<script src="<c:url value="/resources/node_modules/inputmask/dist/inputmask/phone-codes/phone.js" />"></script>
-<script src="<c:url value="/resources/node_modules/inputmask/dist/inputmask/phone-codes/phone-be.js" />"></script>
-<script src="<c:url value="/resources/node_modules/inputmask/dist/inputmask/phone-codes/phone-ru.js" />"></script>
-<script src="<c:url value="/resources/node_modules/inputmask/dist/inputmask/bindings/inputmask.binding.js" />"></script>
 <script src="<c:url value="/resources/node_modules/dropify/dist/js/dropify.min.js" />"></script>
-<script src="<c:url value="/resources/node_modules/jquery-file-upload/js/jquery.uploadfile.min.js" />"></script>
-<script src="<c:url value="/resources/node_modules/jquery-asColor/dist/jquery-asColor.min.js" />"></script>
-<script src="<c:url value="/resources/node_modules/jquery-asGradient/dist/jquery-asGradient.min.js" />"></script>
-<script src="<c:url value="/resources/node_modules/jquery-asColorPicker/dist/jquery-asColorPicker.min.js" />"></script>
 <script src="<c:url value="/resources/node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js" />"></script>
 <script src="<c:url value="/resources/node_modules/moment/min/moment.min.js" />"></script>
-<script src="<c:url value="/resources/node_modules/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js" />"></script>
-<script src="<c:url value="/resources/node_modules/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.js" />"></script>
 <script src="<c:url value="/resources/node_modules/jquery.repeater/jquery.repeater.min.js" />"></script>
 <!-- End plugin js for this page-->
 <!-- inject:js -->
@@ -157,11 +116,19 @@
 <!-- Custom js for this page-->
 <script src="<c:url value="/resources/js/dropify.js"/>"></script>
 <script src="<c:url value="/resources/js/editorDemo.js"/>"></script>
-<script src="<c:url value="/resources/node_modules/simplemde/dist/simplemde.min.js"/>"></script>
-<%---------------------------------------------%>
+<script src="<c:url value="/resources/node_modules/codemirror/mode/xml/xml.js"/>"></script>
+<script src="<c:url value="/resources/node_modules/codemirror/lib/codemirror.js"/>"></script>
+<script src="<c:url value="/resources/js/froala_editor.pkgd.min.js"/>"></script>
+<script> $(function () {
+    $('textarea').froalaEditor()
+}); </script>
+<script language="javascript" type="text/javascript">
+    function OpenPopupCenter(w, h) {
+        var left = (screen.width - w) / 2;
+        var top = (screen.height - h) / 4;  // for 25% - devide by 4  |  for 33% - devide by 3
+        var targetWin = window.open('http://localhost:8080/upload', 'upload', 'toolbar=yes, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+    }
 
-<script>
-    var simplemde = new SimpleMDE({ element: $("#content")[0] });
 </script>
 </body>
 </html>

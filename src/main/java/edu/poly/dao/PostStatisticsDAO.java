@@ -20,7 +20,7 @@ public class PostStatisticsDAO extends JdbcDaoSupport {
     public PostStatisticsDAO(DataSource dataSource) { this.setDataSource(dataSource); }
 
     public List<PostStatisticsDTO> getAllPostStatisticsDTO(Integer year) {
-        String sql = "SELECT Count(posts.id) as Tong_Post, Count(IF(posts.Is_deleted = true, 1, NULL)) AS Deleted, CONCAT('Tháng ', MONTH(Created_at)) as thang FROM posts WHERE posts.Created_at >= ? AND posts.Created_at <= ? GROUP BY thang ORDER BY Thang ASC";
+        String sql = "SELECT Count(posts.id) as Tong_Post, Count(IF(posts.Is_deleted = true, 1, NULL)) AS Deleted, CONCAT('Tháng ', MONTH(Created_at)) as thang FROM posts WHERE posts.Created_at >= ? AND posts.Created_at <= ? GROUP BY thang ORDER BY MONTH(Created_at) ASC";
         Date year1 = Date.valueOf(year+"-01-01");
         Date year2 = Date.valueOf(year+"-12-31");
         Object[] params = new Object[]{year1,year2};

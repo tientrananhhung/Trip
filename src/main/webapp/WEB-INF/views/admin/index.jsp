@@ -193,7 +193,6 @@
                 $("#morris-bar-example2").empty();
                 var year = $(this).datepicker('getDate').getFullYear();
                 var month = $(this).datepicker('getDate').getMonth();
-                console.log(month);
                 loadOffer(month+1,year);
             }).datepicker("setDate", new Date());
 

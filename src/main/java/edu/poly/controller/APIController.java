@@ -1,12 +1,7 @@
 package edu.poly.controller;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.poly.common.Constants;
-import edu.poly.dao.OfferStatisticsDAO;
-import edu.poly.dao.PartnerStatisticsDAO;
-import edu.poly.dao.RateTourDetailDAO;
-import edu.poly.dao.UserStatisticsDAO;
+import edu.poly.dao.*;
 import edu.poly.entity.*;
 import edu.poly.impl.*;
 import edu.poly.model.*;
@@ -18,11 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -59,7 +50,9 @@ public class APIController {
     @Autowired
     private OfferStatisticsDAO offerStatisticsDAO;
 
+    @Autowired
 
+    private PostStatisticsDAO postStatisticsDAO;
 
 //    @Autowired
 //    private UserStatisticsDAO userStatisticsDAO;
@@ -89,13 +82,13 @@ public class APIController {
     }
 
     @GetMapping(path = Constants.Url.PAGING_RATE_TOUR_DETAIL_URL, produces = {MimeTypeUtils.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<RateTourDetailDTO>> getPostAPI(@PathVariable("id") int id, @PathVariable("page") int page){
+    public ResponseEntity<List<RateTourDetailDTO>> getPostAPI(@PathVariable("id") int id, @PathVariable("page") int page) {
         try {
             page = page * 10;
             List<RateTourDetailDTO> listDTO = rateTourDetailDAO.getPageRateDTO(id, page);
             ResponseEntity<List<RateTourDetailDTO>> responseEntity = new ResponseEntity<List<RateTourDetailDTO>>(listDTO, HttpStatus.OK);
             return responseEntity;
-        } catch(Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<List<RateTourDetailDTO>>(HttpStatus.BAD_REQUEST);
         }
     }
@@ -112,9 +105,9 @@ public class APIController {
     }
 
     @GetMapping(path = Constants.Url.PARNER_STATISTICS, produces = {MimeTypeUtils.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<PartnerStatisticsDTO>> partnerstaticstic(@PathVariable("month") String month,@PathVariable("year") Integer year) {
+    public ResponseEntity<List<PartnerStatisticsDTO>> partnerstaticstic(@PathVariable("month") String month, @PathVariable("year") Integer year) {
         try {
-            List<PartnerStatisticsDTO> list = (List<PartnerStatisticsDTO>) partnerStatisticsDAO.getAllPartnerStatisticsDTO(month,year);
+            List<PartnerStatisticsDTO> list = (List<PartnerStatisticsDTO>) partnerStatisticsDAO.getAllPartnerStatisticsDTO(month, year);
             ResponseEntity<List<PartnerStatisticsDTO>> responseEntity = new ResponseEntity<List<PartnerStatisticsDTO>>(list, HttpStatus.OK);
             return responseEntity;
         } catch (Exception e) {
@@ -123,9 +116,9 @@ public class APIController {
     }
 
     @GetMapping(path = Constants.Url.OFFER_STATISTICS, produces = {MimeTypeUtils.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<OfferStatisticsDTO>> offerstaticstic(@PathVariable("month") String month,@PathVariable("year") Integer year) {
+    public ResponseEntity<List<OfferStatisticsDTO>> offerstaticstic(@PathVariable("month") String month, @PathVariable("year") Integer year) {
         try {
-            List<OfferStatisticsDTO> list = (List<OfferStatisticsDTO>) offerStatisticsDAO.getAllOfferStatisticsDTO(month,year);
+            List<OfferStatisticsDTO> list = (List<OfferStatisticsDTO>) offerStatisticsDAO.getAllOfferStatisticsDTO(month, year);
             ResponseEntity<List<OfferStatisticsDTO>> responseEntity = new ResponseEntity<List<OfferStatisticsDTO>>(list, HttpStatus.OK);
             return responseEntity;
         } catch (Exception e) {
@@ -133,8 +126,19 @@ public class APIController {
         }
     }
 
+    @GetMapping(path = Constants.Url.POST_STATISTICS, produces = {MimeTypeUtils.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<PostStatisticsDTO>> poststaticstic(@PathVariable("year") Integer year) {
+        try {
+            List<PostStatisticsDTO> list = (List<PostStatisticsDTO>) postStatisticsDAO.getAllPostStatisticsDTO(year);
+            ResponseEntity<List<PostStatisticsDTO>> responseEntity = new ResponseEntity<List<PostStatisticsDTO>>(list, HttpStatus.OK);
+            return responseEntity;
+        } catch (Exception e) {
+            return new ResponseEntity<List<PostStatisticsDTO>>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @PostMapping(path = Constants.Url.POST_PROCESS_ORDER_URL, produces = {MimeTypeUtils.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> postOrder(@PathVariable("sId") Integer sId, @PathVariable("uId") Integer uId, @RequestParam String dataJson){
+    public ResponseEntity<String> postOrder(@PathVariable("sId") Integer sId, @PathVariable("uId") Integer uId, @RequestParam String dataJson) {
         try {
             Services services = service.findServiceById(sId);
             Users users = user.getById(uId);
@@ -143,7 +147,7 @@ public class APIController {
             String ck = "";
             ResponseEntity<String> responseEntity = new ResponseEntity<>(ck, HttpStatus.OK);
             return responseEntity;
-        } catch(Exception ex){
+        } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
