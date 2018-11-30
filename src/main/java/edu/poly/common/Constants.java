@@ -185,6 +185,14 @@ public class Constants {
         //Trang sua tour
         public static final String UPDATED_FOOD_PLACE = "/quan-ly-dia-diem/sua";
 
+        //Trang danh sach order
+        public static final String LIST_ORDER = "/quan-ly-hoa-don";
+
+        //Trang danh sach order
+        public static final String DELETE_ORDER = "/quan-ly-hoa-don/xoa/{id}";
+        //xoa order
+        public static final String PURCHASE_ORDER = "/quan-ly-hoa-don/thanhtoan/{id}";
+
         //Trang tour detail của user
         public static final String TOUR_DETAIL_URL = "/tour/{id}";
 
