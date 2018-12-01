@@ -33,7 +33,7 @@
 
     <section class="mg-top-30">
 
-        <h2 style="text-align: center; font-size: 36px; color: rgb(255, 87, 34); margin: 64px;">Tại sao nên trở thành đối tác của DonkeyFun?</h2>
+        <h2 style="text-align: center; font-size: 36px; color: rgb(255, 87, 34); margin: 64px;">Tại sao nên trở thành đối tác của Smart Trip?</h2>
 
         <p>
             Smart Trip là một dự án khởi nghiệp của những bạn trẻ năng động, tràn đầy đam mê và nhiệt huyết dành cho lĩnh vực Dịch vụ Du lịch.<br><br>
