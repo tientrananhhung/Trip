@@ -1,8 +1,6 @@
 package edu.poly.controller;
 
-import edu.poly.common.CheckSession;
-import edu.poly.common.Constants;
-import edu.poly.common.TimeUtils;
+import edu.poly.common.*;
 import edu.poly.entity.Partners;
 import edu.poly.impl.PartnerImpl;
 import edu.poly.impl.UserImpl;
@@ -159,6 +157,8 @@ public class PartnerController {
         pn.setActived(active);
         try{
             partner.update(pn);
+//            mailTest.mailSend(pn.getEmail(), MailContent.ACTIVE_USER(pn.getEmail(),pn.getName()),"Kích hoạt thành viên SmartTrip");
+
         } catch (Exception ex){
             ex.printStackTrace();
         }

@@ -1,6 +1,5 @@
 package edu.poly.common;
 
-import javax.servlet.http.HttpServletRequest;
 
 public class Constants {
 

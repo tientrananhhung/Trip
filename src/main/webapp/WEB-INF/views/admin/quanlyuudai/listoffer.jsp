@@ -72,8 +72,12 @@
                                                     </c:when>
                                                     <c:otherwise>
 
-                                                        <a onclick="showSwal('warning-message-and-cancel')" href="/admin/quan-ly-uu-dai/active/${offer.id}/true">
-                                                            <label class="badge badge-success">Availble</label></a>
+                                                        <%--<a onclick="showSwal('warning-message-and-cancel')" href="/admin/quan-ly-uu-dai/active/${offer.id}/true">--%>
+                                                            <%--<label class="badge badge-success">Availble</label>--%>
+                                                        <%--</a>--%>
+                                                        <a class="btn-del-offer" href="#" o-id="${offer.id}">
+                                                            <label class="badge badge-success">Availble</label>
+                                                        </a>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </td>
@@ -123,7 +127,30 @@
 <!-- Custom js for this page-->
 <script src="<c:url value="/resources/js/data-table.js"/>"></script>
 <script src="<c:url value="/resources/js/alerts.js"/>"></script>
+<script src="<c:url value="/resources/js/custom.js"/>"></script>
 <!-- End custom js for this page-->
+<script>
+    var id = '';
+    $('.btn-del-offer').click(function(e){
+        e.preventDefault();
+        showSwal('warning-message-and-cancel');
+        id = $(this).attr('o-id');
+        console.log(offerId);
+        // xoaDiaChiKH(offerId);
+    });
 
+    $('.swal-button').click(function(id){
+        $.ajax({
+            url: '/admin/quan-ly-uu-dai/active/'+id+'/true',
+            type: "GET"
+        })
+            .done(function(data) {
+                swal("Thông Báo!", "Offer này đã được sử dụng", "success");
+            })
+            .error(function(data) {
+                swal("Thông Báo!", "Server đang gặp sự cố, xin vui lòng thực hiện lại sau giây lát", "error");
+            });
+    });
+</script>
 </body>
 </html>
