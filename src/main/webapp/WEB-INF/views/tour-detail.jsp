@@ -426,6 +426,9 @@
 </div>
 <!-- End Content Tour Detail -->
 
+
+<div class="modalLoading"></div>
+
 <jsp:include page="includes/footer.jsp"/>
 
 <!-- Start Import Script -->

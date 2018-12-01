@@ -117,39 +117,6 @@
                                         </div>
                                         <!-- End Information user -->
 
-                                        <!-- Start payment -->
-                                            <%--<div class="card bg-light mg-top-20 card-payment">--%>
-                                            <%--<div class="card-header bg-light order-card-head">Hình thức thanh toán</div>--%>
-                                            <%--<div class="card-body card-body-payment" style="padding: 24px;">--%>
-                                            <%--<section class="s-payment">--%>
-                                            <%--<div>--%>
-                                            <%--<input type="radio" id="payment-transfer" class="payment" name="payment" value="1">--%>
-                                            <%--<label for="payment-transfer" class="l-payment">--%>
-                                            <%--<h2 class="cfs-20 mg-top-20 fw-bolder">Chuyển khoản</h2>--%>
-                                            <%--<p class="cfs-14">--%>
-                                            <%--Chuyển khoản ngân hàng với nội dung: username &lt;khoảng trắng&gt; thanh toán--%>
-                                            <%--</p>--%>
-                                            <%--</label>--%>
-                                            <%--</div>--%>
-                                            <%--<div>--%>
-                                            <%--<input type="radio" id="direct-payment" class="payment" name="payment" value="2" checked>--%>
-                                            <%--<label for="direct-payment" class="l-payment" checked>--%>
-                                            <%--<h2 class="cfs-20 mg-top-20 fw-bolder">Thanh toán trực tiếp</h2>--%>
-                                            <%--<p class="cfs-14">Bạn có thể đến trực tiếp quầy giao dịch của Smart Trip để nhận vé</p>--%>
-                                            <%--</label>--%>
-                                            <%--</div>--%>
-                                            <%--<div>--%>
-                                            <%--<input type="radio" id="payment-counter" class="payment" name="payment" value="3">--%>
-                                            <%--<label for="payment-counter" class="l-payment">--%>
-                                            <%--<h2 class="cfs-20 mg-top-20 fw-bolder">Thanh toán tại quầy</h2>--%>
-                                            <%--<p class="cfs-14">Bạn có thể đến trực tiếp điểm du lịch để nhận vé</p>--%>
-                                            <%--</label>--%>
-                                            <%--</div>--%>
-                                            <%--</section>--%>
-                                            <%--</div>--%>
-                                            <%--</div>--%>
-                                        <!-- End payment -->
-
                                         <!-- Start offer -->
                                         <c:choose>
                                             <c:when test="${empty offer}">
