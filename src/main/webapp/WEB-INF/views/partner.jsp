@@ -100,7 +100,8 @@
 <jsp:include page="includes/footer.jsp"/>
 
 <!-- Start Import Script -->
-
+<script type="text/javascript" src="/resources/js/jquery/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/resources/js/owlcarousel/owl.carousel.js"></script>
 <!-- End Import Script -->
 </body>
 </html>
