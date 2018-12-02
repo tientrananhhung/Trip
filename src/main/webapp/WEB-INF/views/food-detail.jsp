@@ -22,11 +22,17 @@
     <link rel="stylesheet" href="/resources/css/starrating/fontawesome-stars-o.css">
     <!-- Fontawesome -->
     <link rel="stylesheet" href="/resources/css/fontawesome/font-awesome.min.css">
+    <!-- Popup form login style -->
+    <link rel="stylesheet" href="/resources/css/popupform/style.css">
     <!-- My css -->
     <link rel="stylesheet" href="/resources/css/custom.css">
 </head>
 <body style="background: #eee;">
+
 <jsp:include page="includes/navbar.jsp"/>
+
+<jsp:include page="includes/form-navbar.jsp"/>
+
 <!-- Start Content website -->
 <div class="contain-fluid">
     <div class="box-content-fluid">
@@ -474,6 +480,7 @@
 <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootstrap/util.js"></script>
 <script type="text/javascript" src="js/sticky/jquery.sticky.js"></script>
+<script type="text/javascript" src="/resources/js/custom.js"></script>
 <!-- End Import Script -->
 <!-- Start All Script -->
 <script type="text/javascript">
@@ -489,6 +496,8 @@
 
     //Hide detail
     $(function() {
+
+        navbarSubMenu();
 
         //Cho nội dung thu lên
         $('.service-detail').slideUp();

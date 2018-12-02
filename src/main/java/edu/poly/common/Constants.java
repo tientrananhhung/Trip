@@ -216,17 +216,20 @@ public class Constants {
         //Trang đăng ký đối tác
         public static final String REG_PARTNET_URL = "/dang-ky-doi-tac";
 
+        //Trang quản lý chung
+        public static final String MANAGEMENT_URL = "/quan-ly";
+
         //Trang quản lý của đối tác
-        public static final String PARTNER_URL = "/quan-ly/doi-tac-{id}";
+        public static final String PARTNER_URL = "doi-tac-{id}";
 
         //Trang quản lý bài viết của đối tác
-        public static final String BLOG_PARTNER_URL = "/quan-ly/bai-viet";
+        public static final String BLOG_PARTNER_URL = "bai-viet";
 
         //Trang thêm blog của đối tác
-        public static final String POST_BLOG_PARTNER_URL = "/quan-ly/dang-bai";
+        public static final String POST_BLOG_PARTNER_URL = "dang-bai";
 
         //Trang quản lý của người dùng
-        public static final String USER_URL = "/quan-ly/nguoi-dung-{id}";
+        public static final String USER_URL = "nguoi-dung-{id}";
 
         //Quên mật khẩu khách hàng
         public static final String FORGOT_USER = "/forgotuser";
@@ -239,9 +242,6 @@ public class Constants {
 
         //Trang hiển thị thông tin order
         public static final String GET_PROCESSING_ORDER_URL = "/ticket-booking/processing";
-
-        //Trang hiển thị đã order thành công
-        public static final String GET_ORDERED_SUCCESS_URL = "/ticket-booking/success";
 
         //Trang login cho processing order
         public static final String POST_LOGIN_PROCESS_ORDER_URL = "/order/login";
@@ -383,4 +383,5 @@ public class Constants {
         public static final String OFFER_ATTRIBUTE = "offer";
 
     }
+
 }

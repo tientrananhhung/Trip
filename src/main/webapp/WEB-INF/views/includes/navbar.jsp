@@ -43,9 +43,8 @@
 
             <ul class="navbar-nav flex-row d-none d-md-flex cnav-mb nav-info-user">
                 <li class="menu-item li-user-info">
-                    <a class="nav-item" data-toggle="modal" data-target="#signupFormModal">
-                        <!-- <li class="nav-link">user</li> -->
-                        <img src="images/avatar.png" alt="" class="img-avt">
+                    <a class="nav-item">
+                        <img src="/resources/images/avatar.png" alt="" class="img-avt rounded-circle">
                     </a>
 
                     <ul class="menu-dropdown-menu">
@@ -77,7 +76,7 @@
                             <a href="/dang-xuat">
                                 <div class="dropdown-menu-item">
                                     <i class="fa fa-spinner fa-fw" aria-hidden="true"></i>
-                                    <span>Thoát</span>
+                                    <span>Đăng xuất</span>
                                 </div>
                             </a>
                         </li>

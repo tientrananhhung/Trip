@@ -91,8 +91,8 @@ public class UserController {
     public ModelAndView index(HttpSession session, HttpServletRequest rq) {
         ModelAndView mav = new ModelAndView(HOME_SCREEN);
         try {
-//            rq.getSession().setAttribute("login", new Users());
-//            mav.addObject("login", new Users());
+            rq.getSession().setAttribute("login", new Users());
+            mav.addObject("login", new Users());
             List<TourDTO> lTourDTO = tourDAO.getAllTourDTO();
             List<FoodDTO> lFoodDTO = foodDAO.getAllFoodDTO();
             List<PostIndexDTO> lPostIndexDTO = postIndexDAO.getTop5PostNew();
@@ -280,13 +280,15 @@ public class UserController {
             data = data + "voucherId:" + jsonNode.get("voucherId").asText() + ",";
             data = data + "voucherCode:" + jsonNode.get("voucherCode").asText() + ",";
             data = data + "voucherPrice:" + jsonNode.get("voucherPrice").asText() + ",";
-            data = data + "ticketDetail:";
+            data = data + "ticketDetail:[";
             for (int i = 0; i < jsonTicket.size(); i++) {
-                data = data + "[nameTicket:" + jsonTicket.get(i).get("nameTicket").asText() + ",";
+                data = data + "{nameTicket:" + jsonTicket.get(i).get("nameTicket").asText() + ",";
                 data = data + "priceTicket:" + jsonTicket.get(i).get("priceTicket").asText() + ",";
-                data = data + "quantityTicket:" + jsonTicket.get(i).get("quantityTicket").asText() + "]";
+                data = data + "quantityTicket:" + jsonTicket.get(i).get("quantityTicket").asText() + "}";
                 if (i != jsonTicket.size() - 1) {
                     data = data + ";";
+                }else{
+                    data = data + "]";
                 }
             }
 

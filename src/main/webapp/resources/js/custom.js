@@ -220,3 +220,13 @@ function resetFormInOrder(){
         $('#choose-forgot-password-order').css('display', 'none');
     }, 300);
 }
+
+function navbarSubMenu() {
+    $(".li-user-info").mouseover(function () {
+        $(".menu-dropdown-menu").fadeIn(200);
+    });
+
+    $(".li-user-info").mouseleave(function () {
+        $(".menu-dropdown-menu").fadeOut(200);
+    });
+}

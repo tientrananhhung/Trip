@@ -18,11 +18,16 @@
     <link rel="stylesheet" href="/resources/css/bootstrap/bootstrap.min.css">
     <!-- Fontawesome -->
     <link rel="stylesheet" href="/resources/css/fontawesome/font-awesome.min.css">
+    <!-- Popup form login style -->
+    <link rel="stylesheet" href="/resources/css/popupform/style.css">
     <!-- My css -->
     <link rel="stylesheet" href="/resources/css/custom.css">
 </head>
 <body>
+
 <jsp:include page="includes/navbar.jsp"/>
+
+<jsp:include page="includes/form-navbar.jsp"/>
 
 <!-- Start Body Order -->
 <div>
@@ -102,6 +107,18 @@
 <!-- Start Import Script -->
 <script type="text/javascript" src="/resources/js/jquery/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/resources/js/owlcarousel/owl.carousel.js"></script>
+<script type="text/javascript" src="/resources/js/custom.js"></script>
 <!-- End Import Script -->
+
+<!-- Start custom script-->
+<script>
+    $(document).ready(function () {
+
+        navbarSubMenu();
+
+    });
+</script>
+<!-- End custom script-->
+
 </body>
 </html>
