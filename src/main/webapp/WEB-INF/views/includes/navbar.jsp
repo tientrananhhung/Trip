@@ -57,7 +57,7 @@
                             </a>
                         </li>
                         <li class="menu-dropdown-menu-item">
-                            <a href="/doi-tac/quan-ly-tour">
+                            <a href="/quan-ly/tour">
                                 <div class="dropdown-menu-item">
                                     <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>
                                     <span>Quản lý tour</span>

@@ -9,15 +9,15 @@
 <section class="left-body-info">
     <ul class="menu-left-info pd-0">
         <li class="li-menu-info">
-            <a href="/user/information">
-                <div class="menu-left-item">
+            <a href="/quan-ly/thong-tin">
+                <div class="menu-left-item menu-left-item-active">
                     <i class="fa fa-user fa-fw" aria-hidden="true"></i>
                     <span>Tài khoản</span>
                 </div>
             </a>
         </li>
         <li class="li-menu-info">
-            <a href="/order/orderlist/unused">
+            <a href="/quan-ly/tour">
                 <div class="menu-left-item">
                     <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>
                     <span>Quản lý tour</span>
@@ -25,7 +25,7 @@
             </a>
         </li>
         <li class="li-menu-info">
-            <a href="/order/orderlist/unused">
+            <a href="/quan-ly/bai-viet">
                 <div class="menu-left-item">
                     <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>
                     <span>Quản lý bài viết</span>
@@ -33,7 +33,7 @@
             </a>
         </li>
         <li class="li-menu-info">
-            <a href="/order/orderlist/unused">
+            <a href="/quan-ly/don-hang">
                 <div class="menu-left-item">
                     <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>
                     <span>Quản lý đơn hàng</span>
@@ -41,7 +41,7 @@
             </a>
         </li>
         <li class="li-menu-info">
-            <a href="/order/orderlist/unused">
+            <a href="/dang-xuat/">
                 <div class="menu-left-item">
                     <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>
                     <span>Đăng xuất</span>

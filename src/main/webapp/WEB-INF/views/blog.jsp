@@ -20,16 +20,12 @@
     <link rel="stylesheet" href="/resources/css/starrating/fontawesome-stars-o.css">
     <!-- Fontawesome -->
     <link rel="stylesheet" href="/resources/css/fontawesome/font-awesome.min.css">
-    <!-- Popup form login style -->
-    <link rel="stylesheet" href="/resources/css/popupform/style.css">
     <!-- My css -->
     <link rel="stylesheet" href="/resources/css/custom.css">
 </head>
 <body style="background: #eee;">
 
 <jsp:include page="includes/navbar.jsp"/>
-
-<jsp:include page="includes/form-navbar.jsp"/>
 
 <!-- Start Content website -->
 <div class="container-fluid">

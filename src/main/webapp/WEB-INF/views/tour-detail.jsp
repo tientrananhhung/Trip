@@ -27,16 +27,12 @@
     <link rel="stylesheet" href="/resources/css/fontawesome/font-awesome.min.css">
     <!-- Date Picker -->
     <link rel="stylesheet" href="/resources/css/daterangepicker/daterangepicker.css">
-    <!-- Popup form login style -->
-    <link rel="stylesheet" href="/resources/css/popupform/style.css">
     <!-- My css -->
     <link rel="stylesheet" href="/resources/css/custom.css">
 </head>
 <body>
 
 <jsp:include page="includes/navbar.jsp"/>
-
-<jsp:include page="includes/form-navbar.jsp"/>
 
 <!-- Start Carousel Slide -->
 <c:forEach items="${listTourDetail}" var="lTourDetail" begin="0" end="0">

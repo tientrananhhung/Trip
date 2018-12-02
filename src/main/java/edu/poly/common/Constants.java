@@ -26,7 +26,7 @@ public class Constants {
         public static final String OFFER_DETAIL_URL = "/{offerId}";
 
         //Thông tin cá nhân của người dùng
-        public static final String PROFILE_URL = "/thong-tin-ca-nhan";
+        public static final String PROFILE_URL = "/thong-tin";
 
         //Trang đăng ký
         public static final String REGISTER = "/dang-ky";
@@ -194,6 +194,9 @@ public class Constants {
 
         //Trang tour detail của user
         public static final String TOUR_DETAIL_URL = "/tour/{id}";
+
+        //Trang quản lý tour của partner
+        public static final String MANAGEMENT_TOUR_URL = "/tour";
 
         //Trang Blog của user
         public static final String BLOG_URL = "/blog";

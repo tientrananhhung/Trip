@@ -33,4 +33,12 @@ public class CheckSession {
         }
     }
 
+    public static boolean isLogin(HttpSession session){
+        if (session.getAttribute(Constants.SessionKey.USER) != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

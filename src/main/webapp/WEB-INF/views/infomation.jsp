@@ -21,16 +21,12 @@
     <link rel="stylesheet" href="/resources/css/fontawesome/font-awesome.min.css">
     <!-- Date Picker -->
     <link rel="stylesheet" href="/resources/css/daterangepicker/daterangepicker.css">
-    <!-- Popup form login style -->
-    <link rel="stylesheet" href="/resources/css/popupform/style.css">
     <!-- My css -->
     <link rel="stylesheet" href="/resources/css/custom.css">
 </head>
 <body>
 
 <jsp:include page="includes/navbar.jsp"/>
-
-<jsp:include page="includes/form-navbar.jsp"/>
 
 <!-- Start Body Order -->
 
@@ -45,7 +41,7 @@
             </div>
             <div class="content-body-info">
                 <div class="info-user">
-                    <img src="images/avatar.png" alt="Avatar Smart Trip" class="mr-3 mt-3 rounded-circle"
+                    <img src="/resources/images/avatar.png" alt="Avatar Smart Trip" class="mr-3 mt-3 rounded-circle"
                          style="width:60px; float: left;">
                     <div class="mr-3 mt-3" style="display: inline-block;">
                         <h4 class="cfs-18">Trần Anh Hưng Tiến</h4>
