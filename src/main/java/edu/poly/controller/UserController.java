@@ -106,8 +106,8 @@ public static final String REGISTER_PARTNER_SCREEN = "partner";
     public ModelAndView index(HttpSession session, HttpServletRequest rq) {
         ModelAndView mav = new ModelAndView(HOME_SCREEN);
         try {
-            rq.getSession().setAttribute("login", new Users());
-            mav.addObject("login", new Users());
+//            rq.getSession().setAttribute("login", new Users());
+//            mav.addObject("login", new Users());
             List<TourDTO> lTourDTO = tourDAO.getAllTourDTO();
             List<FoodDTO> lFoodDTO = foodDAO.getAllFoodDTO();
             List<PostIndexDTO> lPostIndexDTO = postIndexDAO.getTop5PostNew();

@@ -26,9 +26,6 @@ public interface OrderService {
 
     public void deleteById(Integer id);
 
-    public List<OrderDTO> getAllByDeletedAndPayment(Boolean isDeleted);
-
     public Orders getById(Integer id);
 
-    public Integer sumPurchased(Integer userID,Boolean purchased);
 }

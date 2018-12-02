@@ -63,50 +63,13 @@ public class OrderImpl implements OrderService {
         repository.deleteById(id);
     }
 
-    @Override
-    public List<OrderDTO> getAllByDeletedAndPayment(Boolean isDeleted) {
-        List<Orders> list = repository.getAllByDeletedAndPayment(isDeleted);
-        List<OrderDTO> newlist = new ArrayList<OrderDTO>();
-//        for(Orders orders:list){
-//           OrderDTO od = new OrderDTO();
-//           od.setOrderID(orders.getId());
-//            od.setCustomerName(orders.getUsersByUserId().getName());
-//            od.setServiceName(orders.getServicesByServiceId().getName());
-//            od.setUserEmail(orders.getUsersByUserId().getEmail());
-//            od.setPurchased(orders.getPurchased());
-//            od.setOrderDate(orders.getCreatedAt());
-//            od.setPayment(orders.getPayment());
-//            String[] arRules = orders.getData().split("\\,");
-//            String note = arRules[0].split("\\:")[1];
-//            od.setNote(note);
-//            String phoneUser =  arRules[1].split("\\:")[1];
-//            od.setPhoneUser(phoneUser);
-//            String serviceDate =  arRules[3].split("\\:")[1];
-//            od.setServiceDate(serviceDate);
-//            String totalPrice = arRules[4].split("\\:")[1];
-//            od.setTotalPrice(totalPrice);
-//            String totalPriceAfter = arRules[5].split("\\:")[1];
-//            od.setTotalPriceAfter(totalPriceAfter);
-//            newlist.add(od);
-//        }
-        return newlist;
-    }
+
 
     @Override
     public Orders getById(Integer id) {
         return repository.getById(id);
     }
 
-    @Override
-    public Integer sumPurchased(Integer userID,Boolean purchased){
-        List<Orders> list = repository.getAllByUserIdAndPurchased(userID,purchased);
-        Integer sum = 0;
-        for(Orders orders: list){
-            String[] arRules = orders.getData().split("\\,");
-            Integer totalPriceAfter = Integer.valueOf(arRules[5].split("\\:")[1]);
-            sum = sum + totalPriceAfter;
-        }
-        return sum;
-    }
+
 
 }

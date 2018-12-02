@@ -19,6 +19,4 @@ public interface OrderRepository extends CrudRepository<Orders, Integer> {
     public List<Orders> getAllByDeletedAndPayment(@Param("isDeleted") Boolean isDeleted);
 
     public Orders getById(Integer id);
-
-    public List<Orders> getAllByUserIdAndPurchased(Integer userID,Boolean purchased);
 }
