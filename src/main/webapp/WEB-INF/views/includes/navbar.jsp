@@ -11,7 +11,7 @@
 <!-- Start Navbar Menu -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 0px;">
     <div class="container-fluid box-content-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             <img src="/resources/images/logo.png" alt="" style="height: 65px;">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

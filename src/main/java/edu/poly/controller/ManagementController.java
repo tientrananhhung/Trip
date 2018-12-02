@@ -49,7 +49,7 @@ public class ManagementController {
         ModelAndView mav = new ModelAndView();
 
         if (!CheckSession.partner(session)) {
-            mav.setViewName(INDEX_SCREEN);
+            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
             return mav;
         }
 

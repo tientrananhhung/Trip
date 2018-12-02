@@ -10,7 +10,7 @@
     <ul class="menu-left-info pd-0">
         <li class="li-menu-info">
             <a href="/quan-ly/thong-tin">
-                <div class="menu-left-item menu-left-item-active">
+                <div class="menu-left-item">
                     <i class="fa fa-user fa-fw" aria-hidden="true"></i>
                     <span>Tài khoản</span>
                 </div>

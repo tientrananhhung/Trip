@@ -230,3 +230,12 @@ function navbarSubMenu() {
         $(".menu-dropdown-menu").fadeOut(200);
     });
 }
+
+function activeLinkNav(){
+    // var page = location.pathname.split('/').pop();
+    var page = location.pathname;
+    $('section.left-body-info').find('li').each(function() {
+        $(this).children('a .menu-left-item').toggleClass('menu-left-item-active', $(this).children().attr('href') == page);
+        console.log(this);
+    });
+}

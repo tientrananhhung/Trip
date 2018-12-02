@@ -310,7 +310,7 @@
                                             <a href="#">${lPosst.title}</a>
                                         </h3>
                                         <div class="blog-post-description cfs-12">
-                                            ${lPosst.content}
+                                            ${lPosst.description}
                                         </div>
                                         <div class="blog-post-meta">
                                             <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> ${lPosst.updatedAt}</span>
@@ -344,7 +344,7 @@
                                             <a href="#">${lPost.title}</a>
                                         </h3>
                                         <div class="blog-post-description cfs-12">
-                                            ${lPost.content}
+                                            ${lPost.description}
                                         </div>
                                         <div class="blog-post-meta">
                                             <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> ${lPost.updatedAt}</span>

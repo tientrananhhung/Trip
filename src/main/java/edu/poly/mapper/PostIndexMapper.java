@@ -14,10 +14,10 @@ public class PostIndexMapper implements RowMapper<PostIndexDTO> {
         Integer id = resultSet.getInt("id");
         String title = resultSet.getString("Title");
         String image = resultSet.getString("Image");
-        String content = resultSet.getString("Content");
+        String description = resultSet.getString("Description");
         Integer view = resultSet.getInt("View");
         Date updatedAt = resultSet.getDate("Updated_at");
-        return new PostIndexDTO(id, title, image, content, view, updatedAt);
+        return new PostIndexDTO(id, title, image, description, view, updatedAt);
     }
 
 }

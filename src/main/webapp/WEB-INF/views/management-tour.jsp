@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
@@ -55,58 +56,23 @@
                 <div class="tbl-content">
                     <table cellpadding="0" cellspacing="0" border="0">
                         <tbody>
-                        <tr>
-                            <td>
-                                <a href="#">Công viên suối khoáng nóng Núi Thần Tài</a>
-                            </td>
-                            <td>QL14G - Hoà Phú - Hòa Vang - Đà Nẵng</td>
-                            <td>48 giờ</td>
-                            <td>Vé cáp treo</td>
-                            <td>681.000</td>
-                            <td>700.000</td>
-                            <td>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Xóa</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="#">Công viên suối khoáng nóng Núi Thần Tài</a>
-                            </td>
-                            <td>QL14G - Hoà Phú - Hòa Vang - Đà Nẵng</td>
-                            <td>48 giờ</td>
-                            <td>Vé cáp treo</td>
-                            <td>681.000</td>
-                            <td>700.000</td>
-                            <td>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Xóa</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="#">Công viên suối khoáng nóng Núi Thần Tài</a>
-                            </td>
-                            <td>QL14G - Hoà Phú - Hòa Vang - Đà Nẵng</td>
-                            <td>48 giờ</td>
-                            <td>Vé cáp treo</td>
-                            <td>681.000</td>
-                            <td>700.000</td>
-                            <td>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Xóa</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="#">Công viên suối khoáng nóng Núi Thần Tài</a>
-                            </td>
-                            <td>QL14G - Hoà Phú - Hòa Vang - Đà Nẵng</td>
-                            <td>48 giờ</td>
-                            <td>Vé cáp treo</td>
-                            <td>681.000</td>
-                            <td>700.000</td>
-                            <td>
-                                <button type="button" class="btn btn-outline-danger btn-sm">Xóa</button>
-                            </td>
-                        </tr>
+                            <c:forEach items="${listTour}" var="lTour">
+                                <c:if test="${not lTour.deleted}">
+                                    <tr>
+                                        <td>
+                                            <a href="#">${lTour.name}</a>
+                                        </td>
+                                        <td>${lTour.address}</td>
+                                        <td>${lTour.policy} giờ</td>
+                                        <td>${lTour.service}</td>
+                                        <td>${lTour.price}</td>
+                                        <td>${lTour.normalPrice}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-outline-danger btn-sm">Xóa</button>
+                                        </td>
+                                    </tr>
+                                </c:if>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -131,7 +97,11 @@
 <script>
     $(document).ready(function () {
 
+        // Hiệu ứng menu login
         navbarSubMenu();
+
+        //Thêm active cho link hiện tại
+        activeLinkNav();
 
     });
 </script>
