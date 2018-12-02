@@ -1,46 +1,54 @@
 package edu.poly.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class OrderDTO {
     private Integer orderID;
     private String customerName;
     private String serviceName;
     private String userEmail;
-    private Integer payment;
+    private String payment;
     private Boolean isPurchased;
     private Date orderDate;
+    private String tourName;
+    private String tourAddress;
     private String note;
+    private String offercode;
+    private String offerdeal;
     private String phoneUser;
     private String serviceDate;
     private String totalPrice;
     private String totalPriceAfter;
+    private List<TicketDetailDTO> ticketDetailDTOList;
 
     public OrderDTO() {
     }
 
-    public OrderDTO(Integer orderID, String customerName, String serviceName, String userEmail, Integer payment, Boolean isPurchased, Date orderDate, String note, String phoneUser, String serviceDate, String totalPrice, String totalPriceAfter) {
-        this.orderID = orderID;
-        this.customerName = customerName;
-        this.serviceName = serviceName;
-        this.userEmail = userEmail;
-        this.payment = payment;
-        this.isPurchased = isPurchased;
-        this.orderDate = orderDate;
-        this.note = note;
-        this.phoneUser = phoneUser;
-        this.serviceDate = serviceDate;
-        this.totalPrice = totalPrice;
-        this.totalPriceAfter = totalPriceAfter;
+    public String getTourName() {
+        return tourName;
     }
 
-    public Integer getPayment() {
-        return payment;
+    public void setTourName(String tourName) {
+        this.tourName = tourName;
     }
 
-    public void setPayment(Integer payment) {
-        this.payment = payment;
+    public String getOffercode() {
+        return offercode;
     }
+
+    public void setOffercode(String offercode) {
+        this.offercode = offercode;
+    }
+
+    public String getOfferdeal() {
+        return offerdeal;
+    }
+
+    public void setOfferdeal(String offerdeal) {
+        this.offerdeal = offerdeal;
+    }
+
 
     public Integer getOrderID() {
         return orderID;
@@ -74,6 +82,34 @@ public class OrderDTO {
         this.userEmail = userEmail;
     }
 
+    public OrderDTO(Integer orderID, String customerName, String serviceName, String userEmail, String payment, Boolean isPurchased, Date orderDate, String tourName, String tourAddress, String note, String offercode, String offerdeal, String phoneUser, String serviceDate, String totalPrice, String totalPriceAfter, List<TicketDetailDTO> ticketDetailDTOList) {
+        this.orderID = orderID;
+        this.customerName = customerName;
+        this.serviceName = serviceName;
+        this.userEmail = userEmail;
+        this.payment = payment;
+        this.isPurchased = isPurchased;
+        this.orderDate = orderDate;
+        this.tourName = tourName;
+        this.tourAddress = tourAddress;
+        this.note = note;
+        this.offercode = offercode;
+        this.offerdeal = offerdeal;
+        this.phoneUser = phoneUser;
+        this.serviceDate = serviceDate;
+        this.totalPrice = totalPrice;
+        this.totalPriceAfter = totalPriceAfter;
+        this.ticketDetailDTOList = ticketDetailDTOList;
+    }
+
+    public String getPayment() {
+        return payment;
+    }
+
+    public void setPayment(String payment) {
+        this.payment = payment;
+    }
+
     public Boolean getPurchased() {
         return isPurchased;
     }
@@ -88,6 +124,14 @@ public class OrderDTO {
 
     public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
+    }
+
+    public String getTourAddress() {
+        return tourAddress;
+    }
+
+    public void setTourAddress(String tourAddress) {
+        this.tourAddress = tourAddress;
     }
 
     public String getNote() {
@@ -128,5 +172,13 @@ public class OrderDTO {
 
     public void setTotalPriceAfter(String totalPriceAfter) {
         this.totalPriceAfter = totalPriceAfter;
+    }
+
+    public List<TicketDetailDTO> getTicketDetailDTOList() {
+        return ticketDetailDTOList;
+    }
+
+    public void setTicketDetailDTOList(List<TicketDetailDTO> ticketDetailDTOList) {
+        this.ticketDetailDTOList = ticketDetailDTOList;
     }
 }

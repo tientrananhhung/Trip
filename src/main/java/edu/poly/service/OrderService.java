@@ -30,4 +30,5 @@ public interface OrderService {
 
     public Orders getById(Integer id);
 
+    public Integer sumPurchased(Integer userID,Boolean purchased);
 }

@@ -26,4 +26,6 @@ public class FoodDAO extends JdbcDaoSupport {
         List<FoodDTO> listDTO = this.getJdbcTemplate().query(sql, params, mapper);
         return listDTO;
     }
+
+
 }

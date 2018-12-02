@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -60,38 +61,42 @@
                 + Cửa hàng đang kinh doanh ẩm thực, thời trang, spa, giải trí,..
             </b><br>
         </p>
-
+<c:if test="${userInfo.role == 3}">
         <div class="f-partner mg-top-30 mg-bottom-30">
-            <form action="">
+            <f:form action="/doitac/dangky" modelAttribute="partner">
                 <div class="form-row">
                     <div class="form-group col-md-5">
-                        <label for="name">Tên hiển thị</label>
-                        <input type="text" class="form-control" id="name" placeholder="Điền tên hiển thị">
+                        <label>Tên hiển thị</label>
+                        <f:input type="text" required="true" class="form-control" path="name" placeholder="Điền tên hiển thị"/>
+                        <f:errors path="name" cssStyle="color:red;display:block"></f:errors>
                     </div>
                     <div class="form-group col-md-1"></div>
                     <div class="form-group col-md-5">
-                        <label for="phone">Số điện thoại</label>
-                        <input type="text" class="form-control" id="phone" placeholder="Điền số điện thoại">
+                        <label >Số điện thoại</label>
+                        <f:input type="text"  required="true" class="form-control" path="phone" placeholder="Điền số điện thoại"/>
+                        <f:errors path="phone" cssStyle="color:red;display:block"></f:errors>
                     </div>
                     <div class="form-group col-md-5">
-                        <label for="address">Địa chỉ</label>
-                        <input type="text" class="form-control" id="address" placeholder="Điền địa chỉ">
+                        <label >Địa chỉ</label>
+                        <f:input type="text" required="true" class="form-control" path="address" placeholder="Điền địa chỉ"/>
+                        <f:errors path="address" cssStyle="color:red;display:block"></f:errors>
                     </div>
                     <div class="form-group col-md-1"></div>
                     <div class="form-group col-md-5">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Điền địa chỉ">
+                        <label >Email</label>
+                        <f:input type="email" required="true" class="form-control" path="email" placeholder="Điền email"/>
+                        <f:errors path="email" cssStyle="color:red;display:block"></f:errors>
                     </div>
                 </div>
                 <div class="col-lg-12 mg-top-20" style="text-align: center">
                     <button type="submit" class="btn btn-outline-success my-2 my-sm-0 btn-custom btn-choose-ticket" style="vertical-align: top; width: 200px;">
                         <span>Đăng ký</span>
                     </button>
-                    <p>Chúng tôi sẽ email cho bạn sau khi nhận được thông tin đăng ký.</p>
+                    <p>Chúng tôi sẽ email cho bạn sau khi nhận được thông tin đăng ký và kích hoạt tài khoản.</p>
                 </div>
-            </form>
+            </f:form>
         </div>
-
+</c:if>
     </section>
 
 </div>

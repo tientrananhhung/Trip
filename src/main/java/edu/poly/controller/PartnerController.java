@@ -157,8 +157,9 @@ public class PartnerController {
         pn.setActived(active);
         try{
             partner.update(pn);
-//            mailTest.mailSend(pn.getEmail(), MailContent.ACTIVE_USER(pn.getEmail(),pn.getName()),"Kích hoạt thành viên SmartTrip");
-
+            if(active == true){
+                mailTest.mailSend(pn.getEmail(), MailContent.ACTIVE_PARTNER(pn.getUsersByUserId().getName(),pn.getName(),pn.getPhone(),pn.getAddress(),pn.getEmail()),"Kích hoạt đối tác SmartTrip");
+            }
         } catch (Exception ex){
             ex.printStackTrace();
         }

@@ -2,6 +2,7 @@ package edu.poly.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.poly.common.CheckSession;
 import edu.poly.common.Constants;
 import edu.poly.common.PasswordUtils;
 import edu.poly.common.TimeUtils;
@@ -9,14 +10,15 @@ import edu.poly.dao.FoodDAO;
 import edu.poly.dao.PostIndexDAO;
 import edu.poly.dao.TourDAO;
 import edu.poly.dao.TourDetailDAO;
-import edu.poly.entity.Offers;
-import edu.poly.entity.Orders;
-import edu.poly.entity.Services;
-import edu.poly.entity.Users;
+import edu.poly.entity.*;
 import edu.poly.impl.*;
 import edu.poly.model.*;
+import edu.poly.valaditor.PartnerValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -46,6 +48,8 @@ public class UserController {
     public static final String ADMIN_SCREEN = "admin";
 
     public static final String PROCESSING_ORDER = "processing-order";
+
+public static final String REGISTER_PARTNER_SCREEN = "partner";
 
 
     //Return tour detail page
@@ -84,8 +88,19 @@ public class UserController {
     @Autowired
     TourDetailDAO tourDetailDAO;
 
+    @Autowired
+    PartnerImpl partner;
+
+    @Autowired
+    PartnerValidator partnerValidator;
+
     public static final String INDEX_SCREEN = "index";
     public static final String PROCESSING_ORDER_SCREEN = "processing-order";
+
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+        binder.addValidators(partnerValidator);
+    }
 
     @GetMapping(Constants.Characters.BLANK)
     public ModelAndView index(HttpSession session, HttpServletRequest rq) {
@@ -303,16 +318,47 @@ public class UserController {
             orders.setPurchased(false);
             orders.setCreatedAt(TimeUtils.getCurrentTime());
             orders.setUpdatedAt(TimeUtils.getCurrentTime());
-
             order.save(orders);
-
             mav.setViewName("redirect:/");
-
         } catch (IOException ex) {
             ex.printStackTrace();
             mav.setViewName("redirect:/" + Constants.Url.GET_PROCESSING_ORDER_URL);
         }
+        return mav;
+    }
 
+    @GetMapping(Constants.Url.REGISTER_PARNER)
+    public ModelAndView showRegisterParnerPage(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+       mav.addObject("partner", new Partners());
+       mav.setViewName(REGISTER_PARTNER_SCREEN);
+        return mav;
+    }
+
+    @PostMapping(Constants.Url.REGISTER_PARNER)
+    public ModelAndView addPartner(HttpSession session, @Validated @ModelAttribute("partner") Partners partners, BindingResult result) {
+        ModelAndView mav = new ModelAndView();
+        if(result.hasErrors()) {
+            mav.setViewName(REGISTER_PARTNER_SCREEN);
+            return mav;
+        }
+//        if (!CheckSession.admin(session)) {
+//            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+//            return mav;
+//        }
+        try {
+            partners.setCreatedAt(TimeUtils.getCurrentTime());
+            partners.setUpdatedAt(TimeUtils.getCurrentTime());
+            partners.setActived(false);
+            partners.setDeleted(false);
+            Users users = (Users) session.getAttribute("userInfo");
+            partners.setUserId(users.getId());
+            partner.save(partners);
+            user.updateRoleUser(2,users.getId());
+            mav.setViewName("redirect:/");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
         return mav;
     }
 

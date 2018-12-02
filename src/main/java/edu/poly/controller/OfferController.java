@@ -64,9 +64,7 @@ public class OfferController {
             mav.setViewName("redirect:" + Constants.Url.LOGIN);
             return mav;
         }
-        System.out.println(offers.getCode());
         try{
-
             offers.setUsed(false);
             offers.setCreatedAt(TimeUtils.getCurrentTime());
             offers.setUpdatedAt(TimeUtils.getCurrentTime());

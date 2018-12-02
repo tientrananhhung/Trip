@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <!-- Required meta tags -->
@@ -19,13 +20,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/flag-icon-css/css/flag-icon.min.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css" />">
-    <!-- endinject -->
-    <!-- plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
-    <!-- endinject -->
-    <link rel="shortcut icon" href="<c:url value="/resources/images/favicon.png"/>">
 <body>
 <div class="container-scroller">
     <jsp:include page="../include/nav-bar.jsp"/>
@@ -60,7 +55,6 @@
                                         <th>Note</th>
                                         <th>Payment</th>
                                         <th>Purchased</th>
-                                        <th>Menu</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -69,13 +63,15 @@
                                             <th>${order.customerName}</th>
                                             <td>${order.phoneUser}</td>
                                             <td>${order.serviceName}</td>
-                                            <td>${order.orderDate}</td>
+                                            <td>
+                                                <f:formatDate type = "both" dateStyle = "short" timeStyle = "medium" value = "${order.orderDate}" />
+                                            </td>
                                             <td>${order.serviceDate}</td>
                                             <td>${order.totalPriceAfter}</td>
                                             <td>${order.note}</td>
                                             <td>
                                                 <c:choose>
-                                                    <c:when test="${order.payment == 1}">
+                                                    <c:when test="${order.payment.equals('Chuyển khoản')}">
                                                         <label class="badge badge-primary">Bank</label>
                                                     </c:when>
                                                     <c:otherwise>
@@ -89,16 +85,11 @@
                                                        <label class="badge badge-success">Purchased</label>
                                                    </c:when>
                                                    <c:otherwise>
-                                                       <a href="/admin/quan-ly-hoa-don/active/${order.orderID}/true">
+                                                       <a href="/admin/quan-ly-hoa-don/thanhtoan/${order.orderID}">
                                                            <label class="badge badge-danger">Unpaid</label></a>
                                                    </c:otherwise>
                                                </c:choose>
                                            </td>
-                                            <td>
-                                                <a href="/admin/quan-ly-hoa-don/xoa/${order.orderID}">
-                                                    <button class="btn btn-outline-danger">Delete</button>
-                                                </a>
-                                            </td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
@@ -136,6 +127,11 @@
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="<c:url value="/resources/js/data-table.js"/>"></script>
+<script>
+    $(document).ready(function () {
+        $('body').addClass('sidebar-icon-only');
+    });
+</script>
 <!-- End custom js for this page-->
 
 </body>

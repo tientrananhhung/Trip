@@ -1,4 +1,4 @@
-package edu.poly.controller;
+package edu.poly.model;
 
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 

@@ -121,6 +121,9 @@ public class Constants {
         //Active đối tác
         public static final String ACTIVE_PARNER = "/quan-ly-doi-tac/active/{id}/{active}";
 
+        //Đăng ký đối tác
+        public static final String REGISTER_PARNER = "/doitac/dangky";
+
         //Trang danh sách ưu đãi
         public static final String LIST_OFFER = "/quan-ly-uu-dai";
 
