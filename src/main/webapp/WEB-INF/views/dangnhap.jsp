@@ -115,7 +115,7 @@
 
                     <!-- Start form register order -->
                     <div id="f-register">
-                        <f:form method="POST" modelAttribute="register" action="dang-ky">
+                        <f:form method="POST" modelAttribute="register" action="dangky">
                             <div class="form-group">
                                 <label>Tên đăng nhập</label>
                                 <f:input path="username" type="text" class="form-control username"  placeholder="Xin vui lòng điền tên đăng nhập" required="true" autofocus="true" />
@@ -137,6 +137,7 @@
                             <div class="form-group">
                                 <label>Họ và Tên</label>
                                 <f:input type="text" class="form-control name" path="name" placeholder="Xin vui lòng điền họ và tên"
+                                       required="true"/>
                                        required="true"/>
                             </div>
 

@@ -963,7 +963,7 @@ body {
 }
 
 .main-information {
-    height: 100%;
+    /* height: 100%; */
     position: relative;
 }
 
@@ -972,13 +972,13 @@ body {
     float: left;
     margin-top: 0;
     font-size: 12px;
-    height: 100%;
+    /* height: 100%; */
 }
 
 .main-information .res-common-info {
     overflow: hidden;
     font-size: 14px;
-    height: 100%;
+    /* height: 100%; */
 }
 
 .main-info-title {

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Tien Tran
@@ -12,18 +13,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food Detail - Smart Trip</title>
     <!-- Icon -->
-    <link rel="icon" href="/resources/images/favicon.ico">
+    <link rel="icon" href="../resources/images/favicon.ico">
     <!-- Bootstrap css -->
-    <link rel="stylesheet" href="/resources/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../resources/css/bootstrap/bootstrap.min.css">
     <!-- OwlCarousel css -->
-    <link rel="stylesheet" href="/resources/css/owlcarousel/owl.carousel.min.css">
-    <link rel="stylesheet" href="/resources/css/owlcarousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../resources/css/owlcarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="../resources/css/owlcarousel/owl.theme.default.min.css">
     <!-- Star rating -->
-    <link rel="stylesheet" href="/resources/css/starrating/fontawesome-stars-o.css">
+    <link rel="stylesheet" href="../resources/css/starrating/fontawesome-stars-o.css">
     <!-- Fontawesome -->
-    <link rel="stylesheet" href="/resources/css/fontawesome/font-awesome.min.css">
+    <link rel="stylesheet" href="../resources/css/fontawesome/font-awesome.min.css">
     <!-- My css -->
-    <link rel="stylesheet" href="/resources/css/custom.css">
+    <link rel="stylesheet" href="../resources/css/custom.css">
 </head>
 <body style="background: #eee;">
 
@@ -38,7 +39,8 @@
                 <div class="col-lg-5">
                     <div class="foot-main-image">
                         <a href="#">
-                            <img src="images/food-head.jpg" alt="" class="pic-place" style="width: 100%; height: max-content;">
+                            <img src="../resources/images/${fooddetail.placeInfoImage}" alt="" class="pic-place"
+                                 style="width: 100%; height: max-content;">
                         </a>
                     </div>
                 </div>
@@ -49,7 +51,7 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">Đà Nẵng</a></li>
-                                        <li class="breadcrumb-item"><a href="#">Quận Thanh Khê</a></li>
+                                        <li class="breadcrumb-item"><a href="#">${fooddetail.districtName}</a></li>
                                         <li class="breadcrumb-item" aria-current="page">152 Lê Độ</li>
                                     </ol>
                                 </nav>
@@ -62,13 +64,15 @@
                                                 <tr>
                                                     <td class="center">
                                                         <div class="cfs-16">
-                                                            <span><i class="fa fa-cutlery c_orange" aria-hidden="true"></i> Loại quán</span>
+                                                            <span><i class="fa fa-cutlery c_orange"
+                                                                     aria-hidden="true"></i> Loại quán</span>
                                                         </div>
-                                                        <div class="cfs-14 pd-top-10">Café/Dessert</div>
+                                                        <div class="cfs-14 pd-top-10">${fooddetail.foodCategoryName}</div>
                                                     </td>
                                                     <td class="center">
                                                         <div class="cfs-16">
-                                                            <i class="fa fa-tag c_orange" aria-hidden="true"></i> Tầm giá
+                                                            <i class="fa fa-tag c_orange" aria-hidden="true"></i> Tầm
+                                                            giá
                                                         </div>
                                                         <div class="cfs-14 pd-top-10">10.000đ - 50.000đ</div>
                                                     </td>
@@ -76,15 +80,17 @@
                                                 <tr>
                                                     <td class="center">
                                                         <div class="cfs-16">
-                                                            <i class="fa fa-clock-o c_orange" aria-hidden="true"></i> Giờ mở cửa
+                                                            <i class="fa fa-clock-o c_orange" aria-hidden="true"></i>
+                                                            Giờ mở cửa
                                                         </div>
-                                                        <div class="cfs-14 pd-top-10">10:00 - 14:00</div>
+                                                        <div class="cfs-14 pd-top-10">${fooddetail.foodOpentime}</div>
                                                     </td>
                                                     <td class="center">
                                                         <div class="cfs-16">
-                                                            <i class="fa fa-map-marker c_orange" aria-hidden="true"></i> Địa chỉ
+                                                            <i class="fa fa-map-marker c_orange" aria-hidden="true"></i>
+                                                            Địa chỉ
                                                         </div>
-                                                        <div class="cfs-14 pd-top-10">152 Lê Độ - Q. Thanh Khê</div>
+                                                        <div class="cfs-14 pd-top-10">${fooddetail.placeInfoAddress}</div>
                                                     </td>
                                                 </tr>
                                                 </tbody>
@@ -107,306 +113,28 @@
                             <h3 class="food-box-heading">Thực đơn của quán</h3>
                         </div>
                         <div class="food-offers-box">
-                            <div class="food-box-menu-detail">
-                                <div class="img-food-detail">
-                                    <img src="images/food-dish1.jpg" alt="Smart Trip">
-                                </div>
-                                <div class="name-food-detail">
-                                    <h3>Salad gà</h3>
-                                    <div class="package-detail-more">
-                                        <button class="btn btn-detail">
-                                            <i class="fa fa-angle-right" aria-hidden="true"></i> Thông tin chi tiết
-                                        </button>
-                                        <div class="service-detail cfs-14">
-                                            * Bao gồm: <br>
-                                            - Vé vào cổng Bà Nà Hills <br>
-                                            - Vé cáp treo Bà Nà Hills 2 chiều <br>
-                                            - Vé vui chơi 105 trò chơi ở Khu vui chơi giải trí Fantasy Park và máng trượt Hiệp sỹ thần thoại <br>
-                                            - Vé tàu hỏa leo núi <br>
-                                            - Vé tham quan 9 vườn hoa, tham quan hầm rượu Debay. <br><br><br>
-                                            *Không bao gồm: <br>
-                                            - Vé tham quan Bảo tàng tượng sáp <br>
-                                            - Không bao gồm các trò chơi: gắp thú bông, kỹ năng carnival tại khu vui chơi giải trí Fantasy Park <br>
-                                            - Các chi phí cá nhân <br>
-                                            - Bữa trưa, chi phí ăn uống. <br>
+                            <c:forEach var="foodinfo" items="${fooddetail.foodInforDTOList}">
+                                <div class="food-box-menu-detail">
+                                    <div class="img-food-detail">
+                                        <img src="../resources/images/${foodinfo.images}" alt="${foodinfo.name}">
+                                    </div>
+                                    <div class="name-food-detail">
+                                        <h3>${foodinfo.name}</h3>
+                                        <div class="package-detail-more">
+                                            <button class="btn btn-detail">
+                                                <i class="fa fa-angle-right" aria-hidden="true"></i> Thông tin chi tiết
+                                            </button>
+                                            <div class="service-detail cfs-14">
+                                                    ${foodinfo.detail}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="food-price">
-                                    <span class="food-price-detail">42.000</span>
-                                    <span class="unit">đ</span>
-                                </div>
-                            </div>
-                            <div class="food-box-menu-detail">
-                                <div class="img-food-detail">
-                                    <img src="images/food-dish2.jpg" alt="Smart Trip">
-                                </div>
-                                <div class="name-food-detail">
-                                    <h3>Kimbap gạo lứt</h3>
-                                    <div class="package-detail-more">
-                                        <button class="btn btn-detail">
-                                            <i class="fa fa-angle-right" aria-hidden="true"></i> Thông tin chi tiết
-                                        </button>
-                                        <div class="service-detail cfs-14">
-                                            * Bao gồm: <br>
-                                            - Vé vào cổng Bà Nà Hills <br>
-                                            - Vé cáp treo Bà Nà Hills 2 chiều <br>
-                                            - Vé vui chơi 105 trò chơi ở Khu vui chơi giải trí Fantasy Park và máng trượt Hiệp sỹ thần thoại <br>
-                                            - Vé tàu hỏa leo núi <br>
-                                            - Vé tham quan 9 vườn hoa, tham quan hầm rượu Debay. <br><br>
-                                            *Không bao gồm: <br>
-                                            - Vé tham quan Bảo tàng tượng sáp <br>
-                                            - Không bao gồm các trò chơi: gắp thú bông, kỹ năng carnival tại khu vui chơi giải trí Fantasy Park <br>
-                                            - Các chi phí cá nhân <br>
-                                            - Bữa trưa, chi phí ăn uống. <br>
-                                        </div>
+                                    <div class="food-price">
+                                        <span class="food-price-detail"> ${foodinfo.price}</span>
+                                        <span class="unit">đ</span>
                                     </div>
                                 </div>
-                                <div class="food-price">
-                                    <span class="food-price-detail">42.000</span>
-                                    <span class="unit">đ</span>
-                                </div>
-                            </div>
-                            <div class="food-box-menu-detail">
-                                <div class="img-food-detail">
-                                    <img src="images/food-dish3.jpg" alt="Smart Trip">
-                                </div>
-                                <div class="name-food-detail">
-                                    <h3>Kimbap trắng</h3>
-                                    <div class="package-detail-more">
-                                        <button class="btn btn-detail">
-                                            <i class="fa fa-angle-right" aria-hidden="true"></i> Thông tin chi tiết
-                                        </button>
-                                        <div class="service-detail cfs-14">
-                                            * Bao gồm: <br>
-                                            - Vé vào cổng Bà Nà Hills <br>
-                                            - Vé cáp treo Bà Nà Hills 2 chiều <br>
-                                            - Vé vui chơi 105 trò chơi ở Khu vui chơi giải trí Fantasy Park và máng trượt Hiệp sỹ thần thoại <br>
-                                            - Vé tàu hỏa leo núi <br>
-                                            - Vé tham quan 9 vườn hoa, tham quan hầm rượu Debay. <br><br>
-                                            *Không bao gồm: <br>
-                                            - Vé tham quan Bảo tàng tượng sáp <br>
-                                            - Không bao gồm các trò chơi: gắp thú bông, kỹ năng carnival tại khu vui chơi giải trí Fantasy Park <br>
-                                            - Các chi phí cá nhân <br>
-                                            - Bữa trưa, chi phí ăn uống. <br>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="food-price">
-                                    <span class="food-price-detail">42.000</span>
-                                    <span class="unit">đ</span>
-                                </div>
-                            </div>
-                            <div class="food-box-menu-detail">
-                                <div class="img-food-detail">
-                                    <img src="images/food-dish4.jpg" alt="Smart Trip">
-                                </div>
-                                <div class="name-food-detail">
-                                    <h3>Salad cá</h3>
-                                    <div class="package-detail-more">
-                                        <button class="btn btn-detail">
-                                            <i class="fa fa-angle-right" aria-hidden="true"></i> Thông tin chi tiết
-                                        </button>
-                                        <div class="service-detail cfs-14">
-                                            * Bao gồm: <br>
-                                            - Vé vào cổng Bà Nà Hills <br>
-                                            - Vé cáp treo Bà Nà Hills 2 chiều <br>
-                                            - Vé vui chơi 105 trò chơi ở Khu vui chơi giải trí Fantasy Park và máng trượt Hiệp sỹ thần thoại <br>
-                                            - Vé tàu hỏa leo núi <br>
-                                            - Vé tham quan 9 vườn hoa, tham quan hầm rượu Debay. <br><br>
-                                            *Không bao gồm: <br>
-                                            - Vé tham quan Bảo tàng tượng sáp <br>
-                                            - Không bao gồm các trò chơi: gắp thú bông, kỹ năng carnival tại khu vui chơi giải trí Fantasy Park <br>
-                                            - Các chi phí cá nhân <br>
-                                            - Bữa trưa, chi phí ăn uống. <br>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="food-price">
-                                    <span class="food-price-detail">42.000</span>
-                                    <span class="unit">đ</span>
-                                </div>
-                            </div>
-                            <div class="food-box-menu-detail">
-                                <div class="img-food-detail">
-                                    <img src="images/food-dish5.jpg" alt="Smart Trip">
-                                </div>
-                                <div class="name-food-detail">
-                                    <h3>Salad bò</h3>
-                                    <div class="package-detail-more">
-                                        <button class="btn btn-detail">
-                                            <i class="fa fa-angle-right" aria-hidden="true"></i> Thông tin chi tiết
-                                        </button>
-                                        <div class="service-detail cfs-14">
-                                            * Bao gồm: <br>
-                                            - Vé vào cổng Bà Nà Hills <br>
-                                            - Vé cáp treo Bà Nà Hills 2 chiều <br>
-                                            - Vé vui chơi 105 trò chơi ở Khu vui chơi giải trí Fantasy Park và máng trượt Hiệp sỹ thần thoại <br>
-                                            - Vé tàu hỏa leo núi <br>
-                                            - Vé tham quan 9 vườn hoa, tham quan hầm rượu Debay. <br><br>
-                                            *Không bao gồm: <br>
-                                            - Vé tham quan Bảo tàng tượng sáp <br>
-                                            - Không bao gồm các trò chơi: gắp thú bông, kỹ năng carnival tại khu vui chơi giải trí Fantasy Park <br>
-                                            - Các chi phí cá nhân <br>
-                                            - Bữa trưa, chi phí ăn uống. <br>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="food-price">
-                                    <span class="food-price-detail">42.000</span>
-                                    <span class="unit">đ</span>
-                                </div>
-                            </div>
-                            <div class="food-box-menu-detail">
-                                <div class="img-food-detail">
-                                    <img src="images/food-dish6.jpg" alt="Smart Trip">
-                                </div>
-                                <div class="name-food-detail">
-                                    <h3>Salad cá (Phần lớn)</h3>
-                                    <div class="package-detail-more">
-                                        <button class="btn btn-detail">
-                                            <i class="fa fa-angle-right" aria-hidden="true"></i> Thông tin chi tiết
-                                        </button>
-                                        <div class="service-detail cfs-14">
-                                            * Bao gồm: <br>
-                                            - Vé vào cổng Bà Nà Hills <br>
-                                            - Vé cáp treo Bà Nà Hills 2 chiều <br>
-                                            - Vé vui chơi 105 trò chơi ở Khu vui chơi giải trí Fantasy Park và máng trượt Hiệp sỹ thần thoại <br>
-                                            - Vé tàu hỏa leo núi <br>
-                                            - Vé tham quan 9 vườn hoa, tham quan hầm rượu Debay. <br><br>
-                                            *Không bao gồm: <br>
-                                            - Vé tham quan Bảo tàng tượng sáp <br>
-                                            - Không bao gồm các trò chơi: gắp thú bông, kỹ năng carnival tại khu vui chơi giải trí Fantasy Park <br>
-                                            - Các chi phí cá nhân <br>
-                                            - Bữa trưa, chi phí ăn uống. <br>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="food-price">
-                                    <span class="food-price-detail">55.000</span>
-                                    <span class="unit">đ</span>
-                                </div>
-                            </div>
-                            <div class="food-box-menu-detail">
-                                <div class="img-food-detail">
-                                    <img src="images/food-dish7.jpg" alt="Smart Trip">
-                                </div>
-                                <div class="name-food-detail">
-                                    <h3>Salad bò (Phần lớn)</h3>
-                                    <div class="package-detail-more">
-                                        <button class="btn btn-detail">
-                                            <i class="fa fa-angle-right" aria-hidden="true"></i> Thông tin chi tiết
-                                        </button>
-                                        <div class="service-detail cfs-14">
-                                            * Bao gồm: <br>
-                                            - Vé vào cổng Bà Nà Hills <br>
-                                            - Vé cáp treo Bà Nà Hills 2 chiều <br>
-                                            - Vé vui chơi 105 trò chơi ở Khu vui chơi giải trí Fantasy Park và máng trượt Hiệp sỹ thần thoại <br>
-                                            - Vé tàu hỏa leo núi <br>
-                                            - Vé tham quan 9 vườn hoa, tham quan hầm rượu Debay. <br><br>
-                                            *Không bao gồm: <br>
-                                            - Vé tham quan Bảo tàng tượng sáp <br>
-                                            - Không bao gồm các trò chơi: gắp thú bông, kỹ năng carnival tại khu vui chơi giải trí Fantasy Park <br>
-                                            - Các chi phí cá nhân <br>
-                                            - Bữa trưa, chi phí ăn uống. <br>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="food-price">
-                                    <span class="food-price-detail">55.000</span>
-                                    <span class="unit">đ</span>
-                                </div>
-                            </div>
-                            <div class="food-box-menu-detail">
-                                <div class="img-food-detail">
-                                    <img src="images/food-dish8.jpg" alt="Smart Trip">
-                                </div>
-                                <div class="name-food-detail">
-                                    <h3>Gà sốt chanh dây</h3>
-                                    <div class="package-detail-more">
-                                        <button class="btn btn-detail">
-                                            <i class="fa fa-angle-right" aria-hidden="true"></i> Thông tin chi tiết
-                                        </button>
-                                        <div class="service-detail cfs-14">
-                                            * Bao gồm: <br>
-                                            - Vé vào cổng Bà Nà Hills <br>
-                                            - Vé cáp treo Bà Nà Hills 2 chiều <br>
-                                            - Vé vui chơi 105 trò chơi ở Khu vui chơi giải trí Fantasy Park và máng trượt Hiệp sỹ thần thoại <br>
-                                            - Vé tàu hỏa leo núi <br>
-                                            - Vé tham quan 9 vườn hoa, tham quan hầm rượu Debay. <br><br>
-                                            *Không bao gồm: <br>
-                                            - Vé tham quan Bảo tàng tượng sáp <br>
-                                            - Không bao gồm các trò chơi: gắp thú bông, kỹ năng carnival tại khu vui chơi giải trí Fantasy Park <br>
-                                            - Các chi phí cá nhân <br>
-                                            - Bữa trưa, chi phí ăn uống. <br>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="food-price">
-                                    <span class="food-price-detail">42.000</span>
-                                    <span class="unit">đ</span>
-                                </div>
-                            </div>
-                            <div class="food-box-menu-detail">
-                                <div class="img-food-detail">
-                                    <img src="images/food-dish9.jpg" alt="Smart Trip">
-                                </div>
-                                <div class="name-food-detail">
-                                    <h3>Đậu khuôn nhồi thịt</h3>
-                                    <div class="package-detail-more">
-                                        <button class="btn btn-detail">
-                                            <i class="fa fa-angle-right" aria-hidden="true"></i> Thông tin chi tiết
-                                        </button>
-                                        <div class="service-detail cfs-14">
-                                            * Bao gồm: <br>
-                                            - Vé vào cổng Bà Nà Hills <br>
-                                            - Vé cáp treo Bà Nà Hills 2 chiều <br>
-                                            - Vé vui chơi 105 trò chơi ở Khu vui chơi giải trí Fantasy Park và máng trượt Hiệp sỹ thần thoại <br>
-                                            - Vé tàu hỏa leo núi <br>
-                                            - Vé tham quan 9 vườn hoa, tham quan hầm rượu Debay. <br><br>
-                                            *Không bao gồm: <br>
-                                            - Vé tham quan Bảo tàng tượng sáp <br>
-                                            - Không bao gồm các trò chơi: gắp thú bông, kỹ năng carnival tại khu vui chơi giải trí Fantasy Park <br>
-                                            - Các chi phí cá nhân <br>
-                                            - Bữa trưa, chi phí ăn uống. <br>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="food-price">
-                                    <span class="food-price-detail">42.000</span>
-                                    <span class="unit">đ</span>
-                                </div>
-                            </div>
-                            <div class="food-box-menu-detail">
-                                <div class="img-food-detail">
-                                    <img src="images/food-dish9.jpg" alt="Smart Trip">
-                                </div>
-                                <div class="name-food-detail">
-                                    <h3>Sườn non rim ngọt</h3>
-                                    <div class="package-detail-more">
-                                        <button class="btn btn-detail">
-                                            <i class="fa fa-angle-right" aria-hidden="true"></i> Thông tin chi tiết
-                                        </button>
-                                        <div class="service-detail cfs-14">
-                                            * Bao gồm: <br>
-                                            - Vé vào cổng Bà Nà Hills <br>
-                                            - Vé cáp treo Bà Nà Hills 2 chiều <br>
-                                            - Vé vui chơi 105 trò chơi ở Khu vui chơi giải trí Fantasy Park và máng trượt Hiệp sỹ thần thoại <br>
-                                            - Vé tàu hỏa leo núi <br>
-                                            - Vé tham quan 9 vườn hoa, tham quan hầm rượu Debay. <br><br>
-                                            *Không bao gồm: <br>
-                                            - Vé tham quan Bảo tàng tượng sáp <br>
-                                            - Không bao gồm các trò chơi: gắp thú bông, kỹ năng carnival tại khu vui chơi giải trí Fantasy Park <br>
-                                            - Các chi phí cá nhân <br>
-                                            - Bữa trưa, chi phí ăn uống. <br>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="food-price">
-                                    <span class="food-price-detail">42.000</span>
-                                    <span class="unit">đ</span>
-                                </div>
-                            </div>
+                            </c:forEach>
                             <div class="center mg-top-10">
                                 <nav aria-label="navigation" style="overflow: hidden; display: inline-block;">
                                     <ul class="pagination">
@@ -435,14 +163,7 @@
                         </div>
                         <div class="food-offers-box">
                             <div class="food-store-description">
-                                <h3 style="text-align: center;">Quán đẹp</h3>
-                                <p>
-                                    Quán rất đẹp, đồ ăn rất ngon.<br>
-                                    Và đặc biệt luôn có ưu đãi cho khách hàng thường xuyên lui tới cửa tiệm<br>
-                                    Quán có đội ngũ nhân viên nhiệt tình và mến khách.<br>
-                                    Có đầu bếp 5 năm kinh nghiệp trong lĩnh vực ẩm thực.
-                                    <img src="images/food-description1.jpg" alt="">
-                                </p>
+                                ${fooddetail.content}
                             </div>
                         </div>
                     </div>
@@ -457,7 +178,8 @@
                             <h3 class="food-box-heading">Bản đồ</h3>
                         </div>
                         <div class="food-offers-box" style="text-align: center; padding-bottom: 20px">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3833.953147842485!2d108.19936231534777!3d16.067920888881766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314218528530f167%3A0x4e8740f7f741130f!2zMTUyIEzDqiDEkOG7mSwgQ2jDrW5oIEdpw6FuLCBRLiBUaGFuaCBLaMOqLCDEkMOgIE7hurVuZyA1NTAwMDAsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1540954923085" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3833.953147842485!2d108.19936231534777!3d16.067920888881766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314218528530f167%3A0x4e8740f7f741130f!2zMTUyIEzDqiDEkOG7mSwgQ2jDrW5oIEdpw6FuLCBRLiBUaGFuaCBLaMOqLCDEkMOgIE7hurVuZyA1NTAwMDAsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1540954923085"
+                                    width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
@@ -470,19 +192,19 @@
 <jsp:include page="includes/footer.jsp"/>
 
 <!-- Start Import Script -->
-<script type="text/javascript" src="js/jquery/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="js/popper/popper.min.js"></script>
-<script type="text/javascript" src="js/bootstrap/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/bootstrap/util.js"></script>
-<script type="text/javascript" src="js/sticky/jquery.sticky.js"></script>
-<script type="text/javascript" src="/resources/js/custom.js"></script>
+<script type="text/javascript" src="../resources/js/jquery/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../resources/js/popper/popper.min.js"></script>
+<script type="text/javascript" src="../resources/js/bootstrap/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="../resources/js/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="../resources/js/bootstrap/util.js"></script>
+<script type="text/javascript" src="../resources/js/sticky/jquery.sticky.js"></script>
+<script type="text/javascript" src="../resources/js/custom.js"></script>
 <!-- End Import Script -->
 <!-- Start All Script -->
 <script type="text/javascript">
 
     //sticky for info-store
-    $(document).ready(function() {
+    $(document).ready(function () {
         $(".info-store").sticky({
             topSpacing: 0,
             bottomSpacing: 450,
@@ -491,14 +213,14 @@
     });
 
     //Hide detail
-    $(function() {
+    $(function () {
 
         navbarSubMenu();
 
         //Cho nội dung thu lên
         $('.service-detail').slideUp();
 
-        $('.btn-detail').click(function(event) {
+        $('.btn-detail').click(function (event) {
             /* Act on the event */
             var a = $(this).attr('class');
             if (a != '' && a != undefined) {

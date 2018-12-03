@@ -22,7 +22,7 @@ public class FoodInfoDAO extends JdbcDaoSupport {
     }
 
     public List<FoodInforDTO> getAllFoodInfoByPlaceInfoID(Integer id) {
-        String sql = "SELECT food_infors.id, food_infors.`Name`, food_infors.Price, food_infors.Images, food_infors.Detail FROM food_infors WHERE place_infor_id = ?";
+        String sql = "SELECT food_infors.id as id, food_infors.`Name` as Name, food_infors.Price as Price, food_infors.Images as Images, food_infors.Detail as Detail FROM food_infors WHERE place_infor_id = ?";
         Object[] params = new Object[]{id};
         FoodInforMapper mapper = new FoodInforMapper();
         List<FoodInforDTO> listDTO = this.getJdbcTemplate().query(sql, params, mapper);

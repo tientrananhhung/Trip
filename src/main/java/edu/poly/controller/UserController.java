@@ -49,7 +49,7 @@ public static final String REGISTER_PARTNER_SCREEN = "partner";
     public static final String TOUR_DETAIL_SCREEN = "tour-detail";
 
     //Return login page
-    public static final String LOGIN_SCREEN = "login";
+    public static final String LOGIN_SCREEN = "dangnhap";
 
     //Return error 500 page
     public static final String ERROR500 = "error500";
@@ -89,6 +89,9 @@ public static final String REGISTER_PARTNER_SCREEN = "partner";
 
     @Autowired
     FoodDetailDAO foodDetailDAO;
+
+    @Autowired
+    FoodInfoDAO foodInfoDAO;
 
     public static final String INDEX_SCREEN = "index";
     public static final String PROCESSING_ORDER_SCREEN = "processing-order";
@@ -402,8 +405,11 @@ public ModelAndView registerCustomer(@ModelAttribute("register") Users users){
         ModelAndView mav = new ModelAndView(FOOD_DETAIL_SCREEN);
         try {
             FoodDetailDTO foodDetailDTO = foodDetailDAO.getFoodDetailDTO(id);
+           List<FoodInforDTO> foodInforDTOList = foodInfoDAO.getAllFoodInfoByPlaceInfoID(foodDetailDTO.getPlaceInfoID());
+           foodDetailDTO.setFoodInforDTOList(foodInforDTOList);
             mav.addObject("fooddetail", foodDetailDTO);
         } catch (Exception e) {
+            e.printStackTrace();
             mav.setViewName(HOME_SCREEN);
         }
         return mav;

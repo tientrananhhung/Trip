@@ -15,12 +15,13 @@ private String foodCategoryName;
 private Integer foodCategoryID;
 private String districtName;
 private Integer districtID;
+private String content;
 private List<FoodInforDTO> foodInforDTOList;
 
     public FoodDetailDTO() {
     }
 
-    public FoodDetailDTO(Integer placeInfoID, String placeInfoImage, String placeInfoLng, String placeInfoLat, String placeInfoPhone, String placeInfoAddress, String placeInfoName, String foodOpentime, String foodCategoryName, Integer foodCategoryID, String districtName, Integer districtID, List<FoodInforDTO> foodInforDTOList) {
+    public FoodDetailDTO(Integer placeInfoID, String placeInfoImage, String placeInfoLng, String placeInfoLat, String placeInfoPhone, String placeInfoAddress, String placeInfoName, String foodOpentime, String foodCategoryName, Integer foodCategoryID, String districtName, Integer districtID,String content, List<FoodInforDTO> foodInforDTOList) {
         this.placeInfoID = placeInfoID;
         this.placeInfoImage = placeInfoImage;
         this.placeInfoLng = placeInfoLng;
@@ -34,6 +35,15 @@ private List<FoodInforDTO> foodInforDTOList;
         this.districtName = districtName;
         this.districtID = districtID;
         this.foodInforDTOList = foodInforDTOList;
+        this.content = content;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public Integer getPlaceInfoID() {

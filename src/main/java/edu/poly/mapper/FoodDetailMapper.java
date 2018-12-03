@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FoodDetailMapper implements RowMapper<FoodDetailDTO> {
@@ -30,8 +31,10 @@ public class FoodDetailMapper implements RowMapper<FoodDetailDTO> {
         Integer foodCategoryID = resultSet.getInt("foodCategoryID");
         String districtName = resultSet.getString("districtName");
         Integer districtID = resultSet.getInt("districtID");
-        List<FoodInforDTO> foodInforDTOList = foodInfoDAO.getAllFoodInfoByPlaceInfoID(placeInfoID);
-        return new FoodDetailDTO(placeInfoID, placeInfoImages, placeInfoLng, placeInfoLat, placeInfoPhone, placeInfoAddress, placeInfoName,foodOpentime,foodCategoryName,foodCategoryID,districtName,districtID,foodInforDTOList);
+        String content = resultSet.getString("content");
+        List<FoodInforDTO> foodInforDTOList = new ArrayList<FoodInforDTO>();
+
+        return new FoodDetailDTO(placeInfoID, placeInfoImages, placeInfoLng, placeInfoLat, placeInfoPhone, placeInfoAddress, placeInfoName,foodOpentime,foodCategoryName,foodCategoryID,districtName,districtID,content,foodInforDTOList);
     }
 
 
