@@ -7,18 +7,18 @@ public class PostIndexDTO {
     private Integer id;
     private String title;
     private String image;
-    private String content;
+    private String description;
     private Integer view;
     private Date updatedAt;
 
     public PostIndexDTO() {
     }
 
-    public PostIndexDTO(Integer id, String title, String image, String content, Integer view, Date updatedAt) {
+    public PostIndexDTO(Integer id, String title, String image, String description, Integer view, Date updatedAt) {
         this.id = id;
         this.title = title;
         this.image = image;
-        this.content = content;
+        this.description = description;
         this.view = view;
         this.updatedAt = updatedAt;
     }
@@ -47,12 +47,12 @@ public class PostIndexDTO {
         this.image = image;
     }
 
-    public String getContent() {
-        return content;
+    public String getDescription() {
+        return description;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Integer getView() {
