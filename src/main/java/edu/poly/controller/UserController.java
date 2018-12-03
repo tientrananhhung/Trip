@@ -3,10 +3,7 @@ package edu.poly.controller;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.poly.common.*;
-import edu.poly.dao.FoodDAO;
-import edu.poly.dao.PostIndexDAO;
-import edu.poly.dao.TourDAO;
-import edu.poly.dao.TourDetailDAO;
+import edu.poly.dao.*;
 import edu.poly.entity.*;
 import edu.poly.impl.*;
 import edu.poly.model.*;
@@ -52,7 +49,7 @@ public static final String REGISTER_PARTNER_SCREEN = "partner";
     public static final String TOUR_DETAIL_SCREEN = "tour-detail";
 
     //Return login page
-    public static final String LOGIN_SCREEN = "dangnhap";
+    public static final String LOGIN_SCREEN = "login";
 
     //Return error 500 page
     public static final String ERROR500 = "error500";
@@ -87,12 +84,18 @@ public static final String REGISTER_PARTNER_SCREEN = "partner";
     @Autowired
     PartnerImpl partner;
 
+    @Autowired
+    PartnerValidator partnerValidator;
+
+    @Autowired
+    FoodDetailDAO foodDetailDAO;
 
     public static final String INDEX_SCREEN = "index";
     public static final String PROCESSING_ORDER_SCREEN = "processing-order";
 
+
     @GetMapping(Constants.Characters.BLANK)
-    public ModelAndView index(HttpSession session) {
+    public ModelAndView index(HttpSession session, HttpServletRequest rq) {
         ModelAndView mav = new ModelAndView(HOME_SCREEN);
         try {
 //            rq.getSession().setAttribute("login", new Users());
@@ -347,8 +350,11 @@ public ModelAndView registerCustomer(@ModelAttribute("register") Users users){
             orders.setPurchased(false);
             orders.setCreatedAt(TimeUtils.getCurrentTime());
             orders.setUpdatedAt(TimeUtils.getCurrentTime());
+
             order.save(orders);
+
             mav.setViewName("redirect:/");
+
         } catch (IOException ex) {
             ex.printStackTrace();
             mav.setViewName("redirect:/" + Constants.Url.GET_PROCESSING_ORDER_URL);
@@ -391,4 +397,15 @@ public ModelAndView registerCustomer(@ModelAttribute("register") Users users){
         return mav;
     }
 
+    @GetMapping(Constants.Url.FOOD_DETAIL_URL)
+    public ModelAndView showFoodDetail(@PathVariable("id") int id) {
+        ModelAndView mav = new ModelAndView(FOOD_DETAIL_SCREEN);
+        try {
+            FoodDetailDTO foodDetailDTO = foodDetailDAO.getFoodDetailDTO(id);
+            mav.addObject("fooddetail", foodDetailDTO);
+        } catch (Exception e) {
+            mav.setViewName(HOME_SCREEN);
+        }
+        return mav;
+    }
 }

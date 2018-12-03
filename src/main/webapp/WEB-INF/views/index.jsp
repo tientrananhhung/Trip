@@ -249,7 +249,7 @@
                             <div class="item" data-toggle="tooltip" data-placement="top"
                                  title="${lFood.name}">
                                 <div class="card">
-                                    <a href="#">
+                                    <a href="/food/${lFood.id}">
                                         <img class="card-img-top" src="/resources/images/${lFood.image}" style="height: 210px;"
                                              alt="Card image cap">
                                         <div class="card-body">

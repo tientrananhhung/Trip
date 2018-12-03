@@ -54,7 +54,7 @@
                                     </ol>
                                 </nav>
                                 <div class="main-info-title mg-top-20">
-                                    <h2>Tastii Healthy Food Tastii Healthy Food Tastii Healthy Food Tastii Healthy Food Tastii Healthy Food</h2>
+                                    <h2>${fooddetail.placeInfoName}</h2>
                                     <div class="food-info mg-top-20">
                                         <div class="properties">
                                             <table class="table table-bordered">
