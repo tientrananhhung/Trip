@@ -45,7 +45,7 @@ public class SendMailController {
     public ModelAndView forgotUserToken(@PathVariable("token") String token) {
         ModelAndView mav = new ModelAndView();
         Users us = user.getByToken(token);
-if( TimeUtils.getCurrentTime().getTime() - us.getUpdatedAt().getTime() > 600000) {
+if( us == null || TimeUtils.getCurrentTime().getTime() - us.getUpdatedAt().getTime() > 600000) {
     mav.setViewName("redirect:/" + Constants.Characters.BLANK);
 } else{
 mav.addObject("id",us.getId());

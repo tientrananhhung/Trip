@@ -49,7 +49,7 @@ public class LoginController {
     }
 
     @PostMapping(Constants.Characters.BLANK)
-    public ModelAndView loginProgess(@ModelAttribute("login") Users users, HttpServletRequest rq) {
+    public ModelAndView loginProgess(@ModelAttribute("login") Users users, HttpSession session) {
         ModelAndView mav = new ModelAndView();
         Users login = new Users();
         Users userLogin = user.login(users.getUsername(), PasswordUtils.md5(users.getPassword()));
@@ -59,9 +59,13 @@ public class LoginController {
             }  else if(userLogin.getRole() == Constants.Role.PARTNER) {
                 mav.setViewName("redirect:" + Constants.Url.ADMIN_PAGE_URL);
             }else if(userLogin.getRole() == Constants.Role.USER) {
-                mav.setViewName("redirect:/" );
+               if(session.getAttribute("sessionScope") != null){
+                   mav.setViewName("redirect:/" );
+               } else {
+                   mav.setViewName("redirect:/" );
+               }
             }
-            rq.getSession().setAttribute(Constants.SessionKey.USER, userLogin);
+            session.setAttribute(Constants.SessionKey.USER, userLogin);
         } else {
             mav.setViewName(LOGIN_SCREEN);
             mav.addObject("notify", "Tài khoản hoặc mật khẩu không chính xác!");

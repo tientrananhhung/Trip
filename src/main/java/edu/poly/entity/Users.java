@@ -122,7 +122,6 @@ public class Users {
     }
 
     @Basic
-    @NotNull
     @Column(name = "Gender", nullable = true)
     public Boolean getGender() {
         return gender;

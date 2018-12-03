@@ -15,7 +15,7 @@ public class LogoutController {
     public ModelAndView logoutProcess(HttpSession session) {
 
         session.invalidate();
-        return new ModelAndView("redirect:" + Constants.Url.LOGIN);
+        return new ModelAndView("redirect:/" );
     }
 
 }

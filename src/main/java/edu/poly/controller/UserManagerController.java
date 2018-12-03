@@ -97,7 +97,7 @@ public class UserManagerController {
             String token = TokenUtils.getRandomString();
             users.setToken(token);
             user.save(users);
-            mailTest.mailSend(users.getEmail(),MailContent.ACTIVE_USER(users.getUsername(),users.getEmail(),users.getName(),token),"Kích hoạt thành viên SmartTrip");
+            mailTest.mailSend(users.getEmail(),MailContent.ACTIVE_USER(users.getUsername(),users.getEmail(),users.getName(),token,users.getPassword()),"Kích hoạt thành viên SmartTrip");
             mav.addObject("listUser", user.findAllByDeleted(false));
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_USER);
         } catch (Exception ex) {
@@ -147,6 +147,7 @@ public class UserManagerController {
         Users us = user.getById(id);
         us.setUpdatedAt(TimeUtils.getCurrentTime());
         us.setActive(active);
+        us.setToken("");
         user.update(us);
         mav.setViewName("redirect:/admin" + Constants.Url.LIST_USER);
         return mav;

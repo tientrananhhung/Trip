@@ -232,8 +232,7 @@
                                 <!-- Start Login Order -->
                                 <div id="choose-login-order">
                                     <div class="card bg-light mg-top-20 card-login">
-                                        <div class="card-header bg-light order-card-head">Đăng nhập tài khoản Smart
-                                            Trip
+                                        <div class="card-header bg-light order-card-head">Đăng nhập tài khoản Smart Trip
                                         </div>
                                         <div class="card-body card-body-login" style="padding: 24px;">
 

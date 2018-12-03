@@ -40,15 +40,15 @@ public class PartnerValidator implements Validator {
             Partners pn = partner.getById(partners.getUserId());
             if (!partners.getEmail().equals(pn.getEmail())) {
                 if (partner.existsByEmail(partners.getEmail())) {
-                    err.rejectValue("email", "users.email.invalid");
+                    err.rejectValue("email", "partners.email.invalid");
                 }
             }
             if (!partners.getPhone().equals(pn.getPhone())) {
                 if (partner.existsByPhone(partners.getPhone())) {
-                    err.rejectValue("phone", "users.phone.invalid");
+                    err.rejectValue("phone", "partners.phone.invalid");
                 }
                 if (!partners.getPhone().matches("(\\+)?\\d{10,11}")) {
-                    err.rejectValue("phone", "users.phone.typemismatch");
+                    err.rejectValue("phone", "partners.phone.typemismatch");
                 }
             }
         }

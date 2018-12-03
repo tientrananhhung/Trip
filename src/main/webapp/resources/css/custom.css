@@ -2526,4 +2526,11 @@ body.loading .modalLoading {
         left: 95px;
         top: 43px;
     }
+
+
+}
+.login-page{
+    background-repeat: no-repeat;
+    background-image: url('https://www.tripi.vn/blog/wp-content/uploads/2016/12/34192549076_5232b92601_o.jpg');
+    background-size: cover;
 }

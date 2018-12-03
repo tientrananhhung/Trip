@@ -144,6 +144,7 @@ public class PartnerController {
      * @pram active for get type active
      * @return url list user
      * */
+
     @GetMapping(Constants.Url.ACTIVE_PARNER)
     public ModelAndView statusPartner(HttpSession session, @PathVariable("id") int id,
                                       @PathVariable("active") boolean active) {

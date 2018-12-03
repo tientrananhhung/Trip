@@ -4,7 +4,7 @@ import edu.poly.model.OrderDTO;
 import edu.poly.model.TicketDetailDTO;
 
 public class MailContent {
-    public static String ACTIVE_USER(String userName, String email, String name, String token) {
+    public static String ACTIVE_USER(String userName, String email, String name, String token,String password) {
         String body = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional //EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\"><head>\n" +
                 "    <!--[if gte mso 9]><xml>\n" +
                 "     <o:OfficeDocumentSettings>\n" +
@@ -295,7 +295,7 @@ public class MailContent {
                 "</div>\n" +
                 "<div class=\"\">\n" +
                 "\t<div style=\"color:#283C4B;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;line-height:150%; padding-right: 30px; padding-left: 30px; padding-top: 10px; padding-bottom: 0px;\">\t\n" +
-                "\t\t<div style=\"font-size:12px;line-height:18px;color:#283C4B;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;text-align:left;\"><p style=\"margin: 0;font-size: 12px;line-height: 18px\"><span style=\"font-size: 14px; line-height: 21px;\">Mật khẩu: smarttrip</span></p></div>\t\n" +
+                "\t\t<div style=\"font-size:12px;line-height:18px;color:#283C4B;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;text-align:left;\"><p style=\"margin: 0;font-size: 12px;line-height: 18px\"><span style=\"font-size: 14px; line-height: 21px;\">Mật khẩu: "+password+"</span></p></div>\t\n" +
                 "\t</div>\n" +
                 "</div>\n" +
                 "<div class=\"\">\n" +

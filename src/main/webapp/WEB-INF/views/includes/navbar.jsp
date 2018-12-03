@@ -11,7 +11,7 @@
 <!-- Start Navbar Menu -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 0px;">
     <div class="container-fluid box-content-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             <img src="/resources/images/logo.png" alt="" style="height: 65px;">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -26,64 +26,67 @@
                 <a href="/blog/" class="nav-item menu-item">
                     <li class="nav-link">Blog Du Lịch</li>
                 </a>
-                <a href="#" class="nav-item menu-item">
+                <a href="/doitac/dangky" class="nav-item menu-item">
                     <li class="nav-link">Trở thành đối tác</li>
                 </a>
-                <a href="" class="nav-item menu-item" data-toggle="modal" data-target="#loginFormModal">
-                    <li class="nav-link">Đăng nhập</li>
-                </a>
-                <a href="" class="nav-item menu-item" data-toggle="modal" data-target="#signupFormModal">
-                    <li class="nav-link">Đăng ký</li>
-                </a>
+                <c:if test="${userInfo == null}">
+                    <a href="/dangnhap" class="nav-item menu-item">
+                        <li class="nav-link">Đăng nhập</li>
+                    </a>
+                    <a href="/dangky" class="nav-item menu-item">
+                        <li class="nav-link">Đăng ký</li>
+                    </a>
+                </c:if>
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm..." aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0 btn-custom-org" type="submit">Tìm kiếm</button>
             </form>
-
-            <ul class="navbar-nav flex-row d-none d-md-flex cnav-mb nav-info-user">
-                <li class="menu-item li-user-info">
-                    <a class="nav-item">
-                        <img src="/resources/images/avatar.png" alt="" class="img-avt rounded-circle">
+<c:if test="${userInfo != null}">
+    <ul class="navbar-nav flex-row d-none d-md-flex cnav-mb nav-info-user">
+        <li class="menu-item li-user-info">
+            <a class="nav-item">
+                <img src="/resources/images/avatar.png" alt="" class="img-avt rounded-circle">
+            </a>
+            <ul class="menu-dropdown-menu">
+                <li class="menu-dropdown-menu-item">
+                    <a href="/quan-ly/thong-tin">
+                        <div class="dropdown-menu-item">
+                            <i class="fa fa-user fa-fw " aria-hidden="true"></i>
+                            <span>Tài khoản</span>
+                        </div>
                     </a>
-
-                    <ul class="menu-dropdown-menu">
-                        <li class="menu-dropdown-menu-item">
-                            <a href="/quan-ly/thong-tin">
-                                <div class="dropdown-menu-item">
-                                    <i class="fa fa-user fa-fw " aria-hidden="true"></i>
-                                    <span>Tài khoản</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="menu-dropdown-menu-item">
-                            <a href="/quan-ly/tour">
-                                <div class="dropdown-menu-item">
-                                    <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>
-                                    <span>Quản lý tour</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="menu-dropdown-menu-item">
-                            <a href="/quan-ly/don-hang">
-                                <div class="dropdown-menu-item">
-                                    <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>
-                                    <span>Quản lý đơn hàng</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="menu-dropdown-menu-item">
-                            <a href="/dang-xuat">
-                                <div class="dropdown-menu-item">
-                                    <i class="fa fa-spinner fa-fw" aria-hidden="true"></i>
-                                    <span>Đăng xuất</span>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
+                </li>
+               <c:if test="${userInfo.role == 2}">
+                   <li class="menu-dropdown-menu-item">
+                       <a href="/quan-ly/tour">
+                           <div class="dropdown-menu-item">
+                               <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>
+                               <span>Quản lý tour</span>
+                           </div>
+                       </a>+
+                   </li>
+               </c:if>
+                <li class="menu-dropdown-menu-item">
+                    <a href="/quan-ly/don-hang">
+                        <div class="dropdown-menu-item">
+                            <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>
+                            <span>Quản lý đơn hàng</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="menu-dropdown-menu-item">
+                    <a href="/dang-xuat">
+                        <div class="dropdown-menu-item">
+                            <i class="fa fa-spinner fa-fw" aria-hidden="true"></i>
+                            <span>Đăng xuất</span>
+                        </div>
+                    </a>
                 </li>
             </ul>
-
+        </li>
+    </ul>
+</c:if>
         </div>
     </div>
 </nav>
