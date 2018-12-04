@@ -40,7 +40,7 @@
                         </c:if>
                         <%--<p class="font-weight-light c_red">Ahihi</p>--%>
 
-                        <f:form method="POST" modelAttribute="login" action="dangnhap">
+                        <f:form method="POST" modelAttribute="login" action="dang-nhap">
                             <div class="form-group">
                                 <label for="username">Tên đăng nhập</label>
                                     <%--<input id="username" type="type" class="form-control" name="username" value="" placeholder="Xin vui lòng điền tên đăng nhập" required autofocus>--%>
@@ -115,10 +115,11 @@
 
                     <!-- Start form register order -->
                     <div id="f-register">
-                        <f:form method="POST" modelAttribute="register" action="dangky">
+                        <f:form method="POST" modelAttribute="register" action="dang-ky">
                             <div class="form-group">
                                 <label>Tên đăng nhập</label>
                                 <f:input path="username" type="text" class="form-control username"  placeholder="Xin vui lòng điền tên đăng nhập" required="true" autofocus="true" />
+                                <f:errors path="username" cssStyle="color:red;display:block"></f:errors>
                             </div>
 
                             <div class="form-group">
@@ -126,24 +127,26 @@
                                 <f:input type="password" class="form-control password"
                                        path="password" placeholder="Xin vui lòng điền mật khẩu"
                                        required="true" data-eye="true" />
+                                <f:errors path="password" cssStyle="color:red;display:block"></f:errors>
                             </div>
 
                             <div class="form-group">
                                 <label>Email</label>
                                 <f:input type="email" class="form-control email" path="email"
                                        placeholder="Xin vui lòng điền địa chỉ email" required="true"/>
+                                <f:errors path="email" cssStyle="color:red;display:block"></f:errors>
                             </div>
 
                             <div class="form-group">
                                 <label>Họ và Tên</label>
-                                <f:input type="text" class="form-control name" path="name" placeholder="Xin vui lòng điền họ và tên"
-                                       required="true"/>
-                                       required="true"/>
+                                <f:input type="text" class="form-control name" path="name" placeholder="Xin vui lòng điền họ và tên" required="true"/>
+                                <f:errors path="name" cssStyle="color:red;display:block"></f:errors>
                             </div>
 
                             <div class="form-group">
                                 <label>Số điện thoại</label>
                                 <f:input type="tel"  class="form-control phone" path="phone"  placeholder="Xin vui lòng điền số điện thoại"  required="true" />
+                                <f:errors path="phone" cssStyle="color:red;display:block"></f:errors>
                             </div>
 
                             <div class="mg-bottom-10" style="display: flow-root;">

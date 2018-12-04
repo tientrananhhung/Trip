@@ -1265,7 +1265,7 @@ public class MailContent {
                 "                    Voucher ("+orderDTO.getOffercode()+")\n" +
                 "                </td>\n" +
                 "                <td>\n" +
-                "                   "+StringUtils.formatCurrency(orderDTO.getOfferdeal())+"\n" +
+                "                   -"+StringUtils.formatCurrency(orderDTO.getOfferdeal())+" đ" +
                 "                </td>\n" +
                 "                <td>\n" +
                 "                    1\n" +

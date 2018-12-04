@@ -30,10 +30,10 @@
                     <li class="nav-link">Trở thành đối tác</li>
                 </a>
                 <c:if test="${userInfo == null}">
-                    <a href="/dangnhap" class="nav-item menu-item">
+                    <a href="/dang-nhap" class="nav-item menu-item">
                         <li class="nav-link">Đăng nhập</li>
                     </a>
-                    <a href="/dangky" class="nav-item menu-item">
+                    <a href="/dang-ky" class="nav-item menu-item">
                         <li class="nav-link">Đăng ký</li>
                     </a>
                 </c:if>
