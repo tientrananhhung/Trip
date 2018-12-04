@@ -2118,8 +2118,7 @@ body.loading .modalLoading {
     color: #f56a00;
 }
 
-/* for custom scrollbar for webkit browser*/
-
+/* start for custom scrollbar for webkit browser*/
 .content-body-info .tbl-content::-webkit-scrollbar {
     width: 6px;
 }
@@ -2130,6 +2129,33 @@ body.loading .modalLoading {
 .content-body-info .tbl-content::-webkit-scrollbar-thumb {
     /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
     box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+/* end for custom scrollbar for webkit browser*/
+
+.img-tour img{
+    height: auto;
+}
+
+.img-tour{
+    height: 200px;
+    text-align: center;
+}
+
+#upload-photo-tour {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.file-input-tour {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#map {
+    width: 100%;
+    height: 400px;
+    background-color: grey;
 }
 
 
