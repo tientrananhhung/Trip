@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: T
@@ -16,22 +17,26 @@
                 </div>
             </a>
         </li>
-        <li class="li-menu-info">
-            <a href="/quan-ly/tour">
-                <div class="menu-left-item">
-                    <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>
-                    <span>Quản lý tour</span>
-                </div>
-            </a>
-        </li>
-        <li class="li-menu-info">
-            <a href="/quan-ly/bai-viet">
-                <div class="menu-left-item">
-                    <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>
-                    <span>Quản lý bài viết</span>
-                </div>
-            </a>
-        </li>
+        <c:if test="${userInfo.role == 2}">
+            <li class="li-menu-info">
+                <a href="/quan-ly/tour">
+                    <div class="menu-left-item">
+                        <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>
+                        <span>Quản lý tour</span>
+                    </div>
+                </a>
+            </li>
+        </c:if>
+        <c:if test="${userInfo.role == 2}">
+            <li class="li-menu-info">
+                <a href="/quan-ly/bai-viet">
+                    <div class="menu-left-item">
+                        <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>
+                        <span>Quản lý bài viết</span>
+                    </div>
+                </a>
+            </li>
+        </c:if>
         <li class="li-menu-info">
             <a href="/quan-ly/don-hang">
                 <div class="menu-left-item">

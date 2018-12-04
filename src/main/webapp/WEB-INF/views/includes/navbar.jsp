@@ -64,7 +64,7 @@
                                <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>
                                <span>Quản lý tour</span>
                            </div>
-                       </a>+
+                       </a>
                    </li>
                </c:if>
                 <li class="menu-dropdown-menu-item">
