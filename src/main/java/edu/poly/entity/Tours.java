@@ -3,6 +3,7 @@ package edu.poly.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -28,6 +29,17 @@ public class Tours {
     private Collection<Rates> ratesById;
     private Collection<Services> servicesById;
     private Users usersByUserId;
+
+    private CommonsMultipartFile[] fileData;
+
+    @Transient
+    public CommonsMultipartFile[] getFileData() {
+        return fileData;
+    }
+
+    public void setFileData(CommonsMultipartFile[] fileData) {
+        this.fileData = fileData;
+    }
 
     @Id
     @Column(name = "id", nullable = false)
