@@ -43,22 +43,6 @@
                      style="background-image: url('/resources/images/${imgTour}');"></div>
             </a>
         </c:forEach>
-
-            <%--<a tabindex="-1">--%>
-            <%--<div class="image-slider container-image" style="background-image: url('/resources/images/detail2.jpg');"></div>--%>
-            <%--</a>--%>
-            <%--<a tabindex="-1">--%>
-            <%--<div class="image-slider container-image" style="background-image: url('/resources/images/detail3.jpeg');"></div>--%>
-            <%--</a>--%>
-            <%--<a tabindex="-1">--%>
-            <%--<div class="image-slider container-image" style="background-image: url('/resources/images/detail4.jpg');"></div>--%>
-            <%--</a>--%>
-            <%--<a tabindex="-1">--%>
-            <%--<div class="image-slider container-image" style="background-image: url('/resources/images/detail5.jpg');"></div>--%>
-            <%--</a>--%>
-            <%--<a tabindex="-1">--%>
-            <%--<div class="image-slider container-image" style="background-image: url('/resources/images/detail6.jpg');"></div>--%>
-            <%--</a>--%>
     </div>
     <!-- End Carousel Slide -->
     <!-- Start Information of Tour -->
@@ -340,6 +324,10 @@
                             <c:forEach items="${listTourDetail}" var="lTourDetail">
                                 ${lTourDetail.content}
                             </c:forEach>
+                        </div>
+                        <div class="map-tour c_orange">
+                            <h3>Địa điểm</h3>
+                            <div id="map"></div>
                         </div>
                     </div>
                 </section>
@@ -719,7 +707,20 @@
         ajaxStop: function() { $('body').removeClass("loading"); }
     });
 
+    <c:forEach items="${listTourDetail}" var="lTourDetail" begin="0" end="0">
+        function initMap() {
+            // The location of Uluru
+            var uluru = {lat: ${lTourDetail.lat}, lng: ${lTourDetail.lng}};
+            // The map, centered at Uluru
+            var map = new google.maps.Map(
+                document.getElementById('map'), {zoom: 16, center: uluru});
+            // The marker, positioned at Uluru
+            var marker = new google.maps.Marker({position: uluru, map: map});
+        }
+    </c:forEach>
+
 </script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDawMp3IadhGe1AbQgDXGZM4CHfqDCNRYk&callback=initMap"></script>
 <!-- End All Script -->
 </body>
 </html>

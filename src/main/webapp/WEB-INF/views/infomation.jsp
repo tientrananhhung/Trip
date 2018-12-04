@@ -70,7 +70,7 @@
                             <div class="form-group col-md-3">
                                 <label for="birthday">Ngày sinh</label>
                                 <input class="form-control date-order" id="birthday" value=""
-                                       placeholder="Nhập ngày sinh">
+                                       placeholder="Chọn ngày sinh">
                             </div>
                         </div>
                         <div class="form-row">
@@ -126,6 +126,10 @@
             locale: {
                 format: 'DD/MM/YYYY'
             }
+        });
+
+        $('.date-order').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('DD/MM/YYYY'));
         });
 
     });
