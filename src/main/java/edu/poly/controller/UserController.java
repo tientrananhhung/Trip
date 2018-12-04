@@ -34,22 +34,19 @@ public class UserController {
     //Return category blog page
     public static final String CATEGORY_BLOG_SCREEN = "category-blog";
 
-    //Return food detail page
-    public static final String FOOD_DETAIL_SCREEN = "food-detail";
+
 
 
     public static final String ADMIN_SCREEN = "admin";
 
     public static final String PROCESSING_ORDER = "processing-order";
 
-public static final String REGISTER_PARTNER_SCREEN = "partner";
+    public static final String REGISTER_PARTNER_SCREEN = "partner";
 
 
     //Return tour detail page
     public static final String TOUR_DETAIL_SCREEN = "tour-detail";
 
-    //Return login page
-    public static final String LOGIN_SCREEN = "dangnhap";
 
     //Return error 500 page
     public static final String ERROR500 = "error500";
@@ -87,11 +84,6 @@ public static final String REGISTER_PARTNER_SCREEN = "partner";
     @Autowired
     PartnerValidator partnerValidator;
 
-    @Autowired
-    FoodDetailDAO foodDetailDAO;
-
-    @Autowired
-    FoodInfoDAO foodInfoDAO;
 
     public static final String INDEX_SCREEN = "index";
     public static final String PROCESSING_ORDER_SCREEN = "processing-order";
@@ -109,18 +101,6 @@ public static final String REGISTER_PARTNER_SCREEN = "partner";
             mav.addObject("listTour", lTourDTO);
             mav.addObject("listFood", lFoodDTO);
             mav.addObject("listPost", lPostIndexDTO);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return mav;
-    }
-
-    @GetMapping("dangnhap")
-    public ModelAndView dangNhap() {
-        ModelAndView mav = new ModelAndView(LOGIN_SCREEN);
-        try {
-            mav.addObject("register", new Users());
-            mav.addObject("login", new Users());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -166,63 +146,15 @@ public static final String REGISTER_PARTNER_SCREEN = "partner";
     }
 
     @GetMapping(Constants.Url.ACTIVE_USER_TOKEN)
-    public ModelAndView activeUser(@PathVariable("token") String token,HttpSession session) {
+    public ModelAndView activeUser(@PathVariable("token") String token, HttpSession session) {
         Users us = user.getByToken(token);
         us.setToken("");
         us.setActive(true);
         user.update(us);
-        session.setAttribute(Constants.SessionKey.USER,us);
+        session.setAttribute(Constants.SessionKey.USER, us);
         ModelAndView mav = new ModelAndView(HOME_SCREEN);
         return mav;
     }
-
-
-    @PostMapping("dangnhap")
-    public ModelAndView loginProgess(@ModelAttribute("login") Users users,HttpSession session) {
-        ModelAndView mav = new ModelAndView();
-        Users login = new Users();
-        Users userLogin = user.login(users.getUsername(), PasswordUtils.md5(users.getPassword()));
-        if (userLogin != null) {
-            if (userLogin.getRole() == Constants.Role.ADMIN || userLogin.getRole() == Constants.Role.MANAGER) {
-                mav.setViewName("redirect:" + Constants.Url.ADMIN_PAGE_URL);
-            }  else if(userLogin.getRole() == Constants.Role.PARTNER) {
-                mav.setViewName("redirect:" + Constants.Url.ADMIN_PAGE_URL);
-            }else if(userLogin.getRole() == Constants.Role.USER) {
-                if(session.getAttribute(Constants.SessionKey.ORDER_SESSION) != null){
-                    mav.setViewName("redirect:" + Constants.Url.GET_PROCESSING_ORDER_URL);
-                } else {
-                    mav.setViewName("redirect:/" );
-                }
-            }
-            session.setAttribute(Constants.SessionKey.USER, userLogin);
-        } else {
-            mav.setViewName(LOGIN_SCREEN);
-            mav.addObject("notify", "Tài khoản hoặc mật khẩu không chính xác!");
-            login.setUsername(users.getUsername());
-            mav.addObject("login", login);
-        }
-        return mav;
-    }
-
-@PostMapping(Constants.Url.REGISTER)
-public ModelAndView registerCustomer(@ModelAttribute("register") Users users){
-    ModelAndView mav = new ModelAndView();
-    users.setPassword(PasswordUtils.md5(users.getPassword()));
-        if (users.getAvatar() == null) {
-            users.setAvatar("avatar.png");
-        }
-        users.setActive(false);
-        users.setDeleted(false);
-        users.setCreatedAt(TimeUtils.getCurrentTime());
-        users.setUpdatedAt(TimeUtils.getCurrentTime());
-        String token = TokenUtils.getRandomString();
-        users.setRole(3);
-        users.setToken(token);
-        user.save(users);
-        mailTest.mailSend(users.getEmail(),MailContent.ACTIVE_USER(users.getUsername(),users.getEmail(),users.getName(),token,users.getPassword()),"Kích hoạt thành viên SmartTrip");
-      mav.setViewName("redirect:/");
-        return mav;
-}
 
     @PostMapping(Constants.Url.POST_PROCESSING_ORDER_URL)
     public ModelAndView showOrder(@RequestParam String dataJson, @PathVariable("sId") int id, HttpServletRequest request) {
@@ -337,7 +269,7 @@ public ModelAndView registerCustomer(@ModelAttribute("register") Users users){
                 data = data + "quantityTicket:" + jsonTicket.get(i).get("quantityTicket").asText() + "}";
                 if (i != jsonTicket.size() - 1) {
                     data = data + ";";
-                }else{
+                } else {
                     data = data + "]";
                 }
             }
@@ -368,15 +300,15 @@ public ModelAndView registerCustomer(@ModelAttribute("register") Users users){
     @GetMapping(Constants.Url.REGISTER_PARNER)
     public ModelAndView showRegisterParnerPage(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
-       mav.addObject("partner", new Partners());
-       mav.setViewName(REGISTER_PARTNER_SCREEN);
+        mav.addObject("partner", new Partners());
+        mav.setViewName(REGISTER_PARTNER_SCREEN);
         return mav;
     }
 
     @PostMapping(Constants.Url.REGISTER_PARNER)
     public ModelAndView addPartner(HttpSession session, @Validated @ModelAttribute("partner") Partners partners, BindingResult result) {
         ModelAndView mav = new ModelAndView();
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             mav.setViewName(REGISTER_PARTNER_SCREEN);
             return mav;
         }
@@ -392,25 +324,10 @@ public ModelAndView registerCustomer(@ModelAttribute("register") Users users){
             Users users = (Users) session.getAttribute("userInfo");
             partners.setUserId(users.getId());
             partner.save(partners);
-            user.updateRoleUser(2,users.getId());
+            user.updateRoleUser(2, users.getId());
             mav.setViewName("redirect:/");
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
-        return mav;
-    }
-
-    @GetMapping(Constants.Url.FOOD_DETAIL_URL)
-    public ModelAndView showFoodDetail(@PathVariable("id") int id) {
-        ModelAndView mav = new ModelAndView(FOOD_DETAIL_SCREEN);
-        try {
-            FoodDetailDTO foodDetailDTO = foodDetailDAO.getFoodDetailDTO(id);
-           List<FoodInforDTO> foodInforDTOList = foodInfoDAO.getAllFoodInfoByPlaceInfoID(foodDetailDTO.getPlaceInfoID());
-           foodDetailDTO.setFoodInforDTOList(foodInforDTOList);
-            mav.addObject("fooddetail", foodDetailDTO);
-        } catch (Exception e) {
-            e.printStackTrace();
-            mav.setViewName(HOME_SCREEN);
         }
         return mav;
     }
