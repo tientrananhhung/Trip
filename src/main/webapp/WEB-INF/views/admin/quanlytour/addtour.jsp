@@ -71,10 +71,10 @@
                                         <f:input type="number" cssClass="form-control" path="policy" placeholder="Policy" />
                                     </div>
                                     <button type="submit" class="btn btn-success mr-2">Submit</button>
-                                    <a href="/admin/quan-ly-tour" class="btn btn-light">
-                                        Cancel
-                                    </a>
                                 </f:form>
+                                <a href="/admin/quan-ly-tour" class="btn btn-light">
+                                    Cancel
+                                </a>
                             </div>
                         </div>
                     </div>

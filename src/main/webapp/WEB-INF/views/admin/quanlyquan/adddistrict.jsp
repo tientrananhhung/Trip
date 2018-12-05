@@ -28,7 +28,6 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css" />">
     <!-- endinject -->
-    <link rel="shortcut icon" href="<c:url value="/resources/images/favicon.png" />" />
 </head>
 <body>
 <div class="container-scroller">
@@ -56,10 +55,10 @@
                                         <f:input path="name" type="text" cssClass="form-control" required="true" placeholder="Name"/>
                                     </div>
                                     <button type="submit" class="btn btn-success mr-2">Submit</button>
-                                    <a href="/admin/quan-ly-quan" class="btn btn-light">
-                                        Cancel
-                                    </a>
                                 </f:form>
+                                <a href="/admin/quan-ly-quan" class="btn btn-light">
+                                    Cancel
+                                </a>
                             </div>
                         </div>
                     </div>

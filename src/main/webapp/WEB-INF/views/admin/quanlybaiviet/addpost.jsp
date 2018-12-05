@@ -24,7 +24,6 @@
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/font-awesome/css/font-awesome.min.css" />"/>
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/dropify/dist/css/dropify.min.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css" />">
-    <link rel="shortcut icon" href="<c:url value="/resources/images/favicon.png" />"/>
 </head>
 <body>
 <div class="container-scroller">
@@ -75,14 +74,14 @@
                                         <f:textarea path="content" class="form-control"></f:textarea>
                                     </div>
                                     <button type="submit" id="postsubmit" class="btn btn-success mr-2">Submit</button>
-                                    <a href="/admin/quan-ly-bai-viet" class="btn btn-light">
-                                        Cancel
-                                    </a>
                                     <button id="postsubmit" class="btn btn-success"
                                             onclick="OpenPopupCenter(800, 600);"><i class="mdi mdi-cloud-download"></i>Upload
                                         Ảnh
                                     </button>
                                 </f:form>
+                                <a href="/admin/quan-ly-bai-viet" class="btn btn-light">
+                                    Cancel
+                                </a>
                             </div>
                         </div>
                     </div>

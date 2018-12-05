@@ -13,6 +13,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>SmartTrip - Admin Dashboard</title>
+    <link rel="icon" href="<c:url value="/resources/images/favicon.ico"/>"/>
     <!-- plugins:css -->
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/mdi/css/materialdesignicons.min.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/flag-icon-css/css/flag-icon.min.css" />">
@@ -27,7 +28,6 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
     <!-- endinject -->
-    <link rel="shortcut icon" href="<c:url value="/resources/images/favicon.png"/>">
 <body>
 <div class="container-scroller">
     <jsp:include page="include/nav-bar.jsp"/>

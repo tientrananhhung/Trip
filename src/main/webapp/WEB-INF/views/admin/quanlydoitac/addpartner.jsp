@@ -47,7 +47,6 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css" />">
     <!-- endinject -->
-    <link rel="shortcut icon" href="<c:url value="/resources/images/favicon.png" />"/>
 </head>
 <body>
 <div class="container-scroller">
@@ -103,10 +102,10 @@
                                         <f:errors path="address" cssStyle="color:red;display:block"></f:errors>
                                     </div>
                                     <button type="submit" class="btn btn-success mr-2">Submit</button>
-                                    <a href="/admin/quan-ly-doi-tac" class="btn btn-light">
-                                        Cancel
-                                    </a>
                                 </f:form>
+                                <a href="/admin/quan-ly-doi-tac" class="btn btn-light">
+                                    Cancel
+                                </a>
                             </div>
                         </div>
                     </div>
