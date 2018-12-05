@@ -12,9 +12,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -68,7 +74,7 @@ public class TourController {
     }
 
     @PostMapping(Constants.Url.ADD_TOUR)
-    public ModelAndView addPartner(HttpSession session, @Validated @ModelAttribute("tours") Tours tours, BindingResult result) {
+    public ModelAndView addPartner(HttpSession session, HttpServletRequest request, @Validated @ModelAttribute("tours") Tours tours, BindingResult result) {
         ModelAndView mav = new ModelAndView();
 //        if(result.hasErrors()) {
 //            mav.addObject("user_list", user.findAllByRoleAndActiveAndDeleted(Constants.Role.USER,true,false));
@@ -86,6 +92,34 @@ public class TourController {
             tours.setDeleted(false);
             Users us = (Users) session.getAttribute(Constants.SessionKey.USER);
             tours.setUserId( us.getId());
+            CommonsMultipartFile[] files = tours.getFileData();
+            String images = "";
+            for (int i = 0; i < files.length; i++) {
+                CommonsMultipartFile file = files[i];
+                byte[] bytes = file.getBytes();
+                // Creating the directory to store file
+                // Assume uploaded file location on web server is D:\file-upload
+                String appPath = request.getServletContext().getRealPath("");
+                appPath = appPath.replace('\\', '/');
+                File dir = new File(appPath);
+                if (!dir.exists()) {
+                    dir.mkdirs();
+                }
+
+                String fileSource = dir.getAbsolutePath() + File.separator + "resources" + File.separator + "images" + File.separator + file.getOriginalFilename();
+                File serverFile = new File(fileSource);
+                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+                stream.write(bytes);
+                stream.close();
+                if(i==0){
+                    tours.setImage(file.getOriginalFilename());
+                    images = file.getOriginalFilename();
+                } else {
+                    images = images + "," +file.getOriginalFilename();
+                }
+
+            }
+            tours.setImages(images);
             tour.save(tours);
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_TOUR);
         } catch (Exception ex) {

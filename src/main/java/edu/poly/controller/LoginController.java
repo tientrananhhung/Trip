@@ -51,7 +51,7 @@ public class LoginController {
             if (users.getRole() == Constants.Role.ADMIN || users.getRole() == Constants.Role.MANAGER) {
                 mav.setViewName("redirect:" + Constants.Url.ADMIN_PAGE_URL);
             } else if (users.getRole() == Constants.Role.PARTNER) {
-                mav.setViewName("redirect:" + Constants.Url.PARTNER_URL);
+                mav.setViewName("redirect:/");
             } else if (users.getRole() == Constants.Role.USER) {
                 if (session.getAttribute(Constants.SessionKey.ORDER_SESSION) != null) {
                     mav.setViewName("redirect:" + Constants.Url.GET_PROCESSING_ORDER_URL);
@@ -75,7 +75,7 @@ public class LoginController {
             if (userLogin.getRole() == Constants.Role.ADMIN || userLogin.getRole() == Constants.Role.MANAGER) {
                 mav.setViewName("redirect:" + Constants.Url.ADMIN_PAGE_URL);
             }  else if(userLogin.getRole() == Constants.Role.PARTNER) {
-                mav.setViewName("redirect:" + Constants.Url.PARTNER_URL);
+                mav.setViewName("redirect:/");
             }else if(userLogin.getRole() == Constants.Role.USER) {
                 if(session.getAttribute(Constants.SessionKey.ORDER_SESSION) != null){
                     mav.setViewName("redirect:" + Constants.Url.GET_PROCESSING_ORDER_URL);
