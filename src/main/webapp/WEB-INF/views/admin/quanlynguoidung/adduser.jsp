@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"  pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -111,7 +112,9 @@
                                     <div class="form-group">
                                         <label>Birthday</label>
                                             <%--<f:input path="birthday" cssClass="form-control"></f:input>--%>
-                                        <f:input type="text" path="birthday" cssClass="form-control col-lg-6"></f:input>
+                                        <fmt:formatDate var="fmtDate" value="${users.birthday}" pattern="dd/MM/yyyy"/>
+
+                                        <f:input type="text" path="birthday" cssClass="form-control col-lg-6" value="${fmtDate}"></f:input>
                                     </div>
                                     <div class="form-group">
                                         <label>Gender</label>
@@ -192,7 +195,7 @@
     // });
     jQuery(function($) {
         $('#birthday').datepicker({
-            format: "yyyy-mm-dd",
+            format: "dd/mm/yyyy",
             todayBtn: true,
             language: "vi",
             autoclose: true,

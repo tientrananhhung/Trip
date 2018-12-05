@@ -59,7 +59,7 @@ public class LoginController {
                     mav.setViewName("redirect:/");
                 }
             }
-        }else {
+        } else {
             mav.addObject("register", new Users());
             mav.addObject("login", new Users());
         }
@@ -67,20 +67,20 @@ public class LoginController {
     }
 
     @PostMapping(Constants.Url.LOGIN)
-    public ModelAndView loginProgess(@ModelAttribute("login") Users users,HttpSession session) {
+    public ModelAndView loginProgess(@ModelAttribute("login") Users users, HttpSession session) {
         ModelAndView mav = new ModelAndView();
         Users login = new Users();
         Users userLogin = user.login(users.getUsername(), PasswordUtils.md5(users.getPassword()));
         if (userLogin != null) {
             if (userLogin.getRole() == Constants.Role.ADMIN || userLogin.getRole() == Constants.Role.MANAGER) {
                 mav.setViewName("redirect:" + Constants.Url.ADMIN_PAGE_URL);
-            }  else if(userLogin.getRole() == Constants.Role.PARTNER) {
+            } else if (userLogin.getRole() == Constants.Role.PARTNER) {
                 mav.setViewName("redirect:/");
-            }else if(userLogin.getRole() == Constants.Role.USER) {
-                if(session.getAttribute(Constants.SessionKey.ORDER_SESSION) != null){
+            } else if (userLogin.getRole() == Constants.Role.USER) {
+                if (session.getAttribute(Constants.SessionKey.ORDER_SESSION) != null) {
                     mav.setViewName("redirect:" + Constants.Url.GET_PROCESSING_ORDER_URL);
                 } else {
-                    mav.setViewName("redirect:/" );
+                    mav.setViewName("redirect:/");
                 }
             }
             session.setAttribute(Constants.SessionKey.USER, userLogin);
@@ -95,9 +95,9 @@ public class LoginController {
     }
 
     @PostMapping(Constants.Url.REGISTER)
-    public ModelAndView registerCustomer(@Validated @ModelAttribute("register") Users users, BindingResult result,HttpSession session) {
+    public ModelAndView registerCustomer(@Validated @ModelAttribute("register") Users users, BindingResult result, HttpSession session) {
         ModelAndView mav = new ModelAndView();
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             mav.addObject("login", new Users());
             mav.setViewName(LOGIN_SCREEN);
             return mav;
@@ -123,4 +123,6 @@ public class LoginController {
         return mav;
     }
 
-    }
+
+
+}

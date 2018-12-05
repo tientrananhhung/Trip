@@ -6,8 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -39,57 +40,73 @@
             <div class="content-title-info">
                 <h3 class="c_orange cfs-22">Tài khoản</h3>
             </div>
-            <div class="content-body-info">
-                <div class="info-user">
-                    <img src="/resources/images/avatar.png" alt="Avatar Smart Trip" class="mr-3 mt-3 rounded-circle"
-                         style="width:60px; float: left;">
-                    <div class="mr-3 mt-3" style="display: inline-block;">
-                        <h4 class="cfs-18">Trần Anh Hưng Tiến</h4>
-                        <div>
-                            <label class="file-input c_orange" for="upload-photo">Đổi ảnh đại diện</label>
-                            <input id="upload-photo" type="file" required></div>
-                    </div>
-                </div>
                 <div class="f-info-user">
-                    <form action="">
+                    <f:form action="/quan-ly/changeinfo" modelAttribute="userInfo"  enctype="multipart/form-data">
+                        <div class="content-body-info">
+                            <div class="info-user">
+                                <f:hidden path="avatar"/>
+                                <img src="/resources/images/${userInfo.avatar}"  alt="Avatar Smart Trip" class="mr-3 mt-3 rounded-circle"
+                                     style="width:60px; float: left;" id="output">
+                                <div class="mr-3 mt-3" style="display: inline-block;">
+                                    <h4 class="cfs-18">${userInfo.name}</h4>
+                                    <div>
+                                        <label class="file-input c_orange" for="upload-photo">Đổi ảnh đại diện</label>
+                                        <f:input id="upload-photo" path="fileData" type="file" accept="image/*" onchange="loadFile(event)" />
+                                    </div>
+                                </div>
+                            </div>
+                        <f:hidden path="id" />
                         <div class="form-row">
                             <div class="form-group col-md-3">
                                 <label for="name">Họ và Tên</label>
-                                <input type="text" class="form-control" id="name" placeholder="Nhập họ và tên">
+                                <f:input type="text" class="form-control" id="name" path="name" placeholder="Nhập họ và tên" />
+                                <f:errors path="name" cssStyle="color:red;display:block"></f:errors>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="phone">Phone</label>
-                                <input type="tel" class="form-control" id="phone" placeholder="Nhập số điện thoại">
+                                <f:input type="tel" class="form-control" id="phone" path="phone" placeholder="Nhập số điện thoại" />
+                                <f:errors path="phone" cssStyle="color:red;display:block"></f:errors>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-3">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Nhập địa chỉ email">
+                                <f:input type="email" path="email" class="form-control" id="email" placeholder="Nhập địa chỉ email" />
+                                <f:errors path="email" cssStyle="color:red;display:block"></f:errors>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="birthday">Ngày sinh</label>
-                                <input class="form-control date-order" id="birthday" value=""
-                                       placeholder="Chọn ngày sinh">
+                                <fmt:formatDate var="fmtDate" value="${userInfo.birthday}" pattern="dd/MM/yyyy"/>
+                                <f:input class="form-control date-order"  id="birthday" path="birthday"
+                                       placeholder="Chọn ngày sinh" value="${fmtDate}" />
+                                <f:errors path="birthday" cssStyle="color:red;display:block"></f:errors>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group form-radio col-md-3">
                                 <label>Giới tính</label>
-
-                                <input id="a" type="radio" name="gender" checked="checked" value="1">
-
-                                <input id="b" type="radio" name="gender" value="0">
+                           <c:choose>
+                               <c:when test="${userInfo.gender == true}">
+                                   <f:radiobutton id="a"  path="gender" checked="checked" value="1" />
+                                   <f:radiobutton id="b"  path="gender" value="0" />
+                               </c:when>
+                               <c:when test="${userInfo.gender == false}">
+                                   <f:radiobutton id="a"  path="gender"  value="1" />
+                                   <f:radiobutton id="b"  path="gender" value="0" checked="checked" />
+                               </c:when>
+                           </c:choose>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="address">Địa chỉ</label>
-                                <textarea class="form-control" id="address" rows="3"
-                                          placeholder="Nhập địa chỉ"></textarea>
+                                <f:textarea class="form-control" id="address" rows="3"
+                                          placeholder="Nhập địa chỉ" path="address"></f:textarea>
+                                <f:errors path="address" cssStyle="color:red;display:block"></f:errors>
                             </div>
                         </div>
-                    </form>
+                        <button type="submit" id="postsubmit" class="btn btn-success mr-2">Submit</button>
+                    </f:form>
                 </div>
             </div>
         </div>
@@ -133,6 +150,10 @@
         });
 
     });
+    var loadFile = function(event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+    };
 </script>
 <!-- End custom script-->
 

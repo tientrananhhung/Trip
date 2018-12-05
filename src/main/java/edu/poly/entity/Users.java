@@ -2,10 +2,12 @@ package edu.poly.entity;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import java.util.Date;
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Objects;
@@ -37,6 +39,17 @@ public class Users {
     private Collection<Rates> ratesById;
     private Collection<Tours> toursById;
 
+    private CommonsMultipartFile[] fileData;
+
+    @Transient
+    public CommonsMultipartFile[] getFileData() {
+        return fileData;
+    }
+
+    public void setFileData(CommonsMultipartFile[] fileData) {
+        this.fileData = fileData;
+    }
+
     @Id
     @Column(name = "id", nullable = false)
     public int getId() {
@@ -59,8 +72,7 @@ public class Users {
     }
 
     @Basic
-    @NotEmpty
-    @Column(name = "Username", nullable = false, length = 50)
+    @Column(name = "Username", nullable = true, length = 50)
     public String getUsername() {
         return username;
     }
@@ -70,7 +82,7 @@ public class Users {
     }
 
     @Basic
-    @Column(name = "Password", nullable = false, length = 50)
+    @Column(name = "Password", nullable = true, length = 50)
     public String getPassword() {
         return password;
     }
@@ -112,6 +124,8 @@ public class Users {
     }
 
     @Basic
+    @DateTimeFormat(pattern = "dd/MM/yyyy") // This is for bind Date with @ModelAttribute
+    @Temporal(TemporalType.DATE)
     @Column(name = "Birthday", nullable = true)
     public Date getBirthday() {
         return birthday;

@@ -149,7 +149,6 @@ public class TourController {
         } catch (Exception ex){
             ex.printStackTrace();
         }
-
         mav.setViewName("redirect:/admin" + Constants.Url.LIST_TOUR);
         return mav;
     }

@@ -52,6 +52,9 @@ public class Constants {
         //Trang active người dùng
         public static final String ACTIVE_USER_TOKEN = "/activeuser/{token}";
 
+        //Change info người dùng
+        public static final String CHANGE_CUSTOMER_INFORMATION = "/changeinfo";
+
         //Change role user
         public static final String CHANGE_ROLE_USER = "/quan-ly-nguoi-dung/changerole/{id}/{role}";
 

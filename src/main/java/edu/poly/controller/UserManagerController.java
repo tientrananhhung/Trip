@@ -34,7 +34,7 @@ public class UserManagerController {
 
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(
                 dateFormat, true));
         binder.addValidators(userValidator);
@@ -196,6 +196,7 @@ public class UserManagerController {
             return mav;
         }
         Users us = user.getById(users.getId());
+        System.out.println(users.getBirthday());
         if (!users.getPassword().equals(us.getPassword()))
             users.setPassword(PasswordUtils.md5(users.getPassword()));
         try {
