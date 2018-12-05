@@ -38,7 +38,7 @@
                 <c:choose>
                     <c:when test="${lPostCount.count == 1}">
                         <div class="post-big">
-                            <a class="city-tickets" href="#" style="background-image: url('/resources/images/${lPost.image}');">
+                            <a class="city-tickets" href="/blog/${lPost.id}" style="background-image: url('/resources/images/${lPost.image}');">
                                 <div class="ticket-relative">
                                     <div class="ticket-info">
                                         <div class="ticket-big-short">
@@ -51,7 +51,7 @@
                     </c:when>
                     <c:otherwise>
                         <div class="post-small" style="border-bottom: 5px solid white;">
-                            <a class="city-tickets" href="#" style="background-image: url('/resources/images/${lPost.image}');">
+                            <a class="city-tickets" href="/blog/${lPost.id}" style="background-image: url('/resources/images/${lPost.image}');">
                                 <div class="ticket-relative">
                                     <div class="ticket-info">
                                         <div class="ticket-small-short">
@@ -90,7 +90,7 @@
                             <c:choose>
                                 <c:when test="${lPostCount.count == 1}">
                                     <div class="combo-big">
-                                        <a class="city-tickets" href="#"
+                                        <a class="city-tickets" href="/blog/${lPost.id}"
                                            style="background-image: url('/resources/images/${lPost.image}');">
                                             <div class="ticket-relative">
                                                 <div class="ticket-info">
@@ -109,7 +109,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     <div class="combo-small" style="margin-bottom: 6px;">
-                                        <a class="city-tickets" href="#"
+                                        <a class="city-tickets" href="/blog/${lPost.id}"
                                            style="background-image: url('/resources/images/${lPost.image}');">
                                             <div class="ticket-relative">
                                                 <div class="ticket-info">
@@ -149,7 +149,7 @@
                             <c:choose>
                                 <c:when test="${lPostCount.count == 1}">
                                     <div class="combo-big">
-                                        <a class="city-tickets" href="#"
+                                        <a class="city-tickets" href="/blog/${lPost.id}"
                                            style="background-image: url('/resources/images/${lPost.image}');">
                                             <div class="ticket-relative">
                                                 <div class="ticket-info">
@@ -168,7 +168,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     <div class="combo-small" style="margin-bottom: 6px;">
-                                        <a class="city-tickets" href="#"
+                                        <a class="city-tickets" href="/blog/${lPost.id}"
                                            style="background-image: url('/resources/images/${lPost.image}');">
                                             <div class="ticket-relative">
                                                 <div class="ticket-info">
@@ -209,7 +209,7 @@
                             <c:choose>
                                 <c:when test="${lPostCount.count == 1}">
                                     <div class="combo-big">
-                                        <a class="city-tickets" href="#"
+                                        <a class="city-tickets" href="/blog/${lPost.id}"
                                            style="background-image: url('/resources/images/${lPost.image}');">
                                             <div class="ticket-relative">
                                                 <div class="ticket-info">
@@ -228,7 +228,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     <div class="combo-small" style="margin-bottom: 6px;">
-                                        <a class="city-tickets" href="#"
+                                        <a class="city-tickets" href="/blog/${lPost.id}"
                                            style="background-image: url('/resources/images/${lPost.image}');">
                                             <div class="ticket-relative">
                                                 <div class="ticket-info">
@@ -302,7 +302,7 @@
                         <c:forEach items="${listPost}" var="lPosst" end="2">
                             <article class="blog-post-item">
                                 <div class="blog-media-object">
-                                    <a class="blog-image-holder" href="#">
+                                    <a class="blog-image-holder" href="/blog/${lPosst.id}">
                                         <img src="/resources/images/${lPosst.image}" alt="">
                                     </a>
                                     <div class="blog-post-content">
@@ -336,7 +336,7 @@
                         <c:forEach items="${listPostView}" var="lPost">
                             <article class="blog-post-item">
                                 <div class="blog-media-object">
-                                    <a class="blog-image-holder" href="#">
+                                    <a class="blog-image-holder" href="/blog/${lPost.id}">
                                         <img src="/resources/images/${lPost.image}" alt="">
                                     </a>
                                     <div class="blog-post-content">

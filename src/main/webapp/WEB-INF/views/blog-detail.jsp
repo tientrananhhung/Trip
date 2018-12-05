@@ -111,7 +111,7 @@
                         <c:forEach items="${listPost}" var="lPosst" end="2">
                             <article class="blog-post-item">
                                 <div class="blog-media-object">
-                                    <a class="blog-image-holder" href="#">
+                                    <a class="blog-image-holder" href="/blog/${lPosst.id}">
                                         <img src="/resources/images/${lPosst.image}" alt="">
                                     </a>
                                     <div class="blog-post-content">
@@ -146,7 +146,7 @@
                         <c:forEach items="${listPostView}" var="lPost">
                             <article class="blog-post-item">
                                 <div class="blog-media-object">
-                                    <a class="blog-image-holder" href="#">
+                                    <a class="blog-image-holder" href="/blog/${lPosst.id}">
                                         <img src="/resources/images/${lPost.image}" alt="">
                                     </a>
                                     <div class="blog-post-content">

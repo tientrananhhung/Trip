@@ -37,15 +37,7 @@ public class BlogDetailController {
     @GetMapping(Constants.Url.BLOG_DETAIL_URL)
     public ModelAndView showFoodDetail(@PathVariable("id") int id) {
         ModelAndView mav = new ModelAndView(BLOG_DETAIL_SCREEN);
-//        try {
-//            FoodDetailDTO foodDetailDTO = foodDetailDAO.getFoodDetailDTO(id);
-//            List<FoodInforDTO> foodInforDTOList = foodInfoDAO.getAllFoodInfoByPlaceInfoID(foodDetailDTO.getPlaceInfoID());
-//            foodDetailDTO.setFoodInforDTOList(foodInforDTOList);
-//            mav.addObject("fooddetail", foodDetailDTO);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            mav.setViewName(HOME_SCREEN);
-//        }
+        try {
         List<PostIndexDTO> lPostIndexDTO = postIndexDAO.getTop5PostNew();
         List<PostIndexDTO> lPostIndexDTOByView = postIndexDAO.getTop3PostByView();
         List<PostIndexDTO> lPostIndexDTOByCategoryTravel = postIndexDAO.getTop3PostByCategory(4);
@@ -61,6 +53,11 @@ public class BlogDetailController {
         posts.setUpdatedAt(TimeUtils.getCurrentTime());
         posts.setView(posts.getView()+1);
         post.update(posts);
+        } catch (Exception e) {
+            e.printStackTrace();
+            mav.setViewName(HOME_SCREEN);
+        }
+
         return mav;
     }
 }
