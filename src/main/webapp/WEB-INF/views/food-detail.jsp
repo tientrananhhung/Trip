@@ -52,7 +52,7 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">Đà Nẵng</a></li>
                                         <li class="breadcrumb-item"><a href="#">${fooddetail.districtName}</a></li>
-                                        <li class="breadcrumb-item" aria-current="page">152 Lê Độ</li>
+                                        <li class="breadcrumb-item" aria-current="page">${fooddetail.placeInfoAddress}</li>
                                     </ol>
                                 </nav>
                                 <div class="main-info-title mg-top-20">
