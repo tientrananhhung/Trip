@@ -21,9 +21,9 @@
     <!-- endinject -->
     <!-- plugin css for this page -->
 
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/icheck/skins/all.css" />" />
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/select2/dist/css/select2.min.css" />" />
-    <link rel="stylesheet" href="<c:url value="/resources/node_modules/select2-bootstrap-theme/dist/select2-bootstrap.min.css" />" />
+    <%--<link rel="stylesheet" href="<c:url value="/resources/node_modules/icheck/skins/all.css" />" />--%>
+    <%--<link rel="stylesheet" href="<c:url value="/resources/node_modules/select2/dist/css/select2.min.css" />" />--%>
+    <%--<link rel="stylesheet" href="<c:url value="/resources/node_modules/select2-bootstrap-theme/dist/select2-bootstrap.min.css" />" />--%>
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css" />">
@@ -53,6 +53,7 @@
                                     <div class="form-group">
                                         <label >District Name</label>
                                         <f:input path="name" type="text" cssClass="form-control" required="true" placeholder="Name"/>
+                                        <f:errors path="name" cssStyle="color:red;display:block"></f:errors>
                                     </div>
                                     <button type="submit" class="btn btn-success mr-2">Submit</button>
                                 </f:form>
@@ -77,9 +78,9 @@
 <script src="<c:url value="/resources/node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js" />"></script>
 <!-- endinject -->
 <!-- Plugin js for this page-->
-<script src="<c:url value="/resources/node_modules/icheck/icheck.min.js" />"></script>
-<script src="<c:url value="/resources/node_modules/typeahead.js/dist/typeahead.bundle.min.js" />"></script>
-<script src="<c:url value="/resources/node_modules/select2/dist/js/select2.min.js" />"></script>
+<%--<script src="<c:url value="/resources/node_modules/icheck/icheck.min.js" />"></script>--%>
+<%--<script src="<c:url value="/resources/node_modules/typeahead.js/dist/typeahead.bundle.min.js" />"></script>--%>
+<%--<script src="<c:url value="/resources/node_modules/select2/dist/js/select2.min.js" />"></script>--%>
 <!-- End plugin js for this page-->
 <!-- inject:js -->
 <c:url value="/resources/js/select2.js" />
@@ -91,8 +92,8 @@
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="<c:url value="/resources/js/file-upload.js" />"></script>
-<script src="<c:url value="/resources/js/iCheck.js" />"></script>
-<script src="<c:url value="/resources/js/typeahead.js" />"></script>
+<%--<script src="<c:url value="/resources/js/iCheck.js" />"></script>--%>
+<%--<script src="<c:url value="/resources/js/typeahead.js" />"></script>--%>
 <script src="<c:url value="/resources/js/select2.js" />"></script>
 <%---------------------------------------------------%>
 </body>

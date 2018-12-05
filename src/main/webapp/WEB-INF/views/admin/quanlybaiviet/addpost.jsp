@@ -52,6 +52,7 @@
                                         <label>Post name</label>
                                         <f:input path="title" type="text" class="form-control"
                                                  placeholder="Name" required="true"/>
+                                        <f:errors path="title" cssStyle="color:red;display:block"></f:errors>
                                     </div>
                                     <div class="form-group">
                                         <label>Category</label>
@@ -60,6 +61,7 @@
                                                 <f:option value="${postct.id}" label="${postct.name}"/>
                                             </c:forEach>
                                         </f:select>
+                                        <f:errors path="postCategoryId" cssStyle="color:red;display:block"></f:errors>
                                     </div>
                                     <c:if test="${action == 'sua'}">
                                         <div class="form-group">
@@ -72,6 +74,7 @@
                                     <div class="form-group">
                                         <label>Content</label>
                                         <f:textarea path="content" class="form-control"></f:textarea>
+                                        <f:errors path="content" cssStyle="color:red;display:block"></f:errors>
                                     </div>
                                     <button type="submit" id="postsubmit" class="btn btn-success mr-2">Submit</button>
                                     <button id="postsubmit" class="btn btn-success"

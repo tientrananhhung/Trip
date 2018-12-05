@@ -145,9 +145,9 @@
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="<c:url value="/resources/js/formpickers.js" />"></script>
-<script src="<c:url value="/resources/js/form-addons.js" />"></script>
+<%--<script src="<c:url value="/resources/js/form-addons.js" />"></script>--%>
 <script src="<c:url value="/resources/js/dropify.js" />"></script>
-<script src="<c:url value="/resources/js/dropzone.js" />"></script>
+<%--<script src="<c:url value="/resources/js/dropzone.js" />"></script>--%>
 <script src="<c:url value="/resources/js/formpickers.js" />"></script>
 <script src="<c:url value="/resources/js/form-repeater.js" />"></script>
 <%---------------------------------------------%>

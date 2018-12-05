@@ -38,66 +38,66 @@
 
         <li class="nav-item">
             <a class="nav-link" href="/admin/quan-ly-nguoi-dung">
-                <i class="mdi mdi-atom menu-icon"></i>
+                <i class="fa fa-user-circle-o"></i>
                 <span class="menu-title">Quản lý người dùng</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/admin/quan-ly-tour">
-                <i class="mdi mdi-atom menu-icon"></i>
+                <i class="fa fa-taxi"></i>
                 <span class="menu-title">Quản lý tour</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/admin/quan-ly-doi-tac">
-                <i class="mdi mdi-atom menu-icon"></i>
+                <i class="fa fa-group"></i>
                 <span class="menu-title">Quản lý đối tác</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/admin/quan-ly-dia-diem">
-                <i class="mdi mdi-atom menu-icon"></i>
+                <i class="fa fa-map-marker"></i>
                 <span class="menu-title">Quản lý địa điểm</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/admin/quan-ly-quan">
-                <i class="mdi mdi-atom menu-icon"></i>
+                <i class="fa fa-life-ring"></i>
                 <span class="menu-title">Quản lý quận</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/admin/quan-ly-danh-muc-bai-viet">
-                <i class="mdi mdi-atom menu-icon"></i>
+                <i class="fa fa-reorder"></i>
                 <span class="menu-title">Q.lý danh mục bài viết</span>
             </a>
         </li><li class="nav-item">
         <a class="nav-link" href="/admin/quan-ly-danh-muc-dia-diem">
-            <i class="mdi mdi-atom menu-icon"></i>
+            <i class="fa fa-building-o"></i>
             <span class="menu-title">Q.lý danh mục địa điểm</span>
         </a>
     </li>
         <li class="nav-item">
             <a class="nav-link" href="pages/widgets.html">
-                <i class="mdi mdi-atom menu-icon"></i>
+                <i class="fa fa-institution"></i>
                 <span class="menu-title">Quản lý trang chủ</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/admin/quan-ly-uu-dai">
-                <i class="mdi mdi-atom menu-icon"></i>
+                <i class="fa fa-thumbs-o-up"></i>
                 <span class="menu-title">Quản lý ưu đãi</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/admin/quan-ly-bai-viet">
-                <i class="mdi mdi-atom menu-icon"></i>
+                <i class="fa fa-bookmark-o"></i>
                 <span class="menu-title">Quản lý bài viết</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link collapsed" data-toggle="collapse" href="#page-layouts" aria-expanded="false" aria-controls="page-layouts">
-                <i class="mdi mdi-arrow-expand-all menu-icon"></i>
+                <i class="fa fa-bar-chart-o"></i>
                 <span class="menu-title">Thống kê</span>
                 <i class="mdi mdi-chevron-right menu-arrow"></i>
             </a>

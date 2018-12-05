@@ -51,10 +51,12 @@
                                     <div class="form-group">
                                         <label>Tour Name</label>
                                         <f:input type="text" cssClass="form-control"  path="name" placeholder="Name"/>
+                                        <f:errors path="name" cssStyle="color:red;display:block"></f:errors>
                                     </div>
                                     <div class="form-group">
                                         <label>Tour Address</label>
                                         <f:input type="text" cssClass="form-control" path="address" placeholder="Address"/>
+                                        <f:errors path="address" cssStyle="color:red;display:block"></f:errors>
                                     </div>
                                     <div class="form-group">
                                         <label>Image</label>
@@ -65,10 +67,12 @@
                                     <div class="form-group">
                                         <label>Tour Content</label>
                                         <f:textarea type="text" cssClass="form-control" path="content" placeholder="Content"/>
+                                        <f:errors path="content" cssStyle="color:red;display:block"></f:errors>
                                     </div>
                                     <div class="form-group">
                                         <label>Tour Policy</label>
                                         <f:input type="number" cssClass="form-control" path="policy" placeholder="Policy" />
+                                        <f:errors path="policy" cssStyle="color:red;display:block"></f:errors>
                                     </div>
                                     <button type="submit" class="btn btn-success mr-2">Submit</button>
                                 </f:form>
@@ -99,7 +103,7 @@
 <script src="<c:url value="/resources/js/settings.js" />"></script>
 <script src="../../<c:url value="/resources/js/todolist.js" />"></script>
 <script src="<c:url value="/resources/js/dropify.js"/>"></script>
-<script src="<c:url value="/resources/node_modules/codemirror/mode/xml/xml.js"/>"></script>
+<%--<script src="<c:url value="/resources/node_modules/codemirror/mode/xml/xml.js"/>"></script>--%>
 <script src="<c:url value="/resources/node_modules/codemirror/lib/codemirror.js"/>"></script>
 <script src="<c:url value="/resources/js/froala_editor.pkgd.min.js"/>"></script>
 <script> $(function () {

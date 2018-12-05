@@ -44,6 +44,7 @@
                                     <div class="form-group">
                                         <label >Post category name</label>
                                         <f:input path="name" type="text" class="form-control" required="true" placeholder="Name"/>
+                                        <f:errors path="name" cssStyle="color:red;display:block"></f:errors>
                                     </div>
                                     <button type="submit" class="btn btn-success mr-2">Submit</button>
                                 </f:form>
