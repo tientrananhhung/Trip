@@ -1,6 +1,5 @@
 package edu.poly.mapper;
 
-import edu.poly.dao.FoodDetailDAO;
 import edu.poly.dao.FoodInfoDAO;
 import edu.poly.model.FoodDetailDTO;
 import edu.poly.model.FoodInforDTO;

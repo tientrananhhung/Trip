@@ -1,6 +1,5 @@
 package edu.poly.mapper;
 
-import edu.poly.dao.FoodInfoDAO;
 import edu.poly.model.FoodInforDTO;
 import org.springframework.jdbc.core.RowMapper;
 

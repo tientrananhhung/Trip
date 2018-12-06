@@ -1,7 +1,6 @@
 package edu.poly.service;
 
 import edu.poly.entity.Partners;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;

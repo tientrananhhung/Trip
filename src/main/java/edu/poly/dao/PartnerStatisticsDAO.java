@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.List;
 
 @Repository

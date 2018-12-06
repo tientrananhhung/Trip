@@ -118,7 +118,6 @@
 <!-- Custom js for this page-->
 <script src="<c:url value="/resources/js/dropify.js"/>"></script>
 <script src="<c:url value="/resources/js/editorDemo.js"/>"></script>
-<%--<script src="<c:url value="/resources/node_modules/codemirror/mode/xml/xml.js"/>"></script>--%>
 <script src="<c:url value="/resources/node_modules/codemirror/lib/codemirror.js"/>"></script>
 <script src="<c:url value="/resources/js/froala_editor.pkgd.min.js"/>"></script>
 <script> $(function () {

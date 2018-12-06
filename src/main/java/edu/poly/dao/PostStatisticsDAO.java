@@ -1,6 +1,5 @@
 package edu.poly.dao;
 
-import edu.poly.mapper.OfferStatisticsMapper;
 import edu.poly.mapper.PostStatisticsMapper;
 import edu.poly.model.PostStatisticsDTO;
 import org.springframework.beans.factory.annotation.Autowired;

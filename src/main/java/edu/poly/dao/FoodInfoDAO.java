@@ -1,8 +1,6 @@
 package edu.poly.dao;
 
 import edu.poly.mapper.FoodInforMapper;
-import edu.poly.mapper.FoodMapper;
-import edu.poly.model.FoodDTO;
 import edu.poly.model.FoodInforDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;

@@ -2,13 +2,9 @@ package edu.poly.controller;
 
 import edu.poly.common.Constants;
 import edu.poly.common.TimeUtils;
-import edu.poly.dao.FoodDetailDAO;
-import edu.poly.dao.FoodInfoDAO;
 import edu.poly.dao.PostIndexDAO;
 import edu.poly.entity.Posts;
 import edu.poly.impl.PostImpl;
-import edu.poly.model.FoodDetailDTO;
-import edu.poly.model.FoodInforDTO;
 import edu.poly.model.PostIndexDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

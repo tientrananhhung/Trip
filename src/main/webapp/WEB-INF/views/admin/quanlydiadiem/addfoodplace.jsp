@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" />">
     <!-- endinject -->
     <!-- plugin css for this page -->
-    <%--<link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-tags-input/dist/jquery.tagsinput.min.css" />">--%>
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/fontawesome-stars.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-1to10.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/dist/themes/bars-horizontal.css" />">
@@ -34,11 +33,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-bar-rating/examples/css/examples.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/font-awesome/css/font-awesome.min.css" />" />
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/dropify/dist/css/dropify.min.css" />">
-    <%--<link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-file-upload/css/uploadfile.css" />">--%>
-    <%--<link rel="stylesheet" href="<c:url value="/resources/node_modules/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css" />" />--%>
-    <%--<link rel="stylesheet" href="<c:url value="/resources/node_modules/jquery-asColorPicker/dist/css/asColorPicker.min.css" />" />--%>
     <link rel="stylesheet" href="<c:url value="/resources/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />" />
-    <%--<link rel="stylesheet" href="<c:url value="/resources/node_modules/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css" />">--%>
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css" />">
@@ -110,8 +105,6 @@
 <script src="<c:url value="/resources/node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js" />"></script>
 <!-- endinject -->
 <!-- Plugin js for this page-->
-<%--<script src="<c:url value="/resources/node_modules/jquery-tags-input/dist/jquery.tagsinput.min.js" />"></script>--%>
-<%--<script src="<c:url value="/resources/node_modules/progressbar.js/dist/progressbar.min.js" />"></script>--%>
 <script src="<c:url value="/resources/node_modules/jquery-bar-rating/dist/jquery.barrating.min.js" />"></script>
 <script src="<c:url value="/resources/node_modules/inputmask/dist/jquery.inputmask.bundle.js" />"></script>
 <script src="<c:url value="/resources/node_modules/inputmask/dist/inputmask/phone-codes/phone.js" />"></script>
@@ -120,14 +113,8 @@
 <script src="<c:url value="/resources/node_modules/inputmask/dist/inputmask/bindings/inputmask.binding.js" />"></script>
 <script src="<c:url value="/resources/node_modules/dropify/dist/js/dropify.min.js" />"></script>
 <script src="<c:url value="/resources/node_modules/dropify/dist/js/dropify.min.js"/>"></script>
-<%--<script src="<c:url value="/resources/node_modules/jquery-file-upload/js/jquery.uploadfile.min.js" />"></script>--%>
-<%--<script src="<c:url value="/resources/node_modules/jquery-asColor/dist/jquery-asColor.min.js" />"></script>--%>
-<%--<script src="<c:url value="/resources/node_modules/jquery-asGradient/dist/jquery-asGradient.min.js" />"></script>--%>
-<%--<script src="<c:url value="/resources/node_modules/jquery-asColorPicker/dist/jquery-asColorPicker.min.js" />"></script>--%>
 <script src="<c:url value="/resources/node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js" />"></script>
 <script src="<c:url value="/resources/node_modules/moment/min/moment.min.js" />"></script>
-<%--<script src="<c:url value="/resources/node_modules/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js" />"></script>--%>
-<%--<script src="<c:url value="/resources/node_modules/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.js" />"></script>--%>
 <script src="<c:url value="/resources/node_modules/jquery.repeater/jquery.repeater.min.js" />"></script>
 <!-- End plugin js for this page-->
 <!-- inject:js -->
@@ -139,11 +126,7 @@
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="<c:url value="/resources/js/formpickers.js" />"></script>
-<%--<script src="<c:url value="/resources/js/form-addons.js" />"></script>--%>
-<%--<script src="<c:url value="/resources/js/x-editable.js" />"></script>--%>
 <script src="<c:url value="/resources/js/dropify.js" />"></script>
-<%--<script src="<c:url value="/resources/js/dropzone.js" />"></script>--%>
-<%--<script src="<c:url value="/resources/js/jquery-file-upload.js" />"></script>--%>
 <script src="<c:url value="/resources/js/formpickers.js" />"></script>
 <script src="<c:url value="/resources/js/form-repeater.js" />"></script>
 <%---------------------------------------------%>

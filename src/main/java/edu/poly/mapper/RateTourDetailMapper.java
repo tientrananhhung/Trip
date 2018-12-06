@@ -1,12 +1,10 @@
 package edu.poly.mapper;
 
-import edu.poly.common.StringUtils;
 import edu.poly.model.RateTourDetailDTO;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 
 public class RateTourDetailMapper implements RowMapper<RateTourDetailDTO> {
 
