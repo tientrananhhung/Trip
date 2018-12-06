@@ -122,6 +122,10 @@
 <script src="<c:url value="/resources/js/alerts.js"/>"></script>
 <script src="<c:url value="/resources/js/custom.js"/>"></script>
 <!-- End custom js for this page-->
-
+<script>
+    $(document).ready(function () {
+        $('body').addClass('sidebar-icon-only');
+    });
+</script>
 </body>
 </html>

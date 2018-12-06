@@ -50,7 +50,6 @@ public class TourController {
         }
         List<Tours> list = (List<Tours>) tour.findAll();
         mav.addObject("listTour",list);
-
         mav.setViewName(LIST_TOUR_SCREEN);
         return mav;
     }

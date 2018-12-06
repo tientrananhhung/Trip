@@ -113,4 +113,9 @@
 <!-- End custom js for this page-->
 
 </body>
+<script>
+    $(document).ready(function () {
+        $('body').addClass('sidebar-icon-only');
+    });
+</script>
 </html>

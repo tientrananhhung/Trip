@@ -71,7 +71,23 @@
                     <a href="/quan-ly/don-hang">
                         <div class="dropdown-menu-item">
                             <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>
-                            <span>Quản lý đơn hàng</span>
+                            <span>Đơn hàng chờ thanh toán</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="menu-dropdown-menu-item">
+                    <a href="/quan-ly/don-hang-da-thanh-toan">
+                        <div class="dropdown-menu-item">
+                            <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>
+                            <span>Đơn hàng đã thanh toán</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="menu-dropdown-menu-item">
+                    <a href="/quan-ly/don-hang-da-huy">
+                        <div class="dropdown-menu-item">
+                            <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>
+                            <span>Đơn hàng đã hủy</span>
                         </div>
                     </a>
                 </li>

@@ -96,6 +96,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="/admin/quan-ly-hoa-don">
+                <i class="mdi mdi-cart-outline"></i>
+                <span class="menu-title">Quản lý hóa đơn</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link collapsed" data-toggle="collapse" href="#page-layouts" aria-expanded="false" aria-controls="page-layouts">
                 <i class="mdi mdi-chart-histogram" data-name="mdi-chart-histogram" style="margin-right: 20px;"></i>
                 <span class="menu-title">Thống kê</span>

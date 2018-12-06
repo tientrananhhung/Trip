@@ -118,6 +118,10 @@
 <!-- Custom js for this page-->
 <script src="<c:url value="/resources/js/data-table.js"/>"></script>
 <!-- End custom js for this page-->
-
+<script>
+    $(document).ready(function () {
+        $('body').addClass('sidebar-icon-only');
+    });
+</script>
 </body>
 </html>
