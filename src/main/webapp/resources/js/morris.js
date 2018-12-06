@@ -1,9 +1,9 @@
 function loadUser(year) {
     'use strict';
-
+    var origin   = window.location.origin
     if ($('#morris-line-example').length) {
         $.ajax({
-            url: 'http://localhost:8080/api/userstatistics/'+year+'',
+            url: origin+'/api/userstatistics/'+year+'',
             type: 'GET'
         })
             .done(function (data) {
@@ -23,7 +23,7 @@ function loadUser(year) {
 function loadPartner(month,year){
     if ($("#morris-bar-example1").length) {
         $.ajax({
-            url: 'http://localhost:8080/api/partnerstatistics/'+month+'/'+year+'',
+            url: origin+'/api/partnerstatistics/'+month+'/'+year+'',
             type: 'GET'
         })
             .done(function (data) {
@@ -42,7 +42,7 @@ function loadPartner(month,year){
 function loadOffer(month,year){
     if ($("#morris-bar-example2").length) {
         $.ajax({
-            url: 'http://localhost:8080/api/offerstatistics/'+month+'/'+year+'',
+            url: origin+'/api/offerstatistics/'+month+'/'+year+'',
             type: 'GET'
         })
             .done(function (data) {
@@ -64,7 +64,7 @@ function loadPost(year) {
 
     if ($('#morris-area-example').length) {
         $.ajax({
-            url: 'http://localhost:8080/api/poststatistics/'+year+'',
+            url: origin+'/api/poststatistics/'+year+'',
             type: 'GET'
         })
             .done(function (data) {

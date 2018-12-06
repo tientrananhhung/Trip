@@ -4,9 +4,13 @@ import edu.poly.common.CheckSession;
 import edu.poly.common.Constants;
 import edu.poly.common.TimeUtils;
 import edu.poly.dao.ManagementTourDAO;
+import edu.poly.dao.OrderDAO;
+import edu.poly.entity.Orders;
 import edu.poly.entity.Users;
+import edu.poly.impl.OrderImpl;
 import edu.poly.impl.UserImpl;
 import edu.poly.model.ManagementTourDTO;
+import edu.poly.model.OrderDTO;
 import edu.poly.valaditor.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -37,6 +41,12 @@ public class ManagementController {
 
     public static final String MANAGEMENT_TOUR_SCREEN = "management-tour";
 
+    public static final String MANAGEMENT_ORDER_SCREEN = "management-order";
+
+    public static final String MANAGEMENT_DELETE_ORDER_SCREEN = "management-delete-order";
+
+    public static final String MANAGEMENT_PURCHASE_ORDER_SCREEN = "management-purchase-order";
+
     @Autowired
     ManagementTourDAO managementTourDAO;
 
@@ -45,6 +55,12 @@ public class ManagementController {
 
     @Autowired
     private UserValidator userValidator;
+
+    @Autowired
+    private OrderDAO orderDAO;
+
+    @Autowired
+    private OrderImpl order;
 
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
@@ -88,6 +104,94 @@ public class ManagementController {
         return mav;
     }
 
+    @GetMapping(Constants.Url.MANAGEMENT_DELETE_ORDER_URL)
+    public ModelAndView managementDeleteOrder(HttpSession session) {
+        ModelAndView mav = new ModelAndView();
+//        if (!CheckSession.partner(session)) {
+//            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+//            return mav;
+//        }
+        try {
+            Users users = (Users) session.getAttribute(Constants.SessionKey.USER);
+            orderDAO.deleteOrder(users.getId());
+            List<OrderDTO> managementOrderDTO = orderDAO.getListOrderCustomerDTODeleted(users.getId());
+            mav.setViewName(MANAGEMENT_DELETE_ORDER_SCREEN);
+            mav.addObject("listOrder", managementOrderDTO);
+            return mav;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            mav.setViewName(MANAGEMENT_DELETE_ORDER_SCREEN);
+            return mav;
+        }
+    }
+
+    @GetMapping(Constants.Url.MANAGEMENT_PURCHASE_ORDER_URL)
+    public ModelAndView managementPurchaseOrder(HttpSession session) {
+        ModelAndView mav = new ModelAndView();
+//        if (!CheckSession.partner(session)) {
+//            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+//            return mav;
+//        }
+        try {
+            Users users = (Users) session.getAttribute(Constants.SessionKey.USER);
+            orderDAO.deleteOrder(users.getId());
+            List<OrderDTO> managementOrderDTO = orderDAO.getListPurchaseOrderCustomerDTO(users.getId());
+            mav.setViewName(MANAGEMENT_PURCHASE_ORDER_SCREEN);
+            mav.addObject("listOrder", managementOrderDTO);
+            return mav;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            mav.setViewName(MANAGEMENT_PURCHASE_ORDER_SCREEN);
+            return mav;
+        }
+    }
+
+    @GetMapping(Constants.Url.MANAGEMENT_ORDER_URL)
+    public ModelAndView managementOrder(HttpSession session) {
+        ModelAndView mav = new ModelAndView();
+//        if (!CheckSession.partner(session)) {
+//            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+//            return mav;
+//        }
+        try {
+            Users users = (Users) session.getAttribute(Constants.SessionKey.USER);
+            orderDAO.deleteOrder(users.getId());
+            List<OrderDTO> managementOrderDTO = orderDAO.getListOrderCustomerDTO(users.getId());
+            mav.setViewName(MANAGEMENT_ORDER_SCREEN);
+            mav.addObject("listOrder", managementOrderDTO);
+            return mav;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            mav.setViewName(MANAGEMENT_ORDER_SCREEN);
+            return mav;
+        }
+    }
+
+
+    @GetMapping(Constants.Url.DELETE_ORDER_CUSTOMER)
+    public ModelAndView deleteOrder(HttpSession session, @PathVariable("id") Integer id, @PathVariable("purchase") boolean purchase) {
+        ModelAndView mav = new ModelAndView();
+//        if (!CheckSession.partner(session)) {
+//            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+//            return mav;
+//        }
+        try {
+            orderDAO.deleteCustomerOrder(id);
+            if (purchase == true) {
+                mav.setViewName("redirect:" + Constants.Url.MANAGEMENT_URL + Constants.Url.MANAGEMENT_PURCHASE_ORDER_URL);
+            } else {
+                mav.setViewName("redirect:" + Constants.Url.MANAGEMENT_URL + Constants.Url.MANAGEMENT_ORDER_URL);
+            }
+            return mav;
+        } catch (Exception ex){
+            if (purchase == true) {
+                mav.setViewName("redirect:" + Constants.Url.MANAGEMENT_URL + Constants.Url.MANAGEMENT_PURCHASE_ORDER_URL);
+            } else {
+                mav.setViewName("redirect:" + Constants.Url.MANAGEMENT_URL + Constants.Url.MANAGEMENT_ORDER_URL);
+            }
+            return mav;
+        }
+    }
 
     @PostMapping(Constants.Url.CHANGE_CUSTOMER_INFORMATION)
     public ModelAndView registerCustomer(HttpServletRequest request, @Validated @ModelAttribute(Constants.SessionKey.USER) Users users, BindingResult result, HttpSession session) {
@@ -137,7 +241,7 @@ public class ManagementController {
             session.setAttribute(Constants.SessionKey.USER, us);
             mav.setViewName("redirect:" + Constants.Url.MANAGEMENT_URL + Constants.Url.PROFILE_URL);
             return mav;
-        } catch (Exception ex){
+        } catch (Exception ex) {
             mav.setViewName("redirect:" + Constants.Url.MANAGEMENT_URL + Constants.Url.PROFILE_URL);
             return mav;
         }

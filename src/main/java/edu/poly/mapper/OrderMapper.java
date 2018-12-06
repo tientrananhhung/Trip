@@ -27,6 +27,7 @@ public class OrderMapper implements RowMapper<OrderDTO> {
         } else {
             payment1 = "Tại điểm du lịch";
         }
+Long policy1 = resultSet.getLong("policy");
         Boolean isPurchased = resultSet.getBoolean("purchased");
         Date orderDate = resultSet.getDate("datecreate");
         String tourName = resultSet.getString("tourname");
@@ -56,6 +57,17 @@ public class OrderMapper implements RowMapper<OrderDTO> {
             ticketDetailDTO.setQuantityTicket(Integer.valueOf(arRules1[2].split("\\:")[1]));
             list.add(ticketDetailDTO);
         }
-        return new OrderDTO(orderID,customerName, serviceName, userEmail,payment1,isPurchased,orderDate, tourName,tourAddress,  note,  offercode, offerdeal, phoneUser, serviceDate,totalPrice, totalPriceAfter, list);
+        return new OrderDTO(orderID,customerName, serviceName, userEmail,payment1,isPurchased,orderDate, tourName,tourAddress,  note,  offercode, offerdeal, phoneUser, serviceDate,totalPrice, totalPriceAfter,policy1*3600000, list);
+    }
+
+    public static long toLong(int i){
+        long l;
+        if (i<0){
+            l=-Integer.toUnsignedLong(Math.abs(i));
+        }
+        else{
+            l=Integer.toUnsignedLong(i);
+        }
+        return l;
     }
 }

@@ -20,9 +20,31 @@ public class OrderDTO {
     private String serviceDate;
     private String totalPrice;
     private String totalPriceAfter;
+    private Long policy;
     private List<TicketDetailDTO> ticketDetailDTOList;
 
     public OrderDTO() {
+    }
+
+    public OrderDTO(Integer orderID, String customerName, String serviceName, String userEmail, String payment, Boolean isPurchased, Date orderDate, String tourName, String tourAddress, String note, String offercode, String offerdeal, String phoneUser, String serviceDate, String totalPrice, String totalPriceAfter, Long policy, List<TicketDetailDTO> ticketDetailDTOList) {
+        this.orderID = orderID;
+        this.customerName = customerName;
+        this.serviceName = serviceName;
+        this.userEmail = userEmail;
+        this.payment = payment;
+        this.isPurchased = isPurchased;
+        this.orderDate = orderDate;
+        this.tourName = tourName;
+        this.tourAddress = tourAddress;
+        this.note = note;
+        this.offercode = offercode;
+        this.offerdeal = offerdeal;
+        this.phoneUser = phoneUser;
+        this.serviceDate = serviceDate;
+        this.totalPrice = totalPrice;
+        this.totalPriceAfter = totalPriceAfter;
+        this.policy = policy;
+        this.ticketDetailDTOList = ticketDetailDTOList;
     }
 
     public String getTourName() {
@@ -82,24 +104,12 @@ public class OrderDTO {
         this.userEmail = userEmail;
     }
 
-    public OrderDTO(Integer orderID, String customerName, String serviceName, String userEmail, String payment, Boolean isPurchased, Date orderDate, String tourName, String tourAddress, String note, String offercode, String offerdeal, String phoneUser, String serviceDate, String totalPrice, String totalPriceAfter, List<TicketDetailDTO> ticketDetailDTOList) {
-        this.orderID = orderID;
-        this.customerName = customerName;
-        this.serviceName = serviceName;
-        this.userEmail = userEmail;
-        this.payment = payment;
-        this.isPurchased = isPurchased;
-        this.orderDate = orderDate;
-        this.tourName = tourName;
-        this.tourAddress = tourAddress;
-        this.note = note;
-        this.offercode = offercode;
-        this.offerdeal = offerdeal;
-        this.phoneUser = phoneUser;
-        this.serviceDate = serviceDate;
-        this.totalPrice = totalPrice;
-        this.totalPriceAfter = totalPriceAfter;
-        this.ticketDetailDTOList = ticketDetailDTOList;
+    public Long getPolicy() {
+        return policy;
+    }
+
+    public void setPolicy(Long policy) {
+        this.policy = policy;
     }
 
     public String getPayment() {

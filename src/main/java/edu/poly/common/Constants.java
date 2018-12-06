@@ -204,6 +204,18 @@ public class Constants {
         //Trang quản lý tour của partner
         public static final String MANAGEMENT_TOUR_URL = "/tour";
 
+        //Trang quản lý order của customer
+        public static final String MANAGEMENT_ORDER_URL = "/don-hang";
+
+        //Trang quản lý order đã thanh toán của customer
+        public static final String MANAGEMENT_PURCHASE_ORDER_URL = "/don-hang-da-thanh-toan";
+
+        //Trang quản lý order của customer
+        public static final String MANAGEMENT_DELETE_ORDER_URL = "/don-hang-da-huy";
+
+        //Trang hủy order của customer
+        public static final String DELETE_ORDER_CUSTOMER = "/huy-don-hang/{purchase}/{id}";
+
         //Trang Blog của user
         public static final String BLOG_URL = "/blog";
 
