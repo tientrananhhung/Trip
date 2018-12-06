@@ -40,7 +40,7 @@
                     <div class="foot-main-image">
                         <a href="#">
                             <img src="../resources/images/${fooddetail.placeInfoImage}" alt="" class="pic-place"
-                                 style="width: 100%; height: max-content;">
+                                 style="width: 100%; height: 280px;">
                         </a>
                     </div>
                 </div>

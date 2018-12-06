@@ -203,7 +203,7 @@
                 <c:choose>
                     <c:when test="${lPostCount.count == 1}">
                         <div class="post-big">
-                            <a class="city-tickets" href="#" style="background-image: url('/resources/images/${lPost.image}');">
+                            <a class="city-tickets" href="/blog/${lPost.id}" style="background-image: url('/resources/images/${lPost.image}');">
                                 <div class="ticket-relative">
                                     <div class="ticket-info">
                                         <div class="ticket-big-short">
