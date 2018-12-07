@@ -1,10 +1,11 @@
 package edu.poly.controller;
 
 import edu.poly.common.Constants;
+import edu.poly.dao.FoodDAO;
 import edu.poly.dao.FoodDetailDAO;
 import edu.poly.dao.FoodInfoDAO;
-import edu.poly.model.FoodDetailDTO;
-import edu.poly.model.FoodInforDTO;
+import edu.poly.dao.PostIndexDAO;
+import edu.poly.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,12 +23,21 @@ public class PlaceInforController {
     //Return index page
     public static final String HOME_SCREEN = "index";
 
+    //Return food gage
+    public static final String FOOD_SCREEN = "food";
+
 
     @Autowired
     FoodDetailDAO foodDetailDAO;
 
     @Autowired
     FoodInfoDAO foodInfoDAO;
+
+    @Autowired
+    FoodDAO foodDAO;
+
+    @Autowired
+    PostIndexDAO postIndexDAO;
 
     @GetMapping(Constants.Url.FOOD_DETAIL_URL)
     public ModelAndView showFoodDetail(@PathVariable("id") int id) {
@@ -39,6 +49,25 @@ public class PlaceInforController {
             mav.addObject("fooddetail", foodDetailDTO);
         } catch (Exception e) {
             e.printStackTrace();
+            mav.setViewName(HOME_SCREEN);
+        }
+        return mav;
+    }
+
+    @GetMapping(Constants.Url.FOOD_URL)
+    public ModelAndView showFood(){
+        ModelAndView mav = new ModelAndView(FOOD_SCREEN);
+        try{
+            List<FoodDTO> foodDTOS = foodDAO.getAllFoodDTO();
+            List<PlaceInfoDTO> getTop5FoodNew = foodDAO.getTop5FoodNew();
+            List<PlaceInfoDTO> getTop3Food = foodDAO.getTop3Food();
+            List<PostIndexDTO> lPostIndexDTOByCategoryFood = postIndexDAO.getTop3PostByCategory(6);
+            mav.addObject("listFood", foodDTOS);
+            mav.addObject("listTop5Food", getTop5FoodNew);
+            mav.addObject("listPostFood", lPostIndexDTOByCategoryFood);
+            mav.addObject("lTop3Food", getTop3Food);
+        }catch (Exception ex){
+            ex.printStackTrace();
             mav.setViewName(HOME_SCREEN);
         }
         return mav;

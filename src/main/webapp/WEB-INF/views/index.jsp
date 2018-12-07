@@ -216,7 +216,7 @@
                     </c:when>
                     <c:otherwise>
                         <div class="post-small" style="border-bottom: 5px solid white;">
-                            <a class="city-tickets" href="#" style="background-image: url('/resources/images/${lPost.image}');">
+                            <a class="city-tickets" href="/blog/${lPost.id}" style="background-image: url('/resources/images/${lPost.image}');">
                                 <div class="ticket-relative">
                                     <div class="ticket-info">
                                         <div class="ticket-small-short">
@@ -238,7 +238,7 @@
     <section class="box-content-fluid box-content mg-top-30">
         <div class="box-title mg-bottom-30">
             <h2>điểm ăn uống tự chọn</h2>
-            <a href="#">Xem thêm »</a>
+            <a href="/food">Xem thêm »</a>
         </div>
         <div class="box-body">
             <div class="row">

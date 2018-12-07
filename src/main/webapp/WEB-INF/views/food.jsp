@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Tien Tran
-  Date: 11/2/2018
-  Time: 7:34 PM
+  User: Thai
+  Date: 7/12/2018
+  Time: 8:30 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Smart Trip</title>
+    <title>Food - Smart Trip</title>
     <!-- Icon -->
     <link rel="icon" href="/resources/images/favicon.ico">
     <!-- Bootstrap css -->
@@ -34,15 +34,15 @@
     <section class="box-content-fluid mg-top-20">
         <div class="box-body">
 
-            <c:forEach items="${listPost}" var="lPost" varStatus="lPostCount">
+            <c:forEach items="${listTop5Food}" var="lFood" varStatus="lFoodCount">
                 <c:choose>
-                    <c:when test="${lPostCount.count == 1}">
+                    <c:when test="${lFoodCount.count == 1}">
                         <div class="post-big">
-                            <a class="city-tickets" href="/blog/${lPost.id}" style="background-image: url('/resources/images/${lPost.image}');">
+                            <a class="city-tickets" href="/food/${lFood.id}" style="background-image: url('/resources/images/${lFood.placeInfoImage}');">
                                 <div class="ticket-relative">
                                     <div class="ticket-info">
                                         <div class="ticket-big-short">
-                                            <h3>${lPost.title}</h3>
+                                            <h3>${lFood.placeInfoName}</h3>
                                         </div>
                                     </div>
                                 </div>
@@ -51,11 +51,11 @@
                     </c:when>
                     <c:otherwise>
                         <div class="post-small" style="border-bottom: 5px solid white;">
-                            <a class="city-tickets" href="/blog/${lPost.id}" style="background-image: url('/resources/images/${lPost.image}');">
+                            <a class="city-tickets" href="/food/${lFood.id}" style="background-image: url('/resources/images/${lFood.placeInfoImage}');">
                                 <div class="ticket-relative">
                                     <div class="ticket-info">
                                         <div class="ticket-small-short">
-                                            <h3>${lPost.title}</h3>
+                                            <h3>${lFood.placeInfoName}</h3>
                                         </div>
                                     </div>
                                 </div>
@@ -79,27 +79,26 @@
                 <div class="box-blog-left">
                     <div class="box-blog-title">
                         <h3 class="blog-title">
-                            <a href="#">điểm du lịch</a>
+                            <a href="/food">Địa điểm ăn uống</a>
                         </h3>
                         <a class="blog-more" href="#">Xem thêm »</a>
                     </div>
                     <!-- Start blog content -->
                     <div class="box-blog-content">
 
-                        <c:forEach items="${listPostTravel}" var="lPost" varStatus="lPostCount">
+                        <c:forEach items="${lTop3Food}" var="lFood" varStatus="lFoodCount">
                             <c:choose>
-                                <c:when test="${lPostCount.count == 1}">
+                                <c:when test="${lFoodCount.count == 1}">
                                     <div class="combo-big">
-                                        <a class="city-tickets" href="/blog/${lPost.id}"
-                                           style="background-image: url('/resources/images/${lPost.image}');">
+                                        <a class="city-tickets" href="/food/${lFood.id}"
+                                           style="background-image: url('/resources/images/${lFood.placeInfoImage}');">
                                             <div class="ticket-relative">
                                                 <div class="ticket-info">
                                                     <div class="ticket-big-short">
-                                                        <h3>${lPost.title}</h3>
+                                                        <h3>${lFood.placeInfoName}</h3>
                                                         <div class="blog-info">
-                                                            <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> ${lPost.updatedAt}</span>
-                                                            <span class="cfs-12"><i class="fa fa-eye"
-                                                                                    aria-hidden="true"></i> ${lPost.view}</span>
+                                                            <span class="cfs-12"><i class="fa fa-phone-square"></i></i> ${lFood.placeInfoPhone}</span>
+                                                            <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> ${lFood.opentime}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -109,16 +108,15 @@
                                 </c:when>
                                 <c:otherwise>
                                     <div class="combo-small" style="margin-bottom: 6px;">
-                                        <a class="city-tickets" href="/blog/${lPost.id}"
-                                           style="background-image: url('/resources/images/${lPost.image}');">
+                                        <a class="city-tickets" href="/food/${lFood.id}"
+                                           style="background-image: url('/resources/images/${lFood.placeInfoImage}');">
                                             <div class="ticket-relative">
                                                 <div class="ticket-info">
                                                     <div class="ticket-small-short">
-                                                        <h3>${lPost.title}</h3>
+                                                        <h3>${lFood.placeInfoName}</h3>
                                                         <div class="blog-info">
-                                                            <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> ${lPost.updatedAt}</span>
-                                                            <span class="cfs-12"><i class="fa fa-eye"
-                                                                                    aria-hidden="true"></i> ${lPost.view}</span>
+                                                            <span class="cfs-12"><i class="fa fa-phone-square"></i> ${lFood.placeInfoPhone}</span>
+                                                            <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> ${lFood.opentime}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -135,70 +133,14 @@
                 <!-- End box 1 -->
 
                 <!-- Start box 2 -->
-                <div class="box-blog-left mg-top-20" style="background: white;">
-                    <div class="box-blog-title">
-                        <h3 class="blog-title">
-                            <a href="#">kinh nghiệm du lịch</a>
-                        </h3>
-                        <a class="blog-more" href="#">Xem thêm »</a>
-                    </div>
-                    <!-- Start blog content -->
-                    <div class="box-blog-content">
 
-                        <c:forEach items="${listPostExperience}" var="lPost" varStatus="lPostCount">
-                            <c:choose>
-                                <c:when test="${lPostCount.count == 1}">
-                                    <div class="combo-big">
-                                        <a class="city-tickets" href="/blog/${lPost.id}"
-                                           style="background-image: url('/resources/images/${lPost.image}');">
-                                            <div class="ticket-relative">
-                                                <div class="ticket-info">
-                                                    <div class="ticket-big-short">
-                                                        <h3>${lPost.title}</h3>
-                                                        <div class="blog-info">
-                                                            <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> ${lPost.updatedAt}</span>
-                                                            <span class="cfs-12"><i class="fa fa-eye"
-                                                                                    aria-hidden="true"></i> ${lPost.view}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </c:when>
-                                <c:otherwise>
-                                    <div class="combo-small" style="margin-bottom: 6px;">
-                                        <a class="city-tickets" href="/blog/${lPost.id}"
-                                           style="background-image: url('/resources/images/${lPost.image}');">
-                                            <div class="ticket-relative">
-                                                <div class="ticket-info">
-                                                    <div class="ticket-small-short">
-                                                        <h3>${lPost.title}</h3>
-                                                        <div class="blog-info">
-                                                            <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> ${lPost.updatedAt}</span>
-                                                            <span class="cfs-12"><i class="fa fa-eye"
-                                                                                    aria-hidden="true"></i> ${lPost.view}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </c:otherwise>
-                            </c:choose>
-                        </c:forEach>
-
-
-                    </div>
-                    <!-- End blog content -->
-                </div>
                 <!-- End box 2 -->
 
                 <!-- Start box 3 -->
                 <div class="box-blog-left mg-top-20" style="background: white;">
                     <div class="box-blog-title">
                         <h3 class="blog-title">
-                            <a href="#">ẩm thực</a>
+                            <a href="/food">Bài viết ẩm thực</a>
                         </h3>
                         <a class="blog-more" href="#">Xem thêm »</a>
                     </div>
@@ -294,61 +236,27 @@
                 <div class="box-blog-right mg-top-20">
                     <div class="box-blog-title">
                         <h3 class="blog-title">
-                            <a href="#">bài viết gần đây</a>
+                            <a href="#">bài viết ẩm thực gần đây</a>
                         </h3>
                         <a class="blog-more" href="#">Xem thêm »</a>
                     </div>
                     <div class="box-blog-content">
-                        <c:forEach items="${listPost}" var="lPosst" end="2">
+                        <c:forEach items="${listFood}" var="lFood" end="2">
                             <article class="blog-post-item">
                                 <div class="blog-media-object">
-                                    <a class="blog-image-holder" href="/blog/${lPosst.id}">
-                                        <img src="/resources/images/${lPosst.image}" alt="">
+                                    <a class="blog-image-holder" href="/food/${lFood.id}">
+                                        <img src="/resources/images/${lFood.image}" alt="">
                                     </a>
                                     <div class="blog-post-content">
                                         <h3 class="blog-post-title cfs-15">
-                                            <a href="#">${lPosst.title}</a>
+                                            <a href="#">${lFood.name}</a>
                                         </h3>
                                         <div class="blog-post-description cfs-12">
-                                            ${lPosst.description}
+                                                ${lFood.category}
                                         </div>
                                         <div class="blog-post-meta">
-                                            <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> ${lPosst.updatedAt}</span>
-                                            <span class="cfs-12"><i class="fa fa-eye" aria-hidden="true"></i> ${lPosst.view}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                        </c:forEach>
-
-                    </div>
-                </div>
-
-                <div class="box-blog-right mg-top-20">
-                    <div class="box-blog-title">
-                        <h3 class="blog-title">
-                            <a href="#">xem nhiều</a>
-                        </h3>
-                        <a class="blog-more" href="#">Xem thêm »</a>
-                    </div>
-                    <div class="box-blog-content">
-
-                        <c:forEach items="${listPostView}" var="lPost">
-                            <article class="blog-post-item">
-                                <div class="blog-media-object">
-                                    <a class="blog-image-holder" href="/blog/${lPost.id}">
-                                        <img src="/resources/images/${lPost.image}" alt="">
-                                    </a>
-                                    <div class="blog-post-content">
-                                        <h3 class="blog-post-title cfs-15">
-                                            <a href="#">${lPost.title}</a>
-                                        </h3>
-                                        <div class="blog-post-description cfs-12">
-                                            ${lPost.description}
-                                        </div>
-                                        <div class="blog-post-meta">
-                                            <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> ${lPost.updatedAt}</span>
-                                            <span class="cfs-12"><i class="fa fa-eye" aria-hidden="true"></i> ${lPost.view}</span>
+                                            <span class="cfs-12"><i class="fa fa-map-marker"></i> ${lFood.address}</span>
+                                            <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> ${lFood.openTime}</span>
                                         </div>
                                     </div>
                                 </div>
