@@ -96,9 +96,11 @@ public class UserController {
 //            rq.getSession().setAttribute("login", new Users());
 //            mav.addObject("login", new Users());
             List<TourDTO> lTourDTO = tourDAO.getAllTourDTO();
+            List<TourDTO> lTourTop3New = tourDAO.getTop3TourDTO();
             List<FoodDTO> lFoodDTO = foodDAO.getAllFoodDTO();
             List<PostIndexDTO> lPostIndexDTO = postIndexDAO.getTop5PostNew();
             mav.addObject("listTour", lTourDTO);
+            mav.addObject("lTourTop3New", lTourTop3New);
             mav.addObject("listFood", lFoodDTO);
             mav.addObject("listPost", lPostIndexDTO);
         } catch (Exception e) {

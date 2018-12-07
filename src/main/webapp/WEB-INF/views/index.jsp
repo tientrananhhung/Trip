@@ -74,45 +74,53 @@
             <a href="#">Xem thêm »</a>
         </div>
         <div class="box-body">
-            <div class="combo-big">
-                <a class="city-tickets" href="#" style="background-image: url('/resources/images/combo1.jpg');">
-                    <div class="ticket-relative">
-                        <div class="ticket-info">
-                            <div class="ticket-big-short">
-                                <h3>Combo Du lịch Sapa xuất phát từ Hà Nội - Adam Hotel</h3>
-                                <div class="price t16">Giá chỉ từ <span class="c_orange_l">690.000đ</span>
+            <c:forEach var="lTour" items="${lTourTop3New}" varStatus="lTourCount">
+                <c:choose>
+                <c:when test="${lTourCount.count == 1}">
+                    <div class="combo-big">
+                        <a class="city-tickets" href="/tour/${lTour.id}" style="background-image: url('/resources/images/${lTour.image}');">
+                            <div class="ticket-relative">
+                                <div class="ticket-info">
+                                    <div class="ticket-big-short">
+                                        <h3>${lTour.name}</h3>
+                                        <div class="price t16">Giá chỉ từ <span class="c_orange_l">${lTour.sPrice}đ</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-            <div class="combo-small" style="margin-bottom: 6px;">
-                <a class="city-tickets" href="#" style="background-image: url('/resources/images/combo2.jpg');">
-                    <div class="ticket-relative">
-                        <div class="ticket-info">
-                            <div class="ticket-small-short">
-                                <h3>Combo Tour Đà Nẵng xuất phát từ HN/ HCM</h3>
-                                <div class="price t16">Giá chỉ từ <span class="c_orange_l">3.990.000đ</span>
+                </c:when>
+                <c:otherwise>
+                    <div class="combo-small" style="margin-bottom: 6px;">
+                        <a class="city-tickets" href="/tour/${lTour.id}" style="background-image: url('/resources/images/${lTour.image}');">
+                            <div class="ticket-relative">
+                                <div class="ticket-info">
+                                    <div class="ticket-small-short">
+                                        <h3>${lTour.name}</h3>
+                                        <div class="price t16">Giá chỉ từ <span class="c_orange_l">${lTour.sPrice}đ</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-            <div class="combo-small">
-                <a class="city-tickets" href="#" style="background-image: url('/resources/images/combo3.jpg');">
-                    <div class="ticket-relative">
-                        <div class="ticket-info">
-                            <div class="ticket-small-short">
-                                <h3>Combo Du lịch Nha Trang siêu tiết kiệm xuất phát từ HN/HCM</h3>
-                                <div class="price t16">Giá chỉ từ <span class="c_orange_l">1.990.000đ</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
+                </c:otherwise>
+                </c:choose>
+            </c:forEach>
+            <%--<div class="combo-small">--%>
+                <%--<a class="city-tickets" href="#" style="background-image: url('/resources/images/combo3.jpg');">--%>
+                    <%--<div class="ticket-relative">--%>
+                        <%--<div class="ticket-info">--%>
+                            <%--<div class="ticket-small-short">--%>
+                                <%--<h3>Combo Du lịch Nha Trang siêu tiết kiệm xuất phát từ HN/HCM</h3>--%>
+                                <%--<div class="price t16">Giá chỉ từ <span class="c_orange_l">1.990.000đ</span>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                <%--</a>--%>
+            <%--</div>--%>
         </div>
     </section>
     <!-- End Điểm đến nổi bật -->

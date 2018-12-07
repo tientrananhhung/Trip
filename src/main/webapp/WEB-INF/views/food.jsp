@@ -140,7 +140,7 @@
                 <div class="box-blog-left mg-top-20" style="background: white;">
                     <div class="box-blog-title">
                         <h3 class="blog-title">
-                            <a href="/food">Bài viết ẩm thực</a>
+                            <a href="/blog">Bài viết ẩm thực</a>
                         </h3>
                         <a class="blog-more" href="#">Xem thêm »</a>
                     </div>
