@@ -42,7 +42,7 @@
                             </div>
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
-                                <a href="/admin/quan-ly-dia-diem/them"><button style="margin-left: 190px;" type="button" class="btn btn-warning btn-rounded btn-fw">Add Foodplace</button></a>
+                                <a href="/admin/quan-ly-dia-diem/them" class="btn btn-warning btn-rounded btn-fw" style="margin-left: 190px;">Add Foodplace</a>
                             </div>
                         </div>
                         <div class="row">
@@ -63,19 +63,13 @@
                                         <td>${foods.foodCategorysByFoodCategoryId.name}</td>
                                         <td>${foods.usersByUserId.name}</td>
                                         <td>
-                                            <a href="/admin/quan-ly-dia-diem/${foods.id}">
-                                                <button class="btn btn-outline-primary">Edit</button>
-                                            </a>
+                                            <a href="/admin/quan-ly-dia-diem/${foods.id}" class="btn btn-outline-primary">Edit</a>
                                             <c:choose>
                                                 <c:when test="${foods.getDeleted() == false}">
-                                                    <a href="/admin/quan-ly-dia-diem/${foods.id}/xoa">
-                                                        <button class="btn btn-outline-danger">Delete</button>
-                                                    </a>
+                                                    <a href="/admin/quan-ly-dia-diem/${foods.id}/xoa" class="btn btn-outline-danger">Delete</a>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <a href="/admin/quan-ly-dia-diem/${foods.id}/active">
-                                                        <button class="btn btn-outline-warning">Active</button>
-                                                    </a>
+                                                    <a href="/admin/quan-ly-dia-diem/${foods.id}/active" class="btn btn-outline-warning"v>Active</a>
                                                 </c:otherwise>
                                             </c:choose>
 

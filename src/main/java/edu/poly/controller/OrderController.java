@@ -37,10 +37,10 @@ public class OrderController {
     @GetMapping(Constants.Url.LIST_ORDER)
     public ModelAndView showOrderList(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-//        if (!CheckSession.admin(session)) {
-//            mav.setViewName("redirect:" + Constants.Url.LOGIN);
-//            return mav;
-//        }
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
 //        mav.addObject("listDistrict", district.findAllByDeleted(false));
         List<OrderDTO> list = orderDAO.getListOrderDTO();
         mav.addObject("listOrder",list);
@@ -53,10 +53,10 @@ public class OrderController {
     @GetMapping(Constants.Url.DELETE_ORDER)
     public ModelAndView deleteOrder(HttpSession session, @PathVariable("id") int id) {
         ModelAndView mav = new ModelAndView();
-//        if (!CheckSession.admin(session)) {
-//            mav.setViewName("redirect:" + Constants.Url.LOGIN);
-//            return mav;
-//        }
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         try{
             Orders orders = order.getById(id);
             orders.setDeleted(true);
@@ -73,10 +73,10 @@ public class OrderController {
     @GetMapping(Constants.Url.PURCHASE_ORDER)
     public ModelAndView purchaseOrder(HttpSession session, @PathVariable("id") int id) {
         ModelAndView mav = new ModelAndView();
-//        if (!CheckSession.admin(session)) {
-//            mav.setViewName("redirect:" + Constants.Url.LOGIN);
-//            return mav;
-//        }
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         try{
             Orders orders = order.getById(id);
             orders.setPurchased(true);

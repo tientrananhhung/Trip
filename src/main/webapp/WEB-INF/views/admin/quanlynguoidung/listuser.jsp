@@ -43,10 +43,8 @@
                             </div>
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
-                                <a href="/admin/quan-ly-nguoi-dung/them">
-                                    <button style="margin-left: 190px;" type="button"
-                                            class="btn btn-warning btn-rounded btn-fw">Add User
-                                    </button>
+                                <a href="/admin/quan-ly-nguoi-dung/them" class="btn btn-warning btn-rounded btn-fw" style="margin-left: 190px;">
+                                    Add User
                                 </a>
                             </div>
                         </div>
@@ -102,24 +100,14 @@
                                                 </c:choose>
                                             </td>
                                             <td>
-                                                <a href="/admin/quan-ly-nguoi-dung/${user.id}">
-                                                    <button class="btn btn-outline-primary">Edit</button>
-                                                </a>
-                                                <a href="/admin/quan-ly-nguoi-dung/xoa/${user.id}">
-                                                    <button class="btn btn-outline-danger">Delete</button>
-                                                </a>
+                                                <a href="/admin/quan-ly-nguoi-dung/${user.id}" class="btn btn-outline-primary">Edit</a>
+                                                <a href="/admin/quan-ly-nguoi-dung/xoa/${user.id}" class="btn btn-outline-danger">Delete</a>
                                                 <c:choose>
                                                     <c:when test="${user.role == 0}">
-                                                        <a href="/admin/quan-ly-nguoi-dung/changerole/${user.id}/1">
-                                                            <button class="btn btn-outline-secondary">Set to Manager
-                                                            </button>
-                                                        </a>
+                                                        <a href="/admin/quan-ly-nguoi-dung/changerole/${user.id}/1" class="btn btn-outline-secondary">Set to Manager</a>
                                                     </c:when>
                                                     <c:when test="${user.role == 1}">
-                                                        <a href="/admin/quan-ly-nguoi-dung/changerole/${user.id}/0">
-                                                            <button class="btn btn-outline-warning">Set to Admin
-                                                            </button>
-                                                        </a>
+                                                        <a href="/admin/quan-ly-nguoi-dung/changerole/${user.id}/0" class="btn btn-outline-warning">Set to Admin</a>
                                                     </c:when>
                                                 </c:choose>
                                             </td>

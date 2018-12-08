@@ -42,7 +42,7 @@
                             </div>
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
-                                <a href="/admin/quan-ly-bai-viet/them"><button style="margin-left: 190px;" type="button" class="btn btn-warning btn-rounded btn-fw">Add Post</button></a>
+                                <a href="/admin/quan-ly-bai-viet/them" class="btn btn-warning btn-rounded btn-fw" style="margin-left: 190px;">Add Post</a>
                             </div>
                         </div>
                         <div class="row">
@@ -65,12 +65,8 @@
                                             <td>${post.usersByUserId.name}</td>
                                             <td>${post.postCategorysByPostCategoryId.name}</td>
                                             <td>
-                                                <a href="/admin/quan-ly-bai-viet/${post.id}">
-                                                    <button class="btn btn-outline-primary">Edit</button>
-                                                </a>
-                                                <a href="/admin/quan-ly-bai-viet/xoa/${post.id}">
-                                                    <button class="btn btn-outline-danger">Delete</button>
-                                                </a>
+                                                <a href="/admin/quan-ly-bai-viet/${post.id}" class="btn btn-outline-primary">Edit</a>
+                                                <a href="/admin/quan-ly-bai-viet/xoa/${post.id}" class="btn btn-outline-danger" >Delete</a>
                                             </td>
                                         </tr>
                                     </c:forEach>

@@ -37,7 +37,7 @@
                             </div>
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
-                                <a href="/admin/quan-ly-uu-dai/them"><button style="margin-left: 190px;" type="button" class="btn btn-warning btn-rounded btn-fw">Add Offer</button></a>
+                                <a href="/admin/quan-ly-uu-dai/them" class="btn btn-warning btn-rounded btn-fw" style="margin-left: 190px;">Add Offer</a>
                             </div>
                         </div>
                         <hr/>
@@ -77,9 +77,7 @@
                                             </td>
                                             <td>
                                                 <c:if test="${offer.used == false}">
-                                                    <a href="/admin/quan-ly-uu-dai/${offer.id}">
-                                                        <button class="btn btn-outline-primary">Edit</button>
-                                                    </a>
+                                                    <a href="/admin/quan-ly-uu-dai/${offer.id}" class="btn btn-outline-primary">Edit</a>
                                                 </c:if>
                                             </td>
                                         </tr>

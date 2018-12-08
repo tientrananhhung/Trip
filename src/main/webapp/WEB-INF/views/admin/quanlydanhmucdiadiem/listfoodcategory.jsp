@@ -42,7 +42,7 @@
                             </div>
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
-                                <a href="/admin/quan-ly-danh-muc-dia-diem/them"><button style="margin-left: 190px;" type="button" class="btn btn-warning btn-rounded btn-fw">Add Foodcategory</button></a>
+                                <a href="/admin/quan-ly-danh-muc-dia-diem/them" class="btn btn-warning btn-rounded btn-fw" style="margin-left: 190px;">Add Foodcategory</a>
                             </div>
                         </div>
                         <div class="row">
@@ -61,12 +61,8 @@
                                             <th>${foodcategory.id}</th>
                                             <td>${foodcategory.name}</td>
                                             <td>
-                                                <a href="/admin/quan-ly-danh-muc-dia-diem/${foodcategory.id}">
-                                                    <button class="btn btn-outline-primary">Edit</button>
-                                                </a>
-                                                <a href="/admin/quan-ly-danh-muc-dia-diem/xoa/${foodcategory.id}">
-                                                    <button class="btn btn-outline-danger">Delete</button>
-                                                </a>
+                                                <a href="/admin/quan-ly-danh-muc-dia-diem/${foodcategory.id}" class="btn btn-outline-primary">Edit</a>
+                                                <a href="/admin/quan-ly-danh-muc-dia-diem/xoa/${foodcategory.id}" class="btn btn-outline-danger">Delete</a>
                                             </td>
                                         </tr>
                                     </c:forEach>
