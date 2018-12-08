@@ -198,6 +198,10 @@ public class PartnerController {
     @PostMapping(Constants.Url.UPDATED_PARNER)
     public ModelAndView editPartner(HttpSession session, @ModelAttribute("partner") Partners partners) {
         ModelAndView mav = new ModelAndView();
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
+            return mav;
+        }
         Partners pn = partner.getById(partners.getId());
         try {
             partners.setActived(pn.getActived());

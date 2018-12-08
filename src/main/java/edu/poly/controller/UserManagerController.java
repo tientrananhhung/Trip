@@ -44,8 +44,8 @@ public class UserManagerController {
     @GetMapping(Constants.Url.LIST_USER)
     public ModelAndView showUserList(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-        if(!CheckSession.admin(session)){
-            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
             return mav;
         }
         mav.addObject("listUser", user.findAllByDeleted(false));
@@ -57,8 +57,8 @@ public class UserManagerController {
     @GetMapping(Constants.Url.ADD_USER)
     public ModelAndView addUser(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-        if(!CheckSession.admin(session)){
-            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
             return mav;
         }
 
@@ -81,8 +81,8 @@ public class UserManagerController {
             mav.setViewName(ADD_USER);
             return mav;
         }
-        if(!CheckSession.admin(session)){
-            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
             return mav;
         }
         users.setPassword(PasswordUtils.md5("smarttrip"));
@@ -114,8 +114,8 @@ public class UserManagerController {
     @GetMapping(Constants.Url.DELETE_USER)
     public ModelAndView deleteUser(HttpSession session, @PathVariable("id") int id) {
         ModelAndView mav = new ModelAndView();
-        if(!CheckSession.admin(session)){
-            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
             return mav;
         }
         try{
@@ -140,8 +140,8 @@ public class UserManagerController {
     public ModelAndView statusUser(HttpSession session, @PathVariable("id") int id,
                                    @PathVariable("active") boolean active) {
         ModelAndView mav = new ModelAndView();
-        if(!CheckSession.admin(session)){
-            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
             return mav;
         }
         Users us = user.getById(id);
@@ -161,8 +161,8 @@ public class UserManagerController {
     @GetMapping(Constants.Url.UPDATE_USER)
     public ModelAndView updateUser(HttpSession session, @PathVariable("id") Integer id) {
         ModelAndView mav = new ModelAndView();
-        if(!CheckSession.admin(session)){
-            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
             return mav;
         }
 
@@ -184,8 +184,8 @@ public class UserManagerController {
     @PostMapping(Constants.Url.UPDATED_USER)
     public ModelAndView editUser(HttpSession session, @Validated @ModelAttribute("users")  Users users, BindingResult result) {
         ModelAndView mav = new ModelAndView();
-        if(!CheckSession.admin(session)){
-            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
             return mav;
         }
         if(result.hasErrors()) {
@@ -220,8 +220,8 @@ public class UserManagerController {
     public ModelAndView changeRoleUser(HttpSession session, @PathVariable("id") int id,
                                        @PathVariable("role") int role){
         ModelAndView mav = new ModelAndView();
-        if(!CheckSession.admin(session)){
-            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+        if (!CheckSession.admin(session)) {
+            mav.setViewName("redirect:" + Constants.Url.LOGIN);
             return mav;
         }
         Users us = user.getById(id);

@@ -45,10 +45,6 @@ public class DistrictController {
             mav.setViewName("redirect:" + Constants.Url.LOGIN);
             return mav;
         }
-        if (!CheckSession.admin(session)) {
-            mav.setViewName("redirect:" + Constants.Url.LOGIN);
-            return mav;
-        }
         mav.setViewName(ADD_DISTRICT_SCREEN);
         mav.addObject("district", new Districts());
         mav.addObject("action", "them");
