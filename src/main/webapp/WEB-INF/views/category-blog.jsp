@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -32,368 +33,80 @@
 
 <!-- Start điểm du lịch -->
 <section class="box-content-fluid mg-top-20">
+    <div class="box-body">
+        <c:forEach items="${lPostTop5Category}" var="lPostTop5" varStatus="lPostCount">
+            <c:choose>
+                <c:when test="${lPostCount.count == 1}">
+                    <div class="post-big">
+                        <a class="city-tickets" href="/blog/${lPostTop5.postID}" style="background-image: url('/resources/images/${lPostTop5.postImage}');">
+                            <div class="ticket-relative">
+                                <div class="ticket-info">
+                                    <div class="ticket-big-short">
+                                        <h3>${lPostTop5.postTitle}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="post-small" style="border-bottom: 5px solid white;">
+                        <a class="city-tickets" href="/blog/${lPostTop5.postID}" style="background-image: url('/resources/images/${lPostTop5.postImage}');">
+                            <div class="ticket-relative">
+                                <div class="ticket-info">
+                                    <div class="ticket-small-short">
+                                        <h3>${lPostTop5.postTitle}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
+    </div>
+</section>
+
+
+<section class="box-content-fluid mg-top-20">
     <div class="row">
         <!-- Start Content left -->
         <div class="col-lg-8">
             <!-- Start box 1 -->
             <div class="box-blog-left">
                 <div class="box-blog-title">
-                    <h3 class="blog-title"><a href="#">điểm du lịch</a></h3>
+                    <h3 class="blog-title"><a href="#">Danh sách bài viết</a></h3>
                 </div>
                 <!-- Start blog content -->
                 <div class="box-blog-content">
+                    <c:forEach items="${lAllCategory}" var="lAllCate">
                     <article class="category-post-item">
                         <div class="article-content">
                             <div class="entry-media-img">
-                                <a href="#" class="penci-link-post penci-image-holder penci-lazy"
-                                   style="display: block; background-image: url('/resources/images/post-detail1.jpg');"></a>
+                                <a href="/blog/${lAllCate.postID}" class="penci-link-post penci-image-holder penci-lazy"
+                                   style="display: block; background-image: url('/resources/images/${lAllCate.postImage}'); max-height: 200px;"></a>
                             </div>
                             <div class="entry-media-text">
                                 <header class="entry-header">
                                     <h2 class="entry-title">
-                                        <a href="#">11 địa điểm du lịch không thể bỏ qua khi đi Sapa tự túc – Phần 1</a>
+                                        <a href="/blog/${lAllCate.postID}">${lAllCate.postTitle}</a>
                                     </h2>
                                     <div class="entry-meta">
-                                            <span class="entry-meta-item penci-byline">
-                                                by
-                                                <span class="author">
-                                                    <a href="#">Trần Anh Hưng Tiến</a>
-                                                </span>
-                                            </span>
+                                        <h4>${lAllCate.pcName}</h4>
                                         <span class="entry-meta-item penci-posted-on">
                                                 <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                                <span>26/10/2018</span>
+                                                <span>${lAllCate.date}</span>
                                             </span>
                                         <span class="entry-meta-item penci-post-countview">
                                                 <i class="fa fa-eye" aria-hidden="true"></i>
-                                                <span>68</span>
+                                                <span>${lAllCate.postView}</span>
                                             </span>
                                     </div>
                                 </header>
-                                <div class="entry-content">
-                                    Tổng hợp 11 địa điểm du lịch không thể bỏ qua khi đi Sapa tự túc. Lưu lại để không
-                                    bỏ lỡ điểm nào khi
-                                </div>
                             </div>
                         </div>
                     </article>
-                    <article class="category-post-item">
-                        <div class="article-content">
-                            <div class="entry-media-img">
-                                <a href="#" class="penci-link-post penci-image-holder penci-lazy"
-                                   style="display: block; background-image: url('/resources/images/post-detail2.jpg');"></a>
-                            </div>
-                            <div class="entry-media-text">
-                                <header class="entry-header">
-                                    <h2 class="entry-title">
-                                        <a href="#">11 địa điểm du lịch không thể bỏ qua khi đi Sapa tự túc – Phần 2</a>
-                                    </h2>
-                                    <div class="entry-meta">
-                                            <span class="entry-meta-item penci-byline">
-                                                by
-                                                <span class="author">
-                                                    <a href="#">Trần Anh Hưng Tiến</a>
-                                                </span>
-                                            </span>
-                                        <span class="entry-meta-item penci-posted-on">
-                                                <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                                <span>26/10/2018</span>
-                                            </span>
-                                        <span class="entry-meta-item penci-post-countview">
-                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                <span>68</span>
-                                            </span>
-                                    </div>
-                                </header>
-                                <div class="entry-content">
-                                    Tổng hợp 11 địa điểm du lịch không thể bỏ qua khi đi Sapa tự túc. Lưu lại để không
-                                    bỏ lỡ điểm nào khi
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="category-post-item">
-                        <div class="article-content">
-                            <div class="entry-media-img">
-                                <a href="#" class="penci-link-post penci-image-holder penci-lazy"
-                                   style="display: block; background-image: url('/resources/images/post-detail3.jpg');"></a>
-                            </div>
-                            <div class="entry-media-text">
-                                <header class="entry-header">
-                                    <h2 class="entry-title">
-                                        <a href="#">Những địa điểm du lịch Hội An nhất định phải ghé một lần trong
-                                            đời</a>
-                                    </h2>
-                                    <div class="entry-meta">
-                                            <span class="entry-meta-item penci-byline">
-                                                by
-                                                <span class="author">
-                                                    <a href="#">Trần Anh Hưng Tiến</a>
-                                                </span>
-                                            </span>
-                                        <span class="entry-meta-item penci-posted-on">
-                                                <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                                <span>26/10/2018</span>
-                                            </span>
-                                        <span class="entry-meta-item penci-post-countview">
-                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                <span>68</span>
-                                            </span>
-                                    </div>
-                                </header>
-                                <div class="entry-content">
-                                    Đừng nghĩ rằng đến Hội An là chỉ có tham quan phố cổ, ở đây còn có rất nhiều nơi hay
-                                    ho để bạn có
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="category-post-item">
-                        <div class="article-content">
-                            <div class="entry-media-img">
-                                <a href="#" class="penci-link-post penci-image-holder penci-lazy"
-                                   style="display: block; background-image: url('/resources/images/post-detail4.jpg');"></a>
-                            </div>
-                            <div class="entry-media-text">
-                                <header class="entry-header">
-                                    <h2 class="entry-title">
-                                        <a href="#">“Chơi tới bến” với những điểm du lịch gần Sài Gòn đẹp ngây ngất</a>
-                                    </h2>
-                                    <div class="entry-meta">
-                                            <span class="entry-meta-item penci-byline">
-                                                by
-                                                <span class="author">
-                                                    <a href="#">Trần Anh Hưng Tiến</a>
-                                                </span>
-                                            </span>
-                                        <span class="entry-meta-item penci-posted-on">
-                                                <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                                <span>26/10/2018</span>
-                                            </span>
-                                        <span class="entry-meta-item penci-post-countview">
-                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                <span>68</span>
-                                            </span>
-                                    </div>
-                                </header>
-                                <div class="entry-content">
-                                    Không cần là ngày lễ, chỉ cần dịp cuối tuần, nếu bạn muốn thoát ra khỏi cuộc sống
-                                    bộn bề, tấp nập nơi phố thị
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="category-post-item">
-                        <div class="article-content">
-                            <div class="entry-media-img">
-                                <a href="#" class="penci-link-post penci-image-holder penci-lazy"
-                                   style="display: block; background-image: url('/resources/images/post-detail5.jpg');"></a>
-                            </div>
-                            <div class="entry-media-text">
-                                <header class="entry-header">
-                                    <h2 class="entry-title">
-                                        <a href="#">Đi du lịch Mai Châu tự túc, khám phá vẻ đẹp núi rừng cao nguyên</a>
-                                    </h2>
-                                    <div class="entry-meta">
-                                            <span class="entry-meta-item penci-byline">
-                                                by
-                                                <span class="author">
-                                                    <a href="#">Trần Anh Hưng Tiến</a>
-                                                </span>
-                                            </span>
-                                        <span class="entry-meta-item penci-posted-on">
-                                                <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                                <span>26/10/2018</span>
-                                            </span>
-                                        <span class="entry-meta-item penci-post-countview">
-                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                <span>68</span>
-                                            </span>
-                                    </div>
-                                </header>
-                                <div class="entry-content">
-                                    Mai Châu là vùng đất hội tụ nhiều dân tộc anh em sinh sống, tạo nên một nền văn hóa
-                                    đa dạng, đặc sắc. Khách
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="category-post-item">
-                        <div class="article-content">
-                            <div class="entry-media-img">
-                                <a href="#" class="penci-link-post penci-image-holder penci-lazy"
-                                   style="display: block; background-image: url('/resources/images/post-detail6.jpg');"></a>
-                            </div>
-                            <div class="entry-media-text">
-                                <header class="entry-header">
-                                    <h2 class="entry-title">
-                                        <a href="#">Gợi ý kế hoạch du lịch Mũi Né – Phan Thiết trọn vẹn nhất!</a>
-                                    </h2>
-                                    <div class="entry-meta">
-                                            <span class="entry-meta-item penci-byline">
-                                                by
-                                                <span class="author">
-                                                    <a href="#">Trần Anh Hưng Tiến</a>
-                                                </span>
-                                            </span>
-                                        <span class="entry-meta-item penci-posted-on">
-                                                <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                                <span>26/10/2018</span>
-                                            </span>
-                                        <span class="entry-meta-item penci-post-countview">
-                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                <span>68</span>
-                                            </span>
-                                    </div>
-                                </header>
-                                <div class="entry-content">
-                                    Phan Thiết là một trong những thành phố du lịch được yêu thích hiện nay. Và du lịch
-                                    Mũi Né cũng trở nên thu hút
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="category-post-item">
-                        <div class="article-content">
-                            <div class="entry-media-img">
-                                <a href="#" class="penci-link-post penci-image-holder penci-lazy"
-                                   style="display: block; background-image: url('/resources/images/post-detail7.jpg');"></a>
-                            </div>
-                            <div class="entry-media-text">
-                                <header class="entry-header">
-                                    <h2 class="entry-title">
-                                        <a href="#">Gợi ý kế hoạch du lịch Mũi Né – Phan Thiết trọn vẹn nhất!</a>
-                                    </h2>
-                                    <div class="entry-meta">
-                                            <span class="entry-meta-item penci-byline">
-                                                by
-                                                <span class="author">
-                                                    <a href="#">Trần Anh Hưng Tiến</a>
-                                                </span>
-                                            </span>
-                                        <span class="entry-meta-item penci-posted-on">
-                                                <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                                <span>26/10/2018</span>
-                                            </span>
-                                        <span class="entry-meta-item penci-post-countview">
-                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                <span>68</span>
-                                            </span>
-                                    </div>
-                                </header>
-                                <div class="entry-content">
-                                    Phan Thiết là một trong những thành phố du lịch được yêu thích hiện nay. Và du lịch
-                                    Mũi Né cũng trở nên thu hút
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="category-post-item">
-                        <div class="article-content">
-                            <div class="entry-media-img">
-                                <a href="#" class="penci-link-post penci-image-holder penci-lazy"
-                                   style="display: block; background-image: url('/resources/images/post-detail8.jpg');"></a>
-                            </div>
-                            <div class="entry-media-text">
-                                <header class="entry-header">
-                                    <h2 class="entry-title">
-                                        <a href="#">Gợi ý kế hoạch du lịch Mũi Né – Phan Thiết trọn vẹn nhất!</a>
-                                    </h2>
-                                    <div class="entry-meta">
-                                            <span class="entry-meta-item penci-byline">
-                                                by
-                                                <span class="author">
-                                                    <a href="#">Trần Anh Hưng Tiến</a>
-                                                </span>
-                                            </span>
-                                        <span class="entry-meta-item penci-posted-on">
-                                                <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                                <span>26/10/2018</span>
-                                            </span>
-                                        <span class="entry-meta-item penci-post-countview">
-                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                <span>68</span>
-                                            </span>
-                                    </div>
-                                </header>
-                                <div class="entry-content">
-                                    Phan Thiết là một trong những thành phố du lịch được yêu thích hiện nay. Và du lịch
-                                    Mũi Né cũng trở nên thu hút
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="category-post-item">
-                        <div class="article-content">
-                            <div class="entry-media-img">
-                                <a href="#" class="penci-link-post penci-image-holder penci-lazy"
-                                   style="display: block; background-image: url('/resources/images/post-detail9.jpg');"></a>
-                            </div>
-                            <div class="entry-media-text">
-                                <header class="entry-header">
-                                    <h2 class="entry-title">
-                                        <a href="#">Gợi ý kế hoạch du lịch Mũi Né – Phan Thiết trọn vẹn nhất!</a>
-                                    </h2>
-                                    <div class="entry-meta">
-                                            <span class="entry-meta-item penci-byline">
-                                                by
-                                                <span class="author">
-                                                    <a href="#">Trần Anh Hưng Tiến</a>
-                                                </span>
-                                            </span>
-                                        <span class="entry-meta-item penci-posted-on">
-                                                <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                                <span>26/10/2018</span>
-                                            </span>
-                                        <span class="entry-meta-item penci-post-countview">
-                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                <span>68</span>
-                                            </span>
-                                    </div>
-                                </header>
-                                <div class="entry-content">
-                                    Phan Thiết là một trong những thành phố du lịch được yêu thích hiện nay. Và du lịch
-                                    Mũi Né cũng trở nên thu hút
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="category-post-item">
-                        <div class="article-content">
-                            <div class="entry-media-img">
-                                <a href="#" class="penci-link-post penci-image-holder penci-lazy"
-                                   style="display: block; background-image: url('/resources/images/post-detail10.jpg');"></a>
-                            </div>
-                            <div class="entry-media-text">
-                                <header class="entry-header">
-                                    <h2 class="entry-title">
-                                        <a href="#">Gợi ý kế hoạch du lịch Mũi Né – Phan Thiết trọn vẹn nhất!</a>
-                                    </h2>
-                                    <div class="entry-meta">
-                                            <span class="entry-meta-item penci-byline">
-                                                by
-                                                <span class="author">
-                                                    <a href="#">Trần Anh Hưng Tiến</a>
-                                                </span>
-                                            </span>
-                                        <span class="entry-meta-item penci-posted-on">
-                                                <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                                <span>26/10/2018</span>
-                                            </span>
-                                        <span class="entry-meta-item penci-post-countview">
-                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                <span>68</span>
-                                            </span>
-                                    </div>
-                                </header>
-                                <div class="entry-content">
-                                    Phan Thiết là một trong những thành phố du lịch được yêu thích hiện nay. Và du lịch
-                                    Mũi Né cũng trở nên thu hút
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
+                    </c:forEach>
                 </div>
                 <div class="center mg-top-10">
                     <nav aria-label="navigation" style="overflow: hidden; display: inline-block;">
@@ -432,24 +145,14 @@
                 </div>
                 <div class="box-blog-content">
                     <ul>
-                        <li class="cat-item">
-                            <a href="#">
-                                Điểm du lịch
-                                <span class="category-item-count">(34)</span>
-                            </a>
-                        </li>
-                        <li class="cat-item">
-                            <a href="#">
-                                Kinh nghiệm du lịch
-                                <span class="category-item-count">(22)</span>
-                            </a>
-                        </li>
-                        <li class="cat-item">
-                            <a href="#">
-                                Ẩm thực
-                                <span class="category-item-count">(75)</span>
-                            </a>
-                        </li>
+                        <c:forEach items="${catePostlist}" var="lCatePost">
+                            <li class="cat-item">
+                                <a href="/${lCatePost.pcID}/blog">
+                                        ${lCatePost.pcName}
+                                </a>
+                                <span class="category-item-count">34</span>
+                            </li>
+                        </c:forEach>
                     </ul>
                 </div>
             </div>
@@ -461,60 +164,25 @@
                     <a class="blog-more" href="#">Xem thêm »</a>
                 </div>
                 <div class="box-blog-content">
+                    <c:forEach items="${listPost}" var="lPost">
                     <article class="blog-post-item">
                         <div class="blog-media-object">
-                            <a class="blog-image-holder" href="#">
-                                <img src="/resources/images/combo1.jpg" alt="">
+                            <a class="blog-image-holder" href="/blog/${lPost.id}">
+                                <img src="/resources/images/${lPost.image}" alt="">
                             </a>
                             <div class="blog-post-content">
                                 <h3 class="blog-post-title cfs-15">
-                                    <a href="#">Tổng hợp 11 địa điểm du lịch không thể bỏ qua khi đi Sapa tự túc –
-                                        P2</a>
+                                    <a href="/blog/${lPost.id}">${lPost.title}</a>
                                 </h3>
                                 <div class="blog-post-meta">
                                     <span class="cfs-12"><i class="fa fa-clock-o"
-                                                            aria-hidden="true"></i> 23/10/2018</span>
-                                    <span class="cfs-12"><i class="fa fa-eye" aria-hidden="true"></i> 69</span>
+                                                            aria-hidden="true"></i>${lPost.updatedAt}</span>
+                                    <span class="cfs-12"><i class="fa fa-eye" aria-hidden="true"></i>${lPost.view}</span>
                                 </div>
                             </div>
                         </div>
                     </article>
-                    <article class="blog-post-item">
-                        <div class="blog-media-object">
-                            <a class="blog-image-holder" href="#">
-                                <img src="/resources/images/combo1.jpg" alt="">
-                            </a>
-                            <div class="blog-post-content">
-                                <h3 class="blog-post-title cfs-15">
-                                    <a href="#">Tổng hợp 11 địa điểm du lịch không thể bỏ qua khi đi Sapa tự túc –
-                                        P2</a>
-                                </h3>
-                                <div class="blog-post-meta">
-                                    <span class="cfs-12"><i class="fa fa-clock-o"
-                                                            aria-hidden="true"></i> 23/10/2018</span>
-                                    <span class="cfs-12"><i class="fa fa-eye" aria-hidden="true"></i> 69</span>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="blog-post-item">
-                        <div class="blog-media-object">
-                            <a class="blog-image-holder" href="#">
-                                <img src="/resources/images/combo1.jpg" alt="">
-                            </a>
-                            <div class="blog-post-content">
-                                <h3 class="blog-post-title cfs-15">
-                                    <a href="#">Tổng hợp 11 địa điểm du lịch không thể bỏ qua khi đi Sapa tự túc –
-                                        P2</a>
-                                </h3>
-                                <div class="blog-post-meta">
-                                    <span class="cfs-12"><i class="fa fa-clock-o"
-                                                            aria-hidden="true"></i> 23/10/2018</span>
-                                    <span class="cfs-12"><i class="fa fa-eye" aria-hidden="true"></i> 69</span>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
+                    </c:forEach>
                 </div>
             </div>
             <div class="box-blog-right mg-top-20">
@@ -525,60 +193,25 @@
                     <a class="blog-more" href="#">Xem thêm »</a>
                 </div>
                 <div class="box-blog-content">
+                    <c:forEach items="${listPostView}" var="lPost">
                     <article class="blog-post-item">
                         <div class="blog-media-object">
-                            <a class="blog-image-holder" href="#">
-                                <img src="/resources/images/combo1.jpg" alt="">
+                            <a class="blog-image-holder" href="/blog/${lPost.id}">
+                                <img src="/resources/images/${lPost.image}" alt="">
                             </a>
                             <div class="blog-post-content">
                                 <h3 class="blog-post-title cfs-15">
-                                    <a href="#">Tổng hợp 11 địa điểm du lịch không thể bỏ qua khi đi Sapa tự túc –
-                                        P2</a>
+                                    <a href="/blog/${lPost.id}">${lPost.title}</a>
                                 </h3>
                                 <div class="blog-post-meta">
                                     <span class="cfs-12"><i class="fa fa-clock-o"
-                                                            aria-hidden="true"></i> 23/10/2018</span>
-                                    <span class="cfs-12"><i class="fa fa-eye" aria-hidden="true"></i> 69</span>
+                                                            aria-hidden="true"></i>${lPost.updatedAt}</span>
+                                    <span class="cfs-12"><i class="fa fa-eye" aria-hidden="true"></i>${lPost.view}</span>
                                 </div>
                             </div>
                         </div>
                     </article>
-                    <article class="blog-post-item">
-                        <div class="blog-media-object">
-                            <a class="blog-image-holder" href="#">
-                                <img src="/resources/images/combo1.jpg" alt="">
-                            </a>
-                            <div class="blog-post-content">
-                                <h3 class="blog-post-title cfs-15">
-                                    <a href="#">Tổng hợp 11 địa điểm du lịch không thể bỏ qua khi đi Sapa tự túc –
-                                        P2</a>
-                                </h3>
-                                <div class="blog-post-meta">
-                                    <span class="cfs-12"><i class="fa fa-clock-o"
-                                                            aria-hidden="true"></i> 23/10/2018</span>
-                                    <span class="cfs-12"><i class="fa fa-eye" aria-hidden="true"></i> 69</span>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="blog-post-item">
-                        <div class="blog-media-object">
-                            <a class="blog-image-holder" href="#">
-                                <img src="/resources/images/combo1.jpg" alt="">
-                            </a>
-                            <div class="blog-post-content">
-                                <h3 class="blog-post-title cfs-15">
-                                    <a href="#">Tổng hợp 11 địa điểm du lịch không thể bỏ qua khi đi Sapa tự túc –
-                                        P2</a>
-                                </h3>
-                                <div class="blog-post-meta">
-                                    <span class="cfs-12"><i class="fa fa-clock-o"
-                                                            aria-hidden="true"></i> 23/10/2018</span>
-                                    <span class="cfs-12"><i class="fa fa-eye" aria-hidden="true"></i> 69</span>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
+                    </c:forEach>
                 </div>
             </div>
         </div>

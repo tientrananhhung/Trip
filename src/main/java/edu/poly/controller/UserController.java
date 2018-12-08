@@ -84,6 +84,9 @@ public class UserController {
     @Autowired
     PartnerValidator partnerValidator;
 
+    @Autowired
+    PostCategoryDAO postCategoryDAO;
+
 
     public static final String INDEX_SCREEN = "index";
     public static final String PROCESSING_ORDER_SCREEN = "processing-order";
@@ -118,6 +121,8 @@ public class UserController {
             List<PostIndexDTO> lPostIndexDTOByCategoryTravel = postIndexDAO.getTop3PostByCategory(4);
             List<PostIndexDTO> lPostIndexDTOByCategoryExperience = postIndexDAO.getTop3PostByCategory(5);
             List<PostIndexDTO> lPostIndexDTOByCategoryFood = postIndexDAO.getTop3PostByCategory(6);
+            List<PostCategoryDTO> categoryDTOList = postCategoryDAO.getAllPostCategory();
+            mav.addObject("listCategoryPost", categoryDTOList);
             mav.addObject("listPost", lPostIndexDTO);
             mav.addObject("listPostView", lPostIndexDTOByView);
             mav.addObject("listPostTravel", lPostIndexDTOByCategoryTravel);
@@ -125,6 +130,7 @@ public class UserController {
             mav.addObject("listPostFood", lPostIndexDTOByCategoryFood);
         } catch (Exception e) {
             e.printStackTrace();
+            mav.setViewName(HOME_SCREEN);
         }
         return mav;
     }
@@ -132,6 +138,21 @@ public class UserController {
     @GetMapping(Constants.Url.CATEGORY_BLOG_URL)
     public ModelAndView showCategoryBlog(@PathVariable("id") int id) {
         ModelAndView mav = new ModelAndView(CATEGORY_BLOG_SCREEN);
+        try{
+            List<BlogDTO> categoryDTOList = postCategoryDAO.getTop5ViewPost(id);
+            List<BlogDTO> getAllPostCategory4 = postCategoryDAO.getPostCategoryByID(id);
+            List<PostCategoryDTO> categoryList = postCategoryDAO.getAllPostCategory();
+            List<PostIndexDTO> lPostIndexDTOByView = postIndexDAO.getTop3PostByView();
+            List<PostIndexDTO> lPostIndexDTO = postIndexDAO.getTop5PostNew();
+            mav.addObject("listPost", lPostIndexDTO);
+            mav.addObject("listPostView", lPostIndexDTOByView);
+            mav.addObject("lPostTop5Category", categoryDTOList);
+            mav.addObject("lAllCategory", getAllPostCategory4);
+            mav.addObject("catePostlist",categoryList);
+        }catch (Exception e){
+            e.printStackTrace();
+            mav.setViewName(HOME_SCREEN);
+        }
         return mav;
     }
 

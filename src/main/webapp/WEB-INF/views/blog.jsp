@@ -79,7 +79,7 @@
                 <div class="box-blog-left">
                     <div class="box-blog-title">
                         <h3 class="blog-title">
-                            <a href="#">điểm du lịch</a>
+                            <a href="/4/blog">Điểm du lịch</a>
                         </h3>
                         <a class="blog-more" href="#">Xem thêm »</a>
                     </div>
@@ -138,7 +138,7 @@
                 <div class="box-blog-left mg-top-20" style="background: white;">
                     <div class="box-blog-title">
                         <h3 class="blog-title">
-                            <a href="#">kinh nghiệm du lịch</a>
+                            <a href="/5/blog">kinh nghiệm du lịch</a>
                         </h3>
                         <a class="blog-more" href="#">Xem thêm »</a>
                     </div>
@@ -198,7 +198,7 @@
                 <div class="box-blog-left mg-top-20" style="background: white;">
                     <div class="box-blog-title">
                         <h3 class="blog-title">
-                            <a href="#">ẩm thực</a>
+                            <a href="/6/blog">ẩm thực</a>
                         </h3>
                         <a class="blog-more" href="#">Xem thêm »</a>
                     </div>
@@ -269,24 +269,14 @@
 
                     <div class="box-blog-content">
                         <ul>
-                            <li class="cat-item">
-                                <a href="/tour">
-                                    Điểm du lịch
-                                    <span class="category-item-count">(34)</span>
-                                </a>
-                            </li>
-                            <li class="cat-item">
-                                <a href="/blog">
-                                    Kinh nghiệm du lịch
-                                    <span class="category-item-count">(22)</span>
-                                </a>
-                            </li>
-                            <li class="cat-item">
-                                <a href="/food">
-                                    Ẩm thực
-                                    <span class="category-item-count">(75)</span>
-                                </a>
-                            </li>
+                            <c:forEach items="${listCategoryPost}" var="lCatePost">
+                                <li class="cat-item">
+                                    <a href="/${lCatePost.pcID}/blog">
+                                            ${lCatePost.pcName}
+                                    </a>
+                                    <span class="category-item-count">34</span>
+                                </li>
+                            </c:forEach>
                         </ul>
                     </div>
 

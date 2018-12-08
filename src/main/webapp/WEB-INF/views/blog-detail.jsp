@@ -78,24 +78,14 @@
 
                     <div class="box-blog-content">
                         <ul>
-                            <li class="cat-item">
-                                <a href="#">
-                                    Điểm du lịch
-                                    <span class="category-item-count">(34)</span>
-                                </a>
-                            </li>
-                            <li class="cat-item">
-                                <a href="#">
-                                    Kinh nghiệm du lịch
-                                    <span class="category-item-count">(22)</span>
-                                </a>
-                            </li>
-                            <li class="cat-item">
-                                <a href="#">
-                                    Ẩm thực
-                                    <span class="category-item-count">(75)</span>
-                                </a>
-                            </li>
+                            <c:forEach items="${catePostlist}" var="lCatePost">
+                                <li class="cat-item">
+                                    <a href="/${lCatePost.pcID}/blog">
+                                            ${lCatePost.pcName}
+                                    </a>
+                                    <span class="category-item-count">34</span>
+                                </li>
+                            </c:forEach>
                         </ul>
                     </div>
 

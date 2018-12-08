@@ -1,10 +1,7 @@
 package edu.poly.controller;
 
 import edu.poly.common.Constants;
-import edu.poly.dao.FoodDAO;
-import edu.poly.dao.FoodDetailDAO;
-import edu.poly.dao.FoodInfoDAO;
-import edu.poly.dao.PostIndexDAO;
+import edu.poly.dao.*;
 import edu.poly.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,6 +36,9 @@ public class PlaceInforController {
     @Autowired
     PostIndexDAO postIndexDAO;
 
+    @Autowired
+    PostCategoryDAO postCategoryDAO;
+
     @GetMapping(Constants.Url.FOOD_DETAIL_URL)
     public ModelAndView showFoodDetail(@PathVariable("id") int id) {
         ModelAndView mav = new ModelAndView(FOOD_DETAIL_SCREEN);
@@ -62,10 +62,12 @@ public class PlaceInforController {
             List<PlaceInfoDTO> getTop5FoodNew = foodDAO.getTop5FoodNew();
             List<PlaceInfoDTO> getTop3Food = foodDAO.getTop3Food();
             List<PostIndexDTO> lPostIndexDTOByCategoryFood = postIndexDAO.getTop3PostByCategory(6);
+            List<PostCategoryDTO> categoryList = postCategoryDAO.getAllPostCategory();
             mav.addObject("listFood", foodDTOS);
             mav.addObject("listTop5Food", getTop5FoodNew);
             mav.addObject("listPostFood", lPostIndexDTOByCategoryFood);
             mav.addObject("lTop3Food", getTop3Food);
+            mav.addObject("catePostlist",categoryList);
         }catch (Exception ex){
             ex.printStackTrace();
             mav.setViewName(HOME_SCREEN);

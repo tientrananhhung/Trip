@@ -118,10 +118,10 @@ public class ManagementController {
     @GetMapping(Constants.Url.MANAGEMENT_DELETE_ORDER_URL)
     public ModelAndView managementDeleteOrder(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-//        if (!CheckSession.partner(session)) {
-//            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
-//            return mav;
-//        }
+        if (!CheckSession.partner(session)) {
+            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+            return mav;
+        }
         try {
             Users users = (Users) session.getAttribute(Constants.SessionKey.USER);
             orderDAO.deleteOrder(users.getId());
@@ -139,10 +139,10 @@ public class ManagementController {
     @GetMapping(Constants.Url.MANAGEMENT_PURCHASE_ORDER_URL)
     public ModelAndView managementPurchaseOrder(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-//        if (!CheckSession.partner(session)) {
-//            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
-//            return mav;
-//        }
+        if (!CheckSession.partner(session)) {
+            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+            return mav;
+        }
         try {
             Users users = (Users) session.getAttribute(Constants.SessionKey.USER);
             orderDAO.deleteOrder(users.getId());
@@ -160,10 +160,10 @@ public class ManagementController {
     @GetMapping(Constants.Url.MANAGEMENT_ORDER_URL)
     public ModelAndView managementOrder(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-//        if (!CheckSession.partner(session)) {
-//            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
-//            return mav;
-//        }
+        if (!CheckSession.partner(session)) {
+            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+            return mav;
+        }
         try {
             Users users = (Users) session.getAttribute(Constants.SessionKey.USER);
             orderDAO.deleteOrder(users.getId());
@@ -313,10 +313,10 @@ public class ManagementController {
     @GetMapping(Constants.Url.DELETE_ORDER_CUSTOMER)
     public ModelAndView deleteOrder(HttpSession session, @PathVariable("id") Integer id, @PathVariable("purchase") boolean purchase) {
         ModelAndView mav = new ModelAndView();
-//        if (!CheckSession.partner(session)) {
-//            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
-//            return mav;
-//        }
+        if (!CheckSession.partner(session)) {
+            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+            return mav;
+        }
         try {
             orderDAO.deleteCustomerOrder(id);
             if (purchase == true) {
@@ -342,10 +342,10 @@ public class ManagementController {
             mav.setViewName(INFOMATION_SCREEN);
             return mav;
         }
-//        if(!CheckSession.admin(session)){
-//            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
-//            return mav;
-//        }
+        if(!CheckSession.admin(session)){
+            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+            return mav;
+        }
         try {
             Users us = user.getById(users.getId());
             CommonsMultipartFile[] files = users.getFileData();

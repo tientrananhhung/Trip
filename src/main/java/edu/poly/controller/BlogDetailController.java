@@ -2,9 +2,11 @@ package edu.poly.controller;
 
 import edu.poly.common.Constants;
 import edu.poly.common.TimeUtils;
+import edu.poly.dao.PostCategoryDAO;
 import edu.poly.dao.PostIndexDAO;
 import edu.poly.entity.Posts;
 import edu.poly.impl.PostImpl;
+import edu.poly.model.PostCategoryDTO;
 import edu.poly.model.PostIndexDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +31,9 @@ public class BlogDetailController {
     @Autowired
     PostImpl post;
 
+    @Autowired
+    PostCategoryDAO postCategoryDAO;
+
 
     @GetMapping(Constants.Url.BLOG_DETAIL_URL)
     public ModelAndView showFoodDetail(@PathVariable("id") int id) {
@@ -39,6 +44,7 @@ public class BlogDetailController {
         List<PostIndexDTO> lPostIndexDTOByCategoryTravel = postIndexDAO.getTop3PostByCategory(4);
         List<PostIndexDTO> lPostIndexDTOByCategoryExperience = postIndexDAO.getTop3PostByCategory(5);
         List<PostIndexDTO> lPostIndexDTOByCategoryFood = postIndexDAO.getTop3PostByCategory(6);
+        List<PostCategoryDTO> categoryList = postCategoryDAO.getAllPostCategory();
         mav.addObject("listPost", lPostIndexDTO);
         Posts posts = post.getById(id);
         mav.addObject("postInfo",posts);
@@ -46,6 +52,7 @@ public class BlogDetailController {
         mav.addObject("listPostTravel", lPostIndexDTOByCategoryTravel);
         mav.addObject("listPostExperience", lPostIndexDTOByCategoryExperience);
         mav.addObject("listPostFood", lPostIndexDTOByCategoryFood);
+        mav.addObject("catePostlist",categoryList);
         posts.setUpdatedAt(TimeUtils.getCurrentTime());
         posts.setView(posts.getView()+1);
         post.update(posts);
@@ -56,4 +63,5 @@ public class BlogDetailController {
 
         return mav;
     }
+
 }
