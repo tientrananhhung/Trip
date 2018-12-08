@@ -126,9 +126,10 @@
 }); </script>
 <script language="javascript" type="text/javascript">
     function OpenPopupCenter(w, h) {
+        var origin   = window.location.origin;
         var left = (screen.width - w) / 2;
         var top = (screen.height - h) / 4;  // for 25% - devide by 4  |  for 33% - devide by 3
-        var targetWin = window.open('http://localhost:8080/upload', 'upload', 'toolbar=yes, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+        var targetWin = window.open(origin+'/upload', 'upload', 'toolbar=yes, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
     }
 
 </script>

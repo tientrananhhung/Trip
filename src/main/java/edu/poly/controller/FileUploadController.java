@@ -31,7 +31,7 @@ public class FileUploadController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView home(Model model,HttpSession session) {
         ModelAndView mav = new ModelAndView();
-        if (!CheckSession.admin(session)) {
+        if (!CheckSession.admin(session) && !CheckSession.partner(session)) {
             mav.setViewName("redirect:/" + Constants.Characters.BLANK);
             return mav;
         }
@@ -43,7 +43,7 @@ public class FileUploadController {
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
     public ModelAndView uploadFileHandler(ModelAndView mav, HttpServletRequest request, @ModelAttribute("product") Product product, HttpSession session) {
         try {
-            if (!CheckSession.admin(session)) {
+            if (!CheckSession.admin(session) && !CheckSession.partner(session)) {
                 mav.setViewName("redirect:/" + Constants.Characters.BLANK);
                 return mav;
             }

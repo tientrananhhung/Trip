@@ -97,7 +97,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/admin/quan-ly-hoa-don">
-                <i class="mdi mdi-cart-outline" style="margin-right: 20px;"></i>
+                <i class="mdi mdi-cart-outline" data-name="mdi-book-variant" style="margin-right: 20px;"></i>
                 <span class="menu-title">Quản lý hóa đơn</span>
             </a>
         </li>

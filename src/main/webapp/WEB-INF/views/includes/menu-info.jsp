@@ -36,6 +36,46 @@
                     </div>
                 </a>
             </li>
+            <li class="li-menu-info">
+                <a href="/quan-ly/bai-viet-da-xoa">
+                    <div class="menu-left-item">
+                        <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>
+                        <span>Quản lý bài viết đã xóa</span>
+                    </div>
+                </a>
+            </li>
+            <li class="li-menu-info">
+                <a href="/quan-ly/don-hang-doi-tac">
+                    <div class="menu-left-item">
+                        <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>
+                        <span>Đơn hàng đối tác</span>
+                    </div>
+                </a>
+            </li>
+            <li class="li-menu-info">
+                <a href="/quan-ly/don-hang-doi-tac-da-thanh-toan">
+                    <div class="menu-left-item">
+                        <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>
+                        <span>Đơn hàng đối tác đã thanh toán</span>
+                    </div>
+                </a>
+            </li>
+            <li class="li-menu-info">
+                <a href="/quan-ly/don-hang-doi-tac-da-huy">
+                    <div class="menu-left-item">
+                        <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>
+                        <span>Đơn hàng đối tác đã hủy</span>
+                    </div>
+                </a>
+            </li>
+            <li class="li-menu-info">
+                <a href="/quan-ly/don-hang-doi-tac-da-thanh-toan">
+                    <div class="menu-left-item">
+                        <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>
+                        <span>Quản lý đơn hàng đối tác</span>
+                    </div>
+                </a>
+            </li>
         </c:if>
         <li class="li-menu-info">
             <a href="/quan-ly/don-hang">

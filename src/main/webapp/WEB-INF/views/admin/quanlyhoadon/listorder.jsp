@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <!-- Required meta tags -->
@@ -55,6 +55,7 @@
                                         <th>Note</th>
                                         <th>Payment</th>
                                         <th>Purchased</th>
+                                        <th>Refund</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -64,7 +65,9 @@
                                             <td>${order.phoneUser}</td>
                                             <td>${order.serviceName}</td>
                                             <td>
-                                                <f:formatDate type = "both" dateStyle = "short" timeStyle = "medium" value = "${order.orderDate}" />
+                                                <fmt:formatDate var="fmtDate" value="${order.orderDate}"
+                                                                pattern="dd/MM/yyyy"/>
+                                                    ${fmtDate}
                                             </td>
                                             <td>${order.serviceDate}</td>
                                             <td>${order.totalPriceAfter}</td>
@@ -79,17 +82,32 @@
                                                     </c:otherwise>
                                                 </c:choose>
                                             </td>
-                                           <td>
-                                               <c:choose>
-                                                   <c:when test="${order.purchased == true}">
-                                                       <label class="badge badge-success">Purchased</label>
-                                                   </c:when>
-                                                   <c:otherwise>
-                                                       <a href="/admin/quan-ly-hoa-don/thanhtoan/${order.orderID}">
-                                                           <label class="badge badge-danger">Unpaid</label></a>
-                                                   </c:otherwise>
-                                               </c:choose>
-                                           </td>
+                                            <td>
+                                                <c:choose>
+                                                    <c:when test="${order.purchased == true}">
+                                                        <label class="badge badge-success">Purchased</label>
+                                                    </c:when>
+                                                    <c:when test="${order.purchased == false && order.deleted == false}">
+                                                        <a href="/admin/quan-ly-hoa-don/thanh-toan/${order.orderID}">
+                                                            <label class="badge badge-danger">Unpaid</label></a>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        Unpaid
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </td>
+                                            <td>
+                                                <c:choose>
+                                                    <c:when test="${order.purchased == true && order.deleted == true}">
+                                                        <a href="/admin/quan-ly-hoa-don/hoan-tien/${order.orderID}" class="badge badge-danger">Refund</a>
+                                                    </c:when>
+                                                    <c:when test="${order.purchased == false && order.deleted == true}">
+                                                        Canceled
+                                                    </c:when>
+                                                </c:choose>
+
+
+                                            </td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>

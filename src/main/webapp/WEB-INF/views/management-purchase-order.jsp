@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:useBean id="now" class="java.util.Date" />
 <html>
 <head>
@@ -58,16 +59,26 @@
                 <div class="tbl-content">
                     <table cellpadding="0" cellspacing="0" border="0">
                         <tbody>
+                        <c:if test="${listOrder.size() == 0}">
+                            <tr>
+                                <td colspan="6" style="text-align:center;"><h5>Không có đơn hàng nào</h5></td>
+                            </tr>
+                        </c:if>
                             <c:forEach items="${listOrder}" var="order">
                                     <tr>
                                         <td>
                                          ${order.tourName}
                                         </td>
                                         <td>${order.serviceName}</td>
-                                        <td>${order.orderDate}</td>
+                                        <td>
+                                            <fmt:formatDate var="fmtDate" value="${order.orderDate}" pattern="dd/MM/yyyy"/>
+                                                ${fmtDate}
+                                        </td>
                                         <td>${order.serviceDate}</td>
                                         <td>${order.payment}</td>
-                                        <td>${order.totalPriceAfter}</td>
+                                        <td>
+                                            <fmt:formatNumber type="number" pattern="###,###" value="${order.totalPriceAfter}" /> đ
+                                        </td>
                                         <td>${order.note}</td>
                                         <td>
                                             <c:choose>

@@ -56,6 +56,11 @@
                 <div class="tbl-content">
                     <table cellpadding="0" cellspacing="0" border="0">
                         <tbody>
+                        <c:if test="${listTour.size() == 0}">
+                            <tr>
+                                <td colspan="6" style="text-align:center;"><h5>Không có đơn hàng nào</h5></td>
+                            </tr>
+                        </c:if>
                             <c:forEach items="${listTour}" var="lTour">
                                 <c:if test="${not lTour.deleted}">
                                     <tr>

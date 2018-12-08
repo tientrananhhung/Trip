@@ -21,12 +21,14 @@ public class OrderDTO {
     private String totalPrice;
     private String totalPriceAfter;
     private Long policy;
+    private Boolean deleted;
+    private Integer userid;
     private List<TicketDetailDTO> ticketDetailDTOList;
 
     public OrderDTO() {
     }
 
-    public OrderDTO(Integer orderID, String customerName, String serviceName, String userEmail, String payment, Boolean isPurchased, Date orderDate, String tourName, String tourAddress, String note, String offercode, String offerdeal, String phoneUser, String serviceDate, String totalPrice, String totalPriceAfter, Long policy, List<TicketDetailDTO> ticketDetailDTOList) {
+    public OrderDTO(Integer orderID, String customerName, String serviceName, String userEmail, String payment, Boolean isPurchased, Date orderDate, String tourName, String tourAddress, String note, String offercode, String offerdeal, String phoneUser, String serviceDate, String totalPrice, String totalPriceAfter, Long policy, Boolean deleted, Integer userid, List<TicketDetailDTO> ticketDetailDTOList) {
         this.orderID = orderID;
         this.customerName = customerName;
         this.serviceName = serviceName;
@@ -44,7 +46,25 @@ public class OrderDTO {
         this.totalPrice = totalPrice;
         this.totalPriceAfter = totalPriceAfter;
         this.policy = policy;
+        this.deleted = deleted;
+        this.userid = userid;
         this.ticketDetailDTOList = ticketDetailDTOList;
+    }
+
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     public String getTourName() {

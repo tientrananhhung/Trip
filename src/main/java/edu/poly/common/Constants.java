@@ -3,8 +3,7 @@ package edu.poly.common;
 
 public class Constants {
 
-    public class
-    Url {
+    public class Url {
         //Đăng nhập
         public static final String LOGIN = "/dang-nhap";
 
@@ -197,8 +196,18 @@ public class Constants {
         //Trang danh sach order
         public static final String DELETE_ORDER = "/quan-ly-hoa-don/xoa/{id}";
 
-        //xoa order
-        public static final String PURCHASE_ORDER = "/quan-ly-hoa-don/thanhtoan/{id}";
+        //thanh toan order
+        public static final String PURCHASE_ORDER = "/quan-ly-hoa-don/thanh-toan/{id}";
+
+        //hoàn tiền order
+        public static final String REFUND_ORDER = "/quan-ly-hoa-don/hoan-tien/{id}";
+
+        //thanh toan order
+        public static final String PURCHASE_PARTNER_ORDER = "/thanh-toan/{id}";
+
+        //hoàn tiền order partner
+        public static final String REFUND_PARTNER_ORDER = "/hoan-tien/{id}";
+
 
         //Trang tour detail của user
         public static final String TOUR_DETAIL_URL = "/tour/{id}";
@@ -214,6 +223,15 @@ public class Constants {
 
         //Trang quản lý order của customer
         public static final String MANAGEMENT_ORDER_URL = "/don-hang";
+
+        //Trang quản lý order của partner
+        public static final String MANAGEMENT_PARTNER_ORDER_URL = "/don-hang-doi-tac";
+
+        //Trang quản lý order đã hủy của partner
+        public static final String MANAGEMENT_PARTNER_DELETE_ORDER_URL = "/don-hang-doi-tac-da-huy";
+
+        //Trang quản lý order đã thanh toán của partner
+        public static final String MANAGEMENT_PARTNER_PURCHASE_ORDER_URL = "/don-hang-doi-tac-da-thanh-toan";
 
         //Trang quản lý order đã thanh toán của customer
         public static final String MANAGEMENT_PURCHASE_ORDER_URL = "/don-hang-da-thanh-toan";
@@ -252,7 +270,22 @@ public class Constants {
         public static final String PARTNER_URL = "doi-tac-{id}";
 
         //Trang quản lý bài viết của đối tác
-        public static final String BLOG_PARTNER_URL = "bai-viet";
+        public static final String BLOG_PARTNER_URL = "/bai-viet";
+
+        //Trang quản lý bài viết của đối tác
+        public static final String BLOG_DELETED_PARTNER_URL = "/bai-viet-da-xoa";
+
+        //Trang thêm bài viết của đối tác
+        public static final String BLOG_ADD_PARTNER_URL = "/bai-viet/them";
+
+        //Trang xóa bài viết của đối tác
+        public static final String BLOG_DELETE_PARTNER_URL = "/bai-viet/xoa/{id}";
+
+        //Trang sua bài viết của đối tác
+        public static final String BLOG_EDIT_PARTNER_URL = "/bai-viet/sua/{id}";
+
+        //Trang sua bài viết của đối tác
+        public static final String BLOG_EDITED_PARTNER_URL = "/bai-viet/sua";
 
         //Trang thêm blog của đối tác
         public static final String POST_BLOG_PARTNER_URL = "dang-bai";

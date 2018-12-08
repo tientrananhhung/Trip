@@ -3,6 +3,8 @@ package edu.poly.common;
 import edu.poly.model.OrderDTO;
 import edu.poly.model.TicketDetailDTO;
 
+import java.text.SimpleDateFormat;
+
 public class MailContent {
     public static String ACTIVE_USER(String userName, String email, String name, String token,String password) {
         String body = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional //EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\"><head>\n" +
@@ -1200,8 +1202,8 @@ public class MailContent {
                 "                            \n" +
                 "                            <td style=\"text-align: right;\">\n" +
                 "                                Hóa đơn #: "+ orderDTO.getOrderID()+"<br>\n" +
-                "                                Ngày đặt đơn: "+ orderDTO.getOrderDate()+"<br>\n" +
-                "                                Ngày xác nhận: "+ orderDTO.getServiceDate()+"" +
+                "                                Ngày đặt đơn: "+ new SimpleDateFormat("dd/MM/yyyy").format(orderDTO.getOrderDate())+"<br>\n" +
+                "                                Ngày đi: "+ orderDTO.getServiceDate()+"" +
                 "                            </td>\n" +
                 "                        </tr>\n" +
                 "                    </table>\n" +

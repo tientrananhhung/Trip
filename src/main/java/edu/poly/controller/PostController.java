@@ -155,7 +155,6 @@ public class PostController {
                     }
             }
             post.update(posts);
-            mav.addObject("listPost", post.findAllByDeleted(false));
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_POST);
         }catch (Exception ex){
             ex.printStackTrace();
