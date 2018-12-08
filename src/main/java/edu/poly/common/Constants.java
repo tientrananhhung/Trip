@@ -3,7 +3,8 @@ package edu.poly.common;
 
 public class Constants {
 
-    public class Url {
+    public class
+    Url {
         //Đăng nhập
         public static final String LOGIN = "/dang-nhap";
 
@@ -195,6 +196,7 @@ public class Constants {
 
         //Trang danh sach order
         public static final String DELETE_ORDER = "/quan-ly-hoa-don/xoa/{id}";
+
         //xoa order
         public static final String PURCHASE_ORDER = "/quan-ly-hoa-don/thanhtoan/{id}";
 
@@ -203,6 +205,12 @@ public class Constants {
 
         //Trang quản lý tour của partner
         public static final String MANAGEMENT_TOUR_URL = "/tour";
+
+        //Trang hiển thị chi tiết tour của partner
+        public static final String GET_MANAGEMENT_TOUR_URL = "/{id}/tour/";
+
+        //Trang thêm tour của partner
+        public static final String POST_MANAGEMENT_TOUR_URL = "/tour/{id}/post";
 
         //Trang quản lý order của customer
         public static final String MANAGEMENT_ORDER_URL = "/don-hang";

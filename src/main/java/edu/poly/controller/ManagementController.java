@@ -5,12 +5,14 @@ import edu.poly.common.Constants;
 import edu.poly.common.TimeUtils;
 import edu.poly.dao.ManagementTourDAO;
 import edu.poly.dao.OrderDAO;
+import edu.poly.dao.TourPartnerDAO;
 import edu.poly.entity.Orders;
 import edu.poly.entity.Users;
 import edu.poly.impl.OrderImpl;
 import edu.poly.impl.UserImpl;
 import edu.poly.model.ManagementTourDTO;
 import edu.poly.model.OrderDTO;
+import edu.poly.model.TourPartnerDTO;
 import edu.poly.valaditor.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -47,8 +49,13 @@ public class ManagementController {
 
     public static final String MANAGEMENT_PURCHASE_ORDER_SCREEN = "management-purchase-order";
 
+    public static final String MANAGEMENT_TOUR_DETAIL_SCREEN = "management-tour-detail";
+
     @Autowired
     ManagementTourDAO managementTourDAO;
+
+    @Autowired
+    private TourPartnerDAO tourPartnerDAO;
 
     @Autowired
     private UserImpl user;
@@ -245,5 +252,21 @@ public class ManagementController {
             mav.setViewName("redirect:" + Constants.Url.MANAGEMENT_URL + Constants.Url.PROFILE_URL);
             return mav;
         }
+    }
+
+    @GetMapping(Constants.Url.GET_MANAGEMENT_TOUR_URL)
+    public ModelAndView showTourDetail(HttpSession session, @PathVariable("id") Integer id){
+        ModelAndView mav = new ModelAndView();
+
+        //Check ss partner
+//        if(!CheckSession.partner(session)){
+//            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+//            return mav;
+//        }
+
+        List<TourPartnerDTO> listDTO = tourPartnerDAO.getTourByIdDTO(id);
+
+        mav.setViewName(MANAGEMENT_TOUR_DETAIL_SCREEN);
+        return mav;
     }
 }

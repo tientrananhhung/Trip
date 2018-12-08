@@ -239,3 +239,82 @@ function activeLinkNav(){
         console.log(this);
     });
 }
+
+function resetTicketDetail() {
+    // body...
+    $('.ticket-package-detail').removeClass('ticket-selected');
+    $('.btn-choose-ticket').css('display', 'inherit');
+    $('.package-kind-ticket').css('display', 'none');
+    $('.notify-ticket').css('display', 'none');
+}
+
+function editorMini(detail, view){
+
+    $.FroalaEditor.DefineIcon('insert', {NAME: 'info'});
+    $.FroalaEditor.RegisterCommand('insert', {
+        title: 'Xem trước',
+        focus: true,
+        undo: true,
+        refreshAfterCallback: true,
+        callback: function () {
+            // $(view).html(this.html.get());
+            if(editor.html.get() == null || editor.html.get() == ''){
+                $(view).html('Chưa có chi tiết');
+            }else{
+                $(view).html(editor.html.get());
+            }
+        }
+    });
+
+    $(detail).froalaEditor({
+        heightMin: 100,
+        height: 100,
+        theme: 'custom',
+        language: 'vi',
+        toolbarSticky: false,
+        toolbarButtons: [
+            'bold', 'italic', 'underline', 'paragraphFormat', 'formatOL',
+            'formatUL', 'insertHTML', 'undo', 'redo', 'html', 'insert'
+        ]
+    });
+
+    $(detail).froalaEditor().on('froalaEditor.contentChanged', function (e, editor) {
+        if(editor.html.get() == null || editor.html.get() == ''){
+            $(view).html('Chưa có chi tiết');
+        }else{
+            $(view).html(editor.html.get());
+        }
+    });
+}
+
+function btnViewService(slide, btn){
+
+    //Cho nội dung thu lên
+    $('.service-tour').slideUp();
+
+    //Button thêm service
+    $('.btn-detail').click(function(event) {
+        /* Act on the event */
+        event.preventDefault();
+        var a = $(this).attr('class');
+        if (a != '' && a != undefined) {
+            a = a.split(' ');
+        } else {
+            a = [];
+        }
+        // inArray là lệnh tìm kiếm active trong mảng a.
+        if ($.inArray('service-active', a) >= 0) {
+            $(this).children('.fa').removeClass('fa-eye-slash').addClass('fa-eye');
+            $(this).removeClass('service-active');
+            $('.service-tour').slideUp();
+        } else {
+            $('.btn-detail').children('.fa').removeClass('fa-eye-slash').addClass('fa-eye');
+            $(this).children('.fa').removeClass('fa-eye').addClass('fa-eye-slash');
+            $('.service-tour').slideUp();
+            // $(this).next().next().slideToggle();
+            $(this).next().next().slideDown();
+            $('.btn-detail').removeClass('service-active');
+            $(this).addClass('service-active');
+        }
+    });
+}

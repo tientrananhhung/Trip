@@ -46,7 +46,7 @@
                             <div class="info-user">
                                 <f:hidden path="avatar"/>
                                 <img src="/resources/images/${userInfo.avatar}"  alt="Avatar Smart Trip" class="mr-3 mt-3 rounded-circle"
-                                     style="width:60px; float: left;" id="output">
+                                     style="width: 60px; height: 60px; float: left;" id="output">
                                 <div class="mr-3 mt-3" style="display: inline-block;">
                                     <h4 class="cfs-18">${userInfo.name}</h4>
                                     <div>
