@@ -42,7 +42,7 @@
                             </div>
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
-                                <a href="/admin/quan-ly-quan/them"><button style="margin-left: 190px;" type="button" class="btn btn-warning btn-rounded btn-fw">Add District</button></a>
+                                <a href="/admin/quan-ly-quan/them" class="btn btn-warning btn-rounded btn-fw" style="margin-left: 190px;">Add District</a>
                             </div>
                         </div>
                         <div class="row">
@@ -61,12 +61,8 @@
                                             <th>${district.id}</th>
                                             <td>${district.name}</td>
                                             <td>
-                                                <a href="/admin/quan-ly-quan/${district.id}">
-                                                    <button class="btn btn-outline-primary">Edit</button>
-                                                </a>
-                                                <a href="/admin/quan-ly-quan/xoa/${district.id}">
-                                                    <button class="btn btn-outline-danger">Delete</button>
-                                                </a>
+                                                <a href="/admin/quan-ly-quan/${district.id}" class="btn btn-outline-primary">Edit</a>
+                                                <a href="/admin/quan-ly-quan/xoa/${district.id}" class="btn btn-outline-danger">Delete</a>
                                             </td>
                                         </tr>
                                     </c:forEach>

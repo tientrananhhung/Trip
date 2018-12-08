@@ -34,15 +34,15 @@
     <section class="box-content-fluid mg-top-20">
         <div class="box-body">
 
-            <c:forEach items="${listTop5Food}" var="lFood" varStatus="lFoodCount">
+            <c:forEach items="${listTop5Food}" var="lFoodTop5" varStatus="lFoodCount">
                 <c:choose>
                     <c:when test="${lFoodCount.count == 1}">
                         <div class="post-big">
-                            <a class="city-tickets" href="/food/${lFood.id}" style="background-image: url('/resources/images/${lFood.placeInfoImage}');">
+                            <a class="city-tickets" href="/food/${lFoodTop5.placeInfoID}" style="background-image: url('/resources/images/${lFoodTop5.placeInfoImage}');">
                                 <div class="ticket-relative">
                                     <div class="ticket-info">
                                         <div class="ticket-big-short">
-                                            <h3>${lFood.placeInfoName}</h3>
+                                            <h3>${lFoodTop5.placeInfoName}</h3>
                                         </div>
                                     </div>
                                 </div>
@@ -51,11 +51,11 @@
                     </c:when>
                     <c:otherwise>
                         <div class="post-small" style="border-bottom: 5px solid white;">
-                            <a class="city-tickets" href="/food/${lFood.id}" style="background-image: url('/resources/images/${lFood.placeInfoImage}');">
+                            <a class="city-tickets" href="/food/${lFoodTop5.placeInfoID}" style="background-image: url('/resources/images/${lFoodTop5.placeInfoImage}');">
                                 <div class="ticket-relative">
                                     <div class="ticket-info">
                                         <div class="ticket-small-short">
-                                            <h3>${lFood.placeInfoName}</h3>
+                                            <h3>${lFoodTop5.placeInfoName}</h3>
                                         </div>
                                     </div>
                                 </div>
@@ -90,7 +90,7 @@
                             <c:choose>
                                 <c:when test="${lFoodCount.count == 1}">
                                     <div class="combo-big">
-                                        <a class="city-tickets" href="/food/${lFood.id}"
+                                        <a class="city-tickets" href="/food/${lFood.placeInfoID}"
                                            style="background-image: url('/resources/images/${lFood.placeInfoImage}');">
                                             <div class="ticket-relative">
                                                 <div class="ticket-info">
@@ -108,7 +108,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     <div class="combo-small" style="margin-bottom: 6px;">
-                                        <a class="city-tickets" href="/food/${lFood.id}"
+                                        <a class="city-tickets" href="/food/${lFood.placeInfoID}"
                                            style="background-image: url('/resources/images/${lFood.placeInfoImage}');">
                                             <div class="ticket-relative">
                                                 <div class="ticket-info">
@@ -244,7 +244,7 @@
                         <c:forEach items="${listFood}" var="lFood" end="2">
                             <article class="blog-post-item">
                                 <div class="blog-media-object">
-                                    <a class="blog-image-holder" href="/food/${lFood.id}">
+                                    <a class="blog-image-holder" href="/food/${lFood.placeInfoID}">
                                         <img src="/resources/images/${lFood.image}" alt="">
                                     </a>
                                     <div class="blog-post-content">

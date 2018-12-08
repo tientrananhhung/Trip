@@ -43,10 +43,8 @@
                             </div>
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
-                                <a href="/admin/quan-ly-doi-tac/them">
-                                    <button style="margin-left: 190px;" type="button"
-                                            class="btn btn-warning btn-rounded btn-fw">Add Partners
-                                    </button>
+                                <a href="/admin/quan-ly-doi-tac/them" class="btn btn-warning btn-rounded btn-fw" style="margin-left: 190px;">
+                                    Add Partners
                                 </a>
                             </div>
                         </div>
@@ -85,12 +83,8 @@
                                             </c:choose>
                                         </td>
                                         <td>
-                                            <a href="/admin/quan-ly-doi-tac/${partner.id}">
-                                            <button class="btn btn-outline-primary">Edit</button>
-                                            </a>
-                                            <a href="/admin/quan-ly-doi-tac/xoa/${partner.id}">
-                                            <button class="btn btn-outline-danger">Delete</button>
-                                            </a>
+                                            <a href="/admin/quan-ly-doi-tac/${partner.id}" class="btn btn-outline-primary">Edit</a>
+                                            <a href="/admin/quan-ly-doi-tac/xoa/${partner.id}" class="btn btn-outline-danger">Delete</a>
                                         </td>
                                     </tr>
                                     </c:forEach>

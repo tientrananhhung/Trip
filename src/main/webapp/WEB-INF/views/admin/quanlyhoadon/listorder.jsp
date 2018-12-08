@@ -38,7 +38,7 @@
                             </div>
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
-                                <a href="/admin/quan-ly-order/them"><button style="margin-left: 190px;" type="button" class="btn btn-warning btn-rounded btn-fw">Add Post</button></a>
+                                <a href="/admin/quan-ly-order/them" class="btn btn-warning btn-rounded btn-fw" style="margin-left: 190px;">Add Post</a>
                             </div>
                         </div>
                         <div class="row">

@@ -43,10 +43,8 @@
                             </div>
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
-                                <a href="/admin/quan-ly-tour/them">
-                                    <button style="margin-left: 190px;" type="button"
-                                            class="btn btn-warning btn-rounded btn-fw">Add Tour
-                                    </button>
+                                <a href="/admin/quan-ly-tour/them" class="btn btn-warning btn-rounded btn-fw" style="margin-left: 190px;">
+                                   Add Tour
                                 </a>
                             </div>
                         </div>
