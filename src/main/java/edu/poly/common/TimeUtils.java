@@ -39,7 +39,7 @@ public class TimeUtils {
 //        cSchedStartCal.setTimeZone(TimeZone.getTimeZone("Asia/Ho_Chi_Minh"));
 //        System.out.println(cSchedStartCal.getTimeZone());
 //        return new Timestamp(cSchedStartCal.getTimeInMillis());
-        return  new Timestamp(System.currentTimeMillis()+25200000);
+        return  new Timestamp(System.currentTimeMillis());
     }
 
     public static Date convertDate(String date) {

@@ -39,6 +39,7 @@ public class Tours {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -203,7 +204,7 @@ public class Tours {
         this.ratesById = ratesById;
     }
 
-    @OneToMany(mappedBy = "toursByTourId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "toursByTourId", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 //    @Fetch(value = FetchMode.SUBSELECT)
     public Collection<Services> getServicesById() {
         return servicesById;

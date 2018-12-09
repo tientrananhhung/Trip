@@ -164,6 +164,7 @@ public class UserController {
             mav.addObject("listTourDetail", listDTO);
         } catch (Exception e) {
             mav.setViewName(HOME_SCREEN);
+            e.printStackTrace();
         }
         return mav;
     }

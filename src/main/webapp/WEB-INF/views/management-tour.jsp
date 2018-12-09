@@ -65,7 +65,7 @@
                                 <c:if test="${not lTour.deleted}">
                                     <tr>
                                         <td>
-                                            <a href="#">${lTour.name}</a>
+                                            <a href="/quan-ly/${lTour.id}/tour/">${lTour.name}</a>
                                         </td>
                                         <td>${lTour.address}</td>
                                         <td>${lTour.policy} giờ</td>

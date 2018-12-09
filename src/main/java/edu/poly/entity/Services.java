@@ -27,6 +27,7 @@ public class Services {
     private Collection<Tickets> ticketsById;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;

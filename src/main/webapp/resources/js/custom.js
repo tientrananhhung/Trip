@@ -89,44 +89,47 @@ function loadPaging(id) {
         type: 'GET'
     })
         .done(function (data) {
+            if(data.length != 0){
 
-            if (data[0].totalPage == 1) {
-                //Add paging
-                $('#tour-review .pagination').empty();
-                $('#tour-review .pagination').append(
-                    '<li class="page-item disabled">' +
-                    '<a class="page-link btn-back" href="#">' +
-                    '<i class="fa fa-angle-left" aria-hidden="true"></i></a></li>' +
-                    '<li class="page-item active"><a class="page-link btn-page" href="#">1</a></li>' +
-                    '<li class="page-item disabled">' +
-                    '<a class="page-link btn-next" href="#">' +
-                    '<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>'
-                );
-            } else {
-                $('#tour-review .pagination').empty();
-                $('#tour-review .pagination').append(
-                    '<li class="page-item disabled">' +
-                    '<a class="page-link btn-back" current-page="0" href="#">' +
-                    '<i class="fa fa-angle-left" aria-hidden="true"></i></a></li>'
-                );
+                if (data[0].totalPage == 1) {
+                    //Add paging
+                    $('#tour-review .pagination').empty();
+                    $('#tour-review .pagination').append(
+                        '<li class="page-item disabled">' +
+                        '<a class="page-link btn-back" href="#">' +
+                        '<i class="fa fa-angle-left" aria-hidden="true"></i></a></li>' +
+                        '<li class="page-item active"><a class="page-link btn-page" href="#">1</a></li>' +
+                        '<li class="page-item disabled">' +
+                        '<a class="page-link btn-next" href="#">' +
+                        '<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>'
+                    );
+                } else {
+                    $('#tour-review .pagination').empty();
+                    $('#tour-review .pagination').append(
+                        '<li class="page-item disabled">' +
+                        '<a class="page-link btn-back" current-page="0" href="#">' +
+                        '<i class="fa fa-angle-left" aria-hidden="true"></i></a></li>'
+                    );
 
-                for (var j = 0; j < data[0].totalPage; j++) {
-                    if (j == 0) {
-                        $('#tour-review .pagination').append(
-                            '<li class="page-item active"><a class="page-link btn-page" page="' + j + '" href="#">' + (j + 1) + '</a></li>'
-                        );
-                    } else {
-                        $('#tour-review .pagination').append(
-                            '<li class="page-item"><a class="page-link btn-page" page="' + j + '" href="#">' + (j + 1) + '</a></li>'
-                        );
+                    for (var j = 0; j < data[0].totalPage; j++) {
+                        if (j == 0) {
+                            $('#tour-review .pagination').append(
+                                '<li class="page-item active"><a class="page-link btn-page" page="' + j + '" href="#">' + (j + 1) + '</a></li>'
+                            );
+                        } else {
+                            $('#tour-review .pagination').append(
+                                '<li class="page-item"><a class="page-link btn-page" page="' + j + '" href="#">' + (j + 1) + '</a></li>'
+                            );
+                        }
                     }
+
+                    $('#tour-review .pagination').append(
+                        '<li class="page-item">' +
+                        '<a class="page-link btn-next" current-page="0" href="#">' +
+                        '<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>'
+                    );
                 }
 
-                $('#tour-review .pagination').append(
-                    '<li class="page-item">' +
-                    '<a class="page-link btn-next" current-page="0" href="#">' +
-                    '<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>'
-                );
             }
         })
         .fail(function () {
@@ -236,7 +239,7 @@ function activeLinkNav(){
     var page = location.pathname;
     $('section.left-body-info').find('li').each(function() {
         $(this).children('a .menu-left-item').toggleClass('menu-left-item-active', $(this).children().attr('href') == page);
-        console.log(this);
+        // console.log(this);
     });
 }
 
@@ -257,11 +260,10 @@ function editorMini(detail, view){
         undo: true,
         refreshAfterCallback: true,
         callback: function () {
-            // $(view).html(this.html.get());
-            if(editor.html.get() == null || editor.html.get() == ''){
+            if(this.html.get() == null || this.html.get() == ''){
                 $(view).html('Chưa có chi tiết');
             }else{
-                $(view).html(editor.html.get());
+                $(view).html(this.html.get());
             }
         }
     });

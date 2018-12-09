@@ -1,13 +1,15 @@
 package edu.poly.model;
 
+import edu.poly.common.StringUtils;
+
 public class TypeTicketPartnerDTO {
     private String name;
-    private Integer price;
+    private String price;
 
     public TypeTicketPartnerDTO() {
     }
 
-    public TypeTicketPartnerDTO(String name, Integer price) {
+    public TypeTicketPartnerDTO(String name, String price) {
         this.name = name;
         this.price = price;
     }
@@ -20,11 +22,11 @@ public class TypeTicketPartnerDTO {
         this.name = name;
     }
 
-    public Integer getPrice() {
-        return price;
+    public String getPrice() {
+        return StringUtils.formatCurrency(price);
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 }

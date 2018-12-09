@@ -1,9 +1,8 @@
 package edu.poly.model;
 
-import java.util.List;
-
 public class TourPartnerDTO {
     private Integer id;
+    private Integer userId;
     private String name;
     private String address;
     private String content;
@@ -16,8 +15,9 @@ public class TourPartnerDTO {
     public TourPartnerDTO() {
     }
 
-    public TourPartnerDTO(Integer id, String name, String address, String content, String image, Integer policy, String lat, String lng, ServicePartnerDTO service) {
+    public TourPartnerDTO(Integer id, Integer userId, String name, String address, String content, String image, Integer policy, String lat, String lng, ServicePartnerDTO service) {
         this.id = id;
+        this.userId = userId;
         this.name = name;
         this.address = address;
         this.content = content;
@@ -34,6 +34,14 @@ public class TourPartnerDTO {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getName() {

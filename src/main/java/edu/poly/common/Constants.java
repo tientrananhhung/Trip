@@ -208,7 +208,6 @@ public class Constants {
         //hoàn tiền order partner
         public static final String REFUND_PARTNER_ORDER = "/hoan-tien/{id}";
 
-
         //Trang tour detail của user
         public static final String TOUR_DETAIL_URL = "/tour/{id}";
 
@@ -216,10 +215,13 @@ public class Constants {
         public static final String MANAGEMENT_TOUR_URL = "/tour";
 
         //Trang hiển thị chi tiết tour của partner
-        public static final String GET_MANAGEMENT_TOUR_URL = "/{id}/tour/";
+        public static final String GET_MANAGEMENT_TOUR_URL = "/{id}/tour";
+
+        //Trang hiển thị thêm tour của partner
+        public static final String ADD_MANAGEMENT_TOUR_URL = "/tour/them";
 
         //Trang thêm tour của partner
-        public static final String POST_MANAGEMENT_TOUR_URL = "/tour/{id}/post";
+        public static final String POST_MANAGEMENT_TOUR_URL = "/tour/post";
 
         //Trang quản lý order của customer
         public static final String MANAGEMENT_ORDER_URL = "/don-hang";

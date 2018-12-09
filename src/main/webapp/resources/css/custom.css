@@ -562,8 +562,8 @@ body {
     overflow: hidden;
 }
 
-.box-blog-content h2{
-    font-size:30px;
+.box-blog-content h2 {
+    font-size: 30px;
 }
 
 .box-blog-content ul {
@@ -2070,7 +2070,7 @@ body.loading .modalLoading {
     display: block;
 }
 
-.menu-left-item-active{
+.menu-left-item-active {
     color: #f56a00;
     text-decoration: none;
     padding-left: 30px;
@@ -2079,20 +2079,23 @@ body.loading .modalLoading {
 /**
 * Custom table
 */
-.content-body-info table{
-    width:100%;
+.content-body-info table {
+    width: 100%;
     table-layout: fixed;
 }
-.content-body-info .tbl-header{
+
+.content-body-info .tbl-header {
     background-color: #f56a00;
 }
-.content-body-info .tbl-content{
-    height:300px;
-    overflow-x:auto;
+
+.content-body-info .tbl-content {
+    height: 300px;
+    overflow-x: auto;
     margin-top: 0px;
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
-.content-body-info th{
+
+.content-body-info th {
     padding: 20px 15px;
     text-align: left;
     font-weight: 500;
@@ -2100,21 +2103,22 @@ body.loading .modalLoading {
     color: #fff;
     text-transform: uppercase;
 }
-.content-body-info td{
+
+.content-body-info td {
     padding: 15px;
     text-align: left;
     vertical-align: middle;
     font-weight: 300;
     font-size: 14px;
     color: #888;
-    border-bottom: solid 1px rgba(255,255,255,0.1);
+    border-bottom: solid 1px rgba(255, 255, 255, 0.1);
 }
 
-.tbl-content tr:hover{
+.tbl-content tr:hover {
     background: #89898914;
 }
 
-.tbl-content a{
+.tbl-content a {
     color: #888;
 }
 
@@ -2127,22 +2131,25 @@ body.loading .modalLoading {
 .content-body-info .tbl-content::-webkit-scrollbar {
     width: 6px;
 }
+
 .content-body-info .tbl-content::-webkit-scrollbar-track {
     /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
+
 .content-body-info .tbl-content::-webkit-scrollbar-thumb {
     /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
+
 /* end for custom scrollbar for webkit browser*/
 
-.img-tour img{
-    height: auto;
+.img-tour img {
+    height: 100%;
 }
 
-.img-tour{
-    height: 200px;
+.img-tour {
+    height: 170px;
     text-align: center;
 }
 
@@ -2163,9 +2170,40 @@ body.loading .modalLoading {
     background-color: grey;
 }
 
+.file-tour {
+    text-align: center;
+}
 
+#pac-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 50%;
+    top: 10px !important;
+}
 
+#pac-input:focus {
+    border-color: #4d90fe;
+}
 
+.view-service {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 5px;
+    min-height: 100px;
+}
+
+.btn-custom-org {
+    background-color: transparent;
+}
+
+.c_red {
+    color: #dd0000;
+}
 
 /**
  * Custom 4 màn hình riêng
@@ -2558,9 +2596,9 @@ body.loading .modalLoading {
         top: 43px;
     }
 
-
 }
-.login-page{
+
+.login-page {
     background-repeat: no-repeat;
     background-image: url('https://www.tripi.vn/blog/wp-content/uploads/2016/12/34192549076_5232b92601_o.jpg');
     background-size: cover;

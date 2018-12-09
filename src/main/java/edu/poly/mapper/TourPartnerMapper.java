@@ -18,6 +18,7 @@ public class TourPartnerMapper implements RowMapper<TourPartnerDTO> {
         List<ServicePartnerDTO> servicePartnerDTO = new ArrayList<>();
 
         Integer id = resultSet.getInt("id");
+        Integer userId = resultSet.getInt("user_id");
         String name = resultSet.getString("Name");
         String address = resultSet.getString("Address");
         String content = resultSet.getString("Content");
@@ -27,8 +28,8 @@ public class TourPartnerMapper implements RowMapper<TourPartnerDTO> {
         String lng = resultSet.getString("Lng");
         Integer serviceId = resultSet.getInt("ServiceId");
         String serviceName = resultSet.getString("ServiceName");
-        Integer price = resultSet.getInt("Price");
-        Integer normalPrice = resultSet.getInt("Normal_price");
+        String price = resultSet.getString("Price");
+        String normalPrice = resultSet.getString("Normal_price");
         String detail = resultSet.getString("Detail");
         String rule = resultSet.getString("Rule");
         Boolean isDefault = resultSet.getBoolean("Is_default");
@@ -38,13 +39,13 @@ public class TourPartnerMapper implements RowMapper<TourPartnerDTO> {
         String[] arRules = rule.split("\\,");
         for(String item : arRules){
             String[] arRule = item.split("\\:");
-            TypeTicketPartnerDTO typeTicketDTO = new TypeTicketPartnerDTO(arRule[0], Integer.parseInt(arRule[1]));
+            TypeTicketPartnerDTO typeTicketDTO = new TypeTicketPartnerDTO(arRule[0], arRule[1]);
             typeTicketPartnerDTO.add(typeTicketDTO);
         }
 
-        //Cắt chuỗi thành mảng TypeTicketPartnerDTO
+        //Tạo và gán giá trị cho ServicePartnerDTO
         ServicePartnerDTO serviceDTO = new ServicePartnerDTO(serviceId, serviceName, price, normalPrice, detail, isDefault, isDeleted, typeTicketPartnerDTO);
 
-        return new TourPartnerDTO(id, name, address, content, image, policy, lat, lng, serviceDTO);
+        return new TourPartnerDTO(id, userId, name, address, content, image, policy, lat, lng, serviceDTO);
     }
 }

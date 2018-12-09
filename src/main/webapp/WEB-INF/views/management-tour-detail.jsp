@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="/resources/css/fontawesome/font-awesome.min.css">
     <!-- Editor -->
     <link rel="stylesheet" href="/resources/css/froala/froala_editor.pkgd.min.css">
-    <link rel="stylesheet" href="/resources/css/editor/custom-theme.css">
+    <link rel="stylesheet" href="/resources/css/froala/custom-theme.css">
     <!-- My css -->
     <link rel="stylesheet" href="/resources/css/custom.css">
 </head>
@@ -36,61 +36,125 @@
 
     <section class="right-body-info">
         <div class="right-content-info">
-            <div class="content-title-info">
-                <h3 class="c_orange cfs-22">Quản lý tour<span> - Bà Nà Hills - Đường Lên Tiên Cảnh</span></h3>
-            </div>
-            <div class="content-body-info mg-top-20">
+            <c:choose>
+                <c:when test="${not empty listTour}">
+                <c:forEach items="${listTour}" var="lTour" begin="0" end="0">
+                    <div class="content-title-info">
+                        <h3 class="c_orange cfs-22">Quản lý tour<span> - ${lTour.name}</span></h3>
+                    </div>
+                    <div class="content-body-info mg-top-20">
 
-                <!-- Start Image of tour -->
-                <div class="img-tour">
-                    <img src="/resources/images/logo.png" alt="Smart Trip">
-                </div>
-                <!-- End Image of tour -->
+                        <!-- Start Image of tour -->
+                        <div class="img-tour">
+                            <img src="/resources/images/${lTour.image}" alt="Smart Trip">
+                        </div>
+                        <!-- End Image of tour -->
 
-                <div class="file-tour">
-                    <label class="file-input-tour c_orange" for="upload-photo-tour">Đổi ảnh hiển thị</label>
-                    <input id="upload-photo-tour" type="file" required>
-                    <br>
-                    <button type="button" class="btn btn-outline-success my-2 my-sm-0 btn-custom btn-choose-ticket" style="vertical-align: top;">
-                        <span>Upload slide ảnh</span>
-                    </button>
-                </div>
+                        <div class="file-tour">
+                            <label class="file-input-tour c_orange" for="upload-photo-tour">Đổi ảnh hiển thị</label>
+                            <input id="upload-photo-tour" type="file" multiple="multiple" required>
+                            <br>
+                            <button type="button" class="btn btn-outline-success my-2 my-sm-0 btn-custom btn-choose-ticket" style="vertical-align: top;">
+                                <span>Upload slide ảnh</span>
+                            </button>
+                        </div>
 
-                <!-- Start info of tour-->
-                <div class="info-tour mg-top-10">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="name-tour">
-                                <input type="hidden" value="0">
-                                <label class="c_orange">Tên tour:</label>
-                                <b>Smart Trip</b>&emsp;
+                        <!-- Start info of tour-->
+                        <div class="info-tour mg-top-10">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="name-tour">
+                                        <input type="hidden" value="${lTour.id}">
+                                        <label class="c_orange">Tên tour:</label>
+                                        <b>${lTour.name}</b>&emsp;
+                                        <button class="btn my-2 my-sm-0 btn-custom-org btn-edit btn-sm">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="address-tour">
+                                        <label class="c_orange">Địa chỉ:</label>
+                                        <b>${lTour.address}</b>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mg-top-10">
+                                    <div class="content-tour">
+                                        <label class="c_orange">Nội dung:</label>
+                                        <textarea id="content" class="form-control" cols="5">
+                                            ${lTour.content}
+                                        </textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mg-top-10">
+                                    <div class="location-tour">
+                                        <label class="c_orange">Địa điểm: (Nhập tìm địa điểm)</label>
+                                        <input id="pac-input" class="form-control" type="text" placeholder="Tìm địa điểm">
+                                        <div id="map"></div>
+                                        <input type="hidden" id="lat" value="${lTour.lat}">
+                                        <input type="hidden" id="lng" value="${lTour.lng}">
+                                    </div>
+                                </div>
+                    </c:forEach>
+                </c:when>
+                <c:otherwise>
+                    <div class="content-title-info">
+                        <h3 class="c_orange cfs-22">Quản lý tour<span> - Smart Trip</span></h3>
+                    </div>
+                    <div class="content-body-info mg-top-20">
 
-                                <button class="btn my-2 my-sm-0 btn-custom-org btn-edit btn-sm">
-                                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                                </button>
-                            </div>
+                        <!-- Start Image of tour -->
+                        <div class="img-tour">
+                            <img src="/resources/images/logo.png" alt="Smart Trip">
                         </div>
-                        <div class="col-lg-6">
-                            <div class="address-tour">
-                                <label class="c_orange">Địa chỉ:</label>
-                                <b>Xin vui lòng chọn địa điểm</b>
-                            </div>
+                        <!-- End Image of tour -->
+
+                        <div class="file-tour">
+                            <label class="file-input-tour c_orange" for="upload-photo-tour">Đổi ảnh hiển thị</label>
+                            <input id="upload-photo-tour" type="file" required>
+                            <br>
+                            <button type="button" class="btn btn-outline-success my-2 my-sm-0 btn-custom btn-choose-ticket" style="vertical-align: top;">
+                                <span>Upload slide ảnh</span>
+                            </button>
                         </div>
-                        <div class="col-lg-6 mg-top-10">
-                            <div class="content-tour">
-                                <label class="c_orange">Nội dung:</label>
-                                <textarea id="content" class="form-control" cols="5"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 mg-top-10">
-                            <div class="location-tour">
-                                <label class="c_orange">Địa điểm: (Nhập tìm địa điểm)</label>
-                                <input id="pac-input" class="form-control" type="text" placeholder="Tìm địa điểm">
-                                <div id="map"></div>
-                                <input type="hidden" id="lat">
-                                <input type="hidden" id="lng">
-                            </div>
-                        </div>
+
+                        <!-- Start info of tour-->
+                        <div class="info-tour mg-top-10">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="name-tour">
+                                        <input type="hidden" value="0">
+                                        <label class="c_orange">Tên tour:</label>
+                                        <b>Smart Trip</b>&emsp;
+                                        <button class="btn my-2 my-sm-0 btn-custom-org btn-edit btn-sm">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="address-tour">
+                                        <label class="c_orange">Địa chỉ:</label>
+                                        <b>Xin vui lòng chọn địa điểm</b>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mg-top-10">
+                                    <div class="content-tour">
+                                        <label class="c_orange">Nội dung:</label>
+                                        <textarea id="content" class="form-control" cols="5"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mg-top-10">
+                                    <div class="location-tour">
+                                        <label class="c_orange">Địa điểm: (Nhập tìm địa điểm)</label>
+                                        <input id="pac-input" class="form-control" type="text" placeholder="Tìm địa điểm">
+                                        <div id="map"></div>
+                                        <input type="hidden" id="lat" value="0">
+                                        <input type="hidden" id="lng" value="0">
+                                    </div>
+                                </div>
+                </c:otherwise>
+            </c:choose>
+
                         <div class="col-lg-12 mg-top-20">
                             <div class="row">
 
@@ -102,59 +166,153 @@
                                         <button class="btn my-2 my-sm-0 btn-custom-org btn-add btn-sm">
                                             <i class="fa fa-plus" aria-hidden="true"></i>
                                         </button>
-
                                         <div class="service-list-tour">
-                                            <div class="packer-service-detail">
-                                                <label class="c_orange">Dịch vụ:</label>
-                                                &emsp;
-                                                <button class="btn my-2 my-sm-0 btn-custom-org btn-detail btn-sm">
-                                                    <i class="fa fa-eye" aria-hidden="true"></i>
-                                                </button>
-                                                &emsp;
-                                                <button class="btn my-2 my-sm-0 btn-custom-org btn-delete btn-sm" style="display: none;">
-                                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                                </button>
-                                                <div class="service-tour">
-                                                    <div class="row">
-                                                        <div class="col-lg-12 name-service-form">
-                                                            <div class="form-group">
-                                                                <label>Tên dịch vụ:</label>
-                                                                <input class="form-control name-service-detail" type="text" placeholder="Nhập tên dịch vụ">
-                                                                <input type="hidden" value="0" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6 normal-price-service-form">
-                                                            <div class="form-group">
-                                                                <label>Giá:</label>
-                                                                <input class="form-control normal-price-service-detail" type="text" placeholder="Nhập giá" value="0">
-                                                                <input type="hidden" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6 price-service-form">
-                                                            <div class="form-group">
-                                                                <label>Giá khuyến mãi:<i class="fa fa-info-circle btn mg-left-10" style="padding: 0px;" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Nếu không điền hoặc lớn hơn giá gốc sẽ tự động lấy giá gốc"></i></label>
-                                                                <input class="form-control price-service-detail" type="text" placeholder="Nhập giá khuyến mãi" value="0" min="0">
-                                                                <input type="hidden" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-12">
-                                                            <div class="form-group">
-                                                                <label>Chi tiết dịch vụ:</label>
-                                                                <textarea class="service-detail"></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-12 group-kind-ticket">
-                                                            <div class="form-group">
-                                                                <label>Danh sách vé:</label>
-                                                                &emsp;
-                                                                <button class="btn my-2 my-sm-0 btn-custom-org btn-add-kind-ticket btn-sm">
-                                                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                                                </button>
+                                            <c:choose>
+                                                <c:when test="${empty listTour}">
+                                                    <div class="packer-service-detail">
+                                                        <label class="c_orange">Dịch vụ:</label>
+                                                        &emsp;
+                                                        <button class="btn my-2 my-sm-0 btn-custom-org btn-detail btn-sm">
+                                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                                        </button>
+                                                        &emsp;
+                                                        <button class="btn my-2 my-sm-0 btn-custom-org btn-delete btn-sm" style="display: none;">
+                                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                        </button>
+                                                        <div class="service-tour">
+                                                            <div class="row">
+                                                                <div class="col-lg-12 name-service-form">
+                                                                    <div class="form-group">
+                                                                        <label>Tên dịch vụ:</label>
+                                                                        <input class="form-control name-service-detail" type="text" placeholder="Nhập tên dịch vụ">
+                                                                        <input type="hidden" value="0" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 normal-price-service-form">
+                                                                    <div class="form-group">
+                                                                        <label>Giá:</label>
+                                                                        <input class="form-control normal-price-service-detail" type="text" placeholder="Nhập giá" value="0">
+                                                                        <input type="hidden" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 price-service-form">
+                                                                    <div class="form-group">
+                                                                        <label>Giá khuyến mãi:<i class="fa fa-info-circle btn mg-left-10" style="padding: 0px;" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Nếu không điền hoặc lớn hơn giá gốc sẽ tự động lấy giá gốc"></i></label>
+                                                                        <input class="form-control price-service-detail" type="text" placeholder="Nhập giá khuyến mãi" value="0" min="0">
+                                                                        <input type="hidden" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12 service-detail-form">
+                                                                    <div class="form-group">
+                                                                        <label>Chi tiết dịch vụ:</label>
+                                                                        <textarea class="service-detail"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12 group-kind-ticket">
+                                                                    <div class="form-group">
+                                                                        <label>Danh sách vé:</label>
+                                                                        &emsp;
+                                                                        <button class="btn my-2 my-sm-0 btn-custom-org btn-add-kind-ticket btn-sm">
+                                                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <c:forEach items="${listTour}" var="lTour">
+                                                        <div class="packer-service-detail">
+                                                            <label class="c_orange">Dịch vụ:</label>
+                                                            &emsp;
+                                                            <button class="btn my-2 my-sm-0 btn-custom-org btn-detail btn-sm">
+                                                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                                            </button>
+                                                            <c:choose>
+                                                                <c:when test="${lTour.service.getDefault()}">
+                                                                    &emsp;
+                                                                    <button class="btn my-2 my-sm-0 btn-custom-org btn-delete btn-sm" style="display: none;" disabled="disabled">
+                                                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                                    </button>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    &emsp;
+                                                                    <button class="btn my-2 my-sm-0 btn-custom-org btn-delete btn-sm">
+                                                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                                    </button>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                            <div class="service-tour">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12 name-service-form">
+                                                                        <div class="form-group">
+                                                                            <label>Tên dịch vụ:</label>
+                                                                            <input class="form-control name-service-detail" type="text" placeholder="Nhập tên dịch vụ" value="${lTour.service.name}">
+                                                                            <input type="hidden" value="${lTour.service.id}" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-6 normal-price-service-form">
+                                                                        <div class="form-group">
+                                                                            <label>Giá:</label>
+                                                                            <input class="form-control normal-price-service-detail" type="text" placeholder="Nhập giá" value="${lTour.service.normalPrice}">
+                                                                            <input type="hidden" value="${lTour.service.normalPrice}" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-6 price-service-form">
+                                                                        <div class="form-group">
+                                                                            <label>Giá khuyến mãi:<i class="fa fa-info-circle btn mg-left-10" style="padding: 0px;" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Nếu không điền hoặc lớn hơn giá gốc sẽ tự động lấy giá gốc"></i></label>
+                                                                            <input class="form-control price-service-detail" type="text" placeholder="Nhập giá khuyến mãi" value="${lTour.service.price}">
+                                                                            <input type="hidden" value="${lTour.service.price}" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-12 service-detail-form">
+                                                                        <div class="form-group">
+                                                                            <label>Chi tiết dịch vụ:</label>
+                                                                            <textarea class="service-detail">${lTour.service.detail}</textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-12 group-kind-ticket">
+                                                                        <div class="form-group">
+                                                                            <label>Danh sách vé:</label>
+                                                                            &emsp;
+                                                                            <button class="btn my-2 my-sm-0 btn-custom-org btn-add-kind-ticket btn-sm">
+                                                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                                                            </button>
+                                                                            <c:forEach items="${lTour.service.typeTicket}" var="type">
+                                                                                <div class="kind-ticket">
+                                                                                    <label>Loại vé:</label>
+                                                                                    &emsp;
+                                                                                    <button class="btn my-2 my-sm-0 btn-custom-org btn-delete-ticket btn-sm">
+                                                                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                                                    </button>
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-6 name-kind-ticket">
+                                                                                            <div class="form-group">
+                                                                                                <label>Tên vé:</label>
+                                                                                                <input type="text" class="form-control" placeholder="Nhập tên loại vé" value="${type.name}" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-6 price-kind-ticket">
+                                                                                            <div class="form-group">
+                                                                                                <label>Giá vé:</label>
+                                                                                                <input type="text" class="form-control" placeholder="Nhập giá loại vé" value="${type.price}" />
+                                                                                                <input type="hidden" value="${type.price}" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </c:forEach>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </c:forEach>
+                                                </c:otherwise>
+                                            </c:choose>
+
                                         </div>
 
                                     </div>
@@ -167,7 +325,16 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="policy">Chính sách hủy: (giờ)<i class="fa fa-info-circle btn mg-left-10 policy" style="padding: 0px;" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Nếu không điền sẽ nhận là 0 - Nếu không có chính sách hủy vé sẽ tự động lấy ngày nhận vé làm ngày hủy vé"></i></label>
-                                        <input type="number" class="form-control" id="policy" placeholder="Nhập số giờ" value="0" min="0">
+                                        <c:choose>
+                                            <c:when test="${not empty listTour}">
+                                                <c:forEach items="${listTour}" var="lTour" begin="0" end="0">
+                                                    <input type="number" class="form-control" id="policy" placeholder="Nhập số giờ" value="${lTour.policy}" min="0" />
+                                                </c:forEach>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <input type="number" class="form-control" id="policy" placeholder="Nhập số giờ" value="24" min="24" />
+                                            </c:otherwise>
+                                        </c:choose>
                                     </div>
                                 </div>
 
@@ -187,6 +354,8 @@
 </div>
 
 <!-- End Body Order -->
+
+<div class="modalLoading"></div>
 
 <jsp:include page="includes/footer.jsp"/>
 
@@ -209,6 +378,23 @@
 
         //Thêm active cho link hiện tại
         activeLinkNav();
+
+        <c:if test="${not empty listTour}">
+            $('.normal-price-service-form').find('.form-group').each(function(){
+                var price = $(this).children('.normal-price-service-detail').next().val();
+                $(this).children('.normal-price-service-detail').next().val(price.replace(/\./g, ''));
+            });
+
+            $('.price-service-form').find('.form-group').each(function(){
+                var price = $(this).children('.price-service-detail').next().val();
+                $(this).children('.price-service-detail').next().val(price.replace(/\./g, ''));
+            });
+
+            $('.price-kind-ticket').find('.form-group').each(function(){
+                var price = $(this).children('input.form-control').next().val();
+                $(this).children('input.form-control').next().val(price.replace(/\./g, ''));
+            });
+        </c:if>
 
 
         $('[data-toggle="tooltip"]').tooltip()
@@ -357,6 +543,7 @@
                 '<div class="form-group">'+
                 '<label>Tên dịch vụ:</label>'+
                 '<input class="form-control name-service-detail" type="text" placeholder="Nhập tên dịch vụ">'+
+                '<input type="hidden" value="0">'+
                 '</div>'+
                 '</div>'+
                 '<div class="col-lg-6 normal-price-service-form">'+
@@ -375,7 +562,7 @@
                 '<input type="hidden" />'+
                 '</div>'+
                 '</div>'+
-                '<div class="col-lg-12">'+
+                '<div class="col-lg-12 service-detail-form">'+
                 '<div class="form-group">'+
                 '<label>Chi tiết dịch vụ:</label>'+
                 '<textarea class="service-detail"></textarea>'+
@@ -412,12 +599,15 @@
             var idService = '';
             var nameServiceDetail = '';
             var normalPrice = '';
+            var normalPriceF = '';
             var price = '';
-            var idKind = '';
+            var priceF = '';
             var nameKind = '';
             var namePrice = '';
+            var namePriceF = '';
+            var serviceDetail = '';
             var services = [];
-            var tickets = [];
+
             json = {};
 
             if(policy == ''){
@@ -450,6 +640,7 @@
                     }
 
                     normalPrice = $(this).children('.service-tour').children('.row').children('.normal-price-service-form').children('.form-group').children('.normal-price-service-detail').val();
+                    normalPriceF = $(this).children('.service-tour').children('.row').children('.normal-price-service-form').children('.form-group').children('.normal-price-service-detail').next().val();
 
                     if(normalPrice == ''){
                         $(this).children('.service-tour').children('.row').children('.normal-price-service-form').children('.form-group').children('label').empty();
@@ -466,11 +657,16 @@
                     }
 
                     price = $(this).children('.service-tour').children('.row').children('.price-service-form').children('.form-group').children('.price-service-detail').val();
+                    priceF = $(this).children('.service-tour').children('.row').children('.price-service-form').children('.form-group').children('.price-service-detail').next().val();
 
                     if(price == '' || price == 0 || price.replace(/\./g, '') > normalPrice.replace(/\./g, '')){
                         $(this).children('.service-tour').children('.row').children('.price-service-form').children('.form-group').children('.price-service-detail').val(normalPrice);
                         $(this).children('.service-tour').children('.row').children('.price-service-form').children('.form-group').children('.price-service-detail').next().val(normalPrice.replace(/\./g, ''));
                     }
+
+                    serviceDetail = $(this).children('.service-tour').children('.row').children('.service-detail-form').children('.form-group').children('textarea').froalaEditor('html.get');
+
+                    var tickets = [];
 
                     if($(this).children('.service-tour').children('.row').children('.group-kind-ticket').has('.kind-ticket').length){
                         $(this).children('.service-tour').children('.row').children('.group-kind-ticket').find('.kind-ticket').each(function(){
@@ -492,6 +688,7 @@
                             }
 
                             namePrice = $(this).children('.row').children('.price-kind-ticket').children('.form-group').children('input').val();
+                            namePriceF = $(this).children('.row').children('.price-kind-ticket').children('.form-group').children('input').next().val();
 
                             if(namePrice == ''){
                                 $(this).children('.row').children('.price-kind-ticket').children('.form-group').children('label').empty();
@@ -510,14 +707,12 @@
 
                             var ticketDetail = {
                                 'nameTicket': nameKind,
-                                'priceTicket': namePrice
+                                'priceTicket': namePriceF
                             };
 
                             tickets.push(ticketDetail);
                         });
                     }else{
-                        // console.log('vớ vẩn');
-
                         var ticketDetail = {
                             'nameTicket': nameServiceDetail,
                             'priceTicket': price
@@ -529,8 +724,9 @@
                     var serviceDetail = {
                         'idService': idService,
                         'nameService': nameServiceDetail,
-                        'normalPriceService': normalPrice,
-                        'priceService': price,
+                        'normalPriceService': normalPriceF,
+                        'priceService': priceF,
+                        'detail': serviceDetail,
                         'ticketDetail': tickets
                     };
 
@@ -540,7 +736,7 @@
                 console.log('service: ' + services);
             }
             if($('#policy').val() == ''){
-                $('#policy').val(0);
+                $('#policy').val(24);
             }
 
             json['idTour'] = idTour;
@@ -553,8 +749,19 @@
             json['ticketDetail'] = services;
 
             console.log(json);
+
             if(check == 1){
-                console.log('Send');
+                $.ajax({
+                    url: '/quan-ly/tour/post',
+                    type: 'POST',
+                    data: {
+                        dataJson: JSON.stringify(json)
+                    }
+                }).done(function (data) {
+                    window.location.href = "http://localhost:8080/quan-ly/tour";
+                }).fail(function () {
+                    console.log("error");
+                })
             }else{
                 console.log('Not null');
             }
@@ -570,6 +777,17 @@
             }else{
                 $(this).next().val(val);
                 $(this).val(format($(this).val()));
+            }
+        });
+
+        $(document).on('keyup', '.price-service-detail', function(event){
+            event.preventDefault();
+            var normalPrice = $(this).next().val();
+            var price = $(this).closest('.price-service-form').prev().children('.form-group').children('.normal-price-service-detail').next().val();
+            if(parseInt(normalPrice) > parseInt(price)){
+                normalPrice = price;
+                $(this).val(format(normalPrice));
+                $(this).next().val(normalPrice);
             }
         });
 
@@ -589,220 +807,330 @@
             return(formatted + ((parts) ? "." + parts[1].substr(0, 2) : ""));
         };
 
+        $(document).on({
+            ajaxStart: function() { $('body').addClass("loading");},
+            ajaxStop: function() { $('body').removeClass("loading"); }
+        });
+
     });
-
-    function errorCallback() {
-
-        var myLatlng = new google.maps.LatLng(16.075733, 108.16994899999997);
-
-        var map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 16.075733, lng: 108.16994899999997},
-            zoom: 13,
-            mapTypeId: 'roadmap'
-        });
-
-        var markers = [];
-
-        markers.push(new google.maps.Marker({
-            map: map,
-            title: 'Bạn đang ở đây',
-            position: myLatlng
-        }));
-
-        $.ajax({
-            url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+16.075733+','+108.16994899999997+'&key=AIzaSyDawMp3IadhGe1AbQgDXGZM4CHfqDCNRYk',
-            type: 'GET'
-        })
-            .done(function(data) {
-                $('#lat').val(16.075733);
-                $('#lng').val(108.16994899999997);
-            })
-            .fail(function() {
-                console.log("error");
-            })
-
-        // Create the search box and link it to the UI element.
-        var input = document.getElementById('pac-input');
-        address = input;
-
-        var searchBox = new google.maps.places.SearchBox(input);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-        // Bias the SearchBox results towards current map's viewport.
-        map.addListener('bounds_changed', function() {
-            searchBox.setBounds(map.getBounds());
-        });
-
-        // Listen for the event fired when the user selects a prediction and retrieve
-        // more details for that place.
-        searchBox.addListener('places_changed', function() {
-            var places = searchBox.getPlaces();
-
-            console.log(places);
-
-            if (places.length == 0) {
-                return;
-            }
-
-            // Clear out the old markers.
-            markers.forEach(function(marker) {
-                marker.setMap(null);
-            });
-            markers = [];
-
-            // For each place, get the icon, name and location.
-            var bounds = new google.maps.LatLngBounds();
-
-            places.forEach(function(place) {
-                if (!place.geometry) {
-                    return;
-                }
-
-                // Create a marker for each place.
-                markers.push(new google.maps.Marker({
-                    map: map,
-                    title: place.name,
-                    position: place.geometry.location
-                }));
-
-                if (place.geometry.viewport) {
-                    // Only geocodes have viewport.
-                    bounds.union(place.geometry.viewport);
-                } else {
-                    bounds.extend(place.geometry.location);
-                }
-
-                var getlatlng = place.geometry.location;
-
-                $.ajax({
-                    url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+getlatlng.lat()+','+getlatlng.lng()+'&key=AIzaSyDawMp3IadhGe1AbQgDXGZM4CHfqDCNRYk',
-                    type: 'GET'
-                })
-                    .done(function(data) {
-                        $('#lat').val(getlatlng.lat());
-                        $('#lng').val(getlatlng.lng());
-                        $('.address-tour').children('b').html(data.results[0].formatted_address);
-                    })
-                    .fail(function() {
-                        console.log("error");
-                    })
-
-            });
-            map.fitBounds(bounds);
-        });
-    }
-
-    if (navigator && navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(initAutocomplete, errorCallback);
-    } else {
-        console.log('Geolocation is not supported');
-    }
-
-    // Gmap
-    function initAutocomplete(position) {
-
-        var myLatlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-        var map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: position.coords.latitude, lng: position.coords.longitude},
-            zoom: 13,
-            mapTypeId: 'roadmap'
-        });
-
-        var markers = [];
-
-        markers.push(new google.maps.Marker({
-            map: map,
-            title: 'Bạn đang ở đây',
-            position: myLatlng
-        }));
-
-        $.ajax({
-            url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+position.coords.longitude+'&key=AIzaSyDawMp3IadhGe1AbQgDXGZM4CHfqDCNRYk',
-            type: 'GET'
-        })
-            .done(function(data) {
-                $('#lat').val(position.coords.latitude);
-                $('#lng').val(position.coords.longitude);
-                $('.address-tour').children('b').html(data.results[0].formatted_address);
-            })
-            .fail(function() {
-                console.log("error");
-            })
-
-        // Create the search box and link it to the UI element.
-        var input = document.getElementById('pac-input');
-        address = input;
-
-        var searchBox = new google.maps.places.SearchBox(input);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-        // Bias the SearchBox results towards current map's viewport.
-        map.addListener('bounds_changed', function() {
-            searchBox.setBounds(map.getBounds());
-        });
-
-        // Listen for the event fired when the user selects a prediction and retrieve
-        // more details for that place.
-        searchBox.addListener('places_changed', function() {
-            var places = searchBox.getPlaces();
-
-            console.log(places);
-
-            if (places.length == 0) {
-                return;
-            }
-
-            // Clear out the old markers.
-            markers.forEach(function(marker) {
-                marker.setMap(null);
-            });
-            markers = [];
-
-            // For each place, get the icon, name and location.
-            var bounds = new google.maps.LatLngBounds();
-
-            places.forEach(function(place) {
-                if (!place.geometry) {
-                    return;
-                }
-
-                // Create a marker for each place.
-                markers.push(new google.maps.Marker({
-                    map: map,
-                    title: place.name,
-                    position: place.geometry.location
-                }));
-
-                if (place.geometry.viewport) {
-                    // Only geocodes have viewport.
-                    bounds.union(place.geometry.viewport);
-                } else {
-                    bounds.extend(place.geometry.location);
-                }
-
-                var getlatlng = place.geometry.location;
-
-                $.ajax({
-                    url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+getlatlng.lat()+','+getlatlng.lng()+'&key=AIzaSyDawMp3IadhGe1AbQgDXGZM4CHfqDCNRYk',
-                    type: 'GET'
-                })
-                    .done(function(data) {
-                        $('#lat').val(getlatlng.lat());
-                        $('#lng').val(getlatlng.lng());
-                        $('.address-tour').children('b').html(data.results[0].formatted_address);
-                    })
-                    .fail(function() {
-                        console.log("error");
-                    })
-
-            });
-            map.fitBounds(bounds);
-        });
-    }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDawMp3IadhGe1AbQgDXGZM4CHfqDCNRYk&libraries=places"
+
+    <c:choose>
+        <c:when test="${not empty listTour}">
+            <script>
+                var address;
+
+                function initAutocomplete() {
+
+                    <c:forEach items="${listTour}" var="lTour" begin="0" end="0">
+                        var myLatlng = new google.maps.LatLng(${lTour.lat}, ${lTour.lng});
+
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            center: {lat: ${lTour.lat}, lng: ${lTour.lng}},
+                            zoom: 15,
+                            mapTypeId: 'roadmap'
+                        });
+                    </c:forEach>
+
+                    // Create the search box and link it to the UI element.
+                    var input = document.getElementById('pac-input');
+                    address = input;
+
+                    var searchBox = new google.maps.places.SearchBox(input);
+                    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+                    // Bias the SearchBox results towards current map's viewport.
+                    map.addListener('bounds_changed', function() {
+                        searchBox.setBounds(map.getBounds());
+                    });
+
+                    var markers = [];
+
+                    <c:forEach items="${listTour}" var="lTour" begin="0" end="0">
+                        markers.push(new google.maps.Marker({
+                            map: map,
+                            title: 'Bạn đang ở ${lTour.name}',
+                            position: myLatlng
+                        }));
+                    </c:forEach>
+
+                    // Listen for the event fired when the user selects a prediction and retrieve
+                    // more details for that place.
+                    searchBox.addListener('places_changed', function() {
+                        var places = searchBox.getPlaces();
+
+                        if (places.length == 0) {
+                            return;
+                        }
+
+                        // Clear out the old markers.
+                        markers.forEach(function(marker) {
+                            marker.setMap(null);
+                        });
+                        markers = [];
+
+                        // For each place, get the icon, name and location.
+                        var bounds = new google.maps.LatLngBounds();
+
+                        places.forEach(function(place) {
+                            if (!place.geometry) {
+                                return;
+                            }
+
+                            // Create a marker for each place.
+                            markers.push(new google.maps.Marker({
+                                map: map,
+                                title: place.name,
+                                position: place.geometry.location
+                            }));
+
+                            if (place.geometry.viewport) {
+                                // Only geocodes have viewport.
+                                bounds.union(place.geometry.viewport);
+                            } else {
+                                bounds.extend(place.geometry.location);
+                            }
+
+                            var getlatlng = place.geometry.location;
+
+                            $.ajax({
+                                url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+getlatlng.lat()+','+getlatlng.lng()+'&key=AIzaSyDawMp3IadhGe1AbQgDXGZM4CHfqDCNRYk',
+                                type: 'GET'
+                            })
+                                .done(function(data) {
+                                    $('#lat').val(getlatlng.lat());
+                                    $('#lng').val(getlatlng.lng());
+                                    $('.address-tour').children('b').html(data.results[0].formatted_address);
+                                })
+                                .fail(function() {
+                                    console.log("error");
+                                })
+
+                        });
+                        map.fitBounds(bounds);
+                    });
+                }
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDawMp3IadhGe1AbQgDXGZM4CHfqDCNRYk&libraries=places&callback=initAutocomplete"
+                    async defer></script>
+        </c:when>
+        <c:otherwise>
+            <script>
+
+                if (navigator && navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(initAutocomplete, errorCallback);
+                } else {
+                    console.log('Geolocation is not supported');
+                }
+
+                function errorCallback() {
+
+                    var myLatlng = new google.maps.LatLng(16.075733, 108.16994899999997);
+
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        center: {lat: 16.075733, lng: 108.16994899999997},
+                        zoom: 13,
+                        mapTypeId: 'roadmap'
+                    });
+
+                    var markers = [];
+
+                    markers.push(new google.maps.Marker({
+                        map: map,
+                        title: 'Bạn đang ở đây',
+                        position: myLatlng
+                    }));
+
+                    $.ajax({
+                        url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+16.075733+','+108.16994899999997+'&key=AIzaSyDawMp3IadhGe1AbQgDXGZM4CHfqDCNRYk',
+                        type: 'GET'
+                    })
+                        .done(function(data) {
+                            $('#lat').val(16.075733);
+                            $('#lng').val(108.16994899999997);
+                        })
+                        .fail(function() {
+                            console.log("error");
+                        })
+
+                    // Create the search box and link it to the UI element.
+                    var input = document.getElementById('pac-input');
+                    address = input;
+
+                    var searchBox = new google.maps.places.SearchBox(input);
+                    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+                    // Bias the SearchBox results towards current map's viewport.
+                    map.addListener('bounds_changed', function() {
+                        searchBox.setBounds(map.getBounds());
+                    });
+
+                    // Listen for the event fired when the user selects a prediction and retrieve
+                    // more details for that place.
+                    searchBox.addListener('places_changed', function() {
+                        var places = searchBox.getPlaces();
+
+                        console.log(places);
+
+                        if (places.length == 0) {
+                            return;
+                        }
+
+                        // Clear out the old markers.
+                        markers.forEach(function(marker) {
+                            marker.setMap(null);
+                        });
+                        markers = [];
+
+                        // For each place, get the icon, name and location.
+                        var bounds = new google.maps.LatLngBounds();
+
+                        places.forEach(function(place) {
+                            if (!place.geometry) {
+                                return;
+                            }
+
+                            // Create a marker for each place.
+                            markers.push(new google.maps.Marker({
+                                map: map,
+                                title: place.name,
+                                position: place.geometry.location
+                            }));
+
+                            if (place.geometry.viewport) {
+                                // Only geocodes have viewport.
+                                bounds.union(place.geometry.viewport);
+                            } else {
+                                bounds.extend(place.geometry.location);
+                            }
+
+                            var getlatlng = place.geometry.location;
+
+                            $.ajax({
+                                url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+getlatlng.lat()+','+getlatlng.lng()+'&key=AIzaSyDawMp3IadhGe1AbQgDXGZM4CHfqDCNRYk',
+                                type: 'GET'
+                            })
+                                .done(function(data) {
+                                    $('#lat').val(getlatlng.lat());
+                                    $('#lng').val(getlatlng.lng());
+                                    $('.address-tour').children('b').html(data.results[0].formatted_address);
+                                })
+                                .fail(function() {
+                                    console.log("error");
+                                })
+
+                        });
+                        map.fitBounds(bounds);
+                    });
+                }
+
+                // Gmap
+                function initAutocomplete(position) {
+
+                    var myLatlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        center: {lat: position.coords.latitude, lng: position.coords.longitude},
+                        zoom: 13,
+                        mapTypeId: 'roadmap'
+                    });
+
+                    var markers = [];
+
+                    markers.push(new google.maps.Marker({
+                        map: map,
+                        title: 'Bạn đang ở đây',
+                        position: myLatlng
+                    }));
+
+                    $.ajax({
+                        url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+position.coords.longitude+'&key=AIzaSyDawMp3IadhGe1AbQgDXGZM4CHfqDCNRYk',
+                        type: 'GET'
+                    })
+                        .done(function(data) {
+                            $('#lat').val(position.coords.latitude);
+                            $('#lng').val(position.coords.longitude);
+                            $('.address-tour').children('b').html(data.results[0].formatted_address);
+                        })
+                        .fail(function() {
+                            console.log("error");
+                        })
+
+                    // Create the search box and link it to the UI element.
+                    var input = document.getElementById('pac-input');
+                    address = input;
+
+                    var searchBox = new google.maps.places.SearchBox(input);
+                    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+                    // Bias the SearchBox results towards current map's viewport.
+                    map.addListener('bounds_changed', function() {
+                        searchBox.setBounds(map.getBounds());
+                    });
+
+                    // Listen for the event fired when the user selects a prediction and retrieve
+                    // more details for that place.
+                    searchBox.addListener('places_changed', function() {
+                        var places = searchBox.getPlaces();
+
+                        console.log(places);
+
+                        if (places.length == 0) {
+                            return;
+                        }
+
+                        // Clear out the old markers.
+                        markers.forEach(function(marker) {
+                            marker.setMap(null);
+                        });
+                        markers = [];
+
+                        // For each place, get the icon, name and location.
+                        var bounds = new google.maps.LatLngBounds();
+
+                        places.forEach(function(place) {
+                            if (!place.geometry) {
+                                return;
+                            }
+
+                            // Create a marker for each place.
+                            markers.push(new google.maps.Marker({
+                                map: map,
+                                title: place.name,
+                                position: place.geometry.location
+                            }));
+
+                            if (place.geometry.viewport) {
+                                // Only geocodes have viewport.
+                                bounds.union(place.geometry.viewport);
+                            } else {
+                                bounds.extend(place.geometry.location);
+                            }
+
+                            var getlatlng = place.geometry.location;
+
+                            $.ajax({
+                                url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+getlatlng.lat()+','+getlatlng.lng()+'&key=AIzaSyDawMp3IadhGe1AbQgDXGZM4CHfqDCNRYk',
+                                type: 'GET'
+                            })
+                                .done(function(data) {
+                                    $('#lat').val(getlatlng.lat());
+                                    $('#lng').val(getlatlng.lng());
+                                    $('.address-tour').children('b').html(data.results[0].formatted_address);
+                                })
+                                .fail(function() {
+                                    console.log("error");
+                                })
+
+                        });
+                        map.fitBounds(bounds);
+                    });
+                }
+            </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDawMp3IadhGe1AbQgDXGZM4CHfqDCNRYk&libraries=places"
         async defer></script>
+        </c:otherwise>
+    </c:choose>
 <!-- End custom script-->
 </body>
 </html>
