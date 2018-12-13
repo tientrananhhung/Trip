@@ -20,6 +20,7 @@ public class OrderMapper implements RowMapper<OrderDTO> {
         String servicename = resultSet.getString("servicename");
         String userEmail = resultSet.getString("email");
         Integer payment = resultSet.getInt("payment");
+        Integer partnerid = resultSet.getInt("partnerid");
         String payment1 = null;
         if (payment == 1) {
             payment1 = "Chuyển khoản";
@@ -59,6 +60,6 @@ public class OrderMapper implements RowMapper<OrderDTO> {
             ticketDetailDTO.setQuantityTicket(Integer.valueOf(arRules1[2].split("\\:")[1]));
             list.add(ticketDetailDTO);
         }
-        return new OrderDTO(orderID, customerName, serviceName, userEmail, payment1, isPurchased, orderDate, tourName, tourAddress, note, offercode, offerdeal, phoneUser, serviceDate, totalPrice, totalPriceAfter, policy1 * 3600000,deleted,userid, list);
+        return new OrderDTO(orderID, customerName, serviceName, userEmail, payment1, isPurchased, orderDate, tourName, tourAddress, note, offercode, offerdeal, phoneUser, serviceDate, totalPrice, totalPriceAfter, policy1 * 3600000,deleted,userid,partnerid, list);
     }
 }
