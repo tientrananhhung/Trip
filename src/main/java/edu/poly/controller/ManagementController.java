@@ -519,9 +519,7 @@ public class ManagementController {
             Integer sId = 0;
 
             if(idTour > 0){
-
                 Tours t = tour.getById(idTour);
-
                 Tours tour1 = new Tours();
                 tour1.setId(idTour);
                 tour1.setUserId(users.getId());
@@ -607,7 +605,6 @@ public class ManagementController {
                     ticket1.setCount(0);
                     ticket1.setCreatedAt(TimeUtils.getCurrentTime());
                     ticket1.setUpdatedAt(TimeUtils.getCurrentTime());
-
                     ticket.save(ticket1);
                 }
             }
