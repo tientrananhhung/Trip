@@ -69,7 +69,7 @@
                                                         <%--<a onclick="showSwal('warning-message-and-cancel')" href="/admin/quan-ly-uu-dai/active/${offer.id}/true">--%>
                                                             <%--<label class="badge badge-success">Availble</label>--%>
                                                         <%--</a>--%>
-                                                        <a class="btn-del-offer" href="#" o-id="${offer.id}">
+                                                        <a onclick="if (confirm('Bạn có thực sự muốn xóa ?')){return true;}else{event.stopPropagation(); event.preventDefault();};" class="btn-del-offer" href="/admin/quan-ly-uu-dai/active/${offer.id}/true" o-id="${offer.id}">
                                                             <label class="badge badge-success">Availble</label>
                                                         </a>
                                                     </c:otherwise>

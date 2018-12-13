@@ -318,6 +318,8 @@ public class Constants {
 
         public static final String POST_STATISTICS = "/poststatistics/{year}";
 
+        public static final String POST_COUNT_STATISTICS = "/postcountstatistics/{month}/{year}";
+
         //Trang API
         public static final String API_URL = "/api";
 

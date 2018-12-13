@@ -328,6 +328,16 @@ public class ManagementController {
             return mav;
         }
         try {
+          OrderDTO orderDTO =  orderDAO.getOrderDTO(id);
+          Date date = new Date();
+            if(date.getTime() - orderDTO.getOrderDate().getTime() >  orderDTO.getPolicy()){
+                if (purchase == true) {
+                    mav.setViewName("redirect:" + Constants.Url.MANAGEMENT_URL + Constants.Url.MANAGEMENT_PURCHASE_ORDER_URL);
+                } else {
+                    mav.setViewName("redirect:" + Constants.Url.MANAGEMENT_URL + Constants.Url.MANAGEMENT_ORDER_URL);
+                }
+                return mav;
+            }
             orderDAO.deleteCustomerOrder(id);
             if (purchase == true) {
                 mav.setViewName("redirect:" + Constants.Url.MANAGEMENT_URL + Constants.Url.MANAGEMENT_PURCHASE_ORDER_URL);

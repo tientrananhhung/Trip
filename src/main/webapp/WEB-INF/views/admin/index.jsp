@@ -39,7 +39,9 @@
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Thống kê người dùng <input type="text" id="test1" name="" class="form-control col-lg-1 float-right"></h4>
+                                <h4 class="card-title">Thống kê người dùng <input type="text" id="test1" name=""
+                                                                                  class="form-control col-lg-1 float-right">
+                                </h4>
                                 <div class="row col-lg-6">
                                     <p class="col-lg-7 grid-margin">Tổng người dùng</p>
                                     <p class="col-lg-4 grid-margin">${userstatistics.tong_User}</p>
@@ -61,7 +63,9 @@
                     <div class="col-lg-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Thống kê đối tác <input type="text" id="test2" name="" class="form-control col-lg-2 float-right" /></h4>
+                                <h4 class="card-title">Thống kê đối tác <input type="text" id="test2" name=""
+                                                                               class="form-control col-lg-2 float-right"/>
+                                </h4>
                                 <div class="row col-lg-12">
                                     <p class="col-lg-7 grid-margin">Tổng đối tác</p>
                                     <p class="col-lg-4 grid-margin">${partnerstatistics.tong_Partner}</p>
@@ -81,7 +85,9 @@
                     <div class="col-lg-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Thống kê ưu đãi <input type="text" id="test3" name="" class="form-control col-lg-2 float-right" /></h4>
+                                <h4 class="card-title">Thống kê ưu đãi <input type="text" id="test3" name=""
+                                                                              class="form-control col-lg-2 float-right"/>
+                                </h4>
                                 <div class="row col-lg-12">
                                     <p class="col-lg-7 grid-margin"></p>
                                     <p class="col-lg-4 grid-margin"></p>
@@ -98,18 +104,49 @@
                                     <p class="col-lg-7 grid-margin">Tổng mã ưu đãi đã sử dụng</p>
                                     <p class="col-lg-4 grid-margin">${offerstatistics.used}</p>
                                 </div>
-                                <div id="morris-bar-example2" ></div>
+                                <div id="morris-bar-example2"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-                    <div class="row">
-                        <div class="col-lg-12 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Thống kê bài viết <input type="text" id="test4" name="" class="form-control col-lg-2 float-right" /></h4>
-                                    <div id="morris-area-example"></div>
+                <div class="row">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Thống kê bài viết <input type="text" id="test4" name=""
+                                                                                class="form-control col-lg-2 float-right"/>
+                                </h4>
+                                <div class="row">
+                                    <div class="row col-lg-4">
+                                        <p class="col-lg-7 grid-margin">Tháng</p>
+                                        <p class="col-lg-4 grid-margin post-month">11</p>
+                                    </div>
+                                    <div class="row col-lg-8">
+                                        <p class="col-lg-4 grid-margin">Bài viết tiêu biểu</p>
+                                        <p class="col-lg-8 4grid-margin post-top">11</p>
+                                    </div>
                                 </div>
+                                <div class="row">
+                                    <div class="row col-lg-4">
+                                        <p class="col-lg-7 grid-margin">Tổng bài viết</p>
+                                        <p class="col-lg-4 grid-margin post-count">11</p>
+                                    </div>
+                                    <div class="row col-lg-8">
+                                        <p class="col-lg-4 grid-margin">Lượt xem</p>
+                                        <p class="col-lg-8 grid-margin post-view">11</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="row col-lg-4">
+                                        <p class="col-lg-7 grid-margin">Tổng bài viết đã xóa</p>
+                                        <p class="col-lg-4 grid-margin post-delete-count">11</p>
+                                    </div>
+                                    <div class="row col-lg-8">
+                                        <p class="col-lg-4 grid-margin">Người viết</p>
+                                        <p class="col-lg-8 grid-margin post-author">11</p>
+                                    </div>
+                                </div>
+                                <div id="morris-area-example"></div>
                             </div>
                         </div>
                     </div>
@@ -117,7 +154,8 @@
             </div>
         </div>
     </div>
-    <jsp:include page="include/footer.jsp"/>
+</div>
+<jsp:include page="include/footer.jsp"/>
 </div>
 </div>
 </div>
@@ -138,8 +176,8 @@
 <script src="<c:url value="/resources/js/settings.js" />"></script>
 <script src="<c:url value="/resources/js/todolist.js" />"></script>
 <!-- End plugin js for this page-->
-    <script type="text/javascript">
-        jQuery(function($) {
+<script type="text/javascript">
+    jQuery(function ($) {
         $('#test1').datepicker({
             format: "yyyy",
             todayBtn: true,
@@ -148,55 +186,70 @@
             minViewMode: 2,
             defaultDate: "2018-01-01",
             todayHighlight: true
-        }).on('changeDate', function(ev){
+        }).on('changeDate', function (ev) {
             $("#morris-line-example").empty();
             var year = $(this).datepicker('getDate').getFullYear();
             loadUser(year);
         }).datepicker("setDate", new Date());
-            // loadUser(2018);
+        // loadUser(2018);
 
-            $('#test4').datepicker({
-                format: "yyyy",
-                todayBtn: true,
-                language: "vi",
-                autoclose: true,
-                minViewMode: 2,
-                todayHighlight: true
-            }).on('changeDate', function (ev) {
-                $("#morris-area-example").empty();
-                var year = $(this).datepicker('getDate').getFullYear();
-                loadPost(year);
-            }).datepicker("setDate", new Date());
+        $('#test4').datepicker({
+            format: "mm/yyyy",
+            todayBtn: true,
+            language: "vi",
+            autoclose: true,
+            minViewMode: 1,
+            todayHighlight: true
+        }).on('changeDate', function (ev) {
+            $("#morris-area-example").empty();
+            var month = $(this).datepicker('getDate').getMonth() + 1;
+            var year = $(this).datepicker('getDate').getFullYear();
+            // loadCountPost(month,year);
+            loadPost(year);
+            var origin   = window.location.origin;
+            $.ajax({
+                url: origin+'/api/postcountstatistics/'+month+'/'+year+'',
+                type: 'GET'
+            })
+                .done(function (data) {
+                    $('.post-month').html(month);
+                    $('.post-count').html(data.tong_Post);
+                    $('.post-delete-count').html(data.deleted);
+                    $('.post-top').html(data.title);
+                    $('.post-view').html(data.max_View);
+                    $('.post-author').html(data.users);
+                });
+        }).datepicker("setDate", new Date());
 
-            $('#test2').datepicker({
-                format: "mm/yyyy",
-                todayBtn: true,
-                language: "vi",
-                autoclose: true,
-                minViewMode: 1,
-                todayHighlight: true
-            }).on('changeDate', function(ev){
-                $("#morris-bar-example1").empty();
-                var year = $(this).datepicker('getDate').getFullYear();
-                var month = $(this).datepicker('getDate').getMonth();
-                loadPartner(month+1,year);
-            }).datepicker("setDate", new Date());
+        $('#test2').datepicker({
+            format: "mm/yyyy",
+            todayBtn: true,
+            language: "vi",
+            autoclose: true,
+            minViewMode: 1,
+            todayHighlight: true
+        }).on('changeDate', function (ev) {
+            $("#morris-bar-example1").empty();
+            var year = $(this).datepicker('getDate').getFullYear();
+            var month = $(this).datepicker('getDate').getMonth();
+            loadPartner(month + 1, year);
+        }).datepicker("setDate", new Date());
 
-            $('#test3').datepicker({
-                format: "mm/yyyy",
-                todayBtn: true,
-                language: "vi",
-                autoclose: true,
-                minViewMode: 1,
-                todayHighlight: true
-            }).on('changeDate', function(ev){
-                $("#morris-bar-example2").empty();
-                var year = $(this).datepicker('getDate').getFullYear();
-                var month = $(this).datepicker('getDate').getMonth();
-                loadOffer(month+1,year);
-            }).datepicker("setDate", new Date());
+        $('#test3').datepicker({
+            format: "mm/yyyy",
+            todayBtn: true,
+            language: "vi",
+            autoclose: true,
+            minViewMode: 1,
+            todayHighlight: true
+        }).on('changeDate', function (ev) {
+            $("#morris-bar-example2").empty();
+            var year = $(this).datepicker('getDate').getFullYear();
+            var month = $(this).datepicker('getDate').getMonth();
+            loadOffer(month + 1, year);
+        }).datepicker("setDate", new Date());
 
-        });
+    });
 </script>
 </body>
 </html>

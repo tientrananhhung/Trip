@@ -54,6 +54,9 @@ public class APIController {
 
     private PostStatisticsDAO postStatisticsDAO;
 
+    @Autowired
+    private  PostCountStatisticsDAO postCountStatisticsDAO;
+
 //    @Autowired
 //    private UserStatisticsDAO userStatisticsDAO;
 
@@ -137,12 +140,23 @@ public class APIController {
         }
     }
 
+    @GetMapping(path = Constants.Url.POST_COUNT_STATISTICS, produces = {MimeTypeUtils.APPLICATION_JSON_VALUE})
+    public ResponseEntity<PostCountStatisticsDTO> postcountstaticstic(@PathVariable("year") String year,@PathVariable("month") String month ) {
+        try {
+            PostCountStatisticsDTO list = postCountStatisticsDAO.getPostCountStatisticsDTO(month,year);
+            ResponseEntity<PostCountStatisticsDTO> responseEntity = new ResponseEntity<PostCountStatisticsDTO>(list, HttpStatus.OK);
+            return responseEntity;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<PostCountStatisticsDTO>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @PostMapping(path = Constants.Url.POST_PROCESS_ORDER_URL, produces = {MimeTypeUtils.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> postOrder(@PathVariable("sId") Integer sId, @PathVariable("uId") Integer uId, @RequestParam String dataJson) {
         try {
             Services services = service.findServiceById(sId);
             Users users = user.getById(uId);
-
             Offers offers = new Offers();
             String ck = "";
             ResponseEntity<String> responseEntity = new ResponseEntity<>(ck, HttpStatus.OK);

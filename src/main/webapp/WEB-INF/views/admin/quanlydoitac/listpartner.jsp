@@ -84,7 +84,7 @@
                                         </td>
                                         <td>
                                             <a href="/admin/quan-ly-doi-tac/${partner.id}" class="btn btn-outline-primary">Edit</a>
-                                            <a href="/admin/quan-ly-doi-tac/xoa/${partner.id}" class="btn btn-outline-danger">Delete</a>
+                                            <a onclick="if (confirm('Bạn có thực sự muốn xóa ?')){return true;}else{event.stopPropagation(); event.preventDefault();};" href="/admin/quan-ly-doi-tac/xoa/${partner.id}" class="btn btn-outline-danger">Delete</a>
                                         </td>
                                     </tr>
                                     </c:forEach>

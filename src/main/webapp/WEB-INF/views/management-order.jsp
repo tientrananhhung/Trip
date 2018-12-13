@@ -81,7 +81,7 @@
                                 </td>
                                 <td>${order.note}</td>
                                 <td>
-                                    <a href="/quan-ly/huy-don-hang/0/${order.orderID}"
+                                    <a onclick="if (confirm('Bạn có thực sự muốn hủy ?')){return true;}else{event.stopPropagation(); event.preventDefault();};" href="/quan-ly/huy-don-hang/0/${order.orderID}"
                                        class="btn btn-outline-danger btn-sm">Hủy</a>
                                 </td>
                             </tr>

@@ -68,6 +68,10 @@ public class LoginController {
     @PostMapping(Constants.Url.LOGIN)
     public ModelAndView loginProgess(@ModelAttribute("login") Users users, HttpSession session) {
         ModelAndView mav = new ModelAndView();
+        if(session.getAttribute(Constants.SessionKey.USER) != null){
+            mav.setViewName("redirect:/");
+            return mav;
+        }
         Users login = new Users();
         Users userLogin = user.login(users.getUsername(), PasswordUtils.md5(users.getPassword()));
         if (userLogin != null) {

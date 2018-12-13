@@ -83,7 +83,7 @@
                                         <td>
                                             <c:choose>
                                                 <c:when test="${now.time - order.orderDate.time < order.policy}">
-                                                    <a href="/quan-ly/huy-don-hang/1/${order.orderID}"
+                                                    <a onclick="if (confirm('Bạn có thực sự muốn hủy ?')){return true;}else{event.stopPropagation(); event.preventDefault();};" href="/quan-ly/huy-don-hang/1/${order.orderID}"
                                                        class="btn btn-outline-danger btn-sm">Hủy</a>
                                                 </c:when>
                                                 <c:otherwise>

@@ -76,7 +76,16 @@
                                 </td>
                                 <td>${order.serviceDate}</td>
                                 <td>${order.payment}</td>
-                                <td>${order.purchased}</td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${order.purchased == true}">
+                                            Đã thanh toán
+                                        </c:when>
+                                        <c:otherwise>
+                                            Chưa thanh toán
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
                                 <td>
                                     <fmt:formatNumber type="number" pattern="###,###" value="${order.totalPriceAfter}" /> đ
                                 </td>

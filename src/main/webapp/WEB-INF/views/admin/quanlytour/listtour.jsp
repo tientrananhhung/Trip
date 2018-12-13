@@ -43,9 +43,7 @@
                             </div>
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
-                                <a href="/admin/quan-ly-tour/them" class="btn btn-warning btn-rounded btn-fw" style="margin-left: 190px;">
-                                   Add Tour
-                                </a>
+
                             </div>
                         </div>
                         <div class="row">
@@ -71,7 +69,7 @@
                                             <td>${tour.address}</td>
                                             <td>
                                                 <c:choose>
-                                                    <c:when test="${tour.getDeleted()} ">
+                                                    <c:when test="${tour.deleted.toString() == 'true'}">
                                                         <a href="/admin/quan-ly-tour/xoa/${tour.id}/0"> <label
                                                                 class="badge badge-danger">Inactive</label></a>
                                                     </c:when>
