@@ -10,6 +10,7 @@ import edu.poly.entity.*;
 import edu.poly.impl.*;
 import edu.poly.model.ManagementTourDTO;
 import edu.poly.model.OrderDTO;
+import edu.poly.model.Product;
 import edu.poly.model.TourPartnerDTO;
 import edu.poly.valaditor.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -456,6 +458,7 @@ public class ManagementController {
             }
 
             mav.addObject("listTour", listDTO);
+//            mav.addObject("product", new Product());
 
             mav.setViewName(MANAGEMENT_TOUR_DETAIL_SCREEN);
             return mav;
@@ -622,4 +625,5 @@ public class ManagementController {
         mav.setViewName(MANAGEMENT_TOUR_DETAIL_SCREEN);
         return mav;
     }
+
 }

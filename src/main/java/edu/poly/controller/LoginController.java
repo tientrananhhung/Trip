@@ -97,6 +97,20 @@ public class LoginController {
         return mav;
     }
 
+    @GetMapping(Constants.Url.REGISTER)
+    public ModelAndView register(HttpSession session){
+        ModelAndView mav = new ModelAndView();
+        if(session.getAttribute(Constants.SessionKey.USER) != null){
+            mav.setViewName("redirect:/");
+            return mav;
+        }
+        mav.addObject("reg", "reg");
+        mav.addObject("register", new Users());
+        mav.addObject("login", new Users());
+        mav.setViewName(LOGIN_SCREEN);
+        return mav;
+    }
+
     @PostMapping(Constants.Url.REGISTER)
     public ModelAndView registerCustomer(@Validated @ModelAttribute("register") Users users, BindingResult result, HttpSession session) {
         ModelAndView mav = new ModelAndView();
