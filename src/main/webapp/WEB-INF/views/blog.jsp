@@ -81,7 +81,7 @@
                         <h3 class="blog-title">
                             <a href="/4/blog">Điểm du lịch</a>
                         </h3>
-                        <a class="blog-more" href="#">Xem thêm »</a>
+                        <a class="blog-more" href="/4/blog">Xem thêm »</a>
                     </div>
                     <!-- Start blog content -->
                     <div class="box-blog-content">
@@ -140,7 +140,7 @@
                         <h3 class="blog-title">
                             <a href="/5/blog">kinh nghiệm du lịch</a>
                         </h3>
-                        <a class="blog-more" href="#">Xem thêm »</a>
+                        <a class="blog-more" href="/5/blog">Xem thêm »</a>
                     </div>
                     <!-- Start blog content -->
                     <div class="box-blog-content">
@@ -200,7 +200,7 @@
                         <h3 class="blog-title">
                             <a href="/6/blog">ẩm thực</a>
                         </h3>
-                        <a class="blog-more" href="#">Xem thêm »</a>
+                        <a class="blog-more" href="/6/blog">Xem thêm »</a>
                     </div>
                     <!-- Start blog content -->
                     <div class="box-blog-content">

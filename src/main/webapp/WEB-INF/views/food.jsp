@@ -205,16 +205,16 @@
                 <div class="box-blog-right">
                     <div class="box-blog-title">
                         <h3 class="blog-title">
-                            <a href="#">danh mục bài viết</a>
+                            <a href="#">danh mục ẩm thực</a>
                         </h3>
                     </div>
 
                     <div class="box-blog-content">
                         <ul>
-                            <c:forEach items="${catePostlist}" var="lCatePost">
+                            <c:forEach items="${cateFoodlist}" var="lCateFood">
                                 <li class="cat-item">
-                                    <a href="/${lCatePost.pcID}/blog">
-                                            ${lCatePost.pcName}
+                                    <a href="/${lCateFood.id}/food">
+                                            ${lCateFood.name}
                                     </a>
                                     <span class="category-item-count">34</span>
                                 </li>

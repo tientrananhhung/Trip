@@ -23,6 +23,9 @@ public class PlaceInforController {
     //Return food gage
     public static final String FOOD_SCREEN = "food";
 
+    //Return food-category page
+    public static final String CATEGORY_FOOD_SCREEN = "category-food";
+
 
     @Autowired
     FoodDetailDAO foodDetailDAO;
@@ -35,6 +38,9 @@ public class PlaceInforController {
 
     @Autowired
     PostIndexDAO postIndexDAO;
+
+    @Autowired
+    FoodCategoryDAO foodCategoryDAO;
 
     @Autowired
     PostCategoryDAO postCategoryDAO;
@@ -62,12 +68,31 @@ public class PlaceInforController {
             List<PlaceInfoDTO> getTop5FoodNew = foodDAO.getTop5FoodNew();
             List<PlaceInfoDTO> getTop3Food = foodDAO.getTop3Food();
             List<PostIndexDTO> lPostIndexDTOByCategoryFood = postIndexDAO.getTop3PostByCategory(6);
-            List<PostCategoryDTO> categoryList = postCategoryDAO.getAllPostCategory();
+            List<FoodCategoryDTO> categoryList = foodCategoryDAO.getAllFoodCategory();
             mav.addObject("listFood", foodDTOS);
             mav.addObject("listTop5Food", getTop5FoodNew);
             mav.addObject("listPostFood", lPostIndexDTOByCategoryFood);
             mav.addObject("lTop3Food", getTop3Food);
-            mav.addObject("catePostlist",categoryList);
+            mav.addObject("cateFoodlist",categoryList);
+        }catch (Exception ex){
+            ex.printStackTrace();
+            mav.setViewName(HOME_SCREEN);
+        }
+        return mav;
+    }
+
+    @GetMapping(Constants.Url.CATEGORY_FOOD_URL)
+    public ModelAndView showCateFood(@PathVariable("id") int id){
+        ModelAndView mav = new ModelAndView(CATEGORY_FOOD_SCREEN);
+        try{
+            List<FoodCategoryDTO> categoryList = foodCategoryDAO.getAllFoodCategory();
+            List<FoodCateDTO> getTop5FoodNew = foodCategoryDAO.getTop5Food(id);
+            List<FoodCateDTO> getAllCateFood = foodCategoryDAO.getAllFoodByFCID(id);
+            List<BlogDTO> getAllPostFood = postCategoryDAO.getTop5PostFood(id);
+            mav.addObject("cateFoodlist",categoryList);
+            mav.addObject("listTop5Food", getTop5FoodNew);
+            mav.addObject("listFood", getAllCateFood);
+            mav.addObject("listPostFood", getAllPostFood);
         }catch (Exception ex){
             ex.printStackTrace();
             mav.setViewName(HOME_SCREEN);
