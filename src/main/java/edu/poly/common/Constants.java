@@ -344,6 +344,9 @@ public class Constants {
         //Trang API post information order for redirect to process ordered
         public static final String POST_PROCESS_ORDER_URL = "/process/order/{sId}/{uId}";
 
+        //Trang API upload ảnh
+        public static final String POST_IMAGES_TOUR_URL = "/images/post";
+
         //Trang Error 404
         public static final String ERROR404 = "/error404";
 

@@ -50,13 +50,18 @@
                         </div>
                         <!-- End Image of tour -->
 
-                        <div class="file-tour">
-                            <label class="file-input-tour c_orange" for="upload-photo-tour">Đổi ảnh hiển thị</label>
-                            <input id="upload-photo-tour" type="file" multiple="multiple" required>
+                        <div class="file-tour mg-top-10">
+                            <%--<label class="file-input-tour c_orange" for="upload-photo-tour">Đổi ảnh hiển thị</label>--%>
+                            <%--<f:form id="f-upload-images" action="/api/images/post" modelAttribute="product" method="POST"--%>
+                                        <%--enctype="multipart/form-data">--%>
+                                <%--<label class="file-input-tour btn btn-custom btn-choose-ticket" for="upload-photo-tour">Đổi ảnh hiển thị</label>--%>
+                                <%--&lt;%&ndash;<input id="upload-photo-tour" type="file" multiple="multiple" enctype="multipart/form-data" required>&ndash;%&gt;--%>
+                                <%--<f:input accept="image/*" path="fileData" type="file" class="dropify" multiple="multiple" required="required" />--%>
+                            <%--</f:form>--%>
                             <br>
-                            <button type="button" class="btn btn-outline-success my-2 my-sm-0 btn-custom btn-choose-ticket" style="vertical-align: top;">
-                                <span>Upload slide ảnh</span>
-                            </button>
+                            <%--<button type="button" class="btn btn-outline-success my-2 my-sm-0 btn-custom btn-choose-ticket" style="vertical-align: top;">--%>
+                                <%--<span>Upload slide ảnh</span>--%>
+                            <%--</button>--%>
                         </div>
 
                         <!-- Start info of tour-->
@@ -402,6 +407,11 @@
         $(document).on('mouseover', '.price-service-form .btn', function(event) {
             event.preventDefault();
             $(this).tooltip('toggle');
+        });
+
+        $(document).on("change", '#upload-photo-tour', function(event){
+            $('#f-upload-images').submit();
+            event.preventDefault();
         });
 
         $(".li-user-info").mouseover(function() {
