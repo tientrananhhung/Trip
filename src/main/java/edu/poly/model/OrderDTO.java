@@ -23,12 +23,13 @@ public class OrderDTO {
     private Long policy;
     private Boolean deleted;
     private Integer userid;
+    private Integer partnerid;
     private List<TicketDetailDTO> ticketDetailDTOList;
 
     public OrderDTO() {
     }
 
-    public OrderDTO(Integer orderID, String customerName, String serviceName, String userEmail, String payment, Boolean isPurchased, Date orderDate, String tourName, String tourAddress, String note, String offercode, String offerdeal, String phoneUser, String serviceDate, String totalPrice, String totalPriceAfter, Long policy, Boolean deleted, Integer userid, List<TicketDetailDTO> ticketDetailDTOList) {
+    public OrderDTO(Integer orderID, String customerName, String serviceName, String userEmail, String payment, Boolean isPurchased, Date orderDate, String tourName, String tourAddress, String note, String offercode, String offerdeal, String phoneUser, String serviceDate, String totalPrice, String totalPriceAfter, Long policy, Boolean deleted, Integer userid, Integer partnerid, List<TicketDetailDTO> ticketDetailDTOList) {
         this.orderID = orderID;
         this.customerName = customerName;
         this.serviceName = serviceName;
@@ -48,7 +49,16 @@ public class OrderDTO {
         this.policy = policy;
         this.deleted = deleted;
         this.userid = userid;
+        this.partnerid = partnerid;
         this.ticketDetailDTOList = ticketDetailDTOList;
+    }
+
+    public Integer getPartnerid() {
+        return partnerid;
+    }
+
+    public void setPartnerid(Integer partnerid) {
+        this.partnerid = partnerid;
     }
 
     public Integer getUserid() {

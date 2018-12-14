@@ -100,12 +100,11 @@ public class ManagementController {
         ModelAndView mav = new ModelAndView();
 
         if (!CheckSession.isLogin(session)) {
-            mav.setViewName(INDEX_SCREEN);
+            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
             return mav;
         }
 
         Users users = (Users) session.getAttribute(Constants.SessionKey.USER);
-
         mav.addObject("userInfo", users);
         mav.setViewName(INFOMATION_SCREEN);
         return mav;
@@ -115,7 +114,7 @@ public class ManagementController {
     public ModelAndView managementTour(HttpSession session) {
         ModelAndView mav = new ModelAndView();
 
-        if (!CheckSession.partner(session)) {
+        if (!CheckSession.isLogin(session)) {
             mav.setViewName("redirect:/" + Constants.Characters.BLANK);
             return mav;
         }
@@ -132,7 +131,7 @@ public class ManagementController {
     @GetMapping(Constants.Url.MANAGEMENT_DELETE_ORDER_URL)
     public ModelAndView managementDeleteOrder(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-        if (!CheckSession.partner(session)) {
+        if (!CheckSession.isLogin(session)) {
             mav.setViewName("redirect:/" + Constants.Characters.BLANK);
             return mav;
         }
@@ -153,7 +152,7 @@ public class ManagementController {
     @GetMapping(Constants.Url.MANAGEMENT_PURCHASE_ORDER_URL)
     public ModelAndView managementPurchaseOrder(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-        if (!CheckSession.partner(session)) {
+        if (!CheckSession.isLogin(session)) {
             mav.setViewName("redirect:/" + Constants.Characters.BLANK);
             return mav;
         }
@@ -174,7 +173,7 @@ public class ManagementController {
     @GetMapping(Constants.Url.MANAGEMENT_ORDER_URL)
     public ModelAndView managementOrder(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-        if (!CheckSession.partner(session)) {
+        if (!CheckSession.isLogin(session)) {
             mav.setViewName("redirect:/" + Constants.Characters.BLANK);
             return mav;
         }
@@ -195,10 +194,10 @@ public class ManagementController {
     @GetMapping(Constants.Url.MANAGEMENT_PARTNER_ORDER_URL)
     public ModelAndView managementPartnerOrder(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-//        if (!CheckSession.partner(session)) {
-//            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
-//            return mav;
-//        }
+        if (!CheckSession.partner(session)) {
+            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+            return mav;
+        }
         try {
             Users users = (Users) session.getAttribute(Constants.SessionKey.USER);
             orderDAO.deleteOrderAdmin();
@@ -216,10 +215,10 @@ public class ManagementController {
     @GetMapping(Constants.Url.MANAGEMENT_PARTNER_DELETE_ORDER_URL)
     public ModelAndView managementPartnerDeleteOrder(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-//        if (!CheckSession.partner(session)) {
-//            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
-//            return mav;
-//        }
+        if (!CheckSession.partner(session)) {
+            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+            return mav;
+        }
         try {
             Users users = (Users) session.getAttribute(Constants.SessionKey.USER);
             orderDAO.deleteOrderAdmin();
@@ -237,10 +236,10 @@ public class ManagementController {
     @GetMapping(Constants.Url.MANAGEMENT_PARTNER_PURCHASE_ORDER_URL)
     public ModelAndView managementPartnerPurchaseOrder(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-//        if (!CheckSession.partner(session)) {
-//            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
-//            return mav;
-//        }
+        if (!CheckSession.partner(session)) {
+            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+            return mav;
+        }
         try {
             Users users = (Users) session.getAttribute(Constants.SessionKey.USER);
             orderDAO.deleteOrderAdmin();
@@ -259,13 +258,18 @@ public class ManagementController {
     @GetMapping(Constants.Url.PURCHASE_PARTNER_ORDER)
     public ModelAndView purchaseOrder(HttpSession session, @PathVariable("id") Integer id) {
         ModelAndView mav = new ModelAndView();
-//        if (!CheckSession.partner(session)) {
-//            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
-//            return mav;
-//        }
+        if (!CheckSession.partner(session)) {
+            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+            return mav;
+        }
         try {
-            orderDAO.updatePurchaseOrder(true, id);
             OrderDTO orderDTO = orderDAO.getOrderDTO(id);
+            Users users = (Users) session.getAttribute(Constants.SessionKey.USER);
+            if(orderDTO.getPartnerid() != users.getId()){
+                mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+                return mav;
+            }
+            orderDAO.updatePurchaseOrder(true, id);
             mailTest.mailSend(orderDTO.getUserEmail(), MailContent.PURCHASED(orderDTO), "Thanh Toán Thành Công");
             String totalPriceAfter1 = orderDTO.getTotalPriceAfter();
             Integer totalPriceAfter = Integer.parseInt(totalPriceAfter1);
@@ -308,11 +312,17 @@ public class ManagementController {
     @GetMapping(Constants.Url.REFUND_PARTNER_ORDER)
     public ModelAndView refundOrder(HttpSession session, @PathVariable("id") Integer id) {
         ModelAndView mav = new ModelAndView();
-//        if (!CheckSession.partner(session)) {
-//            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
-//            return mav;
-//        }
+        if (!CheckSession.partner(session)) {
+            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+            return mav;
+        }
         try {
+            OrderDTO orderDTO = orderDAO.getOrderDTO(id);
+            Users users = (Users) session.getAttribute(Constants.SessionKey.USER);
+            if(orderDTO.getPartnerid() != users.getId()){
+                mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+                return mav;
+            }
             orderDAO.updatePurchaseOrder(false, id);
             mav.setViewName("redirect:" + Constants.Url.MANAGEMENT_URL + Constants.Url.MANAGEMENT_PARTNER_DELETE_ORDER_URL);
             return mav;
@@ -325,12 +335,17 @@ public class ManagementController {
     @GetMapping(Constants.Url.DELETE_ORDER_CUSTOMER)
     public ModelAndView deleteOrder(HttpSession session, @PathVariable("id") Integer id, @PathVariable("purchase") boolean purchase) {
         ModelAndView mav = new ModelAndView();
-        if (!CheckSession.partner(session)) {
+        if (!CheckSession.isLogin(session)) {
             mav.setViewName("redirect:/" + Constants.Characters.BLANK);
             return mav;
         }
         try {
-          OrderDTO orderDTO =  orderDAO.getOrderDTO(id);
+            OrderDTO orderDTO = orderDAO.getOrderDTO(id);
+            Users users = (Users) session.getAttribute(Constants.SessionKey.USER);
+            if(orderDTO.getPartnerid() != users.getId()){
+                mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+                return mav;
+            }
           Date date = new Date();
             if(date.getTime() - orderDTO.getOrderDate().getTime() >  orderDTO.getPolicy()){
                 if (purchase == true) {
@@ -360,16 +375,21 @@ public class ManagementController {
     @PostMapping(Constants.Url.CHANGE_CUSTOMER_INFORMATION)
     public ModelAndView registerCustomer(HttpServletRequest request, @Validated @ModelAttribute(Constants.SessionKey.USER) Users users, BindingResult result, HttpSession session) {
         ModelAndView mav = new ModelAndView();
+        if(!CheckSession.isLogin(session)){
+            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+            return mav;
+        }
         if (result.hasErrors()) {
             mav.setViewName(INFOMATION_SCREEN);
             return mav;
         }
-        if(!CheckSession.admin(session)){
-            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
-            return mav;
-        }
         try {
             Users us = user.getById(users.getId());
+            Users us1 = (Users) session.getAttribute(Constants.SessionKey.USER);
+            if(us.getId() != us1.getId()){
+                mav.setViewName("redirect:/" + Constants.Characters.BLANK);
+                return mav;
+            }
             CommonsMultipartFile[] files = users.getFileData();
             for (int i = 0; i < files.length; i++) {
                 CommonsMultipartFile file = files[i];
