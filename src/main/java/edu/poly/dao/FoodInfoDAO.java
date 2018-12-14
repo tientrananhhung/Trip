@@ -19,9 +19,9 @@ public class FoodInfoDAO extends JdbcDaoSupport {
         this.setDataSource(dataSource);
     }
 
-    public List<FoodInforDTO> getAllFoodInfoByPlaceInfoID(Integer id,Integer page) {
-        String sql = "SELECT food_infors.id as id, food_infors.`Name` as Name, food_infors.Price as Price, food_infors.Images as Images, food_infors.Detail as Detail FROM food_infors WHERE place_infor_id = ? LIMIT ?, 10";
-        Object[] params = new Object[]{id,page};
+    public List<FoodInforDTO> getAllFoodInfoByPlaceInfoID(Integer id) {
+        String sql = "SELECT food_infors.id as id, food_infors.`Name` as Name, food_infors.Price as Price, food_infors.Images as Images, food_infors.Detail as Detail FROM food_infors WHERE place_infor_id = ? ";
+        Object[] params = new Object[]{id};
         FoodInforMapper mapper = new FoodInforMapper();
         List<FoodInforDTO> listDTO = this.getJdbcTemplate().query(sql, params, mapper);
         return listDTO;

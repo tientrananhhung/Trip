@@ -243,62 +243,6 @@
             }
         });
     });
-
-    $(document).ready(function () {
-
-        <c:forEach items="${fooddetail.foodInforDTOList}" var="lTourDetail" begin="0" end="0">
-
-        ratePageByTour(${lTourDetail.id}, 0);
-
-        loadPaging(${lTourDetail.id});
-
-        $(document).on('click', '.btn-page', function (event) {
-            event.preventDefault();
-            /* Act on the event */
-            var page = $(this).attr('page');
-            var finalPage = $('.btn-next').attr('final-page');
-            ratePageByTour(${lTourDetail.id}, page);
-            $('.page-item').removeClass('active');
-            $(this).parent('.page-item').addClass('active');
-            if (parseInt(page) == parseInt(finalPage)) {
-                $('.btn-next').parent('.page-item').addClass('disabled');
-                $('.btn-back').parent('.page-item').removeClass('disabled');
-            } else if (parseInt(page) == 0) {
-                $('.btn-back').parent('.page-item').addClass('disabled');
-                $('.btn-next').parent('.page-item').removeClass('disabled');
-            } else {
-                $('.btn-back').parent('.page-item').removeClass('disabled');
-                $('.btn-next').parent('.page-item').removeClass('disabled');
-            }
-        });
-
-        $(document).on('click', '.btn-next', function (event) {
-            event.preventDefault();
-            /* Act on the event */
-            $('.btn-back').parent('.page-item').removeClass('disabled');
-            var currentPage = $('.btn-next').attr('current-page');
-            var finalPage = $('.btn-next').attr('final-page');
-            if (parseInt(currentPage) == parseInt(finalPage) - 1) {
-                $('.btn-next').parent('.page-item').addClass('disabled');
-            }
-            $('li.active').removeClass('active').next().addClass('active');
-            console.log(parseInt(currentPage) + 1);
-            ratePageByTour(${lTourDetail.id}, parseInt(currentPage) + 1);
-        });
-
-        $(document).on('click', '.btn-back', function (event) {
-            event.preventDefault();
-            /* Act on the event */
-            $('.btn-next').parent('.page-item').removeClass('disabled');
-            var currentPage = $('.btn-back').attr('current-page');
-            if (parseInt(currentPage) == 1) {
-                $('.btn-back').parent('.page-item').addClass('disabled');
-            }
-            $('li.active').removeClass('active').prev().addClass('active');
-            ratePageByTour(${lTourDetail.id}, parseInt(currentPage) - 1);
-        });
-
-    </c:forEach>
 </script>
 <!-- Start All Script -->
 </body>
