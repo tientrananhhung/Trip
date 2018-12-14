@@ -262,6 +262,9 @@ public class Constants {
         //Trang food detail của user
         public static final String FOOD_DETAIL_URL = "/food/{id}";
 
+        //Trang danh sách food theo quận
+        public static final String DISTRICT_USER_URL = "/{id}/district";
+
         //Trang đăng ký đối tác
         public static final String REG_PARTNET_URL = "/dang-ky-doi-tac";
 
