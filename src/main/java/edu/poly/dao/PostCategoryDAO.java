@@ -44,4 +44,12 @@ public class PostCategoryDAO extends JdbcDaoSupport {
         List<PostCategoryDTO> listDTO1 = this.getJdbcTemplate().query(sql, params, mapper2);
         return listDTO1;
     }
+
+    public List<BlogDTO> getTop5PostFood(Integer id) {
+        String sql = "SELECT posts.id as pID, posts.Title as pTitle, posts.Image as pImage, posts.Content as pContent, posts.`View` as pView, post_categorys.`Name` as pcName, post_categorys.id as pcID, posts.Created_at as date FROM posts INNER JOIN post_categorys ON posts.post_category_id = post_categorys.id WHERE post_category_id = 6 LIMIT 5";
+        Object[] params = new Object[]{id};
+        BlogMapper mapper = new BlogMapper();
+        List<BlogDTO> listDTO = this.getJdbcTemplate().query(sql, params, mapper);
+        return listDTO;
+    }
 }
