@@ -242,6 +242,21 @@
 <script>
     /* Start code show password */
     $(function () {
+
+
+        <c:if test="${not empty reg}">
+            resetFormInOrder();
+            setTimeout(function () {
+                $('#choose-register-order').css('display', '');
+                $('.l-show-order').css('minHeight', '840px');
+                $('#choose-register-order').animate({
+                    opacity: 1,
+                    marginLeft: 0,
+                    marginRight: 0
+                }, 300);
+            }, 300);
+        </c:if>
+
         $("input[type='password'][data-eye]").each(function (i) {
             let $this = $(this);
 

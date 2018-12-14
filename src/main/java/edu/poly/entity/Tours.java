@@ -41,7 +41,6 @@ public class Tours {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }

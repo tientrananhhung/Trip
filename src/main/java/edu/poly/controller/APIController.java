@@ -1,6 +1,8 @@
 package edu.poly.controller;
 
+import edu.poly.common.CheckSession;
 import edu.poly.common.Constants;
+import edu.poly.common.TimeUtils;
 import edu.poly.dao.*;
 import edu.poly.entity.*;
 import edu.poly.impl.*;
@@ -13,7 +15,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -163,6 +172,47 @@ public class APIController {
             return responseEntity;
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping(Constants.Url.POST_IMAGES_TOUR_URL)
+    public ArrayList<String> uploadImage(HttpServletRequest request, @ModelAttribute("product") Product product, HttpSession session){
+        if(CheckSession.partner(session)){
+            return new ArrayList<>();
+        }
+        try {
+            CommonsMultipartFile[] files = product.getFileData();
+            ArrayList<String> listImg = new ArrayList<>();
+            for (int i = 0; i < files.length; i++) {
+                CommonsMultipartFile file = files[i];
+
+                if (file.isEmpty()) {
+                    return new ArrayList<>();
+                }
+
+                byte[] bytes = file.getBytes();
+                // Creating the directory to store file
+                // Assume uploaded file location on web server is D:\file-upload
+                String appPath = request.getServletContext().getRealPath("");
+                appPath = appPath.replace('\\', '/');
+                File dir = new File(appPath);
+                if (!dir.exists()) {
+                    dir.mkdirs();
+                }
+
+                // Create the file on server
+                String name = TimeUtils.getCurrentTime().getTime() + "_" + file.getOriginalFilename();
+                String fileSource = dir.getAbsolutePath() + File.separator + "resources" + File.separator + "images" + File.separator + name;
+                listImg.add(name);
+                File serverFile = new File(fileSource);
+                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+                stream.write(bytes);
+                stream.close();
+            }
+            return listImg;
+        }catch(Exception e){
+            e.printStackTrace();
+            return new ArrayList<>();
         }
     }
 
