@@ -24,12 +24,12 @@
         <div class="col-md-8">
             <div class="page-header">
                 <h1>Website up ảnh Smarttrip</h1>
-                <%--<f:form action="/upload/uploadFile" modelAttribute="product" method="POST"--%>
-                        <%--enctype="multipart/form-data">--%>
-                    <%--<f:input accept="image/*" path="fileData" type="file" class="dropify" multiple="multiple"/>--%>
-                    <%--<input style="text-align: right; margin-top: 20px;" id="postsubmit" disabled="disabled"--%>
-                           <%--type="submit" value="Upload Files" class="btn btn-lg btn-primary float-right"/>--%>
-                <%--</f:form>--%>
+                <f:form action="/upload/uploadFile" modelAttribute="product" method="POST"
+                        enctype="multipart/form-data">
+                    <f:input accept="image/*" path="fileData" type="file" class="dropify" multiple="multiple"/>
+                    <input style="text-align: right; margin-top: 20px;" id="postsubmit" disabled="disabled"
+                           type="submit" value="Upload Files" class="btn btn-lg btn-primary float-right"/>
+                </f:form>
             </div>
 
         </div>
