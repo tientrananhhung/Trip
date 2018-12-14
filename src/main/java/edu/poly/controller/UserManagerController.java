@@ -6,6 +6,7 @@ import edu.poly.impl.UserImpl;
 import edu.poly.valaditor.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -72,7 +74,7 @@ public class UserManagerController {
 
     //    adduser
     @PostMapping(Constants.Url.ADD_USER)
-    public ModelAndView addUser(HttpSession session, @Validated @ModelAttribute("users")  Users users, BindingResult result) {
+    public ModelAndView addUser(HttpSession session, HttpServletRequest request, @Validated @ModelAttribute("users")  Users users, BindingResult result) {
         ModelAndView mav = new ModelAndView();
         if(result.hasErrors()) {
             mav.addObject("gender", returnGender());
@@ -97,7 +99,10 @@ public class UserManagerController {
             String token = TokenUtils.getRandomString();
             users.setToken(token);
             user.save(users);
-            mailTest.mailSend(users.getEmail(),MailContent.ACTIVE_USER(users.getUsername(),users.getEmail(),users.getName(),token,users.getPassword()),"Kích hoạt thành viên SmartTrip");
+            StringBuffer url = request.getRequestURL();
+            String uri = request.getRequestURI();
+            String host = url.substring(0, url.indexOf(uri));
+            mailTest.mailSend(users.getEmail(),MailContent.ACTIVE_USER(users.getUsername(),users.getEmail(),users.getName(),token,"smarttrip",host),"Kích hoạt thành viên SmartTrip");
             mav.addObject("listUser", user.findAllByDeleted(false));
             mav.setViewName("redirect:/admin" + Constants.Url.LIST_USER);
         } catch (Exception ex) {

@@ -14,7 +14,7 @@ import java.util.List;
 @Transactional
 public interface UserRepository extends CrudRepository<Users, Integer> {
 
-    @Query("from Users where userName like :userName and passWord like :passWord")
+    @Query("from Users where userName like :userName and passWord like :passWord or email like :userName and passWord like :passWord")
     public Users login(@Param("userName") String userName, @Param("passWord") String passWord);
 
     public List<Users> findAllByDeleted(boolean deleted);

@@ -13,6 +13,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -75,18 +76,26 @@ public class LoginController {
         Users login = new Users();
         Users userLogin = user.login(users.getUsername(), PasswordUtils.md5(users.getPassword()));
         if (userLogin != null) {
-            if (userLogin.getRole() == Constants.Role.ADMIN || userLogin.getRole() == Constants.Role.MANAGER) {
-                mav.setViewName("redirect:" + Constants.Url.ADMIN_PAGE_URL);
-            } else if (userLogin.getRole() == Constants.Role.PARTNER) {
-                mav.setViewName("redirect:/");
-            } else if (userLogin.getRole() == Constants.Role.USER) {
-                if (session.getAttribute(Constants.SessionKey.ORDER_SESSION) != null) {
-                    mav.setViewName("redirect:" + Constants.Url.GET_PROCESSING_ORDER_URL);
-                } else {
+            if(userLogin.getActive() == true){
+                if (userLogin.getRole() == Constants.Role.ADMIN || userLogin.getRole() == Constants.Role.MANAGER) {
+                    mav.setViewName("redirect:" + Constants.Url.ADMIN_PAGE_URL);
+                } else if (userLogin.getRole() == Constants.Role.PARTNER) {
                     mav.setViewName("redirect:/");
+                } else if (userLogin.getRole() == Constants.Role.USER) {
+                    if (session.getAttribute(Constants.SessionKey.ORDER_SESSION) != null) {
+                        mav.setViewName("redirect:" + Constants.Url.GET_PROCESSING_ORDER_URL);
+                    } else {
+                        mav.setViewName("redirect:/");
+                    }
                 }
+                session.setAttribute(Constants.SessionKey.USER, userLogin);
+            } else {
+                mav.setViewName(LOGIN_SCREEN);
+                mav.addObject("notify", "Tài khoản chưa được kích hoạt vui lòng kiểm tra email!");
+                login.setUsername(users.getUsername());
+                mav.addObject("login", login);
+                mav.addObject("register", new Users());
             }
-            session.setAttribute(Constants.SessionKey.USER, userLogin);
         } else {
             mav.setViewName(LOGIN_SCREEN);
             mav.addObject("notify", "Tài khoản hoặc mật khẩu không chính xác!");
@@ -112,9 +121,10 @@ public class LoginController {
     }
 
     @PostMapping(Constants.Url.REGISTER)
-    public ModelAndView registerCustomer(@Validated @ModelAttribute("register") Users users, BindingResult result, HttpSession session) {
+    public ModelAndView registerCustomer(HttpServletRequest request, @Validated @ModelAttribute("register") Users users, BindingResult result, HttpSession session) {
         ModelAndView mav = new ModelAndView();
         if (result.hasErrors()) {
+            mav.addObject("reg", "reg");
             mav.addObject("login", new Users());
             mav.setViewName(LOGIN_SCREEN);
             return mav;
@@ -123,7 +133,8 @@ public class LoginController {
 //            mav.setViewName("redirect:/" + Constants.Characters.BLANK);
 //            return mav;
 //        }
-        users.setPassword(PasswordUtils.md5(users.getPassword()));
+        String password = users.getPassword();
+        users.setPassword(PasswordUtils.md5(password));
         if (users.getAvatar() == null) {
             users.setAvatar("avatar.png");
         }
@@ -135,7 +146,10 @@ public class LoginController {
         users.setRole(3);
         users.setToken(token);
         user.save(users);
-        mailTest.mailSend(users.getEmail(), MailContent.ACTIVE_USER(users.getUsername(), users.getEmail(), users.getName(), token, users.getPassword()), "Kích hoạt thành viên SmartTrip");
+        StringBuffer url = request.getRequestURL();
+        String uri = request.getRequestURI();
+        String host = url.substring(0, url.indexOf(uri));
+        mailTest.mailSend(users.getEmail(), MailContent.ACTIVE_USER(users.getUsername(), users.getEmail(), users.getName(), token, password,host), "Kích hoạt thành viên SmartTrip");
         mav.setViewName("redirect:/");
         return mav;
     }

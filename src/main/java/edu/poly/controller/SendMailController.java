@@ -4,9 +4,12 @@ import edu.poly.common.*;
 import edu.poly.entity.Users;
 import edu.poly.impl.UserImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class SendMailController {
@@ -25,15 +28,18 @@ public class SendMailController {
     }
 
     @PostMapping(Constants.Url.FORGOT_USER)
-    public ModelAndView forgotUser(@RequestParam("user") String users) {
+    public ModelAndView forgotUser(@RequestParam("user") String users, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
+        StringBuffer url = request.getRequestURL();
+        String uri = request.getRequestURI();
+        String host = url.substring(0, url.indexOf(uri));
         try {
             Users us = user.getByEmailOrUsername(users);
             String token = TokenUtils.getRandomString();
             us.setToken(token);
             us.setUpdatedAt(TimeUtils.getCurrentTime());
             user.update(us);
-            mailTest.mailSend(us.getEmail(), MailContent.FORGOT_USER(us.getUsername(), us.getEmail(), us.getName(), token), "Quên mật khẩu thành viên SmartTrip");
+            mailTest.mailSend(us.getEmail(), MailContent.FORGOT_USER(us.getUsername(), us.getEmail(), us.getName(), token,host), "Quên mật khẩu thành viên SmartTrip");
             mav.setViewName("redirect:/" + Constants.Characters.BLANK);
         } catch (Exception ex) {
             mav.setViewName("redirect:/" + Constants.Characters.BLANK);

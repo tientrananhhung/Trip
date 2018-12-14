@@ -106,8 +106,324 @@
 <%--<script src="<c:url value="/resources/node_modules/codemirror/mode/xml/xml.js"/>"></script>--%>
 <script src="<c:url value="/resources/node_modules/codemirror/lib/codemirror.js"/>"></script>
 <script src="<c:url value="/resources/js/froala_editor.pkgd.min.js"/>"></script>
+<script type="text/javascript" src="/resources/js/froala/vi.js"></script>
+<script type="text/javascript" src="/resources/js/custom.js"></script>
 <script> $(function () {
     $('textarea').froalaEditor()
+
+
 }); </script>
+<c:choose>
+    <c:when test="${not empty tours}">
+        <script>
+            var address;
+
+            function initAutocomplete() {
+
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: ${tours.lat}, lng: ${tours.lng}},
+                    zoom: 15,
+                    mapTypeId: 'roadmap'
+                });
+
+                // Create the search box and link it to the UI element.
+                var input = document.getElementById('pac-input');
+                address = input;
+
+                var searchBox = new google.maps.places.SearchBox(input);
+                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+                // Bias the SearchBox results towards current map's viewport.
+                map.addListener('bounds_changed', function() {
+                    searchBox.setBounds(map.getBounds());
+                });
+
+                var markers = [];
+
+                <c:forEach items="${listTour}" var="lTour" begin="0" end="0">
+                markers.push(new google.maps.Marker({
+                    map: map,
+                    title: 'Bạn đang ở ${lTour.name}',
+                    position: myLatlng
+                }));
+                </c:forEach>
+
+                // Listen for the event fired when the user selects a prediction and retrieve
+                // more details for that place.
+                searchBox.addListener('places_changed', function() {
+                    var places = searchBox.getPlaces();
+
+                    if (places.length == 0) {
+                        return;
+                    }
+
+                    // Clear out the old markers.
+                    markers.forEach(function(marker) {
+                        marker.setMap(null);
+                    });
+                    markers = [];
+
+                    // For each place, get the icon, name and location.
+                    var bounds = new google.maps.LatLngBounds();
+
+                    places.forEach(function(place) {
+                        if (!place.geometry) {
+                            return;
+                        }
+
+                        // Create a marker for each place.
+                        markers.push(new google.maps.Marker({
+                            map: map,
+                            title: place.name,
+                            position: place.geometry.location
+                        }));
+
+                        if (place.geometry.viewport) {
+                            // Only geocodes have viewport.
+                            bounds.union(place.geometry.viewport);
+                        } else {
+                            bounds.extend(place.geometry.location);
+                        }
+
+                        var getlatlng = place.geometry.location;
+
+                        $.ajax({
+                            url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+getlatlng.lat()+','+getlatlng.lng()+'&key=AIzaSyDawMp3IadhGe1AbQgDXGZM4CHfqDCNRYk',
+                            type: 'GET'
+                        })
+                            .done(function(data) {
+                                $('#lat').val(getlatlng.lat());
+                                $('#lng').val(getlatlng.lng());
+                                $('.address-tour').children('b').html(data.results[0].formatted_address);
+                            })
+                            .fail(function() {
+                                console.log("error");
+                            })
+
+                    });
+                    map.fitBounds(bounds);
+                });
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDawMp3IadhGe1AbQgDXGZM4CHfqDCNRYk&libraries=places&callback=initAutocomplete"
+                async defer></script>
+    </c:when>
+    <c:otherwise>
+        <script>
+
+            if (navigator && navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(initAutocomplete, errorCallback);
+            } else {
+                console.log('Geolocation is not supported');
+            }
+
+            function errorCallback() {
+
+                var myLatlng = new google.maps.LatLng(16.075733, 108.16994899999997);
+
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: 16.075733, lng: 108.16994899999997},
+                    zoom: 13,
+                    mapTypeId: 'roadmap'
+                });
+
+                var markers = [];
+
+                markers.push(new google.maps.Marker({
+                    map: map,
+                    title: 'Bạn đang ở đây',
+                    position: myLatlng
+                }));
+
+                $.ajax({
+                    url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+16.075733+','+108.16994899999997+'&key=AIzaSyDawMp3IadhGe1AbQgDXGZM4CHfqDCNRYk',
+                    type: 'GET'
+                })
+                    .done(function(data) {
+                        $('#lat').val(16.075733);
+                        $('#lng').val(108.16994899999997);
+                    })
+                    .fail(function() {
+                        console.log("error");
+                    })
+
+                // Create the search box and link it to the UI element.
+                var input = document.getElementById('pac-input');
+                address = input;
+
+                var searchBox = new google.maps.places.SearchBox(input);
+                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+                // Bias the SearchBox results towards current map's viewport.
+                map.addListener('bounds_changed', function() {
+                    searchBox.setBounds(map.getBounds());
+                });
+
+                // Listen for the event fired when the user selects a prediction and retrieve
+                // more details for that place.
+                searchBox.addListener('places_changed', function() {
+                    var places = searchBox.getPlaces();
+
+                    console.log(places);
+
+                    if (places.length == 0) {
+                        return;
+                    }
+
+                    // Clear out the old markers.
+                    markers.forEach(function(marker) {
+                        marker.setMap(null);
+                    });
+                    markers = [];
+
+                    // For each place, get the icon, name and location.
+                    var bounds = new google.maps.LatLngBounds();
+
+                    places.forEach(function(place) {
+                        if (!place.geometry) {
+                            return;
+                        }
+
+                        // Create a marker for each place.
+                        markers.push(new google.maps.Marker({
+                            map: map,
+                            title: place.name,
+                            position: place.geometry.location
+                        }));
+
+                        if (place.geometry.viewport) {
+                            // Only geocodes have viewport.
+                            bounds.union(place.geometry.viewport);
+                        } else {
+                            bounds.extend(place.geometry.location);
+                        }
+
+                        var getlatlng = place.geometry.location;
+
+                        $.ajax({
+                            url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+getlatlng.lat()+','+getlatlng.lng()+'&key=AIzaSyDawMp3IadhGe1AbQgDXGZM4CHfqDCNRYk',
+                            type: 'GET'
+                        })
+                            .done(function(data) {
+                                $('#lat').val(getlatlng.lat());
+                                $('#lng').val(getlatlng.lng());
+                                $('.address-tour').children('b').html(data.results[0].formatted_address);
+                            })
+                            .fail(function() {
+                                console.log("error");
+                            })
+
+                    });
+                    map.fitBounds(bounds);
+                });
+            }
+
+            // Gmap
+            function initAutocomplete(position) {
+
+                var myLatlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: position.coords.latitude, lng: position.coords.longitude},
+                    zoom: 13,
+                    mapTypeId: 'roadmap'
+                });
+
+                var markers = [];
+
+                markers.push(new google.maps.Marker({
+                    map: map,
+                    title: 'Bạn đang ở đây',
+                    position: myLatlng
+                }));
+
+                $.ajax({
+                    url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+position.coords.longitude+'&key=AIzaSyDawMp3IadhGe1AbQgDXGZM4CHfqDCNRYk',
+                    type: 'GET'
+                })
+                    .done(function(data) {
+                        $('#lat').val(position.coords.latitude);
+                        $('#lng').val(position.coords.longitude);
+                        $('.address-tour').children('b').html(data.results[0].formatted_address);
+                    })
+                    .fail(function() {
+                        console.log("error");
+                    })
+
+                // Create the search box and link it to the UI element.
+                var input = document.getElementById('pac-input');
+                address = input;
+
+                var searchBox = new google.maps.places.SearchBox(input);
+                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+                // Bias the SearchBox results towards current map's viewport.
+                map.addListener('bounds_changed', function() {
+                    searchBox.setBounds(map.getBounds());
+                });
+
+                // Listen for the event fired when the user selects a prediction and retrieve
+                // more details for that place.
+                searchBox.addListener('places_changed', function() {
+                    var places = searchBox.getPlaces();
+
+                    console.log(places);
+
+                    if (places.length == 0) {
+                        return;
+                    }
+
+                    // Clear out the old markers.
+                    markers.forEach(function(marker) {
+                        marker.setMap(null);
+                    });
+                    markers = [];
+
+                    // For each place, get the icon, name and location.
+                    var bounds = new google.maps.LatLngBounds();
+
+                    places.forEach(function(place) {
+                        if (!place.geometry) {
+                            return;
+                        }
+
+                        // Create a marker for each place.
+                        markers.push(new google.maps.Marker({
+                            map: map,
+                            title: place.name,
+                            position: place.geometry.location
+                        }));
+
+                        if (place.geometry.viewport) {
+                            // Only geocodes have viewport.
+                            bounds.union(place.geometry.viewport);
+                        } else {
+                            bounds.extend(place.geometry.location);
+                        }
+
+                        var getlatlng = place.geometry.location;
+
+                        $.ajax({
+                            url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+getlatlng.lat()+','+getlatlng.lng()+'&key=AIzaSyDawMp3IadhGe1AbQgDXGZM4CHfqDCNRYk',
+                            type: 'GET'
+                        })
+                            .done(function(data) {
+                                $('#lat').val(getlatlng.lat());
+                                $('#lng').val(getlatlng.lng());
+                                $('.address-tour').children('b').html(data.results[0].formatted_address);
+                            })
+                            .fail(function() {
+                                console.log("error");
+                            })
+
+                    });
+                    map.fitBounds(bounds);
+                });
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDawMp3IadhGe1AbQgDXGZM4CHfqDCNRYk&libraries=places"
+                async defer></script>
+    </c:otherwise>
+</c:choose>
 </body>
 </html>

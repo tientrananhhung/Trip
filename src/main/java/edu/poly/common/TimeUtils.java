@@ -1,11 +1,7 @@
 package edu.poly.common;
 
-import edu.poly.impl.UserImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -35,11 +31,9 @@ public class TimeUtils {
 //        //get the time stamp object using above date object
 //        Timestamp ausTimeStampInLocal = new Timestamp(ausTimeInLocal.getTime());
 //
-//        Calendar cSchedStartCal = Calendar.getInstance();
-//        cSchedStartCal.setTimeZone(TimeZone.getTimeZone("Asia/Ho_Chi_Minh"));
-//        System.out.println(cSchedStartCal.getTimeZone());
-//        return new Timestamp(cSchedStartCal.getTimeInMillis());
-        return  new Timestamp(System.currentTimeMillis());
+        Calendar cSchedStartCal = Calendar.getInstance();
+        cSchedStartCal.setTimeZone(TimeZone.getTimeZone("Asia/Ho_Chi_Minh"));
+        return new Timestamp(cSchedStartCal.getTimeInMillis());
     }
 
     public static Date convertDate(String date) {

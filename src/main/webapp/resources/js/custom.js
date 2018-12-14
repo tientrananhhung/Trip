@@ -1,6 +1,6 @@
 function ratePageByTour(id, page) {
     $.ajax({
-        url: 'http://localhost:8080/api/' + id + '/rate/' + page,
+        url: '/api/' + id + '/rate/' + page,
         type: 'GET'
     })
         .done(function (data) {
@@ -85,7 +85,7 @@ function loadComment(data) {
 
 function loadPaging(id) {
     $.ajax({
-        url: 'http://localhost:8080/api/' + id + '/rate/0',
+        url: '/api/' + id + '/rate/0',
         type: 'GET'
     })
         .done(function (data) {

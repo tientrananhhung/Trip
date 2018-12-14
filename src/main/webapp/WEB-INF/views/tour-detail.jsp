@@ -691,7 +691,7 @@
                 }
             })
                 .done(function (data) {
-                    window.location.href = "http://localhost:8080/ticket-booking/processing";
+                    window.location.href = "/ticket-booking/processing";
                 })
                 .fail(function () {
                     console.log("error");

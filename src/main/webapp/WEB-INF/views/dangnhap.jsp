@@ -208,8 +208,8 @@
                     <div id="f-forgot-password">
                         <f:form action="forgotuser"  method="post" id="forgotForm">
                             <div class="form-group">
-                                <label>Email</label>
-                                <input type="email" class="form-control email" id="user" name="user" aria-describedby="emailHelp"
+                                <label>Email hoặc Tài khoản</label>
+                                <input  class="form-control email" id="user" name="user" aria-describedby="emailHelp"
                                        placeholder="Xin vui lòng điền địa chỉ email" required>
                             </div>
                             <div class="mg-bottom-10" style="display: flow-root;">
@@ -242,8 +242,6 @@
 <script>
     /* Start code show password */
     $(function () {
-
-
         <c:if test="${not empty reg}">
             resetFormInOrder();
             setTimeout(function () {

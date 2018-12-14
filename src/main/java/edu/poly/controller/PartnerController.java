@@ -6,6 +6,7 @@ import edu.poly.impl.PartnerImpl;
 import edu.poly.impl.UserImpl;
 import edu.poly.valaditor.PartnerValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -147,7 +149,7 @@ public class PartnerController {
 
     @GetMapping(Constants.Url.ACTIVE_PARNER)
     public ModelAndView statusPartner(HttpSession session, @PathVariable("id") int id,
-                                      @PathVariable("active") boolean active) {
+                                      @PathVariable("active") boolean active, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         if (!CheckSession.admin(session)) {
             mav.setViewName("redirect:" + Constants.Url.LOGIN);
@@ -158,13 +160,15 @@ public class PartnerController {
         pn.setActived(active);
         try{
             partner.update(pn);
+            StringBuffer url = request.getRequestURL();
+            String uri = request.getRequestURI();
+            String host = url.substring(0, url.indexOf(uri));
             if(active == true){
-                mailTest.mailSend(pn.getEmail(), MailContent.ACTIVE_PARTNER(pn.getUsersByUserId().getName(),pn.getName(),pn.getPhone(),pn.getAddress(),pn.getEmail()),"Kích hoạt đối tác SmartTrip");
+                mailTest.mailSend(pn.getEmail(), MailContent.ACTIVE_PARTNER(pn.getUsersByUserId().getName(),pn.getName(),pn.getPhone(),pn.getAddress(),pn.getEmail(),host),"Kích hoạt đối tác SmartTrip");
             }
         } catch (Exception ex){
             ex.printStackTrace();
         }
-
         mav.setViewName("redirect:/admin" + Constants.Url.LIST_PARTNER);
         return mav;
     }

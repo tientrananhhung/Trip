@@ -176,7 +176,7 @@ public class UserController {
         us.setActive(true);
         user.update(us);
         session.setAttribute(Constants.SessionKey.USER, us);
-        ModelAndView mav = new ModelAndView(HOME_SCREEN);
+        ModelAndView mav = new ModelAndView("redirect:/");
         return mav;
     }
 

@@ -342,7 +342,7 @@ public class ManagementController {
         try {
             OrderDTO orderDTO = orderDAO.getOrderDTO(id);
             Users users = (Users) session.getAttribute(Constants.SessionKey.USER);
-            if(orderDTO.getPartnerid() != users.getId()){
+            if(orderDTO.getUserid() != users.getId()){
                 mav.setViewName("redirect:/" + Constants.Characters.BLANK);
                 return mav;
             }

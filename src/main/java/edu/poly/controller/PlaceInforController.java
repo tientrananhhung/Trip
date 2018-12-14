@@ -50,7 +50,7 @@ public class PlaceInforController {
         ModelAndView mav = new ModelAndView(FOOD_DETAIL_SCREEN);
         try {
             FoodDetailDTO foodDetailDTO = foodDetailDAO.getFoodDetailDTO(id);
-            List<FoodInforDTO> foodInforDTOList = foodInfoDAO.getAllFoodInfoByPlaceInfoID(foodDetailDTO.getPlaceInfoID());
+            List<FoodInforDTO> foodInforDTOList = foodInfoDAO.getAllFoodInfoByPlaceInfoID(foodDetailDTO.getPlaceInfoID(),10);
             foodDetailDTO.setFoodInforDTOList(foodInforDTOList);
             mav.addObject("fooddetail", foodDetailDTO);
         } catch (Exception e) {

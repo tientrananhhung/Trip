@@ -2,11 +2,14 @@ package edu.poly.common;
 
 import edu.poly.model.OrderDTO;
 import edu.poly.model.TicketDetailDTO;
+import org.springframework.http.HttpRequest;
+import org.springframework.http.server.ServletServerHttpRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 
 public class MailContent {
-    public static String ACTIVE_USER(String userName, String email, String name, String token,String password) {
+    public static String ACTIVE_USER(String userName, String email, String name, String token,String password,String url) {
         String body = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional //EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\"><head>\n" +
                 "    <!--[if gte mso 9]><xml>\n" +
                 "     <o:OfficeDocumentSettings>\n" +
@@ -305,14 +308,14 @@ public class MailContent {
                 "\t\t<div style=\"font-size:12px;line-height:18px;color:#283C4B;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;text-align:left;\"><p style=\"margin: 0;font-size: 12px;line-height: 18px\"><span style=\"font-size: 14px; line-height: 21px;\">Để kích hoạt tài khoản, bạn vui lòng click vào nút dưới đây:</span></p></div>\t\n" +
                 "\t</div>\n" +
                 "</div>  \n" +
-                "<a href=\"http://localhost:8080/activeuser/" + token + "\" target=\"_blank\" style=\"text-decoration:none\"><div align=\"center\" class=\"button-container center \" style=\"padding-right: 0px; padding-left: 0px; padding-top:25px; padding-bottom:0px;\">\n" +
+                "<a href=\""+url+"/activeuser/" + token + "\" target=\"_blank\" style=\"text-decoration:none\"><div align=\"center\" class=\"button-container center \" style=\"padding-right: 0px; padding-left: 0px; padding-top:25px; padding-bottom:0px;\">\n" +
                 "    <div style=\"color: #ffffff; background-color: #f56a00; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; max-width: 246px; width: 206px;width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; text-align: center; mso-border-alt: none;\">\n" +
                 "      <span style=\"font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:32px;\"><span style=\"font-family: 'lucida sans unicode', 'lucida grande', sans-serif; font-size: 14px; line-height: 28px;\" mce-data-marked=\"1\" data-mce-style=\"font-family: 'lucida sans unicode', 'lucida grande', sans-serif; font-size: 14px; line-height: 32px;\">Kích hoạt</span></span>\n" +
                 "    </div>\n" +
                 "</div>\n" +
                 "</a> <div class=\"\">\n" +
                 "\t<div style=\"color:#555555;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;line-height:120%; padding-right: 20px; padding-left: 20px; padding-top: 20px; padding-bottom: 30px;\">\t\n" +
-                "\t\t<div style=\"font-size:12px;line-height:14px;color:#555555;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;text-align:left;\"><p style=\"margin: 0;font-size: 14px;line-height: 17px;text-align: center\"><span style=\"font-family: 'lucida sans unicode', 'lucida grande', sans-serif; font-size: 14px; line-height: 16px;\"><a style=\"color:#f56a00\" title=\"example\" href=\"http://localhost:8080/activeuser/"+token+"\" target=\"_blank\">Hoặc ấn vào đường link này</a></span></p></div>\t\n" +
+                "\t\t<div style=\"font-size:12px;line-height:14px;color:#555555;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;text-align:left;\"><p style=\"margin: 0;font-size: 14px;line-height: 17px;text-align: center\"><span style=\"font-family: 'lucida sans unicode', 'lucida grande', sans-serif; font-size: 14px; line-height: 16px;\"><a style=\"color:#f56a00\" title=\"example\" href=\""+url+"/activeuser/"+token+"\" target=\"_blank\">Hoặc ấn vào đường link này</a></span></p></div>\t\n" +
                 "\t</div>\n" +
                 "</div>\n" +
                 "<div align=\"center\" style=\"padding-right: 10px; padding-left: 10px; padding-bottom: 10px;\" class=\"\">\n" +
@@ -356,7 +359,7 @@ public class MailContent {
         return body;
     }
 
-    public static String FORGOT_USER(String userName, String email, String name, String token) {
+    public static String FORGOT_USER(String userName, String email, String name, String token, String url) {
         String body = "<html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\"><head>\n" +
                 "    <!--[if gte mso 9]><xml>\n" +
                 "     <o:OfficeDocumentSettings>\n" +
@@ -655,14 +658,14 @@ public class MailContent {
                 "\t\t<div style=\"font-size:12px;line-height:18px;color:#283C4B;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;text-align:left;\"><p style=\"margin: 0;font-size: 12px;line-height: 18px\"><span style=\"font-size: 14px; line-height: 21px;\">Để lấy lại mật khẩu, bạn vui lòng click vào nút dưới đây:</span></p></div>\t\n" +
                 "\t</div>\n" +
                 "</div>  \n" +
-                "<a href=\"http://localhost:8080/forgotuser/"+ token +"\" target=\"_blank\" style=\"text-decoration:none\"><div align=\"center\" class=\"button-container center \" style=\"padding-right: 0px; padding-left: 0px; padding-top:25px; padding-bottom:0px;\">\n" +
+                "<a href=\""+url+"/forgotuser/"+ token +"\" target=\"_blank\" style=\"text-decoration:none\"><div align=\"center\" class=\"button-container center \" style=\"padding-right: 0px; padding-left: 0px; padding-top:25px; padding-bottom:0px;\">\n" +
                 "    <div style=\"color: #ffffff; background-color: #f56a00; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; max-width: 246px; width: 206px;width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; text-align: center; mso-border-alt: none;\">\n" +
                 "      <span style=\"font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:32px;\"><span style=\"font-family: 'lucida sans unicode', 'lucida grande', sans-serif; font-size: 14px; line-height: 28px;\" mce-data-marked=\"1\" data-mce-style=\"font-family: 'lucida sans unicode', 'lucida grande', sans-serif; font-size: 14px; line-height: 32px;\">Lấy lại mật khẩu</span></span>\n" +
                 "    </div>\n" +
                 "</div>\n" +
                 "</a> <div class=\"\">\n" +
                 "\t<div style=\"color:#555555;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;line-height:120%; padding-right: 20px; padding-left: 20px; padding-top: 20px; padding-bottom: 30px;\">\t\n" +
-                "\t\t<div style=\"font-size:12px;line-height:14px;color:#555555;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;text-align:left;\"><p style=\"margin: 0;font-size: 14px;line-height: 17px;text-align: center\"><span style=\"font-family: 'lucida sans unicode', 'lucida grande', sans-serif; font-size: 14px; line-height: 16px;\"><a style=\"color:#f56a00\" title=\"example\" href=\"http://localhost:8080/forgotuser/"+ token +" target=\"_blank\">Hoặc ấn vào đường link này</a></span></p></div>\t\n" +
+                "\t\t<div style=\"font-size:12px;line-height:14px;color:#555555;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;text-align:left;\"><p style=\"margin: 0;font-size: 14px;line-height: 17px;text-align: center\"><span style=\"font-family: 'lucida sans unicode', 'lucida grande', sans-serif; font-size: 14px; line-height: 16px;\"><a style=\"color:#f56a00\" title=\"example\" href=\""+url+"/forgotuser/"+ token +" target=\"_blank\">Hoặc ấn vào đường link này</a></span></p></div>\t\n" +
                 "\t</div>\n" +
                 "</div>\n" +
                 "<div align=\"center\" style=\"padding-right: 10px; padding-left: 10px; padding-bottom: 10px;\" class=\"\">\n" +
@@ -706,7 +709,7 @@ public class MailContent {
         return body;
     }
 
-    public static String ACTIVE_PARTNER(String customername,String name, String phone,String address,String email) {
+    public static String ACTIVE_PARTNER(String customername,String name, String phone,String address,String email, String url) {
         String body = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional //EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\"><head>\n" +
                 "    <!--[if gte mso 9]><xml>\n" +
                 "     <o:OfficeDocumentSettings>\n" +
@@ -1010,14 +1013,14 @@ public class MailContent {
                 "\t\t<div style=\"font-size:12px;line-height:18px;color:#283C4B;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;text-align:left;\"><p style=\"margin: 0;font-size: 12px;line-height: 18px\"><span style=\"font-size: 14px; line-height: 21px;\">Để vào trang quản lý đối tác, bạn vui lòng click vào nút dưới đây:</span></p></div>\t\n" +
                 "\t</div>\n" +
                 "</div>  \n" +
-                "<a href=\"http://localhost:8080/activeuser/\" target=\"_blank\" style=\"text-decoration:none\"><div align=\"center\" class=\"button-container center \" style=\"padding-right: 0px; padding-left: 0px; padding-top:25px; padding-bottom:0px;\">\n" +
+                "<a href=\""+url+"/dang-xuat\" target=\"_blank\" style=\"text-decoration:none\"><div align=\"center\" class=\"button-container center \" style=\"padding-right: 0px; padding-left: 0px; padding-top:25px; padding-bottom:0px;\">\n" +
                 "    <div style=\"color: #ffffff; background-color: #f56a00; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; max-width: 246px; width: 206px;width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; text-align: center; mso-border-alt: none;\">\n" +
                 "      <span style=\"font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:32px;\"><span style=\"font-family: 'lucida sans unicode', 'lucida grande', sans-serif; font-size: 14px; line-height: 28px;\" mce-data-marked=\"1\" data-mce-style=\"font-family: 'lucida sans unicode', 'lucida grande', sans-serif; font-size: 14px; line-height: 32px;\">Quản lý đối tác</span></span>\n" +
                 "    </div>\n" +
                 "</div>\n" +
                 "</a> <div class=\"\">\n" +
                 "\t<div style=\"color:#555555;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;line-height:120%; padding-right: 20px; padding-left: 20px; padding-top: 20px; padding-bottom: 30px;\">\t\n" +
-                "\t\t<div style=\"font-size:12px;line-height:14px;color:#555555;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;text-align:left;\"><p style=\"margin: 0;font-size: 14px;line-height: 17px;text-align: center\"><span style=\"font-family: 'lucida sans unicode', 'lucida grande', sans-serif; font-size: 14px; line-height: 16px;\"><a style=\"color:#f56a00\" title=\"example\" href=\"http://localhost:8080/activeuser/\" target=\"_blank\">Hoặc ấn vào đường link này</a></span></p></div>\t\n" +
+                "\t\t<div style=\"font-size:12px;line-height:14px;color:#555555;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;text-align:left;\"><p style=\"margin: 0;font-size: 14px;line-height: 17px;text-align: center\"><span style=\"font-family: 'lucida sans unicode', 'lucida grande', sans-serif; font-size: 14px; line-height: 16px;\"><a style=\"color:#f56a00\" title=\"example\" href=\""+url+"/dang-xuat\" target=\"_blank\">Hoặc ấn vào đường link này</a></span></p></div>\t\n" +
                 "\t</div>\n" +
                 "</div>\n" +
                 "<div align=\"center\" style=\"padding-right: 10px; padding-left: 10px; padding-bottom: 10px;\" class=\"\">\n" +
