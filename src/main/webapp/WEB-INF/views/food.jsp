@@ -231,22 +231,19 @@
                         <a class="blog-more" href="#">Xem thêm »</a>
                     </div>
                     <div class="box-blog-content">
-                        <c:forEach items="${listFood}" var="lFood" end="2">
+                        <c:forEach items="${listPost}" var="lFood" end="2">
                             <article class="blog-post-item">
                                 <div class="blog-media-object">
-                                    <a class="blog-image-holder" href="/food/${lFood.placeInfoID}">
+                                    <a class="blog-image-holder" href="/food/${lFood.id}">
                                         <img src="/resources/images/${lFood.image}" alt="">
                                     </a>
                                     <div class="blog-post-content">
                                         <h3 class="blog-post-title cfs-15">
-                                            <a href="#">${lFood.name}</a>
+                                            <a href="#">${lFood.title}</a>
                                         </h3>
-                                        <div class="blog-post-description cfs-12">
-                                                ${lFood.category}
-                                        </div>
                                         <div class="blog-post-meta">
-                                            <span class="cfs-12"><i class="fa fa-map-marker"></i> ${lFood.address}</span>
-                                            <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> ${lFood.openTime}</span>
+                                            <span class="cfs-12"><i class="fa fa-map-marker"></i> ${lFood.updatedAt}</span>
+                                            <span class="cfs-12"><i class="fa fa-clock-o" aria-hidden="true"></i> ${lFood.view}</span>
                                         </div>
                                     </div>
                                 </div>

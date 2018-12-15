@@ -38,7 +38,7 @@ public class FoodDAO extends JdbcDaoSupport {
     }
 
     public List<PlaceInfoDTO> getTop3Food() {
-        String sql = "SELECT foods.id as food_id, foods.`Name` AS food_name, foods.Opentime as food_opentime, place_infors.id as pi_id, place_infors.`Name` as pi_name, place_infors.Images as pi_image, place_infors.Phone as pi_phone, place_infors.Address as pi_address, districts.`Name` as d_name, districts.id as d_id FROM foods INNER JOIN place_infors ON place_infors.food_id = foods.id INNER JOIN districts ON place_infors.district_id = districts.id ORDER BY pi_id LIMIT 3";
+        String sql = "SELECT foods.id as food_id, foods.Name AS food_name, foods.Opentime as food_opentime, place_infors.id as pi_id, place_infors.`Name` as pi_name, place_infors.Images as pi_image, place_infors.Phone as pi_phone, place_infors.Address as pi_address, districts.Name as d_name, districts.id as d_id FROM foods INNER JOIN place_infors ON place_infors.food_id = foods.id INNER JOIN districts ON place_infors.district_id = districts.id ORDER BY pi_id LIMIT 3";
         Object[] params = new Object[]{};
         PlaceInfoMapper mapper = new PlaceInfoMapper();
         List<PlaceInfoDTO> listDTO = this.getJdbcTemplate().query(sql, params, mapper);

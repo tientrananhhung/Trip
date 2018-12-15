@@ -22,7 +22,7 @@ public class FoodCategoryDAO extends JdbcDaoSupport {
     }
 
     public List<FoodCategoryDTO> getAllFoodCategory() {
-        String sql = "SELECT food_categorys.id as id, food_categorys.`Name` as name FROM food_categorys";
+        String sql = "SELECT food_categorys.id as id, food_categorys.Name as name FROM food_categorys";
         Object[] params = new Object[]{};
         FoodCategoryMapper mapper = new FoodCategoryMapper();
         List<FoodCategoryDTO> listDTO1 = this.getJdbcTemplate().query(sql, params, mapper);
@@ -30,7 +30,7 @@ public class FoodCategoryDAO extends JdbcDaoSupport {
     }
 
     public List<FoodCateDTO> getAllFoodByFCID(Integer id) {
-        String sql = "SELECT food_categorys.id AS id, food_categorys.`Name` AS `name`, foods.id as fid, foods.`Name` as fname, foods.Opentime as fopentime, place_infors.id as piid, place_infors.`Name` as piname, place_infors.Images as piimage, place_infors.Phone as piphone, place_infors.Address as piaddress, districts.id as did, districts.`Name` as dname FROM food_categorys INNER JOIN foods ON foods.food_category_id = food_categorys.id INNER JOIN place_infors ON place_infors.food_id = foods.id INNER JOIN districts ON place_infors.district_id = districts.id WHERE food_categorys.id = ?";
+        String sql = "SELECT food_categorys.id AS id, food_categorys.Name AS name, foods.id as fid, foods.Name as fname, foods.Opentime as fopentime, place_infors.id as piid, place_infors.Name as piname, place_infors.Images as piimage, place_infors.Phone as piphone, place_infors.Address as piaddress, districts.id as did, districts.Name as dname FROM food_categorys INNER JOIN foods ON foods.food_category_id = food_categorys.id INNER JOIN place_infors ON place_infors.food_id = foods.id INNER JOIN districts ON place_infors.district_id = districts.id WHERE food_categorys.id = ?";
         Object[] params = new Object[]{id};
         FoodCateMapper mapper1 = new FoodCateMapper();
         List<FoodCateDTO> listDTO = this.getJdbcTemplate().query(sql, params, mapper1);
@@ -38,7 +38,7 @@ public class FoodCategoryDAO extends JdbcDaoSupport {
     }
 
     public List<FoodCateDTO> getTop5Food(Integer id) {
-        String sql = "SELECT food_categorys.id AS id, food_categorys.`Name` AS `name`, foods.id as fid, foods.`Name` as fname, foods.Opentime as fopentime, place_infors.id as piid, place_infors.`Name` as piname, place_infors.Images as piimage, place_infors.Phone as piphone, place_infors.Address as piaddress, districts.id as did, districts.`Name` as dname FROM food_categorys INNER JOIN foods ON foods.food_category_id = food_categorys.id INNER JOIN place_infors ON place_infors.food_id = foods.id INNER JOIN districts ON place_infors.district_id = districts.id WHERE food_categorys.id = ? ORDER BY place_infors.id DESC LIMIT 5";
+        String sql = "SELECT food_categorys.id AS id, food_categorys.Name AS name, foods.id as fid, foods.Name as fname, foods.Opentime as fopentime, place_infors.id as piid, place_infors.Name as piname, place_infors.Images as piimage, place_infors.Phone as piphone, place_infors.Address as piaddress, districts.id as did, districts.Name as dname FROM food_categorys INNER JOIN foods ON foods.food_category_id = food_categorys.id INNER JOIN place_infors ON place_infors.food_id = foods.id INNER JOIN districts ON place_infors.district_id = districts.id WHERE food_categorys.id = ? ORDER BY place_infors.id DESC LIMIT 5";
         Object[] params = new Object[]{id};
         FoodCateMapper mapper = new FoodCateMapper();
         List<FoodCateDTO> listDTO = this.getJdbcTemplate().query(sql, params, mapper);

@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/")
 public class PlaceInforController {
 
     //Return food detail page
@@ -69,11 +71,13 @@ public class PlaceInforController {
             List<PlaceInfoDTO> getTop3Food = foodDAO.getTop3Food();
             List<PostIndexDTO> lPostIndexDTOByCategoryFood = postIndexDAO.getTop3PostByCategory(6);
             List<FoodCategoryDTO> categoryList = foodCategoryDAO.getAllFoodCategory();
+            List<PostIndexDTO> lPostIndexDTO = postIndexDAO.getTop5PostNew();
             mav.addObject("listFood", foodDTOS);
             mav.addObject("listTop5Food", getTop5FoodNew);
             mav.addObject("listPostFood", lPostIndexDTOByCategoryFood);
             mav.addObject("lTop3Food", getTop3Food);
             mav.addObject("cateFoodlist",categoryList);
+            mav.addObject("listPost", lPostIndexDTO);
         }catch (Exception ex){
             ex.printStackTrace();
             mav.setViewName(HOME_SCREEN);

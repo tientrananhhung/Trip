@@ -18,8 +18,8 @@ public class FoodDistrictMapper implements RowMapper<FoodDistrictDTO> {
         String piphone = resultSet.getString("piphone");
         String piaddress = resultSet.getString("piaddress");
         Integer fid = resultSet.getInt("fid");
-        String fname = resultSet.getString("fname");
+        String fopentime = resultSet.getString("fopentime");
 
-        return new FoodDistrictDTO(id, name, piid, piname, piimage, piphone, piaddress, fid, fname);
+        return new FoodDistrictDTO(id, name, piid, piname, piimage, piphone, piaddress, fid, fopentime);
     }
 }
