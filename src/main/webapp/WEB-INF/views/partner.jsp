@@ -28,7 +28,7 @@
 
 <!-- Start Body Order -->
 <div>
-    <img src="images/Become-a-partner.png" alt="partner-smart-trip" class="partner-form-image">
+    <img src="/resources/images/Become-a-partner.png" alt="partner-smart-trip" class="partner-form-image">
 </div>
 
 <div class="container">

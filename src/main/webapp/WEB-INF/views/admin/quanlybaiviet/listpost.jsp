@@ -97,7 +97,6 @@
 <script src="<c:url value="/resources/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js"/>"></script>
 <!-- End plugin js for this page-->
 <!-- inject:js -->
-<c:url value="/resources/js/todolist.js"/>
 <script src="<c:url value="/resources/js/off-canvas.js"/>"></script>
 <script src="<c:url value="/resources/js/hoverable-collapse.js"/>"></script>
 <script src="<c:url value="/resources/js/misc.js"/>"></script>
