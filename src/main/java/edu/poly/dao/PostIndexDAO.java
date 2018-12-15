@@ -29,8 +29,8 @@ public class PostIndexDAO extends JdbcDaoSupport {
     }
 
     public List<PostIndexDTO> getTop3PostByCategory(Integer category) {
-        String sql = "SELECT p.id, p.Title, p.Image, p.Description, p.Updated_at, p.View FROM posts p WHERE p.post_category_id = "+category+" ORDER BY p.id DESC LIMIT 3";
-        Object[] params = new Object[]{};
+        String sql = "SELECT p.id, p.Title, p.Image, p.Description, p.Updated_at, p.View FROM posts p WHERE p.post_category_id = ? ORDER BY p.id DESC LIMIT 3";
+        Object[] params = new Object[]{category};
         PostIndexMapper mapper = new PostIndexMapper();
         List<PostIndexDTO> listDTO = this.getJdbcTemplate().query(sql, params, mapper);
         return listDTO;
