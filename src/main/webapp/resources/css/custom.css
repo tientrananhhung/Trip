@@ -2146,10 +2146,11 @@ body.loading .modalLoading {
 
 .img-tour img {
     height: 100%;
+    object-fit: cover;
 }
 
 .img-tour {
-    height: 170px;
+    height: 500px;
     text-align: center;
 }
 

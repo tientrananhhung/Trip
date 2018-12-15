@@ -35,7 +35,8 @@
     <section class="right-body-info">
         <div class="right-content-info">
             <div class="content-title-info">
-                <h3 class="c_orange cfs-22">Quản lý tour du lịch</h3>
+                <h3 class="c_orange cfs-22">Quản lý tour du lịch <a href="/quan-ly/tour/them" class="btn btn-warning btn-rounded btn-fw float-right">Thêm Tour</a></h3></h3>
+
             </div>
             <div class="content-body-info mg-top-20">
                 <div class="tbl-header">

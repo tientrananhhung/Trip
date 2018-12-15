@@ -46,22 +46,47 @@
 
                         <!-- Start Image of tour -->
                         <div class="img-tour">
-                            <img src="/resources/images/${lTour.image}" alt="Smart Trip">
+                            <%--<img src="/resources/images/${lTour.image}" alt="Smart Trip">--%>
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <c:forEach items="${lTour.images}" varStatus="index" var="img">
+                                        <c:choose>
+                                            <c:when test="${index.count == 1}">
+                                                <div class="carousel-item active">
+                                                    <img class="d-block w-100" src="/resources/images/${img}" alt="First slide">
+                                                </div>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <div class="carousel-item">
+                                                    <img class="d-block w-100" src="/resources/images/${img}" alt="Second slide">
+                                                </div>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:forEach>
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
                         </div>
                         <!-- End Image of tour -->
 
                         <div class="file-tour mg-top-10">
-                            <%--<label class="file-input-tour c_orange" for="upload-photo-tour">Đổi ảnh hiển thị</label>--%>
-                            <%--<f:form id="f-upload-images" action="/api/images/post" modelAttribute="product" method="POST"--%>
-                                        <%--enctype="multipart/form-data">--%>
-                                <%--<label class="file-input-tour btn btn-custom btn-choose-ticket" for="upload-photo-tour">Đổi ảnh hiển thị</label>--%>
-                                <%--&lt;%&ndash;<input id="upload-photo-tour" type="file" multiple="multiple" enctype="multipart/form-data" required>&ndash;%&gt;--%>
-                                <%--<f:input accept="image/*" path="fileData" type="file" class="dropify" multiple="multiple" required="required" />--%>
-                            <%--</f:form>--%>
-                            <br>
-                            <%--<button type="button" class="btn btn-outline-success my-2 my-sm-0 btn-custom btn-choose-ticket" style="vertical-align: top;">--%>
-                                <%--<span>Upload slide ảnh</span>--%>
-                            <%--</button>--%>
+                            <f:form id="f-upload-images" action="/api/images/post" modelAttribute="product" method="POST"
+                                        enctype="multipart/form-data">
+                                <label class="file-input-tour btn btn-custom btn-choose-ticket" for="fileData">Đổi ảnh hiển thị</label>
+                                <f:input accept="image/*" path="fileData" type="file" class="dropify" multiple="multiple" required="required" hidden="hidden" />
+                            </f:form>
                         </div>
 
                         <!-- Start info of tour-->
@@ -110,17 +135,42 @@
 
                         <!-- Start Image of tour -->
                         <div class="img-tour">
-                            <img src="/resources/images/logo.png" alt="Smart Trip">
+                            <%--<img src="/resources/images/logo.png" alt="Smart Trip">--%>
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" src="/resources/images/logo.png" alt="First slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src="/resources/images/logo.png" alt="Second slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src="/resources/images/logo.png" alt="Third slide">
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
                         </div>
                         <!-- End Image of tour -->
 
-                        <div class="file-tour">
-                            <label class="file-input-tour c_orange" for="upload-photo-tour">Đổi ảnh hiển thị</label>
-                            <input id="upload-photo-tour" type="file" required>
-                            <br>
-                            <button type="button" class="btn btn-outline-success my-2 my-sm-0 btn-custom btn-choose-ticket" style="vertical-align: top;">
-                                <span>Upload slide ảnh</span>
-                            </button>
+                        <div class="file-tour mg-top-10">
+                            <f:form id="f-upload-images" action="/api/images/post" modelAttribute="product" method="POST"
+                                    enctype="multipart/form-data">
+                                <label class="file-input-tour btn btn-custom btn-choose-ticket" for="fileData">Đổi ảnh hiển thị</label>
+                                <f:input accept="image/*" path="fileData" type="file" class="dropify" multiple="multiple" required="required" hidden="hidden" />
+                            </f:form>
                         </div>
 
                         <!-- Start info of tour-->
@@ -409,9 +459,45 @@
             $(this).tooltip('toggle');
         });
 
-        $(document).on("change", '#upload-photo-tour', function(event){
-            $('#f-upload-images').submit();
+        $(document).on("change", '#fileData', function(event){
             event.preventDefault();
+            // $('#f-upload-images').submit();
+            var formData = new FormData($('#f-upload-images')[0]);
+            $.ajax({
+                url: '/api/images/post',
+                type: 'POST',
+                data: formData,
+                async: false,
+                cache: false,
+                contentType: false,
+                processData: false
+            })
+                .done(function(data) {
+                    arrImages = data;
+                    console.log(arrImages);
+                    $('.carousel-inner').empty();
+                    $.each(data, function(index, val) {
+                        /* iterate through array or object */
+                        if(index == 0) {
+                            $('.carousel-inner').append(
+                                '<div class="carousel-item active">' +
+                                    '<img class="d-block w-100" src="/resources/images/' + val + '" alt="First slide">'+
+                                '</div>'
+                            );
+                        }else{
+                            $('.carousel-inner').append(
+                                '<div class="carousel-item">' +
+                                    '<img class="d-block w-100" src="/resources/images/' + val + '" alt="First slide">'+
+                                '</div>'
+                            );
+                        }
+                    });
+                    $('.carousel').carousel();
+                })
+                .fail(function() {
+                    console.log("error");
+                });
+            return false;
         });
 
         $(".li-user-info").mouseover(function() {
@@ -749,6 +835,14 @@
                 $('#policy').val(24);
             }
 
+            var arrImages = [];
+
+            $('.carousel-inner').find('img').each(function(){
+                // arrImages.push($(this).attr('src'));
+                var arImages = $(this).attr('src').split("/");
+                arrImages.push(arImages[arImages.length - 1]);
+            });
+
             json['idTour'] = idTour;
             json['nameTour'] = nameTour;
             json['address'] = address;
@@ -757,6 +851,7 @@
             json['policy'] = policy;
             json['content'] = content;
             json['ticketDetail'] = services;
+            json['images'] = arrImages;
 
             console.log(json);
 
@@ -771,7 +866,9 @@
                     window.location.href = "http://localhost:8080/quan-ly/tour";
                 }).fail(function () {
                     console.log("error");
-                })
+                }).always(function() {
+                    window.location.href = "http://localhost:8080/quan-ly/tour";
+                });
             }else{
                 console.log('Not null');
             }

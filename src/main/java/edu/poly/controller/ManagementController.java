@@ -87,13 +87,13 @@ public class ManagementController {
     private TicketImpl ticket;
 
 
-    @InitBinder
-    protected void initBinder(WebDataBinder binder) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(
-                dateFormat, true));
-        binder.addValidators(userValidator);
-    }
+//    @InitBinder
+//    protected void initBinder(WebDataBinder binder) {
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//        binder.registerCustomEditor(Date.class, new CustomDateEditor(
+//                dateFormat, true));
+//        binder.addValidators(userValidator);
+//    }
 
     @GetMapping(Constants.Url.PROFILE_URL)
     public ModelAndView managementInformation(HttpSession session) {
@@ -458,7 +458,7 @@ public class ManagementController {
             }
 
             mav.addObject("listTour", listDTO);
-//            mav.addObject("product", new Product());
+            mav.addObject("product", new Product());
 
             mav.setViewName(MANAGEMENT_TOUR_DETAIL_SCREEN);
             return mav;
@@ -481,6 +481,7 @@ public class ManagementController {
             return mav;
         }
 
+        mav.addObject("product", new Product());
         mav.setViewName(MANAGEMENT_TOUR_DETAIL_SCREEN);
         return mav;
     }
@@ -506,6 +507,7 @@ public class ManagementController {
         try {
             JsonNode jsonNode = objectMapper.readTree(dataJson);
             JsonNode jsonService = jsonNode.get("ticketDetail");
+            JsonNode jsonImages = jsonNode.get("images");
 
             Collection<Services> servicesById = new ArrayList<>();
             Collection<Tickets> ticketsById = new ArrayList<>();
@@ -521,6 +523,16 @@ public class ManagementController {
             Integer tId = 0;
             Integer sId = 0;
 
+            String arImages = "";
+            String arImage = jsonImages.get(0).asText();
+
+            for (int i = 0; i < jsonImages.size(); i++) {
+                arImages = arImages + jsonImages.get(i).asText();
+                if(i!= jsonImages.size() - 1){
+                    arImages = arImages + ",";
+                }
+            }
+
             if(idTour > 0){
                 Tours t = tour.getById(idTour);
                 Tours tour1 = new Tours();
@@ -529,8 +541,8 @@ public class ManagementController {
                 tour1.setName(nameTour);
                 tour1.setAddress(address);
                 tour1.setContent(content);
-                tour1.setImage(t.getImage());
-                tour1.setImages(t.getImages());
+                tour1.setImage(arImage);
+                tour1.setImages(arImages);
                 tour1.setPolicy(policy);
                 tour1.setLat(lat);
                 tour1.setLng(lng);
@@ -548,8 +560,8 @@ public class ManagementController {
                 tour1.setName(nameTour);
                 tour1.setAddress(address);
                 tour1.setContent(content);
-                tour1.setImage("logo.png");
-                tour1.setImages("logo.png");
+                tour1.setImage(arImage);
+                tour1.setImages(arImages);
                 tour1.setPolicy(policy);
                 tour1.setLat(lat);
                 tour1.setLng(lng);

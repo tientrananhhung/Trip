@@ -176,10 +176,11 @@ public class APIController {
     }
 
     @PostMapping(Constants.Url.POST_IMAGES_TOUR_URL)
-    public ArrayList<String> uploadImage(HttpServletRequest request, @ModelAttribute("product") Product product, HttpSession session){
-        if(CheckSession.partner(session)){
-            return new ArrayList<>();
+    public ResponseEntity<List<String>> uploadImage(HttpServletRequest request, @ModelAttribute("product") Product product, HttpSession session){
+        if(!CheckSession.partner(session)){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+
         try {
             CommonsMultipartFile[] files = product.getFileData();
             ArrayList<String> listImg = new ArrayList<>();
@@ -187,7 +188,7 @@ public class APIController {
                 CommonsMultipartFile file = files[i];
 
                 if (file.isEmpty()) {
-                    return new ArrayList<>();
+                    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
                 }
 
                 byte[] bytes = file.getBytes();
@@ -209,10 +210,11 @@ public class APIController {
                 stream.write(bytes);
                 stream.close();
             }
-            return listImg;
+            ResponseEntity<List<String>> responseEntity = new ResponseEntity<>(listImg, HttpStatus.OK);
+            return responseEntity;
         }catch(Exception e){
             e.printStackTrace();
-            return new ArrayList<>();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 

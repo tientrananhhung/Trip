@@ -1,5 +1,7 @@
 package edu.poly.model;
 
+import java.util.List;
+
 public class TourPartnerDTO {
     private Integer id;
     private Integer userId;
@@ -7,6 +9,7 @@ public class TourPartnerDTO {
     private String address;
     private String content;
     private String image;
+    private List<String> images;
     private Integer policy;
     private String lat;
     private String lng;
@@ -15,13 +18,14 @@ public class TourPartnerDTO {
     public TourPartnerDTO() {
     }
 
-    public TourPartnerDTO(Integer id, Integer userId, String name, String address, String content, String image, Integer policy, String lat, String lng, ServicePartnerDTO service) {
+    public TourPartnerDTO(Integer id, Integer userId, String name, String address, String content, String image, List<String> images, Integer policy, String lat, String lng, ServicePartnerDTO service) {
         this.id = id;
         this.userId = userId;
         this.name = name;
         this.address = address;
         this.content = content;
         this.image = image;
+        this.images = images;
         this.policy = policy;
         this.lat = lat;
         this.lng = lng;
@@ -74,6 +78,14 @@ public class TourPartnerDTO {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 
     public Integer getPolicy() {

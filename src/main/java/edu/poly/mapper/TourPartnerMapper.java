@@ -16,6 +16,7 @@ public class TourPartnerMapper implements RowMapper<TourPartnerDTO> {
 
         List<TypeTicketPartnerDTO> typeTicketPartnerDTO = new ArrayList<>();
         List<ServicePartnerDTO> servicePartnerDTO = new ArrayList<>();
+        List<String> arrImages = new ArrayList<>();
 
         Integer id = resultSet.getInt("id");
         Integer userId = resultSet.getInt("user_id");
@@ -23,6 +24,7 @@ public class TourPartnerMapper implements RowMapper<TourPartnerDTO> {
         String address = resultSet.getString("Address");
         String content = resultSet.getString("Content");
         String image = resultSet.getString("Image");
+        String images = resultSet.getString("Images");
         Integer policy = resultSet.getInt("Policy");
         String lat = resultSet.getString("Lat");
         String lng = resultSet.getString("Lng");
@@ -43,9 +45,15 @@ public class TourPartnerMapper implements RowMapper<TourPartnerDTO> {
             typeTicketPartnerDTO.add(typeTicketDTO);
         }
 
+        //Cắt chuỗi thành mảng image
+        String[] arImages = images.split("\\,");
+        for(String item : arImages){
+            arrImages.add(item);
+        }
+
         //Tạo và gán giá trị cho ServicePartnerDTO
         ServicePartnerDTO serviceDTO = new ServicePartnerDTO(serviceId, serviceName, price, normalPrice, detail, isDefault, isDeleted, typeTicketPartnerDTO);
 
-        return new TourPartnerDTO(id, userId, name, address, content, image, policy, lat, lng, serviceDTO);
+        return new TourPartnerDTO(id, userId, name, address, content, image, arrImages, policy, lat, lng, serviceDTO);
     }
 }
