@@ -88,11 +88,11 @@ public class PlaceInforController {
             List<FoodCategoryDTO> categoryList = foodCategoryDAO.getAllFoodCategory();
             List<FoodCateDTO> getTop5FoodNew = foodCategoryDAO.getTop5Food(id);
             List<FoodCateDTO> getAllCateFood = foodCategoryDAO.getAllFoodByFCID(id);
-            List<BlogDTO> getAllPostFood = postCategoryDAO.getTop5PostFood(id);
+            List<PostIndexDTO> lPostIndexDTO = postIndexDAO.getTop5PostNew();
             mav.addObject("cateFoodlist",categoryList);
             mav.addObject("listTop5Food", getTop5FoodNew);
             mav.addObject("listFood", getAllCateFood);
-            mav.addObject("listPostFood", getAllPostFood);
+            mav.addObject("listPost", lPostIndexDTO);
         }catch (Exception ex){
             ex.printStackTrace();
             mav.setViewName(HOME_SCREEN);

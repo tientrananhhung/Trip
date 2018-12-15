@@ -34,7 +34,7 @@
 <!-- Start điểm du lịch -->
 <section class="box-content-fluid mg-top-20">
     <div class="box-body">
-        <c:forEach items="${listTop5Food}" var="lFoodTop5" varStatus="lFoodCount">
+        <c:forEach items="${lTop5FoodD}" var="lFoodTop5" varStatus="lFoodCount">
             <c:choose>
                 <c:when test="${lFoodCount.count == 1}">
                     <div class="post-big">
@@ -75,31 +75,31 @@
             <!-- Start box 1 -->
             <div class="box-blog-left">
                 <div class="box-blog-title">
-                    <h3 class="blog-title"><a href="#">Danh sách ẩm thực</a></h3>
+                    <h3 class="blog-title"><a href="#">Danh sách ẩm thực trong quận</a></h3>
                 </div>
                 <!-- Start blog content -->
                 <div class="box-blog-content">
-                    <c:forEach items="${listFood}" var="lAllCateFood">
+                    <c:forEach items="${lFoodD}" var="lFoodD">
                         <article class="category-post-item">
                             <div class="article-content">
                                 <div class="entry-media-img">
-                                    <a href="/food/${lAllCateFood.piid}" class="penci-link-post penci-image-holder penci-lazy"
-                                       style="display: block; background-image: url('/resources/images/${lAllCateFood.piimage}'); max-height: 200px;"></a>
+                                    <a href="/food/${lFoodD.piid}" class="penci-link-post penci-image-holder penci-lazy"
+                                       style="display: block; background-image: url('/resources/images/${lFoodD.piimage}'); max-height: 200px;"></a>
                                 </div>
                                 <div class="entry-media-text">
                                     <header class="entry-header">
                                         <h2 class="entry-title">
-                                            <a href="/food/${lAllCateFood.piid}">${lAllCateFood.piname}</a>
+                                            <a href="/food/${lFoodD.piid}">${lFoodD.piname}</a>
                                         </h2>
                                         <div class="entry-meta">
-                                            <h4>${lAllCateFood.fname}</h4>
+                                            <h4>${lFoodD.piname}</h4>
                                             <span class="entry-meta-item penci-posted-on">
                                                 <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                                <span>${lAllCateFood.fopentime}</span>
+                                                <span>${lFoodD.fopentime}</span>
                                             </span>
                                             <span class="entry-meta-item penci-post-countview">
                                                 <i class="fa fa-eye" aria-hidden="true"></i>
-                                                <span>${lAllCateFood.piaddress}</span>
+                                                <span>${lFoodD.piaddress}</span>
                                             </span>
                                         </div>
                                     </header>
@@ -140,15 +140,15 @@
             <div class="box-blog-right">
                 <div class="box-blog-title">
                     <h3 class="blog-title">
-                        <a href="#">danh mục ẩm thực</a>
+                        <a href="#">danh sách quận</a>
                     </h3>
                 </div>
                 <div class="box-blog-content">
                     <ul>
-                        <c:forEach items="${cateFoodlist}" var="lCateFood">
+                        <c:forEach items="${lDistrict}" var="listDistrict">
                             <li class="cat-item">
-                                <a href="/${lCateFood.id}/food">
-                                        ${lCateFood.name}
+                                <a href="/${listDistrict.id}/district">
+                                        ${listDistrict.name}
                                 </a>
                                 <span class="category-item-count">34</span>
                             </li>

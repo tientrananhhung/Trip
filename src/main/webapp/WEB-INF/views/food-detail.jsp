@@ -51,7 +51,7 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">Đà Nẵng</a></li>
-                                        <li class="breadcrumb-item"><a href="#">${fooddetail.districtName}</a></li>
+                                        <li class="breadcrumb-item"><a href="/${fooddetail.districtID}/district">${fooddetail.districtName}</a></li>
                                         <li class="breadcrumb-item" aria-current="page">${fooddetail.placeInfoAddress}</li>
                                     </ol>
                                 </nav>
